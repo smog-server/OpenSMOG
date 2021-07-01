@@ -1,14 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[13]:
-
-
 # Copyright (c) 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University
 # This file is from the OpenSmog project, released under the MIT License. 
 
 R"""  
-The :class:`~.OpenSmog` classes perform Molecular dynamics using Structed-Based Model.
+The :class:`~.OpenSmog` classes perform Molecular dynamics using Structure-based Models for Biomolecules.
 """
 from simtk.openmm.app import *
 from simtk.openmm import *
@@ -24,7 +18,7 @@ from sys import stdout
 
 class OpenSMOG:
     R"""      
-    The :class:`~.OpenSmog` sets the environment to start the Molecular dynamics using Structed-Based Model simulations.
+    The :class:`~.OpenSmog` sets the environment to start the OpenSMOG class.
     
     Args:
         
