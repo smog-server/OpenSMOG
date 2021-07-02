@@ -1,0 +1,432 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>OpenSMOG.OpenSMOG &mdash; OpenSMOG 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/jupyter-sphinx.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/thebelab.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> OpenSMOG
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/introduction.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenSMOG Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../OpenSMOG.html">OpenSMOG</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorials/SBM_CA.html">OpenSMOG Tutorial - SBM_CA</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Reference/citing.html">How to cite <strong>OpenSMOG</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Reference/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Reference/license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenSMOG</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>OpenSMOG.OpenSMOG</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for OpenSMOG.OpenSMOG</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University</span>
+<span class="c1"># This file is from the OpenSmog project, released under the MIT License. </span>
+
+<span class="sa">R</span><span class="sd">&quot;&quot;&quot;  </span>
+<span class="sd">The :class:`~.OpenSmog` classes perform Molecular dynamics using Structure-based Models for Biomolecules.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simtk.unit</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="k">import</span> <span class="n">stdout</span>
+
+
+<span class="c1"># In[14]:</span>
+
+
+<div class="viewcode-block" id="OpenSMOG"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG">[docs]</a><span class="k">class</span> <span class="nc">OpenSMOG</span><span class="p">:</span>
+    <span class="sa">R</span><span class="sd">&quot;&quot;&quot;      </span>
+<span class="sd">    The :class:`~.OpenSmog` sets the environment to start the OpenSMOG class.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SBM&quot;</span><span class="p">,</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.002</span><span class="p">,</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">rcutoff</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+        
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">picoseconds</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">/</span> <span class="n">picosecond</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rcutoff</span> <span class="o">=</span> <span class="n">rcutoff</span> <span class="o">*</span> <span class="n">nanometers</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="n">temperature</span> <span class="o">*</span> <span class="mf">120.0</span> <span class="o">*</span> <span class="n">kelvin</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forceApplied</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+            
+<div class="viewcode-block" id="OpenSMOG.setup_openmm"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.setup_openmm">[docs]</a>    <span class="k">def</span> <span class="nf">setup_openmm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="s1">&#39;mixed&#39;</span><span class="p">,</span> <span class="n">GPUindex</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">integrator</span><span class="o">=</span><span class="s2">&quot;langevin&quot;</span><span class="p">):</span>
+        
+        <span class="n">precision</span> <span class="o">=</span> <span class="n">precision</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">precision</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;mixed&quot;</span><span class="p">,</span> <span class="s2">&quot;single&quot;</span><span class="p">,</span> <span class="s2">&quot;double&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Presision must be mixed, single or double&quot;</span><span class="p">)</span>
+            
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s2">&quot;Precision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">precision</span>
+        <span class="k">if</span> <span class="n">GPUindex</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
+            <span class="n">properties</span><span class="p">[</span><span class="s2">&quot;DeviceIndex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GPUindex</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span>
+
+        <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;opencl&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;OpenCL&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;cuda&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;CUDA&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;cpu&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;CPU&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;hip&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;HIP&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">!!!! Unknown platform !!!!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">platform</span> <span class="o">=</span> <span class="n">platformObject</span>
+        
+        <span class="k">if</span> <span class="n">integrator</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;langevin&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="o">=</span> <span class="n">LangevinIntegrator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="o">=</span> <span class="n">integrator</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator_type</span> <span class="o">=</span> <span class="s2">&quot;UserDefined&quot;</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">forceDict</span> <span class="o">=</span> <span class="p">{}</span></div>
+        
+<div class="viewcode-block" id="OpenSMOG.saveFolder"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.saveFolder">[docs]</a>    <span class="k">def</span> <span class="nf">saveFolder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>       
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Sets the folder path to save data.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            folder (str, optional):</span>
+<span class="sd">                Folder path to save the simulation data. If the folder path does not exist, the function will create the directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="n">folder</span>    </div>
+        
+<div class="viewcode-block" id="OpenSMOG.loadGro"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.loadGro">[docs]</a>    <span class="k">def</span> <span class="nf">loadGro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Grofile</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Gro</span> <span class="o">=</span> <span class="n">GromacsGroFile</span><span class="p">(</span><span class="n">Grofile</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="OpenSMOG.loadTop"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.loadTop">[docs]</a>    <span class="k">def</span> <span class="nf">loadTop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Topfile</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Top</span> <span class="o">=</span> <span class="n">GromacsTopFile</span><span class="p">(</span><span class="n">Topfile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Top</span><span class="o">.</span><span class="n">createSystem</span><span class="p">(</span><span class="n">nonbondedMethod</span><span class="o">=</span><span class="n">CutoffNonPeriodic</span><span class="p">,</span><span class="n">nonbondedCutoff</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rcutoff</span><span class="p">)</span></div>
+        
+    <span class="k">def</span> <span class="nf">_splitForces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">n_forces</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="n">forces</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_forces</span><span class="p">):</span>
+            <span class="n">forces</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="n">n</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">n</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span> <span class="o">=</span> <span class="n">forces</span>
+        
+<div class="viewcode-block" id="OpenSMOG.customSmogForce"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.customSmogForce">[docs]</a>    <span class="k">def</span> <span class="nf">customSmogForce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sa">R</span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Add Custom Smog Force using CustomBondForce</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pairs : (N \times 4 array)</span>
+<span class="sd">                pair contains the parameters i j sigma  epslon format</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1">#first set the equation</span>
+        <span class="n">contacts_ff</span> <span class="o">=</span> <span class="n">CustomBondForce</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1">#second set the number of variable</span>
+        <span class="k">for</span> <span class="n">pars</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">contacts_ff</span><span class="o">.</span><span class="n">addPerBondParameter</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
+
+        <span class="c1">#third, apply the bonds from each pair of atoms and the related variables.</span>
+        <span class="n">pars</span> <span class="o">=</span> <span class="p">[</span><span class="n">pars</span> <span class="k">for</span> <span class="n">pars</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="c1">#print(pars)</span>
+        <span class="k">for</span> <span class="n">iteraction</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="n">atom_index_i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">iteraction</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span> <span class="c1">#check where start the polymer</span>
+            <span class="n">atom_index_j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">iteraction</span><span class="p">[</span><span class="s1">&#39;j&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">iteraction</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">pars</span><span class="p">]</span>
+            <span class="c1">#print(atom_index_i, atom_index_j, parameters)</span>
+            <span class="n">contacts_ff</span><span class="o">.</span><span class="n">addBond</span><span class="p">(</span><span class="n">atom_index_i</span><span class="p">,</span> <span class="n">atom_index_j</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">forceDict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span>  <span class="n">contacts_ff</span></div>
+        
+<div class="viewcode-block" id="OpenSMOG.loadXml"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.loadXml">[docs]</a>    <span class="k">def</span> <span class="nf">loadXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xmlfile</span><span class="p">):</span>        
+        <span class="k">def</span> <span class="nf">import_xml2OpenSMOG</span><span class="p">(</span><span class="n">file_xml</span><span class="p">):</span>
+            <span class="n">XML_potential</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">file_xml</span><span class="p">)</span>
+
+            <span class="n">Expression</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">Parameters</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">Pairs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">Force_Names</span><span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">root</span> <span class="o">=</span> <span class="n">XML_potential</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+
+                <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;expression&#39;</span><span class="p">):</span>
+                    <span class="n">Expression</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;expr&#39;</span><span class="p">])</span>
+
+                <span class="n">internal_Param</span><span class="o">=</span><span class="p">[]</span>
+                <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">):</span>
+                    <span class="n">internal_Param</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">par</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="n">Parameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">internal_Param</span><span class="p">)</span>
+
+                <span class="n">internal_Pairs</span><span class="o">=</span><span class="p">[]</span>
+                <span class="k">for</span> <span class="n">atompairs</span> <span class="ow">in</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;interaction&#39;</span><span class="p">):</span>
+                     <span class="n">internal_Pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atompairs</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span>
+                <span class="n">Pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">internal_Pairs</span><span class="p">)</span>
+
+                <span class="n">Force_Names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">Expression</span><span class="p">,</span><span class="n">Parameters</span><span class="p">,</span><span class="n">Pairs</span><span class="p">,</span><span class="n">Force_Names</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forceApplied</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">import_xml2OpenSMOG</span><span class="p">(</span><span class="n">Xmlfile</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_splitForces</span><span class="p">()</span>
+        
+            <span class="k">for</span> <span class="n">force</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;creating force </span><span class="si">{:}</span><span class="s2"> from xml file&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">force</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">customSmogForce</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span><span class="p">[</span><span class="n">force</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">addForce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forceDict</span><span class="p">[</span><span class="n">force</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forceApplied</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Contacts forces already applied!!! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="OpenSMOG.createSimulation"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.createSimulation">[docs]</a>    <span class="k">def</span> <span class="nf">createSimulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Top</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">platform</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="p">)</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setPositions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Gro</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setVelocitiesToTemperature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Simulations context already created! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="OpenSMOG.createReporters"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.createReporters">[docs]</a>    <span class="k">def</span> <span class="nf">createReporters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dt_files</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">trajectory</span><span class="p">:</span>
+            <span class="n">dcdfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">folder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_trajectory.dcd&#39;</span><span class="p">)</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DCDReporter</span><span class="p">(</span><span class="n">dcdfile</span><span class="p">,</span> <span class="n">dt_files</span><span class="p">))</span>
+        <span class="c1">#simulation.reporters.append(CheckpointReporter(&#39;%s.chk&#39; % out_file, nstxout))</span>
+        <span class="k">if</span> <span class="n">energies</span><span class="p">:</span>
+            <span class="n">energyfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">folder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span> <span class="s1">&#39;_energies.txt&#39;</span><span class="p">)</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="n">energyfile</span><span class="p">,</span> <span class="n">dt_files</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                                          <span class="n">potentialEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kineticEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                            <span class="n">totalEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">temperature</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">))</span></div>
+            
+<div class="viewcode-block" id="OpenSMOG.run"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.OpenSMOG.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsteps</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">report</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remainingTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                  <span class="n">progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">totalSteps</span><span class="o">=</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">nsteps</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University &amp; Northeastern University.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
