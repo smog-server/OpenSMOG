@@ -103,8 +103,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-opensmog">Installing OpenSMOG</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#install-via-conda">Install via conda</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-via-pip">Install via pip</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-openmm">Install OpenMM</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#install-smog2">Install SMOG2</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
@@ -231,11 +233,50 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install OpenSMOG
 </pre></div>
 </div>
+</div>
+<div class="section" id="install-openmm">
+<h3>Install OpenMM<a class="headerlink" href="#install-openmm" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>OpenSMOG</strong> library uses OpenMM API.
 These requirements can be met by installing the following packages from the <a class="reference external" href="https://conda-forge.org/">conda-forge channel</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge openmm
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="install-smog2">
+<h2>Install SMOG2<a class="headerlink" href="#install-smog2" title="Permalink to this headline">¶</a></h2>
+<p>The inputs <strong>OpenSMOG</strong> simulations are generated using <a class="reference external" href="https://smog-server.org/smog2">SMOG2</a> &gt; 2.4. Here, there is a quick installation guide based on <a class="reference external" href="https://conda.io/projects/conda/">conda</a>.</p>
+<p>First, just create a new environment and activate it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name smog2.4 perl
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate smog2.4
+</pre></div>
+</div>
+<p>Next, it is necessary an installation of a few <strong>Perl</strong> modules:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c bioconda perl-xml-simple perl-xml-libxml
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c eumetsat perl-pdl
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>perl -MCPAN -e <span class="s1">&#39;install XML::Validator::Schema&#39;</span>
+</pre></div>
+</div>
+<p>Add the <strong>Perl</strong> and <strong>smog2</strong> path into the configure.smog2 file.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Use the following command line to find out which installed <strong>Perl</strong> is being used.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which perl
+</pre></div>
+</div>
+<p>Then load and test the <strong>smog2</strong> installation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> configure.smog2
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./test-config
+</pre></div>
 </div>
 </div>
 </div>
