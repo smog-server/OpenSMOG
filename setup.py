@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 from os import path
 
 this_dir = path.abspath(path.dirname(__file__))
-with open(path.join(this_dir, "README.MD")) as f:
+with open(path.join(this_dir, "README.md")) as f:
     long_description = f.read()
 
-__version__ = "0.0.3"
+__version__ = "0.0.2"
 for line in open(path.join("OpenSMOG", "__init__.py")):
     if line.startswith("__version__"):
         exec(line.strip())
