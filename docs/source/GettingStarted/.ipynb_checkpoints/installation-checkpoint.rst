@@ -57,7 +57,7 @@ Next, it is necessary an installation of a few **Perl** modules:
 
 .. code-block:: bash
 
-    conda install -c bioconda perl-xml-simple perl-xml-libxml 
+    conda install -c bioconda perl-xml-simple perl-xml-libxml java-jdk
 
 .. code-block:: bash
 

@@ -19,7 +19,7 @@ Table of Contents
    :caption: Tutorials
 
    Tutorials/SBM_CA
-   Tutorials/SBM_AA
+   Tutorials/Create_SBM_CA_inputs
    
 .. toctree::
    :maxdepth: 2
