@@ -29,13 +29,13 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "SBM class sets the initial parameters of the simulation:<br>\n",
+    "SBM class sets the initial parameters of the simulation: <br>\n",
     "\n",
     "`name=\"1hk0\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*. <br>\n",
     "`dt=0.002 ` (**picoseconds**) Sets the time step used in integration. <br>\n",
-    "`gamma=5.0` (**picoseconds**) Sets the collision rate of Langevin integrator.  <br>\n",
+    "`gamma=1.0` (**picoseconds**) Sets the collision rate of Langevin integrator.  <br>\n",
     "`rcutoff=1.5` (**nanometers**) Sets the non-bonded cutoff. <br>\n",
-    "`temperature=1.0` (**reduced units of temperature**) Sets the Temperature of the simulation.\n",
+    "`temperature=1.0` (**reduced units of temperature**) Sets the Temperature of the simulation. <br>\n",
     "\n",
     "sbm_CA is a chosen variable name for the SBM object"
    ]
@@ -46,7 +46,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "sbm_CA = SBM(name='1hk0', dt=0.002, gamma=2.0, rcutoff =1.5, temperature=1.0)"
+    "sbm_CA = SBM(name='1hk0', dt=0.002, gamma=1.0, rcutoff =1.5, temperature=1.0)"
    ]
   },
   {

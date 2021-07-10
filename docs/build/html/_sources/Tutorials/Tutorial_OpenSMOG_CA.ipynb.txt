@@ -6,9 +6,7 @@
    "source": [
     "### C-alpha Structure-based Model simulation using OpenSMOG\n",
     "\n",
-    "This tutorial should take between 5 to 15 minutes of reading and performing simulations.\n",
-    "\n",
-    "Input files for this tutorial can be found [here](https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SBM_CA/input)"
+    "This tutorial should take between 5 to 15 minutes of reading and performing simulations."
    ]
   },
   {
@@ -31,12 +29,12 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "SBM class sets the initial parameters of the simulation:\n",
+    "SBM class sets the initial parameters of the simulation: <br>\n",
     "\n",
-    "`name=\"1hk0\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*. <br>\n",
+    "`name=\"1hk0\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*.  <br>\n",
     "`dt=0.002 ` (**picoseconds**) Sets the time step used in integration. <br>\n",
     "`gamma=1.0` (**picoseconds**) Sets the collision rate of Langevin integrator.  <br>\n",
-    "`rcutoff=1.5` (**nanometers**) Sets the non-bonded cutoff. <br>\n",
+    "`rcutoff=1.5` (**nanometers**) Sets the non-bonded cutoff. <br> \n",
     "`temperature=1.0` (**reduced units of temperature**) Sets the Temperature of the simulation. <br>\n",
     "\n",
     "sbm_CA is a chosen variable name for the SBM object"
@@ -48,7 +46,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "sbm_CA = SBM(name='1hk0', dt=0.002, gamma=1.0, rcutoff=1.5, temperature=1.0)"
+    "sbm_CA = SBM(name='1hk0', dt=0.002, gamma=1.0, rcutoff =1.5, temperature=1.0)"
    ]
   },
   {
@@ -96,7 +94,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Load the **gro** file into the sbm_CA object"
+    "Load the **gro** file into the sbm_CA object\n",
+    "\n",
+    "in this tutorial all input files are in input folder"
    ]
   },
   {
