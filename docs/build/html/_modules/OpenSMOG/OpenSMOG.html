@@ -97,8 +97,8 @@
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/intro.html">Introduction</a></li>
 </ul>
 <p class="caption"><span class="caption-text">OpenSMOG Modules</span></p>
 <ul>
@@ -107,7 +107,6 @@
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Tutorials/SBM_CA.html">C-alpha Structure-based Model simulation using OpenSMOG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Tutorials/Create_SBM_CA_inputs.html">How to cite <strong>OpenSMOG</strong></a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
@@ -186,6 +185,7 @@
 <span class="sa">R</span><span class="sd">&quot;&quot;&quot;  </span>
 <span class="sd">The :class:`~.OpenSmog` classes perform Molecular dynamics using Structure-based Models for Biomolecules.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">simtk.unit</span> <span class="k">import</span> <span class="o">*</span>
@@ -195,16 +195,9 @@
 <span class="kn">from</span> <span class="nn">sys</span> <span class="k">import</span> <span class="n">stdout</span>
 
 
-<span class="c1"># In[14]:</span>
-
-
 <div class="viewcode-block" id="SBM"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.SBM">[docs]</a><span class="k">class</span> <span class="nc">SBM</span><span class="p">:</span>
-    <span class="sa">R</span><span class="sd">&quot;&quot;&quot;      </span>
-<span class="sd">    The :class:`~.OpenSmog` sets the environment to start the OpenSMOG class.</span>
-<span class="sd">    </span>
-<span class="sd">    Args:</span>
-<span class="sd">        </span>
-<span class="sd">    &quot;&quot;&quot;</span>
+
+    
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
         <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SBM&quot;</span><span class="p">,</span>
         <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.002</span><span class="p">,</span>
@@ -265,13 +258,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">forceDict</span> <span class="o">=</span> <span class="p">{}</span></div>
         
 <div class="viewcode-block" id="SBM.saveFolder"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.SBM.saveFolder">[docs]</a>    <span class="k">def</span> <span class="nf">saveFolder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>       
-        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Sets the folder path to save data.</span>
-
-<span class="sd">        Args:</span>
-
-<span class="sd">            folder (str, optional):</span>
-<span class="sd">                Folder path to save the simulation data. If the folder path does not exist, the function will create the directory.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+       
     
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
             <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
@@ -293,13 +280,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span> <span class="o">=</span> <span class="n">forces</span>
         
 <div class="viewcode-block" id="SBM.customSmogForce"><a class="viewcode-back" href="../../OpenSMOG.html#OpenSMOG.OpenSMOG.SBM.customSmogForce">[docs]</a>    <span class="k">def</span> <span class="nf">customSmogForce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="sa">R</span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Add Custom Smog Force using CustomBondForce</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            pairs : (N \times 4 array)</span>
-<span class="sd">                pair contains the parameters i j sigma  epslon format</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+       
 
         <span class="c1">#first set the equation</span>
         <span class="n">contacts_ff</span> <span class="o">=</span> <span class="n">CustomBondForce</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>

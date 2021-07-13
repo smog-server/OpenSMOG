@@ -1,4 +1,4 @@
-.. _installation:
+.. _install:
 
 ============
 Installation
@@ -38,8 +38,8 @@ These requirements can be met by installing the following packages from the `con
     conda install -c conda-forge openmm
     
     
-Install SMOG2
-=============
+Installing SMOG2
+================
 
 The inputs **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ > 2.4. Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_.
 

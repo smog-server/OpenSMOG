@@ -101,8 +101,8 @@
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/intro.html">Introduction</a></li>
 </ul>
 <p class="caption"><span class="caption-text">OpenSMOG Modules</span></p>
 <ul>
@@ -457,6 +457,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="C-alpha-Structure-based-Model-simulation-using-OpenSMOG">
 <h1>C-alpha Structure-based Model simulation using OpenSMOG<a class="headerlink" href="#C-alpha-Structure-based-Model-simulation-using-OpenSMOG" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial should take between 5 to 15 minutes of reading and performing simulations.</p>
+<p>Input files for this tutorial can be found <a class="reference external" href="https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SBM_CA/input">here</a></p>
 <p>The first step is to import the <strong>OpenSMOG</strong> module</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -475,7 +476,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sbm_CA</span> <span class="o">=</span> <span class="n">SBM</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;1hk0&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rcutoff</span> <span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span> <span class="o">=</span> <span class="n">SBM</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;1hk0&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rcutoff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -502,7 +503,6 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>Load the <strong>gro</strong> file into the sbm_CA object</p>
-<p>in this tutorial all input files are in input folder</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>

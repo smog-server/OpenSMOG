@@ -1,6 +1,6 @@
-=====================
+========================
 How to cite **OpenSMOG**
-=====================
+========================
 
 Please acknowledge the use of this software within the body of your publication for example by copying or adapting the following formulation:
 
@@ -13,6 +13,7 @@ The paper is available online from `Journal <https://github.com/junioreif/OpenSM
 To cite this reference, you can use the following BibTeX entry:
 
 .. code-block:: bibtex
+
     @article{OpenMiChroM2020,
       title={A scalable computational approach for simulating complexes of multiple chromosomes},
       author={Oliveira Jr, Antonio B  and 

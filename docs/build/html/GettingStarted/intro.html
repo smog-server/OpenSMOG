@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; OpenSMOG 0.0.1 documentation</title>
+  <title>Introduction &mdash; OpenSMOG 0.0.1 documentation</title>
   
 
   
@@ -47,8 +47,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Introduction" href="introduction.html" />
-    <link rel="prev" title="Table of Contents" href="../index.html" /> 
+    <link rel="next" title="OpenSMOG" href="../OpenSMOG.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,17 +99,8 @@
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installing-opensmog">Installing OpenSMOG</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#install-via-conda">Install via conda</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-via-pip">Install via pip</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#install-openmm">Install OpenMM</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#install-smog2">Install SMOG2</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
 </ul>
 <p class="caption"><span class="caption-text">OpenSMOG Modules</span></p>
 <ul>
@@ -118,7 +109,6 @@
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Tutorials/SBM_CA.html">C-alpha Structure-based Model simulation using OpenSMOG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Tutorials/Create_SBM_CA_inputs.html">How to cite <strong>OpenSMOG</strong></a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
@@ -173,13 +163,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Installation</li>
+      <li>Introduction</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/GettingStarted/installation.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/GettingStarted/intro.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -216,70 +206,15 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="installation">
-<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="installing-opensmog">
-<h2>Installing OpenSMOG<a class="headerlink" href="#installing-opensmog" title="Permalink to this headline">¶</a></h2>
-<p>The <strong>OpenSMOG</strong> library can be installed via <a class="reference external" href="https://conda.io/projects/conda/">conda</a> or pip, or compiled from source.</p>
-<div class="section" id="install-via-conda">
-<h3>Install via conda<a class="headerlink" href="#install-via-conda" title="Permalink to this headline">¶</a></h3>
-<p>The code below will install <strong>OpenSMOG</strong> from <a class="reference external" href="https://anaconda.org/conda-forge/OpenSMOG">conda-forge</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge OpenSMOG
-</pre></div>
-</div>
-</div>
-<div class="section" id="install-via-pip">
-<h3>Install via pip<a class="headerlink" href="#install-via-pip" title="Permalink to this headline">¶</a></h3>
-<p>The code below will install <strong>OpenSMOG</strong> from <a class="reference external" href="https://pypi.org/project/OpenSMOG/">PyPI</a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install OpenSMOG
-</pre></div>
-</div>
-</div>
-<div class="section" id="install-openmm">
-<h3>Install OpenMM<a class="headerlink" href="#install-openmm" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>OpenSMOG</strong> library uses OpenMM API.
-These requirements can be met by installing the following packages from the <a class="reference external" href="https://conda-forge.org/">conda-forge channel</a>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge openmm
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="install-smog2">
-<h2>Install SMOG2<a class="headerlink" href="#install-smog2" title="Permalink to this headline">¶</a></h2>
-<p>The inputs <strong>OpenSMOG</strong> simulations are generated using <a class="reference external" href="https://smog-server.org/smog2">SMOG2</a> &gt; 2.4. Here, there is a quick installation guide based on <a class="reference external" href="https://conda.io/projects/conda/">conda</a>.</p>
-<p>First, just create a new environment and activate it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name smog2.4 perl
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate smog2.4
-</pre></div>
-</div>
-<p>Next, it is necessary an installation of a few <strong>Perl</strong> modules:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c bioconda perl-xml-simple perl-xml-libxml java-jdk
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c eumetsat perl-pdl
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>perl -MCPAN -e <span class="s1">&#39;install XML::Validator::Schema&#39;</span>
-</pre></div>
-</div>
-<p>Add the <strong>Perl</strong> and <strong>smog2</strong> path into the configure.smog2 file.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Use the following command line to find out which installed <strong>Perl</strong> is being used.</p>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which perl
-</pre></div>
-</div>
-<p>Then load and test the <strong>smog2</strong> installation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> configure.smog2
-</pre></div>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./test-config
-</pre></div>
-</div>
-</div>
+<div class="section" id="introduction">
+<span id="intro"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>OpenSMOG is a Python library for performing molecular dynamics simulations using the Structure-Based Models <span id="id1">[<a class="reference internal" href="#id3">1</a>]</span>. OpenSMOG uses the  <a class="reference external" href="http://openmm.org/">OpenMM</a>. Python API.</p>
+<p id="id2"><dl class="citation">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Jeffrey K Noel, Mariana Levi, Mohit Raghunathan, Heiko Lammert, Ryan L Hayes, José N Onuchic, and Paul C Whitford. Smog 2: a versatile software package for generating structure-based models. <em>PLoS computational biology</em>, 12(3):e1004794, 2016.</p>
+</dd>
+</dl>
+</p>
 </div>
 
 
@@ -288,8 +223,8 @@ These requirements can be met by installing the following packages from the <a c
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../index.html" class="btn btn-neutral float-left" title="Table of Contents" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../OpenSMOG.html" class="btn btn-neutral float-right" title="OpenSMOG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
