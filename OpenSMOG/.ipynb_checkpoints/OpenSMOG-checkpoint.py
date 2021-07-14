@@ -16,6 +16,9 @@ from sys import stdout
 
 class SBM:
 
+    R"""  
+    The :class:`~.SBM` classes perform Molecular dynamics using Structure-based Models for Biomolecules.
+    """
     
     def __init__(self, 
         name = "SBM",
