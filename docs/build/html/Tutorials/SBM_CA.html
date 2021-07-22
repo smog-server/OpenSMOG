@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>OpenSMOG Tutorial - SBM_CA &mdash; OpenSMOG 0.0.1 documentation</title>
+  <title>C-alpha Structure-based Model simulation using OpenSMOG &mdash; OpenSMOG 0.0.1 documentation</title>
   
 
   
@@ -101,8 +101,8 @@
             
               <p class="caption"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/intro.html">Introduction</a></li>
 </ul>
 <p class="caption"><span class="caption-text">OpenSMOG Modules</span></p>
 <ul>
@@ -110,7 +110,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">OpenSMOG Tutorial - SBM_CA</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C-alpha Structure-based Model simulation using OpenSMOG</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
 <ul>
@@ -165,7 +165,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>OpenSMOG Tutorial - SBM_CA</li>
+      <li>C-alpha Structure-based Model simulation using OpenSMOG</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -454,100 +454,119 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="OpenSMOG-Tutorial---SBM_CA">
-<h1>OpenSMOG Tutorial - SBM_CA<a class="headerlink" href="#OpenSMOG-Tutorial---SBM_CA" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="C-alpha-Structure-based-Model-simulation-using-OpenSMOG">
+<h1>C-alpha Structure-based Model simulation using OpenSMOG<a class="headerlink" href="#C-alpha-Structure-based-Model-simulation-using-OpenSMOG" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial should take between 5 to 15 minutes of reading and performing simulations.</p>
+<p>Input files for this tutorial can be found <a class="reference external" href="https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SBM_CA/input">here</a></p>
+<p>The first step is to import the <strong>OpenSMOG</strong> module</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;../OpenSMOG/ &#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">OpenSMOG</span> <span class="k">import</span> <span class="n">OpenSMOG</span>
+<span></span><span class="kn">from</span> <span class="nn">OpenSMOG</span> <span class="k">import</span> <span class="n">SBM</span>
 </pre></div>
 </div>
 </div>
+<p>SBM class sets the initial parameters of the simulation:</p>
+<p><code class="docutils literal notranslate"><span class="pre">name=&quot;1hk0&quot;</span></code> Sets the name of each simulation <em>(this name is used as prefix for the outputs)</em>. <code class="docutils literal notranslate"><span class="pre">dt=0.002</span></code> (<strong>picoseconds</strong>) Sets the time step used in integration. <code class="docutils literal notranslate"><span class="pre">gamma=1.0</span></code> (<strong>picoseconds</strong>) Sets the collision rate of Langevin integrator. <code class="docutils literal notranslate"><span class="pre">rcutoff=1.5</span></code> (<strong>nanometers</strong>) Sets the non-bonded cutoff. <code class="docutils literal notranslate"><span class="pre">temperature=1.0</span></code> (<strong>reduced units of temperature</strong>) Sets the Temperature of the simulation.</p>
+<p>sbm_CA is a chosen variable name for the SBM object</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span> <span class="o">=</span> <span class="n">OpenSMOG</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;smog&#39;</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.002</span><span class="p">,</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">rcutoff</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">temperature</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span> <span class="o">=</span> <span class="n">SBM</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;1hk0&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rcutoff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>There are three hardware platform options to run the simulations:</p>
+<p><code class="docutils literal notranslate"><span class="pre">platform=&quot;cuda&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">platform=&quot;HIP&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">platform=&quot;opencl&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">platform=&quot;cpu&quot;</span></code></p>
+<p>if <strong>cuda</strong>, <strong>opencl</strong> or <strong>HIP</strong> is choosen the GPUindex can be define as “0” or “0,1” for multiples GPUS</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">setup_openmm</span><span class="p">(</span><span class="n">platform</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="s1">&#39;mixed&#39;</span><span class="p">,</span> <span class="n">GPUindex</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">integrator</span><span class="o">=</span><span class="s2">&quot;langevin&quot;</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">setup_openmm</span><span class="p">(</span><span class="n">platform</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">,</span> <span class="n">GPUindex</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>Sets the directory name where to save the simulation outputs</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">saveFolder</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">saveFolder</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>Load the <strong>gro</strong> file into the sbm_CA object</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">loadGro</span><span class="p">(</span><span class="s1">&#39;example_1/openSMOG.2cg.gro&#39;</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">loadGro</span><span class="p">(</span><span class="s1">&#39;input/1hk0_CA.gro&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>Load the <strong>top</strong> file into the sbm_CA object</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">loadTop</span><span class="p">(</span><span class="s1">&#39;example_1/openSMOG.2cg.top&#39;</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">loadTop</span><span class="p">(</span><span class="s1">&#39;input/1hk0_CA.top&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>Load the <strong>xml</strong> file into the sbm_CA object</p>
+<p>This function returns the name of each force added.</p>
+<p>In this example, only the Lennard-Jones 10-12 potential is being applied.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">loadXml</span><span class="p">(</span><span class="s1">&#39;example_1/openSMOG.2cg.xml&#39;</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">loadXml</span><span class="p">(</span><span class="s1">&#39;input/1hk0_CA.xml&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>The Simulation <strong>context</strong> is created with all information given in previous steps.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">createSimulation</span><span class="p">()</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">createSimulation</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<p>Creates the <strong>reporters</strong> that will save the simulation data in output folder.</p>
+<p><code class="docutils literal notranslate"><span class="pre">trajectory=True</span></code> Save the trajectory in .dcd format. <code class="docutils literal notranslate"><span class="pre">energies=True</span></code> Save the energy in text format separated by a comma. <code class="docutils literal notranslate"><span class="pre">dt_files=1000</span></code> The step interval to save both trajectory and energies data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">createReporters</span><span class="p">(</span><span class="n">trajectory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dt_files</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">createReporters</span><span class="p">(</span><span class="n">trajectory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dt_files</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">run</span></code> function receives the following parameters:</p>
+<p><code class="docutils literal notranslate"><span class="pre">nsteps=10**7</span></code> Number os steps to perform the simulation. <code class="docutils literal notranslate"><span class="pre">report=True</span></code> Shows the simulation details (Progress (%), Step and Time Remaining) <code class="docutils literal notranslate"><span class="pre">interval=10**4</span></code> The step interval to show the details</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">nsteps</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>The output files are located in the output folder</p>
 </div>
 
 

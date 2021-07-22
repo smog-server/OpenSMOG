@@ -5,8 +5,8 @@ Table of Contents
    :maxdepth: 2
    :caption: Getting Started
 
-   GettingStarted/installation
-   GettingStarted/introduction
+   GettingStarted/install
+   GettingStarted/intro
 
 .. toctree::
    :maxdepth: 2
@@ -19,7 +19,6 @@ Table of Contents
    :caption: Tutorials
 
    Tutorials/SBM_CA
-   Tutorials/SBM_AA
    
 .. toctree::
    :maxdepth: 2

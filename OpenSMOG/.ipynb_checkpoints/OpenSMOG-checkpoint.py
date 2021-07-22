@@ -4,6 +4,7 @@
 R"""  
 The :class:`~.OpenSmog` classes perform Molecular dynamics using Structure-based Models for Biomolecules.
 """
+
 from simtk.openmm.app import *
 from simtk.openmm import *
 from simtk.unit import *
@@ -13,16 +14,12 @@ import xml.etree.ElementTree as ET
 from sys import stdout
 
 
-# In[14]:
+class SBM:
 
-
-class OpenSMOG:
-    R"""      
-    The :class:`~.OpenSmog` sets the environment to start the OpenSMOG class.
-    
-    Args:
-        
+    R"""  
+    The :class:`~.SBM` classes perform Molecular dynamics using Structure-based Models for Biomolecules.
     """
+    
     def __init__(self, 
         name = "SBM",
         dt = 0.002,
@@ -63,6 +60,7 @@ class OpenSMOG:
 
         elif platform.lower() == "cpu":
             platformObject = Platform.getPlatformByName('CPU')
+            self.properties = {}
 
         elif platform.lower() == "hip":
             platformObject = Platform.getPlatformByName('HIP')
@@ -82,13 +80,7 @@ class OpenSMOG:
         self.forceDict = {}
         
     def saveFolder(self, folder):       
-        R"""Sets the folder path to save data.
-
-        Args:
-
-            folder (str, optional):
-                Folder path to save the simulation data. If the folder path does not exist, the function will create the directory.
-        """
+       
     
         if os.path.exists(folder) == False:
             os.mkdir(folder)
@@ -110,13 +102,7 @@ class OpenSMOG:
         self.contacts = forces
         
     def customSmogForce(self, name, data):
-        R'''
-        Add Custom Smog Force using CustomBondForce
-
-        Args:
-            pairs : (N \times 4 array)
-                pair contains the parameters i j sigma  epslon format
-        '''
+       
 
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
@@ -150,11 +136,15 @@ class OpenSMOG:
 
             for i in range(len(root[0])):
 
+                for name in root[0][i].iter('contacts_type'):
+                    Force_Names.append(name.attrib['name'])
+
                 for expr in root[0][i].iter('expression'):
                     Expression.append(expr.attrib['expr'])
+                    
 
                 internal_Param=[]
-                for par in root[0][i].iter('parameters'):
+                for par in root[0][i].iter('parameter'):
                     internal_Param.append(par.text)
                 Parameters.append(internal_Param)
 
@@ -163,7 +153,6 @@ class OpenSMOG:
                      internal_Pairs.append(atompairs.attrib)
                 Pairs.append(internal_Pairs)
 
-                Force_Names.append(root[0][i].tag)
 
             return Expression,Parameters,Pairs,Force_Names
         if not (self.forceApplied):
@@ -191,7 +180,7 @@ class OpenSMOG:
         if trajectory:
             dcdfile = os.path.join(self.folder, self.name + '_trajectory.dcd') 
             self.simulation.reporters.append(DCDReporter(dcdfile, dt_files))
-        #simulation.reporters.append(CheckpointReporter('%s.chk' % out_file, nstxout))
+
         if energies:
             energyfile = os.path.join(self.folder, self.name+ '_energies.txt') 
             self.simulation.reporters.append(StateDataReporter(energyfile, dt_files, step=True, 
