@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- INTERACTION TYPE -->
+  <xs:complexType name="interactionType">
+    <xs:attribute name="i" type="xs:integer" use="required"/>
+    <xs:attribute name="j" type="xs:integer" use="required"/>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+  <!-- PARAMETER TYPE -->
+  <xs:complexType name="parameterType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+    </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- EXPRESSION TYPE -->
+  <xs:complexType name="expressionType">
+    <xs:attribute name="expr" type="xs:string" use="required"/>
+  </xs:complexType>
+  <!-- CONTACT POTENTIAL TYPE -->
+  <xs:complexType name="contpotType">
+    <xs:sequence>
+      <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="interaction" type="interactionType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+  <!-- CONTACTS TYPE -->
+  <xs:complexType name="contactsType">
+    <xs:sequence>
+      <xs:element name="contacts_type" type="contpotType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- openSMOG TYPE -->
+  <xs:complexType name="openSMOGType">
+    <xs:sequence>
+      <xs:element name="contacts" type="contactsType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- openSMOG SCHEMA -->
+  <xs:element name="openSMOGforces" type="openSMOGType"/>
+</xs:schema>
