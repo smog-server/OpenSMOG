@@ -1,13 +1,19 @@
 # Copyright (c) 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University
-# This file is from the OpenSmog project, released under the MIT License. 
+# This file is from the OpenSMOG project, released under the MIT License. 
 
 R"""  
-The :class:`~.OpenSmog` classes perform Molecular dynamics using Structure-based Models for Biomolecules.
+The :class:`~.OpenSMOG` classes perform molecular dynamics using Structure-Based Models (SBM) for biomolecular simulations.
+:class:`~.OpenSMOG` allows the simulations of a wide variety of potential forms, including the most commonly employed models such as the C-alpha and All-Atoms.
+Details about the models can be found below:
+    - **SMOG server**: https://smog-server.org/
+    - **C-alpha**: Clementi, C., Nymeyer, H. and Onuchic, J.N., 2000. Topological and energetic factors: what determines the structural details of the transition state ensemble and “en-route” intermediates for protein folding? An investigation for small globular proteins. Journal of molecular biology, 298(5), pp.937-953.
+    - **All-Atom**: Whitford, P.C., Noel, J.K., Gosavi, S., Schug, A., Sanbonmatsu, K.Y. and Onuchic, J.N., 2009. An all‐atom structure‐based potential for proteins: bridging minimal models with all‐atom empirical forcefields. Proteins: Structure, Function, and Bioinformatics, 75(2), pp.430-441.
 """
 
 from simtk.openmm.app import *
 from simtk.openmm import *
 from simtk.unit import *
+from OpenSMOG_Reporter import forcesReporter
 import os
 import numpy as np
 import xml.etree.ElementTree as ET
@@ -19,20 +25,36 @@ from lxml import etree
 class SBM:
 
     R"""  
-    The :class:`~.SBM` classes perform Molecular dynamics using Structure-based Models for Biomolecules.
-    """
+    The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, or NMR, methods) as the energetic global minimum.
     
+    
+    The :class:`~.SBM` sets the environment to start the molecular dynamics simulations.
+    
+    Args:
+        name (str):
+            Name used in the output files. (Default value: *SBM*). 
+        time_step (float, required):
+            Simulation time step in units of :math:`\tau`. (Default value = 0.0005).
+        collision_rate (float, required):
+            Friction/Damping constant in units of reciprocal time (:math:`1/\tau`). (Default value = 1.0).
+        r_cutoff (float, required):
+            Cutoff distance to consider non-bonded interactions in units of nanometers. (Default value = 3.0).
+        temperature (float, required):
+            Temperature in reduced units. (Default value = 0.5).
+    """
+
+
     def __init__(self, 
         name = "SBM",
-        dt = 0.0005,
-        gamma = 1.0,
-        rcutoff = 3.0,
+        time_step = 0.0005,
+        collision_rate = 1.0,
+        r_cutoff = 3.0,
         temperature = 0.5):
         
             self.name = name
-            self.dt = dt * picoseconds
-            self.gamma = gamma / picosecond
-            self.rcutoff = rcutoff * nanometers  
+            self.dt = time_step * picoseconds
+            self.gamma = collision_rate / picosecond
+            self.rcutoff = r_cutoff * nanometers  
             self.temperature = (temperature / 0.008314) * kelvin
             self.forceApplied = False
             self.loaded = False
@@ -43,6 +65,20 @@ class SBM:
             
     def setup_openmm(self, platform='cuda', precision='single', GPUindex='default', integrator="langevin"):
         
+        R"""Sets up the parameters of the simulation OpenMM platform.
+
+        Args:
+
+            platform (str, optional):
+                Platform to use in the simulations. Opitions are *CUDA*, *OpenCL*, *HIP*, *CPU*, *Reference*. (Default value: *CUDA*). 
+            precision (str, optional):
+                Numerical precision type of the simulation. Opitions are *single*, *mixed*, *double*. (Default value: *single*). For details check the `OpenMM Documentation <http://docs.openmm.org/latest/developerguide/developer.html#numerical-precision>`__. 
+            GPUIndex (str, optional):
+                Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. (Use only when GPU != default)
+            integrator (str):
+                Integrator to use in the simulations. Options are *langevin*,  *variableLangevin*, *verlet*, *variableVerlet* and, *brownian*. (Default value: *langevin*).
+        """
+
         precision = precision.lower()
         if precision not in ["mixed", "single", "double"]:
             raise ValueError("Presision must be mixed, single or double")
@@ -85,8 +121,15 @@ class SBM:
         self.forceDict = {}
         self.forcesDict = {}
         
-    def saveFolder(self, folder):       
-       
+    def saveFolder(self, folder):
+
+        R"""Sets the folder path to save data.
+
+        Args:
+
+            folder (str, optional):
+                Folder path to save the simulation data. If the folder path does not exist, the function will create the directory.
+        """
     
         if os.path.exists(folder) == False:
             os.mkdir(folder)
@@ -94,6 +137,18 @@ class SBM:
 
     def loadSystem(self, Grofile, Topfile, Xmlfile):
 
+        R"""Loads the input files in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here <https://opensmog.readthedocs.io>`__.
+
+        Args:
+
+            Grofile (file, required):
+                Initial structure for the MD simulations in *.gro* file format generated by SMOG2 software with the flag :code:`-openSMOG`.  (Default value: :code:`None`).
+            Topfile (file, required):
+                Topology *.top* file format generated by SMOG2 software with the flag :code:`-openSMOG`. The topology file lists the interactions between the system atoms expect for the "Native Contacts" potential that is provided to OpenSMOG in a *.xml* file. (Default value: :code:`None`).
+            Xmlfile (file, required):
+                The *.xml* file that contains the information on the "Contacts" potential. The *.xml* file is generated by SMOG2 software with the flag :code:`-openSMOG` and accepts Custom Potential forms. (Default value: :code:`None`).
+        """
         def _checknames(f1,f2,f3):
             fn1 = os.path.basename(f1).rsplit('.', 1)[0]
             fn2 = os.path.basename(f2).rsplit('.', 1)[0]
@@ -104,7 +159,7 @@ class SBM:
                 return True
         
         if _checknames(Grofile, Topfile, Xmlfile):
-            warnings.warn('The file names are different. Make sure you are not doing something wrong!')
+            warnings.warn('The file names are different. Make sure this is not a mistake!')
 
         self._check_file(Grofile, '.gro')
         self.loadGro(Grofile)
@@ -115,7 +170,7 @@ class SBM:
         self._check_file(Xmlfile, '.xml')
         self.loadXml(Xmlfile)
 
-        print("Files loaded on the system.")
+        print("Files loaded in the system.")
         
     def _check_file(self, filename, ext):
         if not (filename.lower().endswith(ext)):
@@ -123,9 +178,25 @@ class SBM:
 
         
     def loadGro(self, Grofile):
+        R"""Loads the  *.gro* file format in the OpenMM system platform. The inputs files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here <https://opensmog.readthedocs.io>`__.
+
+        Args:
+
+            Grofile (file, required):
+                Initial structure for the MD simulations in *.gro* file format generated by SMOG2 software with the flag :code:`-openSMOG`.  (Default value: :code:`None`).
+        """
         self.Gro = GromacsGroFile(Grofile)
         
     def loadTop(self, Topfile):
+        R"""Loads the  *.top* file format in the OpenMM system platform. The inputs files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here <https://opensmog.readthedocs.io>`__.
+
+        Args:
+
+            Topfile (file, required):
+                Topology *.top* file format generated by SMOG2 software with the flag :code:`-openSMOG`. The topology file lists the interactions between the system atoms expect for the "Native Contacts" potential that is provided to OpenSMOG in a *.xml* file. (Default value: :code:`None`).
+        """
         self.Top = GromacsTopFile(Topfile)
         self.system = self.Top.createSystem(nonbondedMethod=CutoffNonPeriodic,nonbondedCutoff=self.rcutoff)
         nforces = len(self.system.getForces())
@@ -154,9 +225,7 @@ class SBM:
             forces[self.data[3][n]] = [self.data[0][n], self.data[1][n], self.data[2][n]]
         self.contacts = forces
         
-    def customSmogForce(self, name, data):
-       
-
+    def _customSmogForce(self, name, data):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
 
@@ -178,7 +247,16 @@ class SBM:
         contacts_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
 
-    def loadXml(self, Xmlfile):  
+    def loadXml(self, Xmlfile):
+        R"""Loads the  *.xml* file format in the OpenMM system platform. The inputs files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here <https://opensmog.readthedocs.io>`__.
+
+        Args:
+
+            Xmlfile (file, required):
+                The *.xml* file that contains the information on the "Contacts" potential. The *.xml* file is generated by SMOG2 software with the flag :code:`-openSMOG` and accepts Custom Potential forms. (Default value: :code:`None`).
+        """
+
         def validate(Xmlfile):
             path = "share/openSMOG.xsd"
             pt = os.path.dirname(os.path.realpath(__file__))
@@ -234,7 +312,7 @@ class SBM:
         
             for force in self.contacts:
                 print("creating force {:} from xml file".format(force))
-                self.customSmogForce(force, self.contacts[force])
+                self._customSmogForce(force, self.contacts[force])
                 self.system.addForce(self.forcesDict[force])
             self.forceApplied = True
 
@@ -242,6 +320,10 @@ class SBM:
             print('\n Contacts forces already applied!!! \n')
         
     def createSimulation(self):
+
+        R"""Creates the simulation context and loads into the OpenMM platform.
+        """
+
         if not self.loaded:
             self.simulation = Simulation(self.Top.topology, self.system, self.integrator, self.platform, self.properties) 
             self.simulation.context.setPositions(self.Gro.positions)
@@ -250,43 +332,48 @@ class SBM:
         else:
             print('\n Simulations context already created! \n')
         
-    def createReporters(self, trajectory=True, energies=True, forces=False, dt_files=1000):
+    def createReporters(self, trajectory=True, energies=True, forces=False, interval=1000):
+        R"""Creates the reporters to provide the output data.
+
+        Args:
+
+            trajectory (bool, optional):
+                 Whether to save the trajectory *.dcd* file containing the position of the atoms as a function of time. (Default value: :code:`True`).
+            energies (bool, optional):
+                 Whether to save the energies in a *.txt* file containing five columns comma-delimited. The header of the files shows the information of each collum: #"Step","Potential Energy (kJ/mole)","Kinetic Energy (kJ/mole)","Total Energy (kJ/mole)","Temperature (K)". (Default value: :code:`True`).
+            forces (bool, optional):
+                 Whether to save the potential energy for each applied force in a *.txt* file containing several columns comma-delimited. The header of the files shows the information of each collum. An example of the header is: #"Step","eletrostastic","Non-Contacts","Bonds","Angles","Dihedrals","contact_1-10-12". (Default value: :code:`False`).
+            interval (int, required):
+                 Frequency to write the data to the output files. (Default value: :code:`10**3`)
+        """
+
         if trajectory:
             dcdfile = os.path.join(self.folder, self.name + '_trajectory.dcd') 
-            self.simulation.reporters.append(DCDReporter(dcdfile, dt_files))
+            self.simulation.reporters.append(DCDReporter(dcdfile, interval))
 
         if energies:
             energyfile = os.path.join(self.folder, self.name+ '_energies.txt') 
-            self.simulation.reporters.append(StateDataReporter(energyfile, dt_files, step=True, 
+            self.simulation.reporters.append(StateDataReporter(energyfile, interval, step=True, 
                                                           potentialEnergy=True, kineticEnergy=True,
                                                             totalEnergy=True,temperature=True, separator=","))
         if forces:
             forcefile = os.path.join(self.folder, self.name+ '_forces.txt')
-            self.simulation.reporters.append(forcesReporter(forcefile, dt_files, self.forcesDict, step=True)) 
+            self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True)) 
             
-    def run(self, nsteps, report=True, interval=500):
+    def run(self, nsteps, report=True, interval=10**4):
+        R"""Run the molecular dynamics simulation.
+
+        Args:
+
+            nsteps (int, required):
+                 Number of steps to perform the simulation. (Default value: :code:`10**7`)
+            report (bool, optional):
+                Whether to print the simulation progress. (Default value: :code:`True`).
+            interval (int, required):
+                 Frequency to print the simulation progress. (Default value: :code:`10**4`)
+        """
+
         if report:
             self.simulation.reporters.append(StateDataReporter(stdout, interval, step=True, remainingTime=True,
                                                   progress=True, totalSteps=nsteps, separator="\t"))
         self.simulation.step(nsteps)
-
-class forcesReporter(StateDataReporter):
-    def __init__(self, file, reportInterval, forces=None, **kwargs):
-        super(forcesReporter, self).__init__(file, reportInterval, **kwargs)
-        self._forces = forces
-    
-    def _constructHeaders(self):
-        headers = super()._constructHeaders()
-
-        for n in self._forces:
-            headers.append(str(n))
-
-        return headers
-    def _constructReportValues(self, simulation, state):
-
-        values = super()._constructReportValues(simulation, state)
-
-        for i,n in enumerate(self._forces):
-            values.append(simulation.context.getState(getEnergy=True, groups={i}).getPotentialEnergy().value_in_unit(kilojoules_per_mole))
-
-        return values

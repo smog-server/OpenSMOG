@@ -1,11 +1,7 @@
 OpenSMOG
-===================
+========
 
-OpenSMOG.OpenSMOG
---------------------------------
-
-.. automodule:: OpenSMOG.OpenSMOG
+.. automodule:: OpenSMOG
    :members:
    :undoc-members:
    :show-inheritance:
-

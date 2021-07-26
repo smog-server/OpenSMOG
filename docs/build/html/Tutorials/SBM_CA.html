@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>C-alpha Structure-based Model simulation using OpenSMOG &mdash; OpenSMOG 0.0.1 documentation</title>
@@ -39,7 +40,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/thebelab-helper.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "document", "processHtmlClass": "math|output_area"}}</script>
@@ -454,7 +455,7 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
-<div class="section" id="C-alpha-Structure-based-Model-simulation-using-OpenSMOG">
+<section id="C-alpha-Structure-based-Model-simulation-using-OpenSMOG">
 <h1>C-alpha Structure-based Model simulation using OpenSMOG<a class="headerlink" href="#C-alpha-Structure-based-Model-simulation-using-OpenSMOG" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial should take between 5 to 15 minutes of reading and performing simulations.</p>
 <p>Input files for this tutorial can be found <a class="reference external" href="https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SBM_CA/input">here</a></p>
@@ -464,19 +465,19 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">OpenSMOG</span> <span class="k">import</span> <span class="n">SBM</span>
+<span></span><span class="kn">from</span> <span class="nn">OpenSMOG</span> <span class="kn">import</span> <span class="n">SBM</span>
 </pre></div>
 </div>
 </div>
 <p>SBM class sets the initial parameters of the simulation:</p>
-<p><code class="docutils literal notranslate"><span class="pre">name=&quot;1hk0&quot;</span></code> Sets the name of each simulation <em>(this name is used as prefix for the outputs)</em>. <code class="docutils literal notranslate"><span class="pre">dt=0.002</span></code> (<strong>picoseconds</strong>) Sets the time step used in integration. <code class="docutils literal notranslate"><span class="pre">gamma=1.0</span></code> (<strong>picoseconds</strong>) Sets the collision rate of Langevin integrator. <code class="docutils literal notranslate"><span class="pre">rcutoff=1.5</span></code> (<strong>nanometers</strong>) Sets the non-bonded cutoff. <code class="docutils literal notranslate"><span class="pre">temperature=1.0</span></code> (<strong>reduced units of temperature</strong>) Sets the Temperature of the simulation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">name=&quot;1hk0&quot;</span></code> Sets the name of each simulation <em>(this name is used as prefix for the outputs)</em>. <code class="docutils literal notranslate"><span class="pre">time_step=0.002</span></code> (<strong>picoseconds</strong>) Sets the time step used in integration. <code class="docutils literal notranslate"><span class="pre">collision_rate=1.0</span></code> (<strong>picoseconds</strong>) Sets the collision rate of Langevin integrator. <code class="docutils literal notranslate"><span class="pre">r_cutoff=3.0</span></code> (<strong>nanometers</strong>) Sets the non-bonded cutoff. <code class="docutils literal notranslate"><span class="pre">temperature=0.5</span></code> (<strong>reduced units of temperature</strong>) Sets the Temperature of the simulation.</p>
 <p>sbm_CA is a chosen variable name for the SBM object</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sbm_CA</span> <span class="o">=</span> <span class="n">SBM</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;1hk0&#39;</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">rcutoff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span> <span class="o">=</span> <span class="n">SBM</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;1hk0&#39;</span><span class="p">,</span> <span class="n">time_step</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">collision_rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">r_cutoff</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -545,13 +546,13 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>Creates the <strong>reporters</strong> that will save the simulation data in output folder.</p>
-<p><code class="docutils literal notranslate"><span class="pre">trajectory=True</span></code> Save the trajectory in .dcd format. <code class="docutils literal notranslate"><span class="pre">energies=True</span></code> Save the energy in text format separated by a comma. <code class="docutils literal notranslate"><span class="pre">dt_files=1000</span></code> The step interval to save both trajectory and energies data.</p>
+<p><code class="docutils literal notranslate"><span class="pre">trajectory=True</span></code> Save the trajectory in .dcd format. <code class="docutils literal notranslate"><span class="pre">energies=True</span></code> Save the energy in text format separated by a comma. <code class="docutils literal notranslate"><span class="pre">interval=10**3</span></code> The step interval to save both trajectory and energies data.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">createReporters</span><span class="p">(</span><span class="n">trajectory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dt_files</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span></span><span class="n">sbm_CA</span><span class="o">.</span><span class="n">createReporters</span><span class="p">(</span><span class="n">trajectory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -567,7 +568,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <p>The output files are located in the output folder</p>
-</div>
+</section>
 
 
            </div>
