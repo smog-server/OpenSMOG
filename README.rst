@@ -39,7 +39,7 @@ The input files are generated using SMOG2 software with the flag :code:`-openSMO
 .. raw:: html
 
     <p align="center">
-    <img align="center" src="./docs/source/images/OpenSMOG_pipeline.jpg" height="300px">
+    <img align="center" src="./docs/source/images/OpenSMOG_pipeline.jpg">
     </p>
 
 Resources
