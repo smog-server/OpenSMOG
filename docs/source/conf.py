@@ -13,11 +13,11 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath(".."))
-sys.path.insert(0, os.path.abspath("../.."))
-sys.path.insert(0, os.path.abspath("../../.."))
+# sys.path.insert(0, os.path.abspath(".."))
+# sys.path.insert(0, os.path.abspath("../.."))
+# sys.path.insert(0, os.path.abspath("../../.."))
 
-# sys.path.insert(0, os.path.abspath("../../OpenSMOG"))
+sys.path.insert(0, os.path.abspath("../../OpenSMOG"))
 autodoc_mock_imports = ["simtk","numpy","lxml","OpenSMOG_Reporter"]
 
 
