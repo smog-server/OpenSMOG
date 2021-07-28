@@ -7,7 +7,7 @@ Installation
 Installing OpenSMOG
 ===================
 
-The **OpenSMOG** library can be installed via `conda <https://conda.io/projects/conda/>`_ or pip, or compiled from source.
+The **OpenSMOG** library can be installed via `conda <https://conda.io/projects/conda/>`_ or `pip <https://pypi.org/>`_, or compiled from `source (GitHub) <https://github.com/junioreif/OpenSMOG>`_.
 
 Install via conda
 -----------------
@@ -30,14 +30,19 @@ The code below will install **OpenSMOG** from `PyPI <https://pypi.org/project/Op
 Install OpenMM
 --------------
 
-The **OpenSMOG** library uses OpenMM API.
+The **OpenSMOG** library uses `OpenMM <http://openmm.org/>`_ API to run the molecular dynamics simulations.
 These requirements can be met by installing the following packages from the `conda-forge channel <https://conda-forge.org/>`__:
 
 .. code-block:: bash
 
     conda install -c conda-forge openmm
     
-    
+The following are libraries **required** for installing **OpenSMOG**:
+
+    - `Python <https://www.python.org/>`__ (>=3.6)
+    - `NumPy <https://www.numpy.org/>`__ (>=1.14)
+    - `ElementTree XML <https://docs.python.org/3/library/xml.etree.elementtree.html>`__ (>=2.2.0)
+
 Installing SMOG2
 ================
 

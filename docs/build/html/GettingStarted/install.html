@@ -220,7 +220,7 @@
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <section id="installing-opensmog">
 <h2>Installing OpenSMOG<a class="headerlink" href="#installing-opensmog" title="Permalink to this headline">¶</a></h2>
-<p>The <strong>OpenSMOG</strong> library can be installed via <a class="reference external" href="https://conda.io/projects/conda/">conda</a> or pip, or compiled from source.</p>
+<p>The <strong>OpenSMOG</strong> library can be installed via <a class="reference external" href="https://conda.io/projects/conda/">conda</a> or <a class="reference external" href="https://pypi.org/">pip</a>, or compiled from <a class="reference external" href="https://github.com/junioreif/OpenSMOG">source (GitHub)</a>.</p>
 <section id="install-via-conda">
 <h3>Install via conda<a class="headerlink" href="#install-via-conda" title="Permalink to this headline">¶</a></h3>
 <p>The code below will install <strong>OpenSMOG</strong> from <a class="reference external" href="https://anaconda.org/conda-forge/OpenSMOG">conda-forge</a>.</p>
@@ -237,11 +237,19 @@
 </section>
 <section id="install-openmm">
 <h3>Install OpenMM<a class="headerlink" href="#install-openmm" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>OpenSMOG</strong> library uses OpenMM API.
+<p>The <strong>OpenSMOG</strong> library uses <a class="reference external" href="http://openmm.org/">OpenMM</a> API to run the molecular dynamics simulations.
 These requirements can be met by installing the following packages from the <a class="reference external" href="https://conda-forge.org/">conda-forge channel</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge openmm
 </pre></div>
 </div>
+<p>The following are libraries <strong>required</strong> for installing <strong>OpenSMOG</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org/">Python</a> (&gt;=3.6)</p></li>
+<li><p><a class="reference external" href="https://www.numpy.org/">NumPy</a> (&gt;=1.14)</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/xml.etree.elementtree.html">ElementTree XML</a> (&gt;=2.2.0)</p></li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 <section id="installing-smog2">
