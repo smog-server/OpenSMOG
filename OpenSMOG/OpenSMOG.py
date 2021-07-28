@@ -13,7 +13,7 @@ Details about the models can be found below:
 from simtk.openmm.app import *
 from simtk.openmm import *
 from simtk.unit import *
-#from .OpenSMOG_Reporter import forcesReporter
+from .OpenSMOG_Reporter import forcesReporter
 import os
 import numpy as np
 import xml.etree.ElementTree as ET
