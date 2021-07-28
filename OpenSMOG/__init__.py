@@ -1,5 +1,6 @@
-__version__ = '0.0.3'
+__version__ = '0.0.1'
 
-from .OpenSMOG import SBM
 from .OpenSMOG_Reporter import forcesReporter
+from .OpenSMOG import SBM
+
 
