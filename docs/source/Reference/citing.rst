@@ -13,7 +13,6 @@ The paper is available online from `Journal <https://github.com/junioreif/OpenSM
 To cite this reference, you can use the following BibTeX entry:
 
 .. code-block:: bibtex
-
     @article{SMOG2,
     title = {{SMOG 2: A Versatile Software Package for Generating Structure-Based Models}},
     author = {Noel, Jeffrey K. and 
@@ -41,7 +40,7 @@ To cite this reference, you can use the following BibTeX entry:
       Noel, Jeffrey K and
       Onuchic, Jose N and
       Whitford, Paul C},
-      journal={},
+      journal={s},
       volume={433},
       number={6},
       pages={166700},
