@@ -33,11 +33,11 @@ class SBM:
         name (str):
             Name used in the output files. (Default value: *SBM*). 
         time_step (float, required):
-            Simulation time step in units of :math:`\tau`. (Default value = 0.0005).
+            Simulation time step in units of :math:`\tau`. (Default value = 0.002).
         collision_rate (float, required):
             Friction/Damping constant in units of reciprocal time (:math:`1/\tau`). (Default value = 1.0).
         r_cutoff (float, required):
-            Cutoff distance to consider non-bonded interactions in units of nanometers. (Default value = 3.0).
+            Cutoff distance to consider non-bonded interactions in units of nanometers. (Default value = 1.5).
         temperature (float, required):
             Temperature in reduced units. (Default value = 0.5).
     """
@@ -45,9 +45,9 @@ class SBM:
 
     def __init__(self, 
         name = "SBM",
-        time_step = 0.0005,
+        time_step = 0.002,
         collision_rate = 1.0,
-        r_cutoff = 3.0,
+        r_cutoff = 1.5,
         temperature = 0.5):
         
             self.name = name
@@ -158,7 +158,7 @@ class SBM:
                 return True
         
         if _checknames(Grofile, Topfile, Xmlfile):
-            warnings.warn('The file names are different. Make sure this is not a mistake!')
+            warnings.warn('The Gro, Top and Xml files have different prefixes. Most people use the same name, so this may be a mistake.')
 
         self._check_file(Grofile, '.gro')
         self.loadGro(Grofile)
