@@ -42,13 +42,6 @@ While it is possible to use this library in a standalone fashion, it is expected
     <img align="center" src="./docs/source/images/OpenSMOG_pipeline.jpg">
     </p>
 
-Resources
-=========
-
-- `Reference Documentation <https://opensmog.readthedocs.io/>`__: Examples, tutorials, and class details.
-- `Installing OpenSMOG <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-opensmog>`__: Instructions for installing **OpenSMOG**.
-- `Installing SMOG2 <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`__: Instructions for installing **SMOG2**.
-- `Issue tracker <https://github.com/smog-server/OpenSMOG/issues>`__: Report issues/bugs or request features.
 
 
 Citation
@@ -148,3 +141,12 @@ Then load and test the **smog2** installation:
     ./test-config
     
 As described in the SMOG 2 manual, it is highly recommended that you also download smog-check and run all checks before using the SMOG 2 software.
+
+
+Resources
+=========
+
+- `Reference Documentation <https://opensmog.readthedocs.io/>`__: Examples, tutorials, and class details.
+- `Installing OpenSMOG <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-opensmog>`__: Instructions for installing **OpenSMOG**.
+- `Installing SMOG2 <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`__: Instructions for installing **SMOG2**.
+- `Issue tracker <https://github.com/smog-server/OpenSMOG/issues>`__: Report issues/bugs or request features.
