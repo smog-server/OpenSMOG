@@ -33,8 +33,8 @@ OpenSMOG
 Overview
 ========
 
-OpenSMOG is a Python library for performing molecular dynamics simulations using Structure-Based Models. OpenSMOG uses the  `OpenMM <http://openmm.org/>`_. Python API employing a wide variety of potential forms, including the most commonly employed models such as the C-alpha and All-Atoms.
-The input files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+OpenSMOG is a Python library for performing molecular dynamics simulations using Structure-Based Models. OpenSMOG uses the  `OpenMM <http://openmm.org/>`_. Python API, which supports a wide variety of potential energy functions, including those that are commonly employed in C-alpha and all-atom models.
+While it is possible to use this library in a standalone fashion, it is expected that users will generate input files using the SMOG2 software (version 2.4, or later, with the flag :code:`-openSMOG`). Details on how to generate openSMOG-compatible force fields files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
 
 .. raw:: html
 
@@ -42,20 +42,12 @@ The input files are generated using SMOG2 software with the flag :code:`-openSMO
     <img align="center" src="./docs/source/images/OpenSMOG_pipeline.jpg">
     </p>
 
-Resources
-=========
-
-- `Reference Documentation <https://opensmog.readthedocs.io/>`__: Examples, tutorials, and class details.
-- `Installing OpenSMOG <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-opensmog>`__: Instructions for installing **OpenSMOG**.
-- `Installing SMOG2 <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`__: Instructions for installing **SMOG2**.
-- `GitHub repository <https://github.com/junioreif/OpenSMOG/>`__: Download the **OpenMiChroM** source code.
-- `Issue tracker <https://github.com/junioreif/OpenSMOG/issues>`__: Report issues/bugs or request features.
 
 
 Citation
 ========
 
-When using **OpenSMOG** to perform chromatin dynamics simulations or analyses, please `use this citation
+When using **OpenSMOG** and **SMOG2**, please `use the following references
 <https://opensmog.readthedocs.io/en/latest/Reference/citing.html>`__.
 
 
@@ -102,9 +94,11 @@ The following are libraries **required** for installing **OpenSMOG**:
 Installing SMOG2
 ================
 
-The inputs **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ > 2.4. Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_.
+The inputs **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ (version 2.4 and later). Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_.
 
-First, just create a new environment and activate it:
+First, download SMOG 2 (v2.4, or later) at `smog-server.org <https://smog-server.org/smog2/>`__
+
+Second, create a new conda environment and activate it (called smog2.4, but name as appropriate):
 
 .. code-block:: bash
 
@@ -114,7 +108,7 @@ First, just create a new environment and activate it:
 
     conda activate smog2.4
 
-Next, it is necessary an installation of a few **Perl** modules:
+Next, it is necessary to install a few **Perl** modules:
 
 .. code-block:: bash
 
@@ -128,7 +122,7 @@ Next, it is necessary an installation of a few **Perl** modules:
 
     perl -MCPAN -e 'install XML::Validator::Schema'
 
-Add the **Perl** and **smog2** path into the configure.smog2 file.
+Add the **Perl** and **smog2** path into the configure.smog2 file (described in the README that comes with SMOG 2).
 
 .. hint:: Use the following command line to find out which installed **Perl** is being used.
 
@@ -145,3 +139,14 @@ Then load and test the **smog2** installation:
 .. code-block:: bash
 
     ./test-config
+    
+As described in the SMOG 2 manual, it is highly recommended that you also download smog-check and run all checks before using the SMOG 2 software.
+
+
+Resources
+=========
+
+- `Reference Documentation <https://opensmog.readthedocs.io/>`__: Examples, tutorials, and class details.
+- `Installing OpenSMOG <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-opensmog>`__: Instructions for installing **OpenSMOG**.
+- `Installing SMOG2 <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`__: Instructions for installing **SMOG2**.
+- `Issue tracker <https://github.com/smog-server/OpenSMOG/issues>`__: Report issues/bugs or request features.
