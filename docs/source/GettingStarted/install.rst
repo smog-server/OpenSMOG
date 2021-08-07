@@ -7,7 +7,7 @@ Installation
 Installing OpenSMOG
 ===================
 
-The **OpenSMOG** library can be installed via `conda <https://conda.io/projects/conda/>`_ or `pip <https://pypi.org/>`_, or compiled from `source (GitHub) <https://github.com/junioreif/OpenSMOG>`_.
+The **OpenSMOG** library can be installed via `conda <https://conda.io/projects/conda/>`_ or `pip <https://pypi.org/>`_, or compiled from `source (GitHub) <https://github.com/smog-server/OpenSMOG>`_.
 
 Install via conda
 -----------------
