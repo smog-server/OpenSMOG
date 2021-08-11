@@ -3,11 +3,11 @@
   {
    "cell_type": "markdown",
    "source": [
-    "### C-alpha Structure-based Model simulation using OpenSMOG\r\n",
-    "\r\n",
-    "This tutorial should take between 5 to 15 minutes of reading and performing simulations.\r\n",
-    "\r\n",
-    "Input files for this tutorial can be found [here](https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SMOG2_CA_CI2)"
+    "### All-Atoms Structure-based Model simulation using OpenSMOG\n",
+    "\n",
+    "This tutorial should take between 5 to 15 minutes of reading and performing simulations.\n",
+    "\n",
+    "Input files for this tutorial can be found [here](https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SMOG2_AA_CI2)"
    ],
    "metadata": {}
   },
@@ -30,15 +30,15 @@
   {
    "cell_type": "markdown",
    "source": [
-    "SBM class sets the parameters for the simulation:\r\n",
-    "\r\n",
-    "`name=\"2ci2\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*. <br>\r\n",
-    "`time_step=0.0005 ` (**reduced time unit**) Sets the time step used in integration. <br>\r\n",
-    "`collision_rate=1.0` (**reduced time unit**) Sets the collision rate of Langevin integrator.  <br>\r\n",
-    "`r_cutoff=3.0` (**nanometers**) Sets the non-bonded cutoff. <br>\r\n",
-    "`temperature=0.5` (**reduced temperature unit**) Sets the Temperature of the simulation. <br>\r\n",
-    "\r\n",
-    "sbm_CA is an arbitrarily chosen variable name for the SBM object"
+    "SBM class sets the parameters for the simulation:\n",
+    "\n",
+    "`name=\"2ci2\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*. <br>\n",
+    "`time_step=0.002 ` (**reduced time unit**) Sets the time step used in integration. <br>\n",
+    "`collision_rate=1.0` (**reduced time unit**) Sets the collision rate of Langevin integrator.  <br>\n",
+    "`r_cutoff=1.5` (**nanometers**) Sets the non-bonded cutoff. <br>\n",
+    "`temperature=0.5` (**reduced temperature unit**) Sets the Temperature of the simulation. <br>\n",
+    "\n",
+    "sbm_AA is an arbitrarily chosen variable name for the SBM object"
    ],
    "metadata": {}
   },
@@ -46,7 +46,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA = SBM(name='2ci2', time_step=0.0005, collision_rate=1.0, r_cutoff=3.0, temperature=0.5)"
+    "sbm_AA = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.5, temperature=0.5)"
    ],
    "outputs": [],
    "metadata": {}
@@ -69,7 +69,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.setup_openmm(platform='cuda',GPUindex='default')"
+    "sbm_AA.setup_openmm(platform='cuda',GPUindex='default')"
    ],
    "outputs": [],
    "metadata": {
@@ -87,7 +87,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.saveFolder('output_2ci2_CA')"
+    "sbm_AA.saveFolder('output_2ci2_AA')"
    ],
    "outputs": [],
    "metadata": {}
@@ -95,7 +95,7 @@
   {
    "cell_type": "markdown",
    "source": [
-    "Load the **gro**, **top** and **xml** files into the sbm_CA object"
+    "Load the **gro**, **top** and **xml** files into the sbm_AA object"
    ],
    "metadata": {}
   },
@@ -103,11 +103,11 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA_grofile = 'SMOG2_CA_CI2/2ci2.CA.gro'\n",
-    "sbm_CA_topfile = 'SMOG2_CA_CI2/2ci2.CA.top'\n",
-    "sbm_CA_xmlfile = 'SMOG2_CA_CI2/2ci2.CA.xml'\n",
+    "sbm_AA_grofile = 'SMOG2_AA_CI2/2ci2.AA.gro'\n",
+    "sbm_AA_topfile = 'SMOG2_AA_CI2/2ci2.AA.top'\n",
+    "sbm_AA_xmlfile = 'SMOG2_AA_CI2/2ci2.AA.xml'\n",
     "\n",
-    "sbm_CA.loadSystem(Grofile=sbm_CA_grofile, Topfile=sbm_CA_topfile, Xmlfile=sbm_CA_xmlfile)"
+    "sbm_AA.loadSystem(Grofile=sbm_AA_grofile, Topfile=sbm_AA_topfile, Xmlfile=sbm_AA_xmlfile)"
    ],
    "outputs": [],
    "metadata": {}
@@ -116,7 +116,7 @@
    "cell_type": "markdown",
    "source": [
     "This function returns the name of each contact potential that is being used in the current model.\n",
-    "In this example, only a Lennard-Jones-style 10-12 potential is being applied."
+    "In this example, only a Lennard-Jones-style 6-12 potential is being applied."
    ],
    "metadata": {}
   },
@@ -131,7 +131,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.createSimulation()"
+    "sbm_AA.createSimulation()"
    ],
    "outputs": [],
    "metadata": {
@@ -153,7 +153,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.createReporters(trajectory=True, energies=True, forces=True, interval=10**3)"
+    "sbm_AA.createReporters(trajectory=True, energies=True, forces=True, interval=10**3)"
    ],
    "outputs": [],
    "metadata": {
@@ -175,7 +175,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.run(nsteps=10**6, report=True, interval=10**4)"
+    "sbm_AA.run(nsteps=10**6, report=True, interval=10**4)"
    ],
    "outputs": [],
    "metadata": {
