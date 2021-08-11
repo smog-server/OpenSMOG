@@ -1,0 +1,605 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>OpenSMOG &mdash; OpenSMOG 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> OpenSMOG
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenSMOG Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../OpenSMOG.html">OpenSMOG</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorials/SBM_CA.html">C-alpha Structure-based Model simulation using OpenSMOG</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/citing.html">How to cite <strong>OpenSMOG</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OpenSMOG</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>OpenSMOG</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for OpenSMOG</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University and Northeastern University</span>
+<span class="c1"># This file is from the OpenSMOG project, released under the MIT License. </span>
+
+<span class="sa">R</span><span class="sd">&quot;&quot;&quot;  </span>
+<span class="sd">The :class:`~.OpenSMOG` classes perform molecular dynamics using Structure-Based Models (SBM) for biomolecular simulations.</span>
+<span class="sd">:class:`~.OpenSMOG` uses force fields generated by SMOG 2, and it allows the simulations of a wide variety of potential forms, including commonly employed C-alpha and all-atom variants.</span>
+<span class="sd">Details about the default models in SMOG 2 can be found in:</span>
+<span class="sd">    - **SMOG server**: https://smog-server.org/</span>
+<span class="sd">    - **C-alpha**: Clementi, C., Nymeyer, H. and Onuchic, J.N., 2000. Topological and energetic factors: what determines the structural details of the transition state ensemble and “en-route” intermediates for protein folding? An investigation for small globular proteins. Journal of molecular biology, 298(5), pp.937-953.</span>
+<span class="sd">    - **All-Atom**: Whitford, P.C., Noel, J.K., Gosavi, S., Schug, A., Sanbonmatsu, K.Y. and Onuchic, J.N., 2009. An all‐atom structure‐based potential for proteins: bridging minimal models with all‐atom empirical forcefields. Proteins: Structure, Function, and Bioinformatics, 75(2), pp.430-441.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">simtk.openmm.app</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simtk.openmm</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">simtk.unit</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">ET</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stdout</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+<span class="c1">#from .OpenSMOG_Reporter import forcesReporter</span>
+
+<div class="viewcode-block" id="SBM"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM">[docs]</a><span class="k">class</span> <span class="nc">SBM</span><span class="p">:</span>
+
+    <span class="sa">R</span><span class="sd">&quot;&quot;&quot;  </span>
+<span class="sd">    The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, or NMR, methods) as the energetic global minimum.</span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+<span class="sd">    The :class:`~.SBM` sets the environment to start the molecular dynamics simulations.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        name (str):</span>
+<span class="sd">            Name used in the output files. (Default value: *SBM*). </span>
+<span class="sd">        time_step (float, required):</span>
+<span class="sd">            Simulation time step in units of :math:`\tau`. (Default value = 0.002).</span>
+<span class="sd">        collision_rate (float, required):</span>
+<span class="sd">            Friction/Damping constant in units of reciprocal time (:math:`1/\tau`). (Default value = 1.0).</span>
+<span class="sd">        r_cutoff (float, required):</span>
+<span class="sd">            Cutoff distance to consider non-bonded interactions in units of nanometers. (Default value = 1.5).</span>
+<span class="sd">        temperature (float, required):</span>
+<span class="sd">            Temperature in reduced units. (Default value = 0.5).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SBM&quot;</span><span class="p">,</span>
+        <span class="n">time_step</span> <span class="o">=</span> <span class="mf">0.002</span><span class="p">,</span>
+        <span class="n">collision_rate</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">r_cutoff</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
+        
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">time_step</span> <span class="o">*</span> <span class="n">picoseconds</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">collision_rate</span> <span class="o">/</span> <span class="n">picosecond</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rcutoff</span> <span class="o">=</span> <span class="n">r_cutoff</span> <span class="o">*</span> <span class="n">nanometers</span>  
+            <span class="bp">self</span><span class="o">.</span><span class="n">temperature</span> <span class="o">=</span> <span class="p">(</span><span class="n">temperature</span> <span class="o">/</span> <span class="mf">0.008314</span><span class="p">)</span> <span class="o">*</span> <span class="n">kelvin</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forceApplied</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forceNamesCA</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s2">&quot;eletrostastic&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s2">&quot;Non-Contacts&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;Bonds&quot;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">:</span> <span class="s2">&quot;Angles&quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">:</span> <span class="s2">&quot;Dihedrals&quot;</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forceNamesAA</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s2">&quot;eletrostastic&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s2">&quot;Non-Contacts&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;Bonds&quot;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">:</span> <span class="s2">&quot;Angles&quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">:</span> <span class="s2">&quot;Dihedrals&quot;</span><span class="p">,</span> <span class="mi">5</span> <span class="p">:</span> <span class="s2">&quot;Impropers&quot;</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forceCount</span> <span class="o">=</span> <span class="mi">0</span>
+            
+<div class="viewcode-block" id="SBM.setup_openmm"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.setup_openmm">[docs]</a>    <span class="k">def</span> <span class="nf">setup_openmm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="n">GPUindex</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">integrator</span><span class="o">=</span><span class="s2">&quot;langevin&quot;</span><span class="p">):</span>
+        
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Sets up the parameters of the simulation OpenMM platform.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            platform (str, optional):</span>
+<span class="sd">                Platform to use in the simulations. Opitions are *CUDA*, *OpenCL*, *HIP*, *CPU*, *Reference*. (Default value: *CUDA*). </span>
+<span class="sd">            precision (str, optional):</span>
+<span class="sd">                Numerical precision type of the simulation. Opitions are *single*, *mixed*, *double*. (Default value: *single*). For details check the `OpenMM Documentation &lt;http://docs.openmm.org/latest/developerguide/developer.html#numerical-precision&gt;`__. </span>
+<span class="sd">            GPUIndex (str, optional):</span>
+<span class="sd">                Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. (Use only when GPU != default)</span>
+<span class="sd">            integrator (str):</span>
+<span class="sd">                Integrator to use in the simulations. Options are *langevin*,  *variableLangevin*, *verlet*, *variableVerlet* and, *brownian*. (Default value: *langevin*).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">precision</span> <span class="o">=</span> <span class="n">precision</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">precision</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;mixed&quot;</span><span class="p">,</span> <span class="s2">&quot;single&quot;</span><span class="p">,</span> <span class="s2">&quot;double&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Presision must be mixed, single or double&quot;</span><span class="p">)</span>
+            
+        <span class="n">properties</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">properties</span><span class="p">[</span><span class="s2">&quot;Precision&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">precision</span>
+        <span class="k">if</span> <span class="n">GPUindex</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span>
+            <span class="n">properties</span><span class="p">[</span><span class="s2">&quot;DeviceIndex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GPUindex</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="n">properties</span>
+
+        <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;opencl&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;OpenCL&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;reference&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;Reference&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;cuda&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;CUDA&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;cpu&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;CPU&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">properties</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;hip&quot;</span><span class="p">:</span>
+            <span class="n">platformObject</span> <span class="o">=</span> <span class="n">Platform</span><span class="o">.</span><span class="n">getPlatformByName</span><span class="p">(</span><span class="s1">&#39;HIP&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">!!!! Unknown platform !!!!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">platform</span> <span class="o">=</span> <span class="n">platformObject</span>
+        
+        <span class="k">if</span> <span class="n">integrator</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;langevin&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="o">=</span> <span class="n">LangevinIntegrator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span> <span class="o">=</span> <span class="n">integrator</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">integrator_type</span> <span class="o">=</span> <span class="s2">&quot;UserDefined&quot;</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">forceDict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forcesDict</span> <span class="o">=</span> <span class="p">{}</span></div>
+        
+<div class="viewcode-block" id="SBM.saveFolder"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.saveFolder">[docs]</a>    <span class="k">def</span> <span class="nf">saveFolder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">):</span>
+
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Sets the folder path to save data.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            folder (str, optional):</span>
+<span class="sd">                Folder path to save the simulation data. If the folder path does not exist, the function will create the directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">folder</span> <span class="o">=</span> <span class="n">folder</span></div>
+
+<div class="viewcode-block" id="SBM.loadSystem"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.loadSystem">[docs]</a>    <span class="k">def</span> <span class="nf">loadSystem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Grofile</span><span class="p">,</span> <span class="n">Topfile</span><span class="p">,</span> <span class="n">Xmlfile</span><span class="p">):</span>
+
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Loads the input files in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual &lt;https://smog-server.org/smog2/&gt;`__.</span>
+<span class="sd">        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here &lt;https://opensmog.readthedocs.io&gt;`__.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            Grofile (file, required):</span>
+<span class="sd">                Initial structure for the MD simulations in *.gro* file format generated by SMOG2 software with the flag :code:`-openSMOG`.  (Default value: :code:`None`).</span>
+<span class="sd">            Topfile (file, required):</span>
+<span class="sd">                Topology *.top* file format generated by SMOG2 software with the flag :code:`-openSMOG`. The topology file lists the interactions between the system atoms expect for the &quot;Native Contacts&quot; potential that is provided to OpenSMOG in a *.xml* file. (Default value: :code:`None`).</span>
+<span class="sd">            Xmlfile (file, required):</span>
+<span class="sd">                The *.xml* file that contains the information on the &quot;Contacts&quot; potential. The *.xml* file is generated by SMOG2 software with the flag :code:`-openSMOG` and accepts Custom Potential forms. (Default value: :code:`None`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">_checknames</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">):</span>
+            <span class="n">fn1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">fn2</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">fn3</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f3</span><span class="p">)</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">fn1</span> <span class="o">==</span> <span class="n">fn2</span> <span class="ow">and</span> <span class="n">fn1</span> <span class="o">==</span><span class="n">fn3</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        
+        <span class="k">if</span> <span class="n">_checknames</span><span class="p">(</span><span class="n">Grofile</span><span class="p">,</span> <span class="n">Topfile</span><span class="p">,</span> <span class="n">Xmlfile</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;The Gro, Top and Xml files have different prefixes. Most people use the same name, so this may be a mistake.&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_file</span><span class="p">(</span><span class="n">Grofile</span><span class="p">,</span> <span class="s1">&#39;.gro&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loadGro</span><span class="p">(</span><span class="n">Grofile</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_file</span><span class="p">(</span><span class="n">Topfile</span><span class="p">,</span> <span class="s1">&#39;.top&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loadTop</span><span class="p">(</span><span class="n">Topfile</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_file</span><span class="p">(</span><span class="n">Xmlfile</span><span class="p">,</span> <span class="s1">&#39;.xml&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loadXml</span><span class="p">(</span><span class="n">Xmlfile</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files loaded in the system.&quot;</span><span class="p">)</span></div>
+        
+    <span class="k">def</span> <span class="nf">_check_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">ext</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ext</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Wrong file extension: </span><span class="si">{}</span><span class="s1"> must to be </span><span class="si">{}</span><span class="s1"> extension&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ext</span><span class="p">))</span>
+
+        
+<div class="viewcode-block" id="SBM.loadGro"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.loadGro">[docs]</a>    <span class="k">def</span> <span class="nf">loadGro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Grofile</span><span class="p">):</span>
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Loads the  *.gro* file format in the OpenMM system platform. The inputs files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual &lt;https://smog-server.org/smog2/&gt;`__.</span>
+<span class="sd">        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here &lt;https://opensmog.readthedocs.io&gt;`__.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            Grofile (file, required):</span>
+<span class="sd">                Initial structure for the MD simulations in *.gro* file format generated by SMOG2 software with the flag :code:`-openSMOG`.  (Default value: :code:`None`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Gro</span> <span class="o">=</span> <span class="n">GromacsGroFile</span><span class="p">(</span><span class="n">Grofile</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="SBM.loadTop"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.loadTop">[docs]</a>    <span class="k">def</span> <span class="nf">loadTop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Topfile</span><span class="p">):</span>
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Loads the  *.top* file format in the OpenMM system platform. The inputs files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual &lt;https://smog-server.org/smog2/&gt;`__.</span>
+<span class="sd">        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here &lt;https://opensmog.readthedocs.io&gt;`__.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            Topfile (file, required):</span>
+<span class="sd">                Topology *.top* file format generated by SMOG2 software with the flag :code:`-openSMOG`. The topology file lists the interactions between the system atoms expect for the &quot;Native Contacts&quot; potential that is provided to OpenSMOG in a *.xml* file. (Default value: :code:`None`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Top</span> <span class="o">=</span> <span class="n">GromacsTopFile</span><span class="p">(</span><span class="n">Topfile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Top</span><span class="o">.</span><span class="n">createSystem</span><span class="p">(</span><span class="n">nonbondedMethod</span><span class="o">=</span><span class="n">CutoffNonPeriodic</span><span class="p">,</span><span class="n">nonbondedCutoff</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rcutoff</span><span class="p">)</span>
+        <span class="n">nforces</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">getForces</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">force_id</span><span class="p">,</span> <span class="n">force</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">getForces</span><span class="p">()):</span>                  
+                    <span class="k">if</span> <span class="n">nforces</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span> 
+                        <span class="k">if</span> <span class="n">force_id</span> <span class="o">&lt;=</span><span class="mi">4</span><span class="p">:</span>
+                            <span class="n">force</span><span class="o">.</span><span class="n">setForceGroup</span><span class="p">(</span><span class="n">force_id</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">forcesDict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">forceNamesCA</span><span class="p">[</span><span class="n">force_id</span><span class="p">]]</span> <span class="o">=</span> <span class="n">force</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">forceCount</span> <span class="o">+=</span><span class="mi">1</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">force</span><span class="o">.</span><span class="n">setForceGroup</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">nforces</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">force_id</span> <span class="o">&lt;=</span><span class="mi">5</span><span class="p">:</span>
+                            <span class="n">force</span><span class="o">.</span><span class="n">setForceGroup</span><span class="p">(</span><span class="n">force_id</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">forcesDict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">forceNamesAA</span><span class="p">[</span><span class="n">force_id</span><span class="p">]]</span> <span class="o">=</span> <span class="n">force</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">forceCount</span> <span class="o">+=</span><span class="mi">1</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">force</span><span class="o">.</span><span class="n">setForceGroup</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span></div>
+
+        
+    <span class="k">def</span> <span class="nf">_splitForces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">n_forces</span> <span class="o">=</span>  <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+        <span class="n">forces</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_forces</span><span class="p">):</span>
+            <span class="n">forces</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="n">n</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">n</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span> <span class="o">=</span> <span class="n">forces</span>
+        
+    <span class="k">def</span> <span class="nf">_customSmogForce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="c1">#first set the equation</span>
+        <span class="n">contacts_ff</span> <span class="o">=</span> <span class="n">CustomBondForce</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1">#second set the number of variable</span>
+        <span class="k">for</span> <span class="n">pars</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">contacts_ff</span><span class="o">.</span><span class="n">addPerBondParameter</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
+
+        <span class="c1">#third, apply the bonds from each pair of atoms and the related variables.</span>
+        <span class="n">pars</span> <span class="o">=</span> <span class="p">[</span><span class="n">pars</span> <span class="k">for</span> <span class="n">pars</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+        <span class="k">for</span> <span class="n">iteraction</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="n">atom_index_i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">iteraction</span><span class="p">[</span><span class="s1">&#39;i&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span> <span class="c1">#check where start the polymer</span>
+            <span class="n">atom_index_j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">iteraction</span><span class="p">[</span><span class="s1">&#39;j&#39;</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">iteraction</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">pars</span><span class="p">]</span>
+
+            <span class="n">contacts_ff</span><span class="o">.</span><span class="n">addBond</span><span class="p">(</span><span class="n">atom_index_i</span><span class="p">,</span> <span class="n">atom_index_j</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">forcesDict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span>  <span class="n">contacts_ff</span>
+        <span class="n">contacts_ff</span><span class="o">.</span><span class="n">setForceGroup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forceCount</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forceCount</span> <span class="o">+=</span><span class="mi">1</span>
+
+<div class="viewcode-block" id="SBM.loadXml"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.loadXml">[docs]</a>    <span class="k">def</span> <span class="nf">loadXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Xmlfile</span><span class="p">):</span>
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Loads the  *.xml* file format in the OpenMM system platform. The inputs files are generated using SMOG2 software with the flag :code:`-openSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual &lt;https://smog-server.org/smog2/&gt;`__.</span>
+<span class="sd">        A tutorial on how to generate the inputs files for a C-alpha model simulation can be found `here &lt;https://opensmog.readthedocs.io&gt;`__.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            Xmlfile (file, required):</span>
+<span class="sd">                The *.xml* file that contains the information on the &quot;Contacts&quot; potential. The *.xml* file is generated by SMOG2 software with the flag :code:`-openSMOG` and accepts Custom Potential forms. (Default value: :code:`None`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">Xmlfile</span><span class="p">):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;share/openSMOG.xsd&quot;</span>
+            <span class="n">pt</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+            <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span><span class="n">path</span><span class="p">)</span>
+
+            <span class="n">xmlschema_doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="n">xmlschema</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">XMLSchema</span><span class="p">(</span><span class="n">xmlschema_doc</span><span class="p">)</span>
+
+            <span class="n">xml_doc</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">Xmlfile</span><span class="p">)</span>
+
+            <span class="n">result</span> <span class="o">=</span> <span class="n">xmlschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">xml_doc</span><span class="p">)</span>
+            <span class="c1">#print(&quot;xml validation:&quot;, result)</span>
+            <span class="k">return</span> <span class="n">result</span>
+                  
+        <span class="k">def</span> <span class="nf">import_xml2OpenSMOG</span><span class="p">(</span><span class="n">file_xml</span><span class="p">):</span>
+            <span class="n">XML_potential</span> <span class="o">=</span> <span class="n">ET</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">file_xml</span><span class="p">)</span>
+
+            <span class="n">Expression</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">Parameters</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">Pairs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">Force_Names</span><span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">root</span> <span class="o">=</span> <span class="n">XML_potential</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+
+                <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;contacts_type&#39;</span><span class="p">):</span>
+                    <span class="n">Force_Names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+
+                <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;expression&#39;</span><span class="p">):</span>
+                    <span class="n">Expression</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;expr&#39;</span><span class="p">])</span>
+                    
+
+                <span class="n">internal_Param</span><span class="o">=</span><span class="p">[]</span>
+                <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;parameter&#39;</span><span class="p">):</span>
+                    <span class="n">internal_Param</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">par</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+                <span class="n">Parameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">internal_Param</span><span class="p">)</span>
+
+                <span class="n">internal_Pairs</span><span class="o">=</span><span class="p">[]</span>
+                <span class="k">for</span> <span class="n">atompairs</span> <span class="ow">in</span> <span class="n">root</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">iter</span><span class="p">(</span><span class="s1">&#39;interaction&#39;</span><span class="p">):</span>
+                     <span class="n">internal_Pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atompairs</span><span class="o">.</span><span class="n">attrib</span><span class="p">)</span>
+                <span class="n">Pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">internal_Pairs</span><span class="p">)</span>
+
+
+            <span class="k">return</span> <span class="n">Expression</span><span class="p">,</span><span class="n">Parameters</span><span class="p">,</span><span class="n">Pairs</span><span class="p">,</span><span class="n">Force_Names</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forceApplied</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">validate</span><span class="p">(</span><span class="n">Xmlfile</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The xml file is not in the correct format&quot;</span><span class="p">)</span>
+
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">import_xml2OpenSMOG</span><span class="p">(</span><span class="n">Xmlfile</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_splitForces</span><span class="p">()</span>
+        
+            <span class="k">for</span> <span class="n">force</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;creating force </span><span class="si">{:}</span><span class="s2"> from xml file&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">force</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_customSmogForce</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span><span class="p">[</span><span class="n">force</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">addForce</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forcesDict</span><span class="p">[</span><span class="n">force</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forceApplied</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Contacts forces already applied!!! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="SBM.createSimulation"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.createSimulation">[docs]</a>    <span class="k">def</span> <span class="nf">createSimulation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Creates the simulation context and loads into the OpenMM platform.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span> <span class="o">=</span> <span class="n">Simulation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Top</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">platform</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">properties</span><span class="p">)</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setPositions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Gro</span><span class="o">.</span><span class="n">positions</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">setVelocitiesToTemperature</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">temperature</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loaded</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Simulations context already created! </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="SBM.createReporters"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.createReporters">[docs]</a>    <span class="k">def</span> <span class="nf">createReporters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Creates the reporters to provide the output data.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            trajectory (bool, optional):</span>
+<span class="sd">                 Whether to save the trajectory *.dcd* file containing the position of the atoms as a function of time. (Default value: :code:`True`).</span>
+<span class="sd">            energies (bool, optional):</span>
+<span class="sd">                 Whether to save the energies in a *.txt* file containing five columns comma-delimited. The header of the files shows the information of each collum: #&quot;Step&quot;,&quot;Potential Energy (kJ/mole)&quot;,&quot;Kinetic Energy (kJ/mole)&quot;,&quot;Total Energy (kJ/mole)&quot;,&quot;Temperature (K)&quot;. (Default value: :code:`True`).</span>
+<span class="sd">            forces (bool, optional):</span>
+<span class="sd">                 Whether to save the potential energy for each applied force in a *.txt* file containing several columns comma-delimited. The header of the files shows the information of each collum. An example of the header is: #&quot;Step&quot;,&quot;eletrostastic&quot;,&quot;Non-Contacts&quot;,&quot;Bonds&quot;,&quot;Angles&quot;,&quot;Dihedrals&quot;,&quot;contact_1-10-12&quot;. (Default value: :code:`False`).</span>
+<span class="sd">            interval (int, required):</span>
+<span class="sd">                 Frequency to write the data to the output files. (Default value: :code:`10**3`)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">trajectory</span><span class="p">:</span>
+            <span class="n">dcdfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">folder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;_trajectory.dcd&#39;</span><span class="p">)</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DCDReporter</span><span class="p">(</span><span class="n">dcdfile</span><span class="p">,</span> <span class="n">interval</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">energies</span><span class="p">:</span>
+            <span class="n">energyfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">folder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span> <span class="s1">&#39;_energies.txt&#39;</span><span class="p">)</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="n">energyfile</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                                          <span class="n">potentialEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">kineticEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                            <span class="n">totalEnergy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">temperature</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">forces</span><span class="p">:</span>
+            <span class="n">forcefile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">folder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">+</span> <span class="s1">&#39;_forces.txt&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">forcesReporter</span><span class="p">(</span><span class="n">forcefile</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">forcesDict</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> </div>
+            
+<div class="viewcode-block" id="SBM.run"><a class="viewcode-back" href="../OpenSMOG.html#OpenSMOG.SBM.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsteps</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span><span class="p">):</span>
+        <span class="sa">R</span><span class="sd">&quot;&quot;&quot;Run the molecular dynamics simulation.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            nsteps (int, required):</span>
+<span class="sd">                 Number of steps to perform the simulation. (Default value: :code:`10**7`)</span>
+<span class="sd">            report (bool, optional):</span>
+<span class="sd">                Whether to print the simulation progress. (Default value: :code:`True`).</span>
+<span class="sd">            interval (int, required):</span>
+<span class="sd">                 Frequency to print the simulation progress. (Default value: :code:`10**4`)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">report</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">reporters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StateDataReporter</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remainingTime</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                  <span class="n">progress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">totalSteps</span><span class="o">=</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">simulation</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">nsteps</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University &amp; Northeastern University.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

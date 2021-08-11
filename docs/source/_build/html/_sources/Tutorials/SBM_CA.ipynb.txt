@@ -1,0 +1,241 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "source": [
+    "### C-alpha Structure-based Model simulation using OpenSMOG\n",
+    "\n",
+    "This tutorial should take between 5 to 15 minutes of reading and performing simulations.\n",
+    "\n",
+    "Input files for this tutorial can be found [here](https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SBM_CA/input)"
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "The first step is to import the **OpenSMOG** module"
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "from OpenSMOG import SBM"
+   ],
+   "outputs": [],
+   "metadata": {}
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "SBM class sets the parameters for the simulation:\r\n",
+    "\r\n",
+    "`name=\"1hk0\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*. <br>\r\n",
+    "`time_step=0.0005 ` (**reduced time unit**) Sets the time step used in integration. <br>\r\n",
+    "`collision_rate=1.0` (**reduced time unit**) Sets the collision rate of Langevin integrator.  <br>\r\n",
+    "`r_cutoff=3.0` (**nanometers**) Sets the non-bonded cutoff. <br>\r\n",
+    "`temperature=0.5` (**reduced temperature unit**) Sets the Temperature of the simulation. <br>\r\n",
+    "\r\n",
+    "sbm_CA is an arbitrarily chosen variable name for the SBM object"
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA = SBM(name='1hk0', time_step=0.0005, collision_rate=1.0, r_cutoff=3.0, temperature=0.5)"
+   ],
+   "outputs": [],
+   "metadata": {}
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "There are three hardware platform options to run the simulations: \r\n",
+    "\r\n",
+    "`platform=\"cuda\"` <br>\r\n",
+    "`platform=\"HIP\"` <br>\r\n",
+    "`platform=\"opencl\"` <br>\r\n",
+    "`platform=\"cpu\"` <br>\r\n",
+    "\r\n",
+    "if **cuda**, **opencl** or **HIP** is choosen the GPUindex can be define as \"0\". If two GPUs are used, one may give \"0,1\" \r\n"
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.setup_openmm(platform='cuda', GPUindex='default')"
+   ],
+   "outputs": [],
+   "metadata": {
+    "tags": []
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Sets the directory name where to save the simulation outputs"
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.saveFolder('output')"
+   ],
+   "outputs": [],
+   "metadata": {}
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Load the **gro** file into the sbm_CA object"
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.loadGro('input/1hk0_CA.gro')"
+   ],
+   "outputs": [],
+   "metadata": {}
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Load the **top** file into the sbm_CA object "
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.loadTop('input/1hk0_CA.top')"
+   ],
+   "outputs": [],
+   "metadata": {}
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Load the **xml** file into the sbm_CA object\n",
+    "\n",
+    "This function returns the name of each contact potential that is being used in the current model.\n",
+    "\n",
+    "In this example, only a Lennard-Jones-style 10-12 potential is being applied."
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.loadXml('input/1hk0_CA.xml')"
+   ],
+   "outputs": [],
+   "metadata": {}
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "The simulation **context** is created with all information given in the previous steps."
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.createSimulation()"
+   ],
+   "outputs": [],
+   "metadata": {
+    "tags": []
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "Create the **reporters** that will save the simulation data in an output folder.\r\n",
+    "\r\n",
+    "`trajectory=True` Save the trajectory in .dcd format. <br>\r\n",
+    "`energies=True` Save the energy in text format separated by a comma. <br>\r\n",
+    "`interval=10**3` The interval (in steps) at which the trajectory and energies are saved."
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.createReporters(trajectory=True, energies=True, forces=True, interval=10**3)"
+   ],
+   "outputs": [],
+   "metadata": {
+    "tags": []
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "The `run` function receives the following parameters:\n",
+    "\n",
+    "`nsteps=10**7` Number os steps to perform the simulation. <br>\n",
+    "`report=True` Shows the simulation details (Progress (%), Step and Time Remaining) <br>\n",
+    "`interval=10**4` The step interval to show the details"
+   ],
+   "metadata": {}
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "source": [
+    "sbm_CA.run(nsteps=10**7, report=True, interval=10**4)"
+   ],
+   "outputs": [],
+   "metadata": {
+    "scrolled": true,
+    "tags": []
+   }
+  },
+  {
+   "cell_type": "markdown",
+   "source": [
+    "The output files are located in the output folder"
+   ],
+   "metadata": {}
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "name": "python3",
+   "display_name": "Python 3.8.8 64-bit ('base': conda)"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.8"
+  },
+  "interpreter": {
+   "hash": "6c1e1dc993528b01ea0560a49e19c0e55ea625de972d398fe3046f8c57ef6008"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
