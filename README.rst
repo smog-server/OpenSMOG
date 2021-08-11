@@ -94,7 +94,7 @@ The following are libraries **required** for installing **OpenSMOG**:
 Installing SMOG2
 ================
 
-The inputs **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ (version 2.4 and later). Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_.
+The inputs **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ (version 2.4 and later). Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_ (Linux and Windows-WSL only).
 
 First, download SMOG 2 (v2.4, or later) at `smog-server.org <https://smog-server.org/smog2/>`__
 
