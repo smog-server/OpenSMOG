@@ -57,4 +57,4 @@ To generate the All-Atoms input files, only change the flag -CA to -AA:
 
     smog2 -i 2ci2.adj.pdb -AA -dname 2ci2.AA -openSMOG
 
-.. note:: For running the simulations, there are differences in the simulation setup. For example, in the case of AA, the cutoff should be shorter than the CA model, and the timestep should be larger. Please, check the C-alpha and All-Atoms simulation tutorial pages.
+.. note:: For running the simulations, there are differences in the simulation setup. For example, in the case of AA, the cutoff should be shorter than the CA model, and the timestep should be larger. Please, check the `C-alpha <https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_CA.html>`_  and `All-Atoms <https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_AA.html>`_ simulation tutorial pages.
