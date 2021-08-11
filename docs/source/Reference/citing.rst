@@ -2,12 +2,13 @@
 How to cite **OpenSMOG**
 ========================
 
-When using the SMOG2-openSMOG framework for publications, please use the following citations: 
+When using the SMOG2-OpenSMOG framework for publications, please use the following citations: 
+
 
 .. code-block:: bibtex
 
-@article{SMOG2,
-    title = {{SMOG 2: A Versatile Software Package for Generating Structure-Based Models}},
+    @article{SMOG2, 
+    title = {SMOG 2: A Versatile Software Package for Generating Structure-Based Models},
     author = {Noel, Jeffrey K. and 
     Levi, Mariana and 
     Raghunathan, Mohit and 
@@ -19,12 +20,11 @@ When using the SMOG2-openSMOG framework for publications, please use the followi
     pages = {e1004794},
     volume = {12},
     year = {2016}
-}
+    }
 
-@article{openSMOG,
+    @article{OpenSMOG,
     title={SMOG 2 and openSMOG: Extending hte limits of structure-based models},
-    author={Oliveira Jr, Antonio B  and 
-    Contessoto, Vinicius G and 
+    author={Oliveira Jr, Antonio B  and Contessoto, Vinicius G and 
     Hassan, Asem and
     Byju, Sandra and
     Wang, Ailun and
@@ -35,5 +35,5 @@ When using the SMOG2-openSMOG framework for publications, please use the followi
     Onuchic, Jose N and
     Whitford, Paul C},
     journal={In prep}
-    }
+    }   
     

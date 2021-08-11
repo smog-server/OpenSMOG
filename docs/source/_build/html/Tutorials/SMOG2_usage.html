@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>How to cite OpenSMOG &mdash; OpenSMOG 0.0.1 documentation</title>
+  <title>Using SMOG2 - C-alpha and All-Atoms &mdash; OpenSMOG 0.0.1 documentation</title>
   
 
   
@@ -48,8 +48,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="References" href="references.html" />
-    <link rel="prev" title="All-Atoms Structure-based Model simulation using OpenSMOG" href="../Tutorials/SBM_AA.html" /> 
+    <link rel="next" title="C-alpha Structure-based Model simulation using OpenSMOG" href="SBM_CA.html" />
+    <link rel="prev" title="OpenSMOG" href="../OpenSMOG.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -108,16 +108,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../OpenSMOG.html">OpenSMOG</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Tutorials/SMOG2_usage.html">Using SMOG2 - C-alpha and All-Atoms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Tutorials/SBM_CA.html">C-alpha Structure-based Model simulation using OpenSMOG</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Tutorials/SBM_AA.html">All-Atoms Structure-based Model simulation using OpenSMOG</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using SMOG2 - C-alpha and All-Atoms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-input-files-for-opensmog">Creating Input files for OpenSMOG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#c-alpha-model">C-alpha model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#all-atoms-model">All-Atoms model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SBM_CA.html">C-alpha Structure-based Model simulation using OpenSMOG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SBM_AA.html">All-Atoms Structure-based Model simulation using OpenSMOG</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Reference</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">How to cite <strong>OpenSMOG</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/citing.html">How to cite <strong>OpenSMOG</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/license.html">License</a></li>
 </ul>
 
             
@@ -166,13 +173,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>How to cite <strong>OpenSMOG</strong></li>
+      <li>Using SMOG2 - C-alpha and All-Atoms</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/Reference/citing.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Tutorials/SMOG2_usage.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -209,40 +216,51 @@
     text-align: unset;
 }
 </style>
-<section id="how-to-cite-opensmog">
-<h1>How to cite <strong>OpenSMOG</strong><a class="headerlink" href="#how-to-cite-opensmog" title="Permalink to this headline">¶</a></h1>
-<p>When using the SMOG2-OpenSMOG framework for publications, please use the following citations:</p>
-<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">SMOG2</span><span class="p">,</span>
-<span class="na">title</span> <span class="p">=</span> <span class="s">{SMOG 2: A Versatile Software Package for Generating Structure-Based Models}</span><span class="p">,</span>
-<span class="na">author</span> <span class="p">=</span> <span class="s">{Noel, Jeffrey K. and</span>
-<span class="s">Levi, Mariana and</span>
-<span class="s">Raghunathan, Mohit and</span>
-<span class="s">Lammert, Heiko and</span>
-<span class="s">Hayes, Ryan L. and</span>
-<span class="s">Onuchic, Jos{\&#39;{e}} N. and</span>
-<span class="s">Whitford, Paul C.}</span><span class="p">,</span>
-<span class="na">journal</span> <span class="p">=</span> <span class="s">{PloS Comp Biol}</span><span class="p">,</span>
-<span class="na">pages</span> <span class="p">=</span> <span class="s">{e1004794}</span><span class="p">,</span>
-<span class="na">volume</span> <span class="p">=</span> <span class="s">{12}</span><span class="p">,</span>
-<span class="na">year</span> <span class="p">=</span> <span class="s">{2016}</span>
-<span class="p">}</span>
-
-<span class="nc">@article</span><span class="p">{</span><span class="nl">OpenSMOG</span><span class="p">,</span>
-<span class="na">title</span><span class="p">=</span><span class="s">{SMOG 2 and openSMOG: Extending hte limits of structure-based models}</span><span class="p">,</span>
-<span class="na">author</span><span class="p">=</span><span class="s">{Oliveira Jr, Antonio B  and Contessoto, Vinicius G and</span>
-<span class="s">Hassan, Asem and</span>
-<span class="s">Byju, Sandra and</span>
-<span class="s">Wang, Ailun and</span>
-<span class="s">Wang, Yang and</span>
-<span class="s">Dorero-Rojas, Esteban and</span>
-<span class="s">Mohanty, Udayan and</span>
-<span class="s">Noel, Jeffrey K and</span>
-<span class="s">Onuchic, Jose N and</span>
-<span class="s">Whitford, Paul C}</span><span class="p">,</span>
-<span class="na">journal</span><span class="p">=</span><span class="s">{In prep}</span>
-<span class="p">}</span>
+<section id="using-smog2-c-alpha-and-all-atoms">
+<span id="smog2-usage"></span><h1>Using SMOG2 - C-alpha and All-Atoms<a class="headerlink" href="#using-smog2-c-alpha-and-all-atoms" title="Permalink to this headline">¶</a></h1>
+<section id="creating-input-files-for-opensmog">
+<h2>Creating Input files for OpenSMOG<a class="headerlink" href="#creating-input-files-for-opensmog" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial should take between 5 to 10 minutes of reading and generation the input files. Here, it will be used <strong>SMOG2</strong> software to generate the SBM (Structure-Based Model) input files for <strong>OpenSMOG</strong> simulations. To install SMOG2, please check the installation guide <a class="reference external" href="https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2">here</a> . Details of the usage of SMOG2 are described in the <a class="reference external" href="https://smog-server.org/smog2/">manual</a>.</p>
+<p>The following instructions will use a PDB file of CI2 protein (<a class="reference external" href="https://www.rcsb.org/structure/2CI2">2ci2.pdb</a>).</p>
+<p>First, download the <a class="reference external" href="https://www.rcsb.org/structure/2CI2">2ci2.pdb</a> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget http://www.rcsb.org/pdb/files/2ci2.pdb
 </pre></div>
 </div>
+<p>Then, it is necessary to clean up the file to keep only the relevant information for building the model. In this case, let us keep only the ATOM lines:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep <span class="s2">&quot;^ATOM&quot;</span> 2ci2.pdb &gt; 2ci2.atoms.pdb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that, sometimes, you also want HETATMs. This is up to the user. HETATMs can be things that we don’t want to include (e.g. HOH), or things that we may want to included (e.g. posttranslational modifications). In this case, we only want ATOM lines.</p>
+</div>
+<p>Next, add an END line to the 2ci2.atoms.pdb:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed -i -e <span class="s2">&quot;\$aEND&quot;</span> 2ci2.atoms.pdb
+</pre></div>
+</div>
+<p>Adjust the file, so that the naming convention conforms with the default models:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog_adjustPDB -i 2ci2.atoms.pdb -o 2ci2.adj.pdb
+</pre></div>
+</div>
+<section id="c-alpha-model">
+<h3>C-alpha model<a class="headerlink" href="#c-alpha-model" title="Permalink to this headline">¶</a></h3>
+<p>Use the adjusted file to generate your input CA model:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog2 -i 2ci2.adj.pdb -CA -dname 2ci2.CA -openSMOG
+</pre></div>
+</div>
+</section>
+<section id="all-atoms-model">
+<h3>All-Atoms model<a class="headerlink" href="#all-atoms-model" title="Permalink to this headline">¶</a></h3>
+<p>To generate the All-Atoms input files, only change the flag -CA to -AA:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog2 -i 2ci2.adj.pdb -AA -dname 2ci2.AA -openSMOG
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For running the simulations, there are differences in the simulation setup. For example, in the case of AA, the cutoff should be shorter than the CA model, and the timestep should be larger. Please, check the C-alpha and All-Atoms simulation tutorial pages.</p>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -251,8 +269,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="references.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../Tutorials/SBM_AA.html" class="btn btn-neutral float-left" title="All-Atoms Structure-based Model simulation using OpenSMOG" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="SBM_CA.html" class="btn btn-neutral float-right" title="C-alpha Structure-based Model simulation using OpenSMOG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../OpenSMOG.html" class="btn btn-neutral float-left" title="OpenSMOG" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
