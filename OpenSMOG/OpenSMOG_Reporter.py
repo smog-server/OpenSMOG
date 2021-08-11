@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University
+# Copyright (c) 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University and Northeastern University
 # This file is from the OpenSMOG project, released under the MIT License. 
 
 R"""  

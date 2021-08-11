@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Using SMOG2 - C-alpha and All-Atoms &mdash; OpenSMOG 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> OpenSMOG
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenSMOG Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../OpenSMOG.html">OpenSMOG</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SBM_CA.html">C-alpha Structure-based Model simulation using OpenSMOG</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/citing.html">How to cite <strong>OpenSMOG</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OpenSMOG</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Using SMOG2 - C-alpha and All-Atoms</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/Tutorials/gen_CA.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="using-smog2-c-alpha-and-all-atoms">
+<span id="gen-ca"></span><h1>Using SMOG2 - C-alpha and All-Atoms<a class="headerlink" href="#using-smog2-c-alpha-and-all-atoms" title="Permalink to this headline">¶</a></h1>
+<section id="creating-input-files-for-opensmog">
+<h2>Creating Input files for OpenSMOG<a class="headerlink" href="#creating-input-files-for-opensmog" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial should take between 5 to 10 minutes of reading and generation the input files. Here, it will be used <strong>SMOG2</strong> software to generate the SBM (Structure-Based Model) input files for <strong>OpenSMOG</strong> simulations. To install SMOG2, please check the installation guide <a class="reference external" href="https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2">here</a> . Details of the usage of SMOG2 are described in the <a class="reference external" href="https://smog-server.org/smog2/">manual</a>.</p>
+<p>The following instructions will use a PDB file of CI2 protein (<a class="reference external" href="https://www.rcsb.org/structure/2CI2">2ci2.pdb</a>).</p>
+<p>First, download the <a class="reference external" href="https://www.rcsb.org/structure/2CI2">2ci2.pdb</a> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget http://www.rcsb.org/pdb/files/2ci2.pdb
+</pre></div>
+</div>
+<p>Then, it is necessary to clean up the file to keep only the relevant information for building the model. In this case, let us keep only the ATOM lines:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep <span class="s2">&quot;^ATOM&quot;</span> 2ci2.pdb &gt; 2ci2.atoms.pdb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that, sometimes, you also want HETATMs. This is up to the user. HETATMs can be things that we don’t want to include (e.g. HOH), or things that we may want to included (e.g. posttranslational modifications). In this case, we only want ATOM lines.</p>
+</div>
+<p>Next, add an END line to the 2ci2.atoms.pdb:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed -i -e <span class="s2">&quot;\$aEND&quot;</span> 2ci2.atoms.pdb
+</pre></div>
+</div>
+<p>Adjust the file, so that the naming convention conforms with the default models:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog_adjustPDB -i 2ci2.atoms.pdb -o 2ci2.adj.pdb
+</pre></div>
+</div>
+<section id="c-alpha-model">
+<h3>C-alpha model<a class="headerlink" href="#c-alpha-model" title="Permalink to this headline">¶</a></h3>
+<p>Use the adjusted file to generate your input CA model:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog2 -i 2ci2.adj.pdb -CA -dname 2ci2.CA -openSMOG
+</pre></div>
+</div>
+</section>
+<section id="all-atoms-model">
+<h3>All-Atoms model<a class="headerlink" href="#all-atoms-model" title="Permalink to this headline">¶</a></h3>
+<p>To generate the All-Atoms input files, only change the flag -CA to -AA:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog2 -i 2ci2.adj.pdb -AA -dname 2ci2.AA -openSMOG
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For running the simulations, there are differences in the simulation setup. For example, in the case of AA, the cutoff should be shorter than the CA model, and the timestep should be larger. Please, check the C-alpha and All-Atoms simulation tutorial pages.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University &amp; Northeastern University.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
