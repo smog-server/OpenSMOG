@@ -1,7 +1,7 @@
 .. _SMOG2_usage:
 
 ====================================
-Using SMOG2 - C-alpha and All-Atoms
+Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models
 ====================================
 
 Creating Input files for OpenSMOG
