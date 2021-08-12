@@ -1,11 +1,11 @@
 .. _SMOG2_usage:
 
-====================================
+=====================================================================
 Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models
-====================================
+=====================================================================
 
 Pre-processing of the PDB file
-==================================
+===============================
 
 This tutorial should take between 5 to 10 minutes to complete. Here, we will use the **SMOG2** software pacakge to generate the SBM (Structure-Based Model) input files that will be used to perform a simulation with **OpenSMOG**. To install SMOG2, please check the installation notes in the SMOG 2 user manual, or use the guide `here <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`_ . Details of SMOG2 usage and options are described in the `manual <https://smog-server.org/smog2/>`_. It is assumed that SMOG2 is in your path.
 
