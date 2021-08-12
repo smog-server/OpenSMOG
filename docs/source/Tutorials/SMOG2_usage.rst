@@ -40,7 +40,7 @@ Adjust the file, so that the naming convention conforms with the default SMOG mo
 
     smog_adjustPDB -i 2ci2.atoms.pdb -o 2ci2.adj.pdb
 
-C-alpha model
+Generate openSMOG input files for a C-alpha model
 -----------------    
 Use the adjusted file to generate your input CA model:
 
@@ -48,7 +48,7 @@ Use the adjusted file to generate your input CA model:
 
     smog2 -i 2ci2.adj.pdb -CA -dname 2ci2.CA -openSMOG
 
-All-Atoms model
+Generate openSMOG input files for an all-atom model
 -----------------
 
 To generate the All-Atoms input files, only change the flag -CA to -AA:
