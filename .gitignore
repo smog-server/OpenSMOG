@@ -1,3 +1,9 @@
 
 *.pyc
 *.json
+Tutorials/output_2ci2_AA/2ci2_energies.txt
+Tutorials/output_2ci2_AA/2ci2_forces.txt
+Tutorials/output_2ci2_AA/2ci2_trajectory.dcd
+Tutorials/output_2ci2_CA/2ci2_energies.txt
+Tutorials/output_2ci2_CA/2ci2_forces.txt
+Tutorials/output_2ci2_CA/2ci2_trajectory.dcd
