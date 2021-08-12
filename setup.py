@@ -15,7 +15,7 @@ setup(
     version=__version__,
     description="Structure-based Models for Biomolecules using OpenMM",
     url="https://github.com/junioreif/OpenSMOG",
-    author="Antonio Bento de Oliveira Junior,Vinicius de Godoi Contessoto",
+    author=["Antonio Bento de Oliveira Junior","Vinicius de Godoi Contessoto"],
     author_email="antonio.oliveira@rice.edu,contessoto@rice.edu",
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
