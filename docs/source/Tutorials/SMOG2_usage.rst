@@ -4,7 +4,7 @@
 Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models
 ====================================
 
-Creating Input files for OpenSMOG
+Creating input files for OpenSMOG
 ==================================
 
 This tutorial should take between 5 to 10 minutes of reading and generation the input files. Here, it will be used **SMOG2** software to generate the SBM (Structure-Based Model) input files for **OpenSMOG** simulations. To install SMOG2, please check the installation guide `here <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`_ . Details of the usage of SMOG2 are described in the `manual <https://smog-server.org/smog2/>`_.
