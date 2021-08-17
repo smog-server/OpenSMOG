@@ -17,8 +17,8 @@ import os
 import numpy as np
 import xml.etree.ElementTree as ET
 import warnings
-from sys import stdout
 from lxml import etree
+import sys
 from .OpenSMOG_Reporter import forcesReporter
 
 class SBM:
@@ -30,52 +30,59 @@ class SBM:
     The :class:`~.SBM` sets the environment to start the molecular dynamics simulations.
     
     Args:
-        name (str):
-            Name used in the output files. (Default value: *SBM*). 
+    
         time_step (float, required):
-            Simulation time step in units of :math:`\tau`.
+            Simulation time step in units of :math:`\tau`. 
         collision_rate (float, required):
-            Friction/Damping constant in units of reciprocal time (:math:`1/\tau`). 
+            Friction/Damping constant in units of reciprocal time (:math:`1/\tau`).
         r_cutoff (float, required):
             Cutoff distance to consider non-bonded interactions in units of nanometers.
         temperature (float, required):
             Temperature in reduced units.
+        name (str):
+            Name used in the output files. (Default value: :code:`OpenSMOG`). 
     """
 
 
-    def __init__(self, 
-        name = "SBM",
-        time_step = 0.002,
-        collision_rate = 1.0,
-        r_cutoff = 1.5,
-        temperature = 0.5):
+    def __init__(self, time_step, collision_rate, r_cutoff, temperature, name = "OpenSMOG"):
+        self.printHeader()
+        self.name = name
+        self.dt = time_step * picoseconds
+
+        if not time_step in [0.0005, 0.002]:
+            print('[WARNING] The given time_step value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: time_step=0.0005 for C-alpha and time_step = 0.002 for All-Atoms.')
+        self.gamma = collision_rate / picosecond
         
-            self.name = name
-            self.dt = time_step * picoseconds
-            self.gamma = collision_rate / picosecond
-            self.rcutoff = r_cutoff * nanometers  
-            self.temperature = (temperature / 0.008314) * kelvin
-            self.forceApplied = False
-            self.loaded = False
-            self.folder = "."
-            self.forceNamesCA = {0 : "eletrostastic", 1 : "Non-Contacts", 2 : "Bonds", 3 : "Angles", 4 : "Dihedrals"}
-            self.forceNamesAA = {0 : "eletrostastic", 1 : "Non-Contacts", 2 : "Bonds", 3 : "Angles", 4 : "Dihedrals", 5 : "Impropers"}
-            self.forceCount = 0
+        if collision_rate != 1.0:
+            print('[WARNING] The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
+        self.rcutoff = r_cutoff * nanometers  
+
+        if not r_cutoff in [3.0, 1.2]:
+            print('[WARNING] The given r_cutoff value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: r_cutoff=3.0 for C-alpha and  r_cutoff=1.2 for All-Atoms.')
+
+        self.temperature = (temperature / 0.008314) * kelvin
+        self.forceApplied = False
+        self.loaded = False
+        self.folder = "."
+        self.forceNamesCA = {0 : "eletrostastic", 1 : "Non-Contacts", 2 : "Bonds", 3 : "Angles", 4 : "Dihedrals"}
+        self.forceNamesAA = {0 : "eletrostastic", 1 : "Non-Contacts", 2 : "Bonds", 3 : "Angles", 4 : "Dihedrals", 5 : "Impropers"}
+        self.forceCount = 0
+        
             
-    def setup_openmm(self, platform='cuda', precision='single', GPUindex='default', integrator="langevin"):
+    def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
 
         Args:
 
             platform (str, optional):
-                Platform to use in the simulations. Options are *CUDA*, *OpenCL*, *HIP*, *CPU*, *Reference*. (Default value: *CUDA*). 
+                Platform to use in the simulations. Opitions are *CUDA*, *OpenCL*, *HIP*, *CPU*, *Reference*. (Default value: :code:`OpenCL`). 
             precision (str, optional):
-                Numerical precision type of the simulation. Options are *single*, *mixed*, *double*. (Default value: *single*). For details check the `OpenMM Documentation <http://docs.openmm.org/latest/developerguide/developer.html#numerical-precision>`__. 
+                Numerical precision type of the simulation. Options are *single*, *mixed*, *double*. (Default value: :code:`single`).  For details check the `OpenMM Documentation <http://docs.openmm.org/latest/developerguide/developer.html#numerical-precision>`__. 
             GPUIndex (str, optional):
-                Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. (Use only when GPU != default)
+                Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. (Use only when GPU != default).
             integrator (str):
-                Integrator to use in the simulations. Options are *langevin*,  *variableLangevin*, *verlet*, *variableVerlet* and, *brownian*. (Default value: *langevin*).
+                Integrator to use in the simulations. Options are *langevin*,  *variableLangevin*, *verlet*, *variableVerlet* and, *brownian*. (Default value: :code:`langevin`).
         """
 
         precision = precision.lower()
@@ -113,6 +120,7 @@ class SBM:
         if integrator.lower() == "langevin":
             self.integrator = LangevinIntegrator(self.temperature,
                 self.gamma, self.dt)
+            self.integrator_type = integrator
         else:
             self.integrator = integrator
             self.integrator_type = "UserDefined"
@@ -127,9 +135,9 @@ class SBM:
         Args:
 
             folder (str, optional):
-                Folder path to save the simulation data. If the folder path does not exist, the function will create the directory.
+                Folder path to save the simulation data. If the folder path does not exist, the function will create the directory. 
         """
-    
+
         if os.path.exists(folder) == False:
             os.mkdir(folder)
         self.folder = folder
@@ -159,6 +167,8 @@ class SBM:
         
         if _checknames(Grofile, Topfile, Xmlfile):
             warnings.warn('The Gro, Top and Xml files have different prefixes. Most people use the same name, so this may be a mistake.')
+
+        self.inputNames = [Grofile, Topfile, Xmlfile]
 
         self._check_file(Grofile, '.gro')
         self.loadGro(Grofile)
@@ -236,7 +246,7 @@ class SBM:
         pars = [pars for pars in data[1]]
 
         for iteraction in data[2]:
-            atom_index_i = int(iteraction['i'])-1 #check where start the polymer
+            atom_index_i = int(iteraction['i'])-1 
             atom_index_j = int(iteraction['j'])-1
             parameters = [float(iteraction[k]) for k in pars]
 
@@ -267,7 +277,6 @@ class SBM:
             xml_doc = etree.parse(Xmlfile)
 
             result = xmlschema.validate(xml_doc)
-            #print("xml validation:", result)
             return result
                   
         def import_xml2OpenSMOG(file_xml):
@@ -331,7 +340,7 @@ class SBM:
         else:
             print('\n Simulations context already created! \n')
         
-    def createReporters(self, trajectory=True, energies=True, forces=False, interval=1000):
+    def createReporters(self, trajectory=True, trajectotyName=None, energies=True, energiesName=None, energy_components=False, energy_componentsName=None, interval=1000):
         R"""Creates the reporters to provide the output data.
 
         Args:
@@ -346,18 +355,49 @@ class SBM:
                  Frequency to write the data to the output files. (Default value: :code:`10**3`)
         """
 
+        def _checkFile(filename):   
+            if os.path.isfile(filename):
+                i = 1
+                ck = True
+                while i <= 10 and ck:
+                    newname = filename + "_" + str(i)
+                    if not os.path.isfile(newname):
+                        print("{:} already exists.  Backing up to {:}".format(filename,newname))
+                        os.rename(filename, newname)
+                        ck = False
+                    else:
+                        i += 1
+        self.outputNames = []
         if trajectory:
-            dcdfile = os.path.join(self.folder, self.name + '_trajectory.dcd') 
+            if trajectotyName is None:
+                dcdfile = os.path.join(self.folder, self.name + '_trajectory.dcd') 
+            else: 
+                dcdfile = os.path.join(self.folder, trajectotyName + ".dcd")
+            _checkFile(dcdfile)   
+            self.outputNames.append(dcdfile)  
             self.simulation.reporters.append(DCDReporter(dcdfile, interval))
 
         if energies:
-            energyfile = os.path.join(self.folder, self.name+ '_energies.txt') 
+            if energiesName is None:
+                energyfile = os.path.join(self.folder, self.name+ '_energies.txt')
+            else:
+                 energyfile = os.path.join(self.folder, energiesName + ".txt")
+            _checkFile(energyfile)
+            self.outputNames.append(energyfile)
             self.simulation.reporters.append(StateDataReporter(energyfile, interval, step=True, 
                                                           potentialEnergy=True, kineticEnergy=True,
                                                             totalEnergy=True,temperature=True, separator=","))
-        if forces:
-            forcefile = os.path.join(self.folder, self.name+ '_forces.txt')
-            self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True)) 
+
+        if energy_components:
+            if energy_componentsName is None:
+                forcefile = os.path.join(self.folder, self.name + '_forces.txt')
+            else:
+                forcefile = os.path.join(self.folder, energy_componentsName + '.txt')
+            _checkFile(forcefile)
+            self.outputNames.append(forcefile)
+            self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True))
+
+        
             
     def run(self, nsteps, report=True, interval=10**4):
         R"""Run the molecular dynamics simulation.
@@ -373,6 +413,74 @@ class SBM:
         """
 
         if report:
-            self.simulation.reporters.append(StateDataReporter(stdout, interval, step=True, remainingTime=True,
+            self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=True,
                                                   progress=True, totalSteps=nsteps, separator="\t"))
+        self._createLogfile()                                                   
         self.simulation.step(nsteps)
+
+    def _createLogfile(self):
+        import platform
+        import datetime
+
+        with open(os.path.join(self.folder, 'OpenSMOG.log'), 'w') as f:
+            ori = sys.stdout
+            sys.stdout = f
+            self.printHeader()
+            sys.stdout = ori
+        
+        #system_information
+            f.write('\nSystem Information:\n')
+            f.write('-------------------\n')
+
+            f.write('Date and time: {:}\n'.format(datetime.datetime.now()))
+            f.write('Machine information: {:} : {:}, {:} : {:}\n'.format("System", platform.uname().system, "Version", platform.uname().version))
+            f.write('Platform: {:}\n'.format(self.platform.getName()))
+            f.write('Precision: {:}\n'.format(self.properties['Precision']))
+            f.write('Integrator: {:}\n'.format(self.integrator_type))
+            f.write('Savefolder: {:}\n'.format(self.folder))
+
+            f.write('\nSimulation Information:\n')
+            f.write('-----------------------\n')
+
+            f.write('Name: {:}\n'.format(self.name))
+            f.write('Time step: {:}\n'.format(self.dt/picoseconds))
+            f.write('Collision Rate: {:}\n'.format(self.gamma*picosecond))
+            f.write('Cutoff: {:}\n'.format(self.rcutoff/nanometers))
+            f.write('Temperature: {:}\n'.format(self.temperature * 0.008314/kelvin))
+
+            f.write('\nInput Files:\n')
+            f.write('------------\n')
+            f.write('GroFile: {:}\n'.format(self.inputNames[0]))
+            f.write('TopFile: {:}\n'.format(self.inputNames[1]))
+            f.write('XmlFile: {:}\n'.format(self.inputNames[2]))
+
+            f.write('\nOutput Files:\n')
+            f.write('-------------\n')
+            for n in self.outputNames:
+                f.write(n+"\n")
+
+            sys.stdout = ori
+
+
+    def printHeader(self):
+        print('{:^96s}'.format("****************************************************************************************"))
+        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.0 *** *** *** *** *** *** *** ****"))
+        print('')
+        print('{:^96s}'.format("The OpenSMOG classes perform molecular dynamics using"))
+        print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular simulations."))
+        print('{:^96s}'.format("and it allows the simulations of a wide variety of potential forms,"))
+        print('{:^96s}'.format("OpenSMOG uses force fields generated by SMOG 2,"))
+        print('{:^96s}'.format("including commonly employed C-alpha and all-atom variants."))
+        print('{:^96s}'.format("OpenSMOG documentation are available at https://opensmog.readthedocs.io"))
+        print('{:^96s}'.format("Details about the default models in SMOG 2 can be found in: http://smog-server.org"))
+        print('')
+        print('{:^96s}'.format("This package is the product of contributions from a number of people, including:"))
+        print('{:^96s}'.format("Jeffrey Noel, Mariana Levi, Antonio Oliveira, Vinícius Contessoto,"))
+        print('{:^96s}'.format("Mohit Raghunathan, Joyce Yang, Prasad Bandarkar, Udayan Mohanty,"))
+        print('{:^96s}'.format("Ailun Wang, Heiko Lammert, Ryan Hayes"))
+        print('{:^96s}'.format("Jose Onuchic & Paul Whitford"))
+        print('')
+        print('{:^96s}'.format("Copyright (c) 2021, The OpenSMOG development team at"))
+        print('{:^96s}'.format("Rice University and Northeastern University"))
+        print('{:^96s}'.format("****************************************************************************************"))
+        sys.stdout.flush()
