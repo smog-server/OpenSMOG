@@ -34,7 +34,7 @@ Overview
 ========
 
 OpenSMOG is a Python library for performing molecular dynamics simulations using Structure-Based Models. OpenSMOG uses the  `OpenMM <http://openmm.org/>`_. Python API, which supports a wide variety of potential energy functions, including those that are commonly employed in C-alpha and all-atom models.
-While it is possible to use this library in a standalone fashion, it is expected that users will generate input files using the SMOG2 software (version 2.4, or later, with the flag :code:`-openSMOG`). Details on how to generate openSMOG-compatible force fields files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+While it is possible to use this library in a standalone fashion, it is expected that users will generate input files using the SMOG2 software (version 2.4, or later, with the flag :code:`-OpenSMOG`). Details on how to generate openSMOG-compatible force fields files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
 
 .. raw:: html
 
