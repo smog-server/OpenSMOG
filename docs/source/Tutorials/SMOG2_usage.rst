@@ -40,21 +40,21 @@ Adjust the file, so that the naming convention conforms with the default SMOG mo
 
     smog_adjustPDB -i 2ci2.atoms.pdb -o 2ci2.adj.pdb
 
-Generate openSMOG input files for a C-alpha model
+Generate OpenSMOG input files for a C-alpha model
 ==================================    
 Use the adjusted file to generate your input CA model:
 
 .. code-block:: bash
 
-    smog2 -i 2ci2.adj.pdb -CA -dname 2ci2.CA -openSMOG
+    smog2 -i 2ci2.adj.pdb -CA -dname 2ci2.CA -OpenSMOG
 
-Generate openSMOG input files for an all-atom model
+Generate OpenSMOG input files for an all-atom model
 ==================================
 
 To generate the All-Atoms input files, only change the flag -CA to -AA:
 
 .. code-block:: bash
 
-    smog2 -i 2ci2.adj.pdb -AA -dname 2ci2.AA -openSMOG
+    smog2 -i 2ci2.adj.pdb -AA -dname 2ci2.AA -OpenSMOG
 
-.. note:: When running the simulation in openSMOG, there are differences in the simulation protocols and settings. For example, in the case of AA, the cutoff is typically much shorter than the values used with the CA model. However, larger timesteps can typically be used with the AA model. Please, check the `C-alpha <https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_CA.html>`_  and `All-Atom <https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_AA.html>`_ simulation tutorial pages.
+.. note:: When running the simulation in OpenSMOG, there are differences in the simulation protocols and settings. For example, in the case of AA, the cutoff is typically much shorter than the values used with the CA model. However, larger timesteps can typically be used with the AA model. Please, check the `C-alpha <https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_CA.html>`_  and `All-Atom <https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_AA.html>`_ simulation tutorial pages.
