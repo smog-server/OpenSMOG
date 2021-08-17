@@ -23,7 +23,7 @@ When using the SMOG2-OpenSMOG framework for publications, please use the followi
     }
 
     @article{OpenSMOG,
-    title={SMOG 2 and openSMOG: Extending hte limits of structure-based models},
+    title={SMOG 2 and openSMOG: Extending the limits of structure-based models},
     author={Oliveira Jr, Antonio B  and Contessoto, Vinicius G and 
     Hassan, Asem and
     Byju, Sandra and
@@ -34,6 +34,7 @@ When using the SMOG2-OpenSMOG framework for publications, please use the followi
     Noel, Jeffrey K and
     Onuchic, Jose N and
     Whitford, Paul C},
-    journal={In prep}
+    journal={bioRxiv},
+    doi={10.1101/2021.08.15.456423}
     }   
     
