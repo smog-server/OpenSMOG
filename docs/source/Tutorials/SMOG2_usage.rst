@@ -4,15 +4,16 @@
 Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models
 =====================================================================
 
-Pre-processing of the PDB file
+
+This tutorial should take between 5 to 10 minutes to complete. Here, we will use the **SMOG2** software pacakge to generate the SBM (Structure-Based Model) input files that will be used to perform a simulation with **OpenSMOG**. To install SMOG2, please check the installation notes in the SMOG 2 user manual, or use the guide `here <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`_. Details of SMOG2 usage and options are described in the `manual <https://smog-server.org/smog2/>`_. It is assumed that the executable **smog2** is in your path.
+
+
+Preparing your PDB file
 ===============================
-
-This tutorial should take between 5 to 10 minutes to complete. Here, we will use the **SMOG2** software pacakge to generate the SBM (Structure-Based Model) input files that will be used to perform a simulation with **OpenSMOG**. To install SMOG2, please check the installation notes in the SMOG 2 user manual, or use the guide `here <https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2>`_ . Details of SMOG2 usage and options are described in the `manual <https://smog-server.org/smog2/>`_. It is assumed that SMOG2 is in your path.
-
 
 The following instructions will use a PDB file of CI2 protein (`2ci2.pdb <https://www.rcsb.org/structure/2CI2>`_).
 
-First, download the `2ci2.pdb <https://www.rcsb.org/structure/2CI2>`_ file:
+First, download the PDB file:
 
 .. code-block:: bash
 
@@ -25,10 +26,10 @@ Then, it is necessary to clean up the file and only keep information needed to d
 
     grep "^ATOM" 2ci2.pdb > 2ci2.atoms.pdb
 
-.. note:: Note that, sometimes, you also want HETATMs. This is up to the user. HETATMs can be things that we don't want to include (e.g. HOH), or things that we may want to included (e.g. posttranslational modifications). In this case, we only want ATOM lines.
+.. note:: Sometimes, you also want HETATMs. This is up to the user. HETATMs can be things that we don't want to include (e.g. HOH), or things that we may want to included (e.g. posttranslational modifications). In this case, we only want ATOM lines.
 
 
-Next, add an END line to the 2ci2.atoms.pdb:
+Next, add an END line to the file 2ci2.atoms.pdb:
 
 .. code-block:: bash
 
@@ -51,7 +52,7 @@ Use the adjusted file to generate your input CA model:
 Generate OpenSMOG input files for an all-atom model
 ==================================
 
-To generate the All-Atoms input files, only change the flag -CA to -AA:
+To generate input files for the all-atom model, you only need to change the flag -CA to -AA:
 
 .. code-block:: bash
 
