@@ -32,12 +32,12 @@
       <xs:element name="contacts_type" type="contpotType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
-  <!-- openSMOG TYPE -->
-  <xs:complexType name="openSMOGType">
+  <!-- OpenSMOG TYPE -->
+  <xs:complexType name="OpenSMOGType">
     <xs:sequence>
       <xs:element name="contacts" type="contactsType" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
-  <!-- openSMOG SCHEMA -->
-  <xs:element name="openSMOGforces" type="openSMOGType"/>
+  <!-- OpenSMOG SCHEMA -->
+  <xs:element name="OpenSMOGforces" type="OpenSMOGType"/>
 </xs:schema>
