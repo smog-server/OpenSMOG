@@ -445,7 +445,7 @@ class SBM:
             f.write('Name: {:}\n'.format(self.name))
             f.write('Time step: {:}\n'.format(self.dt/picoseconds))
             f.write('Collision Rate: {:}\n'.format(self.gamma*picosecond))
-            f.write('Cutoff: {:}\n'.format(self.rcutoff/nanometers))
+            f.write('r_Cutoff: {:}\n'.format(self.rcutoff/nanometers))
             f.write('Temperature: {:}\n'.format(self.temperature * 0.008314/kelvin))
 
             f.write('\nInput Files:\n')
