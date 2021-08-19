@@ -369,10 +369,10 @@ class SBM:
                         i += 1
         self.outputNames = []
         if trajectory:
-            if trajectotyName is None:
+            if trajectoryName is None:
                 dcdfile = os.path.join(self.folder, self.name + '_trajectory.dcd') 
             else: 
-                dcdfile = os.path.join(self.folder, trajectotyName + ".dcd")
+                dcdfile = os.path.join(self.folder, trajectoryName + ".dcd")
             _checkFile(dcdfile)   
             self.outputNames.append(dcdfile)  
             self.simulation.reporters.append(DCDReporter(dcdfile, interval))
@@ -464,7 +464,7 @@ class SBM:
 
     def printHeader(self):
         print('{:^96s}'.format("****************************************************************************************"))
-        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.2 *** *** *** *** *** *** *** ****"))
+        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.3 *** *** *** *** *** *** *** ****"))
         print('')
         print('{:^96s}'.format("The OpenSMOG classes perform molecular dynamics simulations using"))
         print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
