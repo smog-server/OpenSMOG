@@ -464,7 +464,7 @@ class SBM:
 
     def printHeader(self):
         print('{:^96s}'.format("****************************************************************************************"))
-        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.1 *** *** *** *** *** *** *** ****"))
+        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.2 *** *** *** *** *** *** *** ****"))
         print('')
         print('{:^96s}'.format("The OpenSMOG classes perform molecular dynamics simulations using"))
         print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
