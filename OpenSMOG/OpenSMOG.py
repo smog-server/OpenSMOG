@@ -87,7 +87,7 @@ class SBM:
 
         precision = precision.lower()
         if precision not in ["mixed", "single", "double"]:
-            raise ValueError("Presision must be mixed, single or double")
+            raise ValueError("Precision must be mixed, single or double")
             
         properties = {}
         properties["Precision"] = precision
