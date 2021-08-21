@@ -101,6 +101,7 @@ class SBM:
 
         elif platform.lower() == "reference":
             platformObject = Platform.getPlatformByName('Reference')
+            self.properties = {}
 
         elif platform.lower() == "cuda":
             platformObject = Platform.getPlatformByName('CUDA')
@@ -339,7 +340,21 @@ class SBM:
             self.loaded = True
         else:
             print('\n Simulations context already created! \n')
-        
+
+
+    def _checkFile(self,filename):   
+        if os.path.isfile(filename):
+            i = 1
+            ck = True
+            while i <= 10 and ck:
+                newname = filename + "_" + str(i)
+                if not os.path.isfile(newname):
+                    print("{:} already exists.  Backing up to {:}".format(filename,newname))
+                    os.rename(filename, newname)
+                    ck = False
+                else:
+                    i += 1
+
     def createReporters(self, trajectory=True, trajectoryName=None, energies=True, energiesName=None, energy_components=False, energy_componentsName=None, interval=1000):
         R"""Creates the reporters to provide the output data.
 
@@ -355,25 +370,14 @@ class SBM:
                  Frequency to write the data to the output files. (Default value: :code:`10**3`)
         """
 
-        def _checkFile(filename):   
-            if os.path.isfile(filename):
-                i = 1
-                ck = True
-                while i <= 10 and ck:
-                    newname = filename + "_" + str(i)
-                    if not os.path.isfile(newname):
-                        print("{:} already exists.  Backing up to {:}".format(filename,newname))
-                        os.rename(filename, newname)
-                        ck = False
-                    else:
-                        i += 1
+
         self.outputNames = []
         if trajectory:
             if trajectoryName is None:
                 dcdfile = os.path.join(self.folder, self.name + '_trajectory.dcd') 
             else: 
                 dcdfile = os.path.join(self.folder, trajectoryName + ".dcd")
-            _checkFile(dcdfile)   
+            self._checkFile(dcdfile)   
             self.outputNames.append(dcdfile)  
             self.simulation.reporters.append(DCDReporter(dcdfile, interval))
 
@@ -382,7 +386,7 @@ class SBM:
                 energyfile = os.path.join(self.folder, self.name+ '_energies.txt')
             else:
                  energyfile = os.path.join(self.folder, energiesName + ".txt")
-            _checkFile(energyfile)
+            self._checkFile(energyfile)
             self.outputNames.append(energyfile)
             self.simulation.reporters.append(StateDataReporter(energyfile, interval, step=True, 
                                                           potentialEnergy=True, kineticEnergy=True,
@@ -393,7 +397,7 @@ class SBM:
                 forcefile = os.path.join(self.folder, self.name + '_forces.txt')
             else:
                 forcefile = os.path.join(self.folder, energy_componentsName + '.txt')
-            _checkFile(forcefile)
+            self._checkFile(forcefile)
             self.outputNames.append(forcefile)
             self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True))
 
@@ -421,8 +425,10 @@ class SBM:
     def _createLogfile(self):
         import platform
         import datetime
-
-        with open(os.path.join(self.folder, 'OpenSMOG.log'), 'w') as f:
+        logFilename = os.path.join(self.folder, 'OpenSMOG.log')
+        self._checkFile(logFilename)
+        self.outputNames.append(logFilename)
+        with open(logFilename, 'w') as f:
             ori = sys.stdout
             sys.stdout = f
             self.printHeader()
@@ -435,7 +441,8 @@ class SBM:
             f.write('Date and time: {:}\n'.format(datetime.datetime.now()))
             f.write('Machine information: {:} : {:}, {:} : {:}\n'.format("System", platform.uname().system, "Version", platform.uname().version))
             f.write('Platform: {:}\n'.format(self.platform.getName()))
-            f.write('Precision: {:}\n'.format(self.properties['Precision']))
+            if (self.platform.getName() in ["CUDA", "OpenCL", "HIP"]):
+                f.write('Precision: {:}\n'.format(self.properties['Precision']))
             f.write('Integrator: {:}\n'.format(self.integrator_type))
             f.write('Savefolder: {:}\n'.format(self.folder))
 
@@ -464,7 +471,7 @@ class SBM:
 
     def printHeader(self):
         print('{:^96s}'.format("****************************************************************************************"))
-        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.3 *** *** *** *** *** *** *** ****"))
+        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.4 *** *** *** *** *** *** *** ****"))
         print('')
         print('{:^96s}'.format("The OpenSMOG classes perform molecular dynamics simulations using"))
         print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
