@@ -57,7 +57,7 @@ class SBM:
             print('[WARNING] The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
         self.rcutoff = r_cutoff * nanometers  
 
-        if not r_cutoff in [3.0, 1.2]:
+        if not r_cutoff in [3.0, 2.0 ,1.2]:
             print('[WARNING] The given r_cutoff value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: r_cutoff=3.0 for C-alpha and  r_cutoff=1.2 for All-Atoms.')
 
         self.temperature = (temperature / 0.008314) * kelvin
@@ -412,6 +412,8 @@ class SBM:
             Expression=[]
             Parameters=[]
             Pairs=[]
+            if root.find('contacts') == None:
+                raise ValueError("No contacts were found in the XML file")
             contacts_xml=root.find('contacts')
             for i in range(len(contacts_xml)):
                 for name in contacts_xml[i].iter('contacts_type'):
@@ -470,14 +472,14 @@ class SBM:
             self._splitForces_contacts()
 
             for force in self.contacts:
-                print("creating force {:} from xml file".format(force))
+                print("Creating Contacts force {:} from xml file".format(force))
                 self._customSmogForce(force, self.contacts[force])
                 self.system.addForce(self.forcesDict[force])
 
             if self.nonbond_present==True: 
                 self._splitForces_nb()
                 for force in self.nonbond:
-                    print("creating nonbonded force {:} from xml file".format(force))
+                    print("Creating Nonbonded force {:} from xml file".format(force))
                     self._customSmogForce_nb(force, self.nonbond[force])
                     self.system.addForce(self.forcesDict['Nonbonded'+str(force)])
                 ## REMOVE OTHER NONBONDED FORCES
@@ -485,8 +487,6 @@ class SBM:
                 self.system.removeForce(0)
 
             self.forceApplied = True
-            print('Forces summary')
-            print(self.system.getForces())
 
         else:
             print('\n Contacts forces already applied!!! \n')
