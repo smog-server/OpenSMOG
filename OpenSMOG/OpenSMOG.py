@@ -373,7 +373,7 @@ class SBM:
         """
 
         def validate(Xmlfile):
-            path = "share/OpenSMOG.xsd"
+            path = "share/OpenSMOG_nb.xsd"
             pt = os.path.dirname(os.path.realpath(__file__))
             filepath = os.path.join(pt,path)
 
