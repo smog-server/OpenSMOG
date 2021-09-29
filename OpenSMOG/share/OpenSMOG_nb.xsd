@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- INTERACTION TYPE -->
+  <xs:complexType name="interactionType">
+    <xs:attribute name="i" type="xs:integer" use="required"/>
+    <xs:attribute name="j" type="xs:integer" use="required"/>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+  <!-- nonbond_param TYPE -->
+  <xs:complexType name="nonbondparamType">
+    <xs:attribute name="type1" type="xs:string" use="required"/>
+    <xs:attribute name="type2" type="xs:string" use="required"/>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+ 
+  <!-- PARAMETER TYPE -->
+  <xs:complexType name="parameterType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+    </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- EXPRESSION TYPE -->
+  <xs:complexType name="expressionType">
+    <xs:attribute name="expr" type="xs:string" use="required"/>
+  </xs:complexType>
+  <!-- CONTACT POTENTIAL TYPE -->
+  <xs:complexType name="contpotType">
+    <xs:sequence>
+      <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="interaction" type="interactionType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+  <!-- CONTACTS TYPE -->
+  <xs:complexType name="contactsType">
+    <xs:sequence>
+      <xs:element name="contacts_type" type="contpotType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- CONSTANT TYPE -->
+  <xs:complexType name="constantType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:decimal" use="required"/>
+  </xs:complexType>
+  <!-- CONSTANTS TYPE -->
+  <xs:complexType name="constantsType">
+    <xs:sequence>
+      <xs:element name="constant" type="constantType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- NB TYPE -->
+  <xs:complexType name="nbType">
+    <xs:sequence>
+      <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="parameter" type="parameterType" maxOccurs="unbounded"/>
+      <xs:element name="nonbond_param" type="nonbondparamType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- NONBOND TYPE -->
+  <xs:complexType name="nonbondType">
+    <xs:sequence>
+      <xs:element name="nonbond_bytype" type="nbType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+ 
+
+  <!-- OpenSMOG TYPE -->
+  <xs:complexType name="OpenSMOGType">
+    <xs:all>
+      <xs:element name="contacts" type="contactsType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OpenSMOGminVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="nonbond" type="nonbondType" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+  </xs:complexType>
+  <!-- OpenSMOG SCHEMA -->
+  <xs:element name="OpenSMOGforces" type="OpenSMOGType"/>
+</xs:schema>
