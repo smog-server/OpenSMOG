@@ -37,6 +37,8 @@ class SBM:
             Friction/Damping constant in units of reciprocal time (:math:`1/\tau`).
         r_cutoff (float, required):
             Cutoff distance to consider non-bonded interactions in units of nanometers.
+        pbc (boolean, optional):
+            Turn PBC on/off. Default value: False
         temperature (float, required):
             Temperature in reduced units.
         name (str):
@@ -44,7 +46,7 @@ class SBM:
     """
 
 
-    def __init__(self, time_step, collision_rate, r_cutoff, temperature,pbc, name = "OpenSMOG"):
+    def __init__(self, time_step, collision_rate, r_cutoff, temperature, pbc = False, name = "OpenSMOG"):
         self.printHeader()
         self.name = name
         self.dt = time_step * picoseconds
@@ -64,8 +66,6 @@ class SBM:
         self.forceApplied = False
         self.loaded = False
         self.folder = "."
-        self.forceNamesCA = {0 : "electrostastic", 1 : "Non-Contacts", 2 : "Bonds", 3 : "Angles", 4 : "Dihedrals"}
-        self.forceNamesAA = {0 : "electrostastic+default", 1 : "Non-Contacts+default", 2 : "Bonds", 3 : "Angles", 4 : "Dihedrals", 5 : "Impropers"}
         self.forceCount = 0
         self.pbc=pbc
         
@@ -362,7 +362,11 @@ class SBM:
             # ADD PARTICLE TO EACH FORCE WITH CORRESPONDING CHARGE AND TYPE
             nonbond_ff.addParticle([charge,at_type])
         #Set cutoff and nonbonded method
-        nonbond_ff.setNonbondedMethod(NonbondedForce.CutoffPeriodic)
+        if self.pbc == True:
+            nonbond_ff.setNonbondedMethod(NonbondedForce.CutoffPeriodic)
+        else:
+            nonbond_ff.setNonbondedMethod(NonbondedForce.CutoffNonPeriodic)
+
         nonbond_ff.setCutoffDistance(self.rcutoff.value_in_unit(nanometer))
 
         self.forcesDict['Nonbonded'+str(name)] =  nonbond_ff
@@ -380,7 +384,7 @@ class SBM:
         """
 
         def validate(Xmlfile):
-            path = "share/OpenSMOG_nb.xsd"
+            path = "share/OpenSMOG.xsd"
             pt = os.path.dirname(os.path.realpath(__file__))
             filepath = os.path.join(pt,path)
 
@@ -395,10 +399,10 @@ class SBM:
         def import_xml2OpenSMOG(file_xml):
             XML_potential = ET.parse(file_xml)
             root = XML_potential.getroot()
-            openSMOGVersion=root.find('OpenSMOGminVersion').text
             xml_data={}
 
             ## Constants
+            self.constants_present=False
             if root.find('constants') != None:
                 self.constants_present=True
                 constants={}
@@ -436,9 +440,8 @@ class SBM:
             xml_data['contacts']=[Expression,Parameters,Pairs,Force_Names]
 
             #Launch contact force function
+            self.nonbond_present=False
             if root.find('nonbond') != None:
-                if self.pbc == False:
-                    raise ValueError("Nonbonded forces found, but PBC is off")
                 self.nonbond_present=True
                 nonbond_xml=root.find('nonbond')
                 NonBond_Num=[]
@@ -528,7 +531,7 @@ class SBM:
             energies (bool, optional):
                  Whether to save the energies in a *.txt* file containing five columns, comma-delimited. The header of the files shows the information of each collum: #"Step","Potential Energy (kJ/mole)","Kinetic Energy (kJ/mole)","Total Energy (kJ/mole)","Temperature (K)". (Default value: :code:`True`).
             forces (bool, optional):
-                 Whether to save the potential energy for each applied force in a *.txt* file containing several columns, comma-delimited. The header of the files shows the information of each column. An example of the header is: #"Step","electrostastic","Non-Contacts","Bonds","Angles","Dihedrals","contact_1-10-12". (Default value: :code:`False`).
+                 Whether to save the potential energy for each applied force in a *.txt* file containing several columns, comma-delimited. The header of the files shows the information of each column. An example of the header is: #"Step","electrostatic","Non-Contacts","Bonds","Angles","Dihedrals","contact_1-10-12". (Default value: :code:`False`).
             interval (int, required):
                  Frequency to write the data to the output files. (Default value: :code:`10**3`)
         """
@@ -648,8 +651,8 @@ class SBM:
         print('')
         print('{:^96s}'.format("This package is the product of contributions from a number of people, including:"))
         print('{:^96s}'.format("Jeffrey Noel, Mariana Levi, Antonio Oliveira, Vinícius Contessoto,"))
-        print('{:^96s}'.format("Mohit Raghunathan, Joyce Yang, Prasad Bandarkar, Udayan Mohanty,"))
-        print('{:^96s}'.format("Ailun Wang, Heiko Lammert, Ryan Hayes"))
+        print('{:^96s}'.format("Esteban Dodero-Rojas, Mohit Raghunathan, Joyce Yang, Prasad Bandarkar,"))
+        print('{:^96s}'.format("Udayan Mohanty, Ailun Wang, Heiko Lammert, Ryan Hayes"))
         print('{:^96s}'.format("Jose Onuchic & Paul Whitford"))
         print('')
         print('{:^96s}'.format("Copyright (c) 2021, The SMOG development team at"))
