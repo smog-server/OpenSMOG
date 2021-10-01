@@ -24,7 +24,7 @@ from .OpenSMOG_Reporter import forcesReporter
 class SBM:
 
     R"""  
-    The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, or NMR, methods) as the energetic global minimum.
+    The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based (SMOG) models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, or NMR, methods) as the energetic global minimum. Find more information about SMOG models and OpenSMOG at http://smog-server.org 
     
     
     The :class:`~.SBM` sets the environment to start the molecular dynamics simulations.
@@ -51,15 +51,15 @@ class SBM:
         self.dt = time_step * picoseconds
 
         if not time_step in [0.0005, 0.002]:
-            print('[WARNING] The given time_step value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: time_step=0.0005 for C-alpha and time_step = 0.002 for All-Atoms.')
+            print('Note: The given time_step value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: time_step=0.0005 for C-alpha and time_step = 0.002 for All-Atoms.')
         self.gamma = collision_rate / picosecond
         
         if collision_rate != 1.0:
-            print('[WARNING] The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
+            print('Note: The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
         self.rcutoff = r_cutoff * nanometers  
 
-        if not r_cutoff in [3.0, 2.0 ,1.2]:
-            print('[WARNING] The given r_cutoff value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: r_cutoff=3.0 for C-alpha and  r_cutoff=1.2 for All-Atoms.')
+        if not r_cutoff in [1.1 ,0.65]:
+            print('Note: The given r_cutoff value is not the one usually employed in the SBM models with OpenSMOG. Make sure this value is correct. The suggested values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for the all-atom model.')
 
         self.temperature = (temperature / 0.008314) * kelvin
         self.forceApplied = False
@@ -379,7 +379,8 @@ class SBM:
             xml_doc = etree.parse(Xmlfile)
 
             result = xmlschema.validate(xml_doc)
-            return result
+            log = xmlschema.error_log
+            return result,log
 
         def import_xml2OpenSMOG(file_xml):
             XML_potential = ET.parse(file_xml)
@@ -453,8 +454,10 @@ class SBM:
             return xml_data
 
         if not (self.forceApplied):
-            if not validate(Xmlfile):
-                raise ValueError("The xml file is not in the correct format")
+            result,log=validate(Xmlfile)
+
+            if not result:
+                raise ValueError("The xml file is not adhere to the required schema (same as that used by SMOG 2). Error message:\n\n"+str(log)+"\n\n This typically means your xml file was corrupted, or you are using an incompatible version of SMOG 2")
             
             self.data = import_xml2OpenSMOG(Xmlfile)
             self._splitForces_contacts()
