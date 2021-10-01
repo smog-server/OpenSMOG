@@ -45,7 +45,6 @@ class SBM:
             Name used in the output files. (Default value: :code:`OpenSMOG`). 
     """
 
-
     def __init__(self, time_step, collision_rate, r_cutoff, temperature, pbc = False, name = "OpenSMOG"):
         self.printHeader()
         self.name = name
@@ -68,7 +67,7 @@ class SBM:
         self.folder = "."
         self.forceCount = 0
         self.pbc=pbc
-        
+        self.nonbonded_present=False
             
     def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
         
@@ -217,22 +216,10 @@ class SBM:
             self.Top = GromacsTopFile(Topfile)
             self.system = self.Top.createSystem(nonbondedMethod=CutoffNonPeriodic,nonbondedCutoff=self.rcutoff)
         nforces = len(self.system.getForces())
-        for force_id, force in enumerate(self.system.getForces()):                  
-                    if nforces == 7: 
-                        if force_id <=4:
-                            force.setForceGroup(force_id)
-                            self.forcesDict[self.forceNamesCA[force_id]] = force
-                            self.forceCount +=1
-                        else:
-                            force.setForceGroup(30)
-                    elif nforces == 8:
-                        if force_id <=5:
-                            force.setForceGroup(force_id)
-                            self.forcesDict[self.forceNamesAA[force_id]] = force
-                            self.forceCount +=1
-                        else:
-                            force.setForceGroup(30)
-
+        for force_id, force in enumerate(self.system.getForces()):  
+            force.setForceGroup(force_id)
+            self.forcesDict[force.__class__.__name__] = force
+            self.forceCount +=1
         
     def _splitForces_contacts(self):
         #Contacts
@@ -325,12 +312,10 @@ class SBM:
                 raise ValueError('Nonbonded force parameter: {:} is not defined for all atom interactions'.format(par))
             table_fun[par]=Discrete2DFunction(natom_types,natom_types,list(np.ravel(tables[par])))
             nonbond_ff.addTabulatedFunction(par,table_fun[par])
-        
         #Get exceptions from topfile import
         for i in range(original_customnonbonded.getNumExclusions()):
             exclusion_id = original_customnonbonded.getExclusionParticles(i)
             nonbond_ff.addExclusion(exclusion_id[0],exclusion_id[1])
-
         ## ADD PARTICLES TO THE FORCE BASED ON SPECIFYING TYPE AND CHARGE
         ## CHARGES
         ## From nonbondedforce we get the charges for each atom
@@ -462,23 +447,22 @@ class SBM:
                     for nbpar in nonbond_xml[i].iter('nonbond_param'):
                         internal_NBParam.append(nbpar.attrib)
                     NBParameters.append(internal_NBParam)
-
                 xml_data['nonbond']=[NonBond_Num,NBExpression,NBExpressionParameters,NBParameters]
+            else:
+                self.nonbond_present=False
             return xml_data
 
         if not (self.forceApplied):
             if not validate(Xmlfile):
                 raise ValueError("The xml file is not in the correct format")
             
-            
             self.data = import_xml2OpenSMOG(Xmlfile)
             self._splitForces_contacts()
-
             for force in self.contacts:
                 print("Creating Contacts force {:} from xml file".format(force))
                 self._customSmogForce(force, self.contacts[force])
                 self.system.addForce(self.forcesDict[force])
-
+            
             if self.nonbond_present==True: 
                 self._splitForces_nb()
                 for force in self.nonbond:
@@ -488,11 +472,11 @@ class SBM:
                 ## REMOVE OTHER NONBONDED FORCES
                 self.system.removeForce(0)
                 self.system.removeForce(0)
-
+            
             self.forceApplied = True
 
         else:
-            print('\n Contacts forces already applied!!! \n')
+            print('\n OpenSMOG forces already applied!!! \n')
         
     def createSimulation(self):
 
