@@ -45,21 +45,21 @@ class SBM:
             Name used in the output files. (Default value: :code:`OpenSMOG`). 
     """
 
-    def __init__(self, time_step, collision_rate, r_cutoff, temperature, pbc = False, name = "OpenSMOG"):
+    def __init__(self, time_step, collision_rate, r_cutoff, temperature, pbc = False, name = "OpenSMOG", warn = True):
         self.printHeader()
         self.name = name
+        self.warn = warn
         self.dt = time_step * picoseconds
 
-        if not time_step in [0.0005, 0.002]:
-            print('Note: The given time_step value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: time_step=0.0005 for C-alpha and time_step = 0.002 for All-Atoms.')
         self.gamma = collision_rate / picosecond
-        
-        if collision_rate != 1.0:
-            print('Note: The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
         self.rcutoff = r_cutoff * nanometers  
-
-        if not r_cutoff in [1.1 ,0.65]:
-            print('Note: The given r_cutoff value is not the one usually employed in the SBM models with OpenSMOG. Make sure this value is correct. The suggested values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for the all-atom model.')
+        if self.warn:
+            if not time_step in [0.0005, 0.002]:
+                print('Note: The given time_step value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: time_step=0.0005 for C-alpha and time_step = 0.002 for All-Atoms.')
+            if collision_rate != 1.0:
+                print('Note: The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
+            if not r_cutoff in [1.1 ,0.65]:
+                print('Note: The given r_cutoff value is not the one usually employed in the SBM models with OpenSMOG. Make sure this value is correct. The suggested values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for the all-atom model.')
 
         self.temperature = (temperature / 0.008314) * kelvin
         self.forceApplied = False
@@ -166,7 +166,7 @@ class SBM:
             else:
                 return True
         
-        if _checknames(Grofile, Topfile, Xmlfile):
+        if _checknames(Grofile, Topfile, Xmlfile) and  self.warn :
             warnings.warn('The Gro, Top and Xml files have different prefixes. Most people use the same name, so this may be a mistake.')
 
         self.inputNames = [Grofile, Topfile, Xmlfile]
