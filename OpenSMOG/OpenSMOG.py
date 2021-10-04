@@ -47,6 +47,7 @@ class SBM:
 
     def __init__(self, time_step, collision_rate, r_cutoff, temperature, pbc = False, name = "OpenSMOG", warn = True):
         self.printHeader()
+        print("To see an example for how to launch a simulation with the OpenSMOG module, run the help module.  For example, if you named your simulation object SMOGMODEL, then issue the command SMOGMODEL.help()")
         self.name = name
         self.warn = warn
         self.dt = time_step * picoseconds
@@ -61,7 +62,7 @@ class SBM:
             if not r_cutoff in [1.1 ,0.65]:
                 print('Note: The given r_cutoff value is not the one usually employed in the SBM models with OpenSMOG. Make sure this value is correct. The suggested values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for the all-atom model.')
 
-        self.temperature = (temperature / 0.008314) * kelvin
+        self.temperature = (temperature / 0.00831446261815) * kelvin
         self.forceApplied = False
         self.loaded = False
         self.folder = "."
@@ -69,6 +70,46 @@ class SBM:
         self.pbc=pbc
         self.nonbonded_present=False
             
+    def help(self):
+        print("""
+While a broad range of simulation protocols may be used, here is a very basic
+example for how to launch simulations using the OpenSMOG module with OpenMM.
+
+>from OpenSMOG import SBM
+
+Choose some basic runtime settings.  We will call our system 2ci2
+>SMOGrun = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5)
+
+Select a platform and GPU IDs (if needed)
+>SMOGrun.setup_openmm(platform='cuda',GPUindex='default')
+
+Decide where to save your data (here, output_2ci2
+>SMOGrun.saveFolder('output_2ci2')
+
+You may optionally save some input file names to variables
+>SMOG_grofile = '2ci2.gro'
+>SMOG_topfile = '2ci2.top'
+>SMOG_xmlfile = '2ci2.xml'
+
+Load your force field data
+>SMOGrun.loadSystem(Grofile=SMOG_grofile, Topfile=SMOG_topfile, Xmlfile=SMOG_xmlfile)
+
+Create the simulation, and prepare to run
+>SMOGrun.createSimulation()
+
+Decide how frequently to save data
+>SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=10**3)
+
+Launch the simulation
+>SMOGrun.run(nsteps=10**6, report=True, interval=10**3)
+
+For more information and help, see the OpenSMOG and SMOG 2 websites.
+OpenSMOG: https://opensmog.readthedocs.io/en/latest/
+SMOG 2: https://smog-server.org
+
+If you have questions/suggestions, you can also email us at info@smog-server.org
+""") 
+
     def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
