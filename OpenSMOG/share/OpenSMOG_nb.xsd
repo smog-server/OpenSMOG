@@ -12,6 +12,7 @@
     <xs:attribute name="type2" type="xs:string" use="required"/>
     <xs:anyAttribute processContents="skip"/>
   </xs:complexType>
+ 
   <!-- PARAMETER TYPE -->
   <xs:complexType name="parameterType">
     <xs:simpleContent>
@@ -63,11 +64,14 @@
       <xs:element name="nonbond_bytype" type="nbType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
+ 
+
   <!-- OpenSMOG TYPE -->
   <xs:complexType name="OpenSMOGType">
     <xs:all>
       <xs:element name="contacts" type="contactsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="OpenSMOGminVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
       <xs:element name="nonbond" type="nonbondType" minOccurs="0" maxOccurs="1"/>
     </xs:all>
   </xs:complexType>
