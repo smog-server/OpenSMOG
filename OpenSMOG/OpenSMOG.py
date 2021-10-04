@@ -47,7 +47,7 @@ class SBM:
 
     def __init__(self, time_step, collision_rate, r_cutoff, temperature, pbc = False, name = "OpenSMOG", warn = True):
         self.printHeader()
-        print("To see an example for how to launch a simulation with the OpenSMOG module, run the help module.  For example, if you named your simulation object SMOGMODEL, then issue the command SMOGMODEL.help()")
+        print("\nFor more information, including descriptions of units and an example for how to launch a\nsimulation with OpenSMOG, run the help module. For example, if you named your simulation\nobject \"SMOGMODEL\", then issue the command:\n>SMOGMODEL.help()\n")
         self.name = name
         self.warn = warn
         self.dt = time_step * picoseconds
@@ -72,6 +72,39 @@ class SBM:
             
     def help(self):
         print("""
+
+#############################################################################
+
+                       Information about using OpenSMOG
+
+#############################################################################
+
+                              Units in OpenSMOG                              
+
+Time: When using OpenSMOG, it is important to consider the units. Since 
+OpenSMOG is built on OpenMM libraries, some unit labels can be misleading. 
+Specifically, SMOG models use reduced units. While it is possible to estimate
+the effective timescales in these models, OpenMM reporters will label the 
+timescales as ns. In terms of accounting, 1 \"ns\" is equal to 1000 reduced 
+time units. For detailed discussions of units, one can consult any number of
+recent papers by the SMOG team, such as Yang et al. JCP 2019, 151, 085102.
+
+Temperature: When initializing your simulation with the SBM class, the 
+temperature is provided in reduced units, where a typical protein will fold
+at around 1 reduced unit. However, similar to other MD packages, the 
+Boltzmann constant is built into the software.  Accordingly, the reported 
+temperature will be equal to (reduced temperature)*120.272. So, if you 
+initialize your system with a temperature of 0.5, the reported temperature 
+would read 0.5*120.272~60.136.
+
+Energy: OpenSMOG will report all energies in reduced units. However, the
+OpenMM libraries will label the energies as units of kJ/mole. This label
+should be ignored, unless you calibrated your SMOG model to use this energy
+scale. 
+
+
+                                Usage Example 
+
 While a broad range of simulation protocols may be used, here is a very basic
 example for how to launch simulations using the OpenSMOG module with OpenMM.
 
@@ -680,7 +713,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         print('{:^96s}'.format("This package is the product of contributions from a number of people, including:"))
         print('{:^96s}'.format("Jeffrey Noel, Mariana Levi, Antonio Oliveira, Vinícius Contessoto,"))
         print('{:^96s}'.format("Esteban Dodero-Rojas, Mohit Raghunathan, Joyce Yang, Prasad Bandarkar,"))
-        print('{:^96s}'.format("Udayan Mohanty, Ailun Wang, Heiko Lammert, Ryan Hayes"))
+        print('{:^96s}'.format("Udayan Mohanty, Ailun Wang, Heiko Lammert, Ryan Hayes,"))
         print('{:^96s}'.format("Jose Onuchic & Paul Whitford"))
         print('')
         print('{:^96s}'.format("Copyright (c) 2021, The SMOG development team at"))
