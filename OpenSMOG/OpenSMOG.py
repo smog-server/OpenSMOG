@@ -254,7 +254,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self._check_file(Xmlfile, '.xml')
         self.loadXml(Xmlfile)
 
-        print("Files loaded in the system.")
+        print("Loaded force field and config files.")
         
     def _check_file(self, filename, ext):
         if not (filename.lower().endswith(ext)):
