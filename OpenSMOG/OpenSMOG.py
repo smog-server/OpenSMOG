@@ -143,6 +143,10 @@ SMOG 2: https://smog-server.org
 If you have questions/suggestions, you can also email us at info@smog-server.org
 """) 
 
+    def minimize(self,tolerance=1.0,maxIterations=0):
+        # simple wrapper for minimization
+        self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
+
     def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
@@ -582,7 +586,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 else:
                     i += 1
 
-    def createReporters(self, trajectory=True, trajectoryName=None, energies=True, energiesName=None, energy_components=False, energy_componentsName=None, interval=1000):
+    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, interval=1000):
         R"""Creates the reporters to provide the output data.
 
         Args:
@@ -600,14 +604,36 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         self.outputNames = []
         if trajectory:
+            trajectoryFormat=trajectoryFormat.lower()
             if trajectoryName is None:
-                dcdfile = os.path.join(self.folder, self.name + '_trajectory.dcd') 
+                trajfile = os.path.join(self.folder, self.name + '_trajectory.'+trajectoryFormat) 
             else: 
-                dcdfile = os.path.join(self.folder, trajectoryName + ".dcd")
-            self._checkFile(dcdfile)   
-            self.outputNames.append(dcdfile)  
-            self.simulation.reporters.append(DCDReporter(dcdfile, interval))
+                trajfile = os.path.join(self.folder, trajectoryName + "."+trajectoryFormat)
+            self._checkFile(trajfile)   
+            self.outputNames.append(trajfile)  
 
+            for i in ['hdf5', 'xtc', 'netcdf']:
+                if i == trajectoryFormat:
+                    print("""
+The "+trajectoryFormat+" trajectory format requires mdtraj to be loaded.
+Will try to import mdtraj...""")
+                    import mdtraj as md
+
+            if trajectoryFormat == 'dcd':
+                self.simulation.reporters.append(DCDReporter(trajfile, interval))
+            elif trajectoryFormat == 'pdb':
+                self.simulation.reporters.append(PDBReporter(trajfile, interval))
+            elif trajectoryFormat == 'pdbx':
+                self.simulation.reporters.append(PDBxReporter(trajfile, interval))
+            elif trajectoryFormat == 'hdf5':
+                self.simulation.reporters.append(md.HDF5Reporter(trajfile, interval))
+            elif trajectoryFormat == 'netcdf':
+                self.simulation.reporters.append(md.NetCDFReporter(trajfile, interval))
+            elif trajectoryFormat == 'xtc':
+                self.simulation.reporters.append(md.XTCReporter(trajfile, interval))
+            else:
+                raise ValueError("Trajectory format "+trajectoryFormat+" not recognized")
+                
         if energies:
             if energiesName is None:
                 energyfile = os.path.join(self.folder, self.name+ '_energies.txt')
