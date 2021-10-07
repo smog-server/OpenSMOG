@@ -143,6 +143,10 @@ SMOG 2: https://smog-server.org
 If you have questions/suggestions, you can also email us at info@smog-server.org
 """) 
 
+    def minimize(self,tolerance=1.0,maxIterations=0):
+        # simple wrapper for minimization
+        self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
+
     def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
