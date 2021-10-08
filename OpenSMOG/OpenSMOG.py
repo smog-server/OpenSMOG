@@ -615,7 +615,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             for i in ['hdf5', 'xtc', 'netcdf']:
                 if i == trajectoryFormat:
                     print("""
-The "+trajectoryFormat+" trajectory format requires mdtraj to be loaded.
+The """+trajectoryFormat+""" trajectory format requires mdtraj to be loaded.
 Will try to import mdtraj...""")
                     import mdtraj as md
 
