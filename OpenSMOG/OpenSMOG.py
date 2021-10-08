@@ -144,7 +144,15 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 """) 
 
     def minimize(self,tolerance=1.0,maxIterations=0):
-        # simple wrapper for minimization
+        R"""Wrapper for minimization simulation.
+
+         Args:
+
+            tolerance (float, required):
+                Stopping criteria value between iteration. When the error between iteration is below this value, the minimization stops. (Default value: :code:`1.0`).
+            maxIteration (int, required):
+                Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`1.0`).   
+        """
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
 
     def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
