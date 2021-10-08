@@ -626,11 +626,11 @@ Will try to import mdtraj...""")
             elif trajectoryFormat == 'pdbx':
                 self.simulation.reporters.append(PDBxReporter(trajfile, interval))
             elif trajectoryFormat == 'hdf5':
-                self.simulation.reporters.append(md.HDF5Reporter(trajfile, interval))
+                self.simulation.reporters.append(md.reporters.HDF5Reporter(trajfile, interval))
             elif trajectoryFormat == 'netcdf':
-                self.simulation.reporters.append(md.NetCDFReporter(trajfile, interval))
+                self.simulation.reporters.append(md.reporters.NetCDFReporter(trajfile, interval))
             elif trajectoryFormat == 'xtc':
-                self.simulation.reporters.append(md.XTCReporter(trajfile, interval))
+                self.simulation.reporters.append(md.reporters.XTCReporter(trajfile, interval))
             else:
                 raise ValueError("Trajectory format "+trajectoryFormat+" not recognized")
                 
