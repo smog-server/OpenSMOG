@@ -19,7 +19,7 @@ import xml.etree.ElementTree as ET
 import warnings
 from lxml import etree
 import sys
-from .OpenSMOG_Reporter import forcesReporter
+#from .OpenSMOG_Reporter import forcesReporter
 
 class SBM:
 
