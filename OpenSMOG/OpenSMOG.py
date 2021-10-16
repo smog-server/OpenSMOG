@@ -71,6 +71,8 @@ class SBM:
         self.nonbonded_present=False
             
     def help(self):
+        R"""Prints information about using OpenSMOG.
+        """
         print("""
 
 #############################################################################
@@ -144,7 +146,15 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 """) 
 
     def minimize(self,tolerance=1.0,maxIterations=0):
-        # simple wrapper for minimization
+        R"""Wrapper for minimization simulation.
+
+         Args:
+
+            tolerance (float, required):
+                Stopping criteria value between iteration. When the error between iteration is below this value, the minimization stops. (Default value: :code:`1.0`).
+            maxIteration (int, required):
+                Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`1.0`).   
+        """
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
 
     def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
@@ -593,10 +603,18 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
             trajectory (bool, optional):
                  Whether to save the trajectory *.dcd* file containing the position of the atoms as a function of time. (Default value: :code:`True`).
+            trajectoryName (str, optional):
+                Name of the trajectory file.
+            trajectoryFormat (str, optional):
+                File format of the trajectory file. Options are dcd, pdb, pdbx, hdf5, netcdf, and xtc. Saving the trajectory in the file formats hdf5, netcdf, and xtc require the MDTraj package. (Default value: :code:`dcd`).
             energies (bool, optional):
                  Whether to save the energies in a *.txt* file containing five columns, comma-delimited. The header of the files shows the information of each collum: #"Step","Potential Energy (kJ/mole)","Kinetic Energy (kJ/mole)","Total Energy (kJ/mole)","Temperature (K)". (Default value: :code:`True`).
-            forces (bool, optional):
+            energiesName (str, optional):
+                Name of the energy file.
+            energy_components (bool, optional):
                  Whether to save the potential energy for each applied force in a *.txt* file containing several columns, comma-delimited. The header of the files shows the information of each column. An example of the header is: #"Step","electrostatic","Non-Contacts","Bonds","Angles","Dihedrals","contact_1-10-12". (Default value: :code:`False`).
+            energy_componentsName (str, optional):
+                Name of the energy_components file.     
             interval (int, required):
                  Frequency to write the data to the output files. (Default value: :code:`10**3`)
         """
@@ -615,7 +633,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             for i in ['hdf5', 'xtc', 'netcdf']:
                 if i == trajectoryFormat:
                     print("""
-The "+trajectoryFormat+" trajectory format requires mdtraj to be loaded.
+The """+str(trajectoryFormat)+""" trajectory format requires mdtraj to be loaded.
 Will try to import mdtraj...""")
                     import mdtraj as md
 
@@ -626,13 +644,13 @@ Will try to import mdtraj...""")
             elif trajectoryFormat == 'pdbx':
                 self.simulation.reporters.append(PDBxReporter(trajfile, interval))
             elif trajectoryFormat == 'hdf5':
-                self.simulation.reporters.append(md.HDF5Reporter(trajfile, interval))
+                self.simulation.reporters.append(md.reporters.HDF5Reporter(trajfile, interval))
             elif trajectoryFormat == 'netcdf':
-                self.simulation.reporters.append(md.NetCDFReporter(trajfile, interval))
+                self.simulation.reporters.append(md.reporters.NetCDFReporter(trajfile, interval))
             elif trajectoryFormat == 'xtc':
-                self.simulation.reporters.append(md.XTCReporter(trajfile, interval))
+                self.simulation.reporters.append(md.reporters.XTCReporter(trajfile, interval))
             else:
-                raise ValueError("Trajectory format "+trajectoryFormat+" not recognized")
+                raise ValueError("Trajectory format "+str(trajectoryFormat)+" not recognized")
                 
         if energies:
             if energiesName is None:
@@ -724,7 +742,7 @@ Will try to import mdtraj...""")
 
     def printHeader(self):
         print('{:^96s}'.format("****************************************************************************************"))
-        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.0.4 *** *** *** *** *** *** *** ****"))
+        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.1.0 *** *** *** *** *** *** *** ****"))
         print('')
         print('{:^96s}'.format("The OpenSMOG classes perform molecular dynamics simulations using"))
         print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
