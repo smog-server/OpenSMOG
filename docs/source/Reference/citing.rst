@@ -34,7 +34,8 @@ When using the SMOG2-OpenSMOG framework for publications, please use the followi
     Noel, Jeffrey K and
     Onuchic, Jose N and
     Whitford, Paul C},
-    journal={bioRxiv},
-    doi={10.1101/2021.08.15.456423}
+    journal={Protein Science},
+    doi={10.1002/pro.4209},
+    year={2021}
     }   
     
