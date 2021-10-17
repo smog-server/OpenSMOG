@@ -156,6 +156,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`1.0`).   
         """
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
+        # it is very important that we reset the velocities. minimization warps the velocity values
+        self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
 
     def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
         
