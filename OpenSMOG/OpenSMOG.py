@@ -45,7 +45,7 @@ class SBM:
             Name used in the output files. (Default value: :code:`OpenSMOG`). 
     """
 
-    def __init__(self, time_step, collision_rate, r_cutoff, temperature, pbc = False, name = "OpenSMOG", warn = True):
+    def __init__(self, time_step, collision_rate, r_cutoff, temperature, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
         self.printHeader()
         print("\nFor more information, including descriptions of units and an example for how to launch a\nsimulation with OpenSMOG, run the help module. For example, if you named your simulation\nobject \"SMOGMODEL\", then issue the command:\n>SMOGMODEL.help()\n")
         self.name = name
@@ -68,6 +68,7 @@ class SBM:
         self.folder = "."
         self.forceCount = 0
         self.pbc=pbc
+        self.cmm=cmm
         self.nonbonded_present=False
             
     def help(self):
@@ -300,11 +301,11 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         if self.pbc == True:
             print('This simulation will use periodic boundary conditions')
             self.Top = GromacsTopFile(Topfile,unitCellDimensions=self.Gro.getUnitCellDimensions())
-            self.system = self.Top.createSystem(nonbondedMethod=CutoffPeriodic,nonbondedCutoff=self.rcutoff)
+            self.system = self.Top.createSystem(nonbondedMethod=CutoffPeriodic,nonbondedCutoff=self.rcutoff,removeCMMotion = self.cmm)
         else:
             print('This simulation will not use Periodic boundary conditions')
             self.Top = GromacsTopFile(Topfile)
-            self.system = self.Top.createSystem(nonbondedMethod=CutoffNonPeriodic,nonbondedCutoff=self.rcutoff)
+            self.system = self.Top.createSystem(nonbondedMethod=CutoffNonPeriodic,nonbondedCutoff=self.rcutoff,removeCMMotion = self.cmm)
         nforces = len(self.system.getForces())
         for force_id, force in enumerate(self.system.getForces()):  
             force.setForceGroup(force_id)
