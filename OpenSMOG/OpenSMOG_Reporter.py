@@ -5,8 +5,22 @@ R"""
 The :class:`~.OpenSMOG_Reporter` class stores the potential energy information for each force applied in the system.
 """
 
-from simtk.openmm.app import *
-from simtk.openmm import *
+# with OpenMM 7.7.0, the import calls have changed. So, try both, if needed
+try:
+    try:
+        # >=7.7.0
+        from openmm.app import *
+        from openmm import *
+    except:
+        # earlier
+        print('Unable to load OpenMM as \'openmm\'. Will try the older way \'simtk.openmm\'')
+        from simtk.openmm.app import *
+        from simtk.openmm import *
+except:
+    print('Failed to load OpenMM. Check your configuration.')
+    sys.exit(1)
+
+
 from simtk.unit import *
 import os
 import warnings

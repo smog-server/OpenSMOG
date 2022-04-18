@@ -10,8 +10,21 @@ Details about the default models in SMOG 2 can be found in the following resourc
     - **All-Atom**: Whitford, P.C., Noel, J.K., Gosavi, S., Schug, A., Sanbonmatsu, K.Y. and Onuchic, J.N., 2009. An all‐atom structure‐based potential for proteins: bridging minimal models with all‐atom empirical forcefields. Proteins: Structure, Function, and Bioinformatics, 75(2), pp.430-441.
 """
 
-from simtk.openmm.app import *
-from simtk.openmm import *
+# with OpenMM 7.7.0, the import calls have changed. So, try both, if needed
+try:
+    try:
+        # >=7.7.0
+        from openmm.app import *
+        from openmm import *
+    except:
+        # earlier
+        print('Unable to load OpenMM as \'openmm\'. Will try the older way \'simtk.openmm\'')
+        from simtk.openmm.app import *
+        from simtk.openmm import *
+except:
+    print('Failed to load OpenMM. Check your configuration.')
+    sys.exit(1)
+
 from simtk.unit import *
 import os
 import numpy as np
