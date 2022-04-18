@@ -52,13 +52,13 @@ class SBM:
             Cutoff distance to consider non-bonded interactions in units of nanometers.
         pbc (boolean, optional):
             Turn PBC on/off. Default value: False
-        temperature (float, required):
-            Temperature in reduced units.
+        temperature (float):
+            Temperature in reduced units (Default: 0)
         name (str):
-            Name used in the output files. (Default value: :code:`OpenSMOG`). 
+            Name used in the output files. (Default value: :code:`OpenSMOG`) 
     """
 
-    def __init__(self, time_step, collision_rate, r_cutoff, temperature, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
+    def __init__(self, time_step, collision_rate, r_cutoff, temperature = 0, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
         self.printHeader()
         print("\nFor more information, including descriptions of units and an example for how to launch a\nsimulation with OpenSMOG, run the help module. For example, if you named your simulation\nobject \"SMOGMODEL\", then issue the command:\n>SMOGMODEL.help()\n")
         self.name = name
@@ -74,7 +74,9 @@ class SBM:
                 print('Note: The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
             if not r_cutoff in [1.1 ,0.65]:
                 print('Note: The given r_cutoff value is not the one usually employed in the SBM models with OpenSMOG. Make sure this value is correct. The suggested values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for the all-atom model.')
-
+            if temperature == 0:
+                print('Note: Temperature was not given.  Will assume 0')
+		
         self.temperature = (temperature / 0.00831446261815) * kelvin
         self.forceApplied = False
         self.loaded = False
@@ -145,6 +147,9 @@ Load your force field data
 
 Create the simulation, and prepare to run
 >SMOGrun.createSimulation()
+
+Perform energy minimization
+>SMOGrun.minimize(tolerance=1)
 
 Decide how frequently to save data
 >SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=10**3)
