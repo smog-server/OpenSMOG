@@ -11,19 +11,18 @@ try:
         # >=7.7.0
         from openmm.app import *
         from openmm import *
+        import openmm.unit as unit
+        
     except:
         # earlier
-        print('Unable to load OpenMM as \'openmm\'. Will try the older way \'simtk.openmm\'')
         from simtk.openmm.app import *
         from simtk.openmm import *
+        import simtk.unit as unit
 except:
     print('Failed to load OpenMM. Check your configuration.')
     sys.exit(1)
 
-
-from simtk.unit import *
-import os
-import warnings
+import time
 from sys import stdout
 
 class forcesReporter(StateDataReporter):
@@ -43,6 +42,112 @@ class forcesReporter(StateDataReporter):
         values = super()._constructReportValues(simulation, state)
 
         for i,n in enumerate(self._forces):
-            values.append(simulation.context.getState(getEnergy=True, groups={i}).getPotentialEnergy().value_in_unit(kilojoules_per_mole))
+            values.append(simulation.context.getState(getEnergy=True, groups={i}).getPotentialEnergy().value_in_unit(unit.kilojoules_per_mole))
 
         return values
+
+class stateReporter(StateDataReporter):
+    def _constructHeaders(self):
+        """Construct the headers for the CSV output
+
+        Returns: a list of strings giving the title of each observable being reported on.
+        """
+        headers = []
+        if self._progress:
+            headers.append('Progress (%)')
+        if self._step:
+            headers.append('Step')
+        if self._time:
+            headers.append('Time (ps)')
+        if self._potentialEnergy:
+            headers.append('Potential Energy')
+        if self._kineticEnergy:
+            headers.append('Kinetic Energy')
+        if self._totalEnergy:
+            headers.append('Total Energy')
+        if self._temperature:
+            headers.append('Temperature (R.U.)')
+        if self._volume:
+            headers.append('Box Volume (nm^3)')
+        if self._density:
+            headers.append('Density (g/mL)')
+        if self._speed:
+            headers.append('Speed (ns/day)')
+        if self._elapsedTime:
+            headers.append('Elapsed Time (s)')
+        if self._remainingTime:
+            headers.append('Time Remaining')
+        return headers
+
+    def _constructReportValues(self, simulation, state):
+        """Query the simulation for the current state of our observables of interest.
+
+        Parameters
+        ----------
+        simulation : Simulation
+            The Simulation to generate a report for
+        state : State
+            The current state of the simulation
+
+        Returns
+        -------
+        A list of values summarizing the current state of
+        the simulation, to be printed or saved. Each element in the list
+        corresponds to one of the columns in the resulting CSV file.
+        """
+        values = []
+        box = state.getPeriodicBoxVectors()
+        volume = box[0][0]*box[1][1]*box[2][2]
+        clockTime = time.time()
+        if self._progress:
+            values.append('%.1f%%' % (100.0*simulation.currentStep/self._totalSteps))
+        if self._step:
+            values.append(simulation.currentStep)
+        if self._time:
+            values.append(state.getTime().value_in_unit(unit.picosecond))
+        if self._potentialEnergy:
+            values.append(state.getPotentialEnergy().value_in_unit(unit.kilojoules_per_mole))
+        if self._kineticEnergy:
+            values.append(state.getKineticEnergy().value_in_unit(unit.kilojoules_per_mole))
+        if self._totalEnergy:
+            values.append((state.getKineticEnergy()+state.getPotentialEnergy()).value_in_unit(unit.kilojoules_per_mole))
+        if self._temperature:
+            values.append((2*state.getKineticEnergy()/(self._dof*unit.MOLAR_GAS_CONSTANT_R)).value_in_unit(unit.kelvin) * 0.00831446261815 )
+        if self._volume:
+            values.append(volume.value_in_unit(unit.nanometer**3))
+        if self._density:
+            values.append((self._totalMass/volume).value_in_unit(unit.gram/unit.item/unit.milliliter))
+        if self._speed:
+            elapsedDays = (clockTime-self._initialClockTime)/86400.0
+            elapsedNs = (state.getTime()-self._initialSimulationTime).value_in_unit(unit.nanosecond)
+            if elapsedDays > 0.0:
+                values.append('%.3g' % (elapsedNs/elapsedDays))
+            else:
+                values.append('--')
+        if self._elapsedTime:
+            values.append(time.time() - self._initialClockTime)
+        if self._remainingTime:
+            elapsedSeconds = clockTime-self._initialClockTime
+            elapsedSteps = simulation.currentStep-self._initialSteps
+            if elapsedSteps == 0:
+                value = '--'
+            else:
+                estimatedTotalSeconds = (self._totalSteps-self._initialSteps)*elapsedSeconds/elapsedSteps
+                remainingSeconds = int(estimatedTotalSeconds-elapsedSeconds)
+                remainingDays = remainingSeconds//86400
+                remainingSeconds -= remainingDays*86400
+                remainingHours = remainingSeconds//3600
+                remainingSeconds -= remainingHours*3600
+                remainingMinutes = remainingSeconds//60
+                remainingSeconds -= remainingMinutes*60
+                if remainingDays > 0:
+                    value = "%d:%d:%02d:%02d" % (remainingDays, remainingHours, remainingMinutes, remainingSeconds)
+                elif remainingHours > 0:
+                    value = "%d:%02d:%02d" % (remainingHours, remainingMinutes, remainingSeconds)
+                elif remainingMinutes > 0:
+                    value = "%d:%02d" % (remainingMinutes, remainingSeconds)
+                else:
+                    value = "0:%02d" % remainingSeconds
+            values.append(value)
+        return values
+
