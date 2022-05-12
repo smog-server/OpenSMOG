@@ -16,23 +16,25 @@ try:
         # >=7.7.0
         from openmm.app import *
         from openmm import *
+        from openmm.unit import *
     except:
         # earlier
         print('Unable to load OpenMM as \'openmm\'. Will try the older way \'simtk.openmm\'')
         from simtk.openmm.app import *
         from simtk.openmm import *
+        from simtk.unit import *
 except:
     print('Failed to load OpenMM. Check your configuration.')
     sys.exit(1)
 
-from simtk.unit import *
+
 import os
 import numpy as np
 import xml.etree.ElementTree as ET
 import warnings
 from lxml import etree
 import sys
-from .OpenSMOG_Reporter import forcesReporter
+from .OpenSMOG_Reporter import forcesReporter, stateReporter
 
 class SBM:
 
@@ -84,7 +86,8 @@ class SBM:
         self.forceCount = 0
         self.pbc=pbc
         self.cmm=cmm
-        self.nonbonded_present=False
+        self.nonbonded_present = False
+        self.setupCheck = False
             
     def help(self):
         R"""Prints information about using OpenSMOG.
@@ -223,7 +226,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             platformObject = Platform.getPlatformByName('HIP')
 
         else:
-            self.exit("\n!!!! Unknown platform !!!!\n")
+            raise ValueError("\n!!!! Unknown platform !!!!\n")
         
         self.platform = platformObject
         
@@ -234,7 +237,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         else:
             self.integrator = integrator
             self.integrator_type = "UserDefined"
-            
+
+        self.setupCheck = True  
         self.forceDict = {}
         self.forcesDict = {}
         
@@ -280,16 +284,21 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         self.inputNames = [Grofile, Topfile, Xmlfile]
 
-        self._check_file(Grofile, '.gro')
-        self.loadGro(Grofile)
+        if (self.setupCheck):
 
-        self._check_file(Topfile, '.top')
-        self.loadTop(Topfile)
+            self._check_file(Grofile, '.gro')
+            self.loadGro(Grofile)
 
-        self._check_file(Xmlfile, '.xml')
-        self.loadXml(Xmlfile)
+            self._check_file(Topfile, '.top')
+            self.loadTop(Topfile)
 
-        print("Loaded force field and config files.")
+            self._check_file(Xmlfile, '.xml')
+            self.loadXml(Xmlfile)
+
+            print("Loaded force field and config files.")
+        else:
+            raise ValueError("setup_openmm() is not defined. Please set it before using LoadSystem()\n")
+        
         
     def _check_file(self, filename, ext):
         if not (filename.lower().endswith(ext)):
@@ -680,7 +689,7 @@ Will try to import mdtraj...""")
                  energyfile = os.path.join(self.folder, energiesName + ".txt")
             self._checkFile(energyfile)
             self.outputNames.append(energyfile)
-            self.simulation.reporters.append(StateDataReporter(energyfile, interval, step=True, 
+            self.simulation.reporters.append(stateReporter(energyfile, interval, step=True, 
                                                           potentialEnergy=True, kineticEnergy=True,
                                                             totalEnergy=True,temperature=True, separator=","))
 
@@ -763,7 +772,7 @@ Will try to import mdtraj...""")
 
     def printHeader(self):
         print('{:^96s}'.format("****************************************************************************************"))
-        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.1.0 *** *** *** *** *** *** *** ****"))
+        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.1.1 *** *** *** *** *** *** *** ****"))
         print('')
         print('{:^96s}'.format("The OpenSMOG classes perform molecular dynamics simulations using"))
         print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
