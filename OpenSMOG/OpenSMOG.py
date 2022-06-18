@@ -172,7 +172,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             tolerance (float, required):
                 Stopping criteria value between iteration. When the error between iteration is below this value, the minimization stops. (Default value: :code:`1.0`).
             maxIteration (int, required):
-                Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`1.0`).   
+                Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`0`).   
         """
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
         # it is very important that we reset the velocities. minimization warps the velocity values
