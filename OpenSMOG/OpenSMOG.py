@@ -10,16 +10,31 @@ Details about the default models in SMOG 2 can be found in the following resourc
     - **All-Atom**: Whitford, P.C., Noel, J.K., Gosavi, S., Schug, A., Sanbonmatsu, K.Y. and Onuchic, J.N., 2009. An all‐atom structure‐based potential for proteins: bridging minimal models with all‐atom empirical forcefields. Proteins: Structure, Function, and Bioinformatics, 75(2), pp.430-441.
 """
 
-from simtk.openmm.app import *
-from simtk.openmm import *
-from simtk.unit import *
+# with OpenMM 7.7.0, the import calls have changed. So, try both, if needed
+try:
+    try:
+        # >=7.7.0
+        from openmm.app import *
+        from openmm import *
+        from openmm.unit import *
+    except:
+        # earlier
+        print('Unable to load OpenMM as \'openmm\'. Will try the older way \'simtk.openmm\'')
+        from simtk.openmm.app import *
+        from simtk.openmm import *
+        from simtk.unit import *
+except:
+    print('Failed to load OpenMM. Check your configuration.')
+    sys.exit(1)
+
+
 import os
 import numpy as np
 import xml.etree.ElementTree as ET
 import warnings
 from lxml import etree
 import sys
-from .OpenSMOG_Reporter import forcesReporter
+from .OpenSMOG_Reporter import forcesReporter, stateReporter
 
 class SBM:
 
@@ -39,13 +54,13 @@ class SBM:
             Cutoff distance to consider non-bonded interactions in units of nanometers.
         pbc (boolean, optional):
             Turn PBC on/off. Default value: False
-        temperature (float, required):
-            Temperature in reduced units.
+        temperature (float):
+            Temperature in reduced units (Default: 0)
         name (str):
-            Name used in the output files. (Default value: :code:`OpenSMOG`). 
+            Name used in the output files. (Default value: :code:`OpenSMOG`) 
     """
 
-    def __init__(self, time_step, collision_rate, r_cutoff, temperature, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
+    def __init__(self, time_step, collision_rate, r_cutoff, temperature = 0, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
         self.printHeader()
         print("\nFor more information, including descriptions of units and an example for how to launch a\nsimulation with OpenSMOG, run the help module. For example, if you named your simulation\nobject \"SMOGMODEL\", then issue the command:\n>SMOGMODEL.help()\n")
         self.name = name
@@ -61,7 +76,9 @@ class SBM:
                 print('Note: The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
             if not r_cutoff in [1.1 ,0.65]:
                 print('Note: The given r_cutoff value is not the one usually employed in the SBM models with OpenSMOG. Make sure this value is correct. The suggested values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for the all-atom model.')
-
+            if temperature == 0:
+                print('Note: Temperature was not given.  Will assume 0')
+		
         self.temperature = (temperature / 0.00831446261815) * kelvin
         self.forceApplied = False
         self.loaded = False
@@ -69,7 +86,8 @@ class SBM:
         self.forceCount = 0
         self.pbc=pbc
         self.cmm=cmm
-        self.nonbonded_present=False
+        self.nonbonded_present = False
+        self.setupCheck = False
             
     def help(self):
         R"""Prints information about using OpenSMOG.
@@ -133,6 +151,9 @@ Load your force field data
 Create the simulation, and prepare to run
 >SMOGrun.createSimulation()
 
+Perform energy minimization
+>SMOGrun.minimize(tolerance=1)
+
 Decide how frequently to save data
 >SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=10**3)
 
@@ -154,7 +175,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             tolerance (float, required):
                 Stopping criteria value between iteration. When the error between iteration is below this value, the minimization stops. (Default value: :code:`1.0`).
             maxIteration (int, required):
-                Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`1.0`).   
+                Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`0`).   
         """
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
         # it is very important that we reset the velocities. minimization warps the velocity values
@@ -205,7 +226,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             platformObject = Platform.getPlatformByName('HIP')
 
         else:
-            self.exit("\n!!!! Unknown platform !!!!\n")
+            raise ValueError("\n!!!! Unknown platform !!!!\n")
         
         self.platform = platformObject
         
@@ -216,7 +237,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         else:
             self.integrator = integrator
             self.integrator_type = "UserDefined"
-            
+
+        self.setupCheck = True  
         self.forceDict = {}
         self.forcesDict = {}
         
@@ -262,16 +284,21 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         self.inputNames = [Grofile, Topfile, Xmlfile]
 
-        self._check_file(Grofile, '.gro')
-        self.loadGro(Grofile)
+        if (self.setupCheck):
 
-        self._check_file(Topfile, '.top')
-        self.loadTop(Topfile)
+            self._check_file(Grofile, '.gro')
+            self.loadGro(Grofile)
 
-        self._check_file(Xmlfile, '.xml')
-        self.loadXml(Xmlfile)
+            self._check_file(Topfile, '.top')
+            self.loadTop(Topfile)
 
-        print("Loaded force field and config files.")
+            self._check_file(Xmlfile, '.xml')
+            self.loadXml(Xmlfile)
+
+            print("Loaded force field and config files.")
+        else:
+            raise ValueError("setup_openmm() is not defined. Please set it before using LoadSystem()\n")
+        
         
     def _check_file(self, filename, ext):
         if not (filename.lower().endswith(ext)):
@@ -662,7 +689,7 @@ Will try to import mdtraj...""")
                  energyfile = os.path.join(self.folder, energiesName + ".txt")
             self._checkFile(energyfile)
             self.outputNames.append(energyfile)
-            self.simulation.reporters.append(StateDataReporter(energyfile, interval, step=True, 
+            self.simulation.reporters.append(stateReporter(energyfile, interval, step=True, 
                                                           potentialEnergy=True, kineticEnergy=True,
                                                             totalEnergy=True,temperature=True, separator=","))
 
@@ -745,7 +772,7 @@ Will try to import mdtraj...""")
 
     def printHeader(self):
         print('{:^96s}'.format("****************************************************************************************"))
-        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.1.0 *** *** *** *** *** *** *** ****"))
+        print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.1.1 *** *** *** *** *** *** *** ****"))
         print('')
         print('{:^96s}'.format("The OpenSMOG classes perform molecular dynamics simulations using"))
         print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
