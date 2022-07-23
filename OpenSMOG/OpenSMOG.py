@@ -104,24 +104,21 @@ class SBM:
 
 Time: When using OpenSMOG, it is important to consider the units. Since 
 OpenSMOG is built on OpenMM libraries, some unit labels can be misleading. 
-Specifically, SMOG models use reduced units. While it is possible to estimate
-the effective timescales in these models, OpenMM reporters will label the 
-timescales as ns. In terms of accounting, 1 \"ns\" is equal to 1000 reduced 
-time units. For detailed discussions of units, one can consult any number of
-recent papers by the SMOG team, such as Yang et al. JCP 2019, 151, 085102.
+Specifically, SMOG models use reduced units (R.U.). While it is possible to
+estimate the effective timescales in these models, OpenMM reporters may label 
+the timescales as \"ns\". One should not consider this label to be meaningful.
+In terms of accounting, 1 \"ns\" is equal to 1000 reduced time units. For 
+detailed discussions of units, one can consult any number of recent papers 
+by the SMOG team, such as Yang et al. JCP 2019, 151, 085102, which estimated
+that one reduced unit corresponds to 50-1000 ps.
 
 Temperature: When initializing your simulation with the SBM class, the 
 temperature is provided in reduced units, where a typical protein will fold
-at around 1 reduced unit. However, similar to other MD packages, the 
-Boltzmann constant is built into the software.  Accordingly, the reported 
-temperature will be equal to (reduced temperature)*120.272. So, if you 
-initialize your system with a temperature of 0.5, the reported temperature 
-would read 0.5*120.272~60.136.
+at around 1 reduced unit. 
 
-Energy: OpenSMOG will report all energies in reduced units. However, the
-OpenMM libraries will label the energies as units of kJ/mole. This label
-should be ignored, unless you calibrated your SMOG model to use this energy
-scale. 
+Energy: OpenSMOG will report all energies in reduced units. However, OpenMM 
+libraries may still label the energies as units of kJ/mol. This label should
+be ignored, unless you calibrated your SMOG model to use this energy scale. 
 
 
                                 Usage Example 
