@@ -157,6 +157,48 @@ Decide how frequently to save data
 Launch the simulation
 >SMOGrun.run(nsteps=10**6, report=True, interval=10**3)
 
+
+Optional additional considerations:
+It can be useful to save the state, or checkpoint at the end of your run,
+so that you may continue the run later. Here are some examples that build
+upon the above use case.
+
+To save the state file:
+>statefilename='smog.state'
+>SMOGrun.simulation.saveState(statefilename)
+
+To save the checkpoint file:
+>checkpointfilename='smog.checkpoint'
+>SMOGrun.saveCheckpoint(checkpointfilename)
+
+If you saved a state or checkpoint in a previous run, here is an example 
+for how to continue the simulation. 
+>from OpenSMOG import SBM
+>SMOGrun2 = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5)
+>SMOGrun2.setup_openmm(platform='cuda',GPUindex='default')
+>SMOGrun2.saveFolder('output_2ci2')
+>SMOG_grofile = '2ci2.gro'
+>SMOG_topfile = '2ci2.top'
+>SMOG_xmlfile = '2ci2.xml'
+>SMOGrun2.loadSystem(Grofile=SMOG_grofile, Topfile=SMOG_topfile, Xmlfile=SMOG_xmlfile)
+>SMOGrun2.createSimulation()
+>SMOGrun2.createReporters(trajectory=True, energies=True, energy_components=True, interval=10**3)
+
+Load the previous state OR checkpoint file.
+
+How to load state file
+>statefilename='smog.state'
+>SMOGrun2.simulation.loadState(statefilename)
+
+How to load a checkpoint
+>checkpointfilename='smog.checkpoint'
+>SMOGrun2.simulation.loadCheckpoint(checkpointfilename)
+
+After loading either the state, or checkpoint, then run the simulation
+
+>SMOGrun2.run(nsteps=10**6, report=True, interval=10**3)
+
+
 For more information and help, see the OpenSMOG and SMOG 2 websites.
 OpenSMOG: https://opensmog.readthedocs.io/en/latest/
 SMOG 2: https://smog-server.org
