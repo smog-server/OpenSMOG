@@ -69,13 +69,29 @@ class SBM:
         self.rcutoff = r_cutoff * nanometers  
         if self.warn:
             if not time_step in [0.0005, 0.002]:
-                print('Note: The given time_step value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested values are: time_step=0.0005 for C-alpha and time_step = 0.002 for All-Atoms.')
+                print('''
+NOTE: The given time_step value is not the one usually employed
+in the SBM models. Make sure this value is correct. The suggested
+values are: time_step=0.0005 for C-alpha and time_step = 0.002 
+for all-atom models.
+''')
             if collision_rate != 1.0:
-                print('Note: The given collision_rate value is not the one usually employed in the SBM models. Make sure this value is correct. The suggested value is: collision_rate=1.0.')
+                print('''
+NOTE: The given collision_rate value is not the one usually employed
+in the SBM models. Make sure this value is correct. The suggested
+value is: collision_rate=1.0.
+''')
             if not r_cutoff in [1.1 ,0.65]:
-                print('Note: The given r_cutoff value is not the one usually employed in the SBM models with OpenSMOG. Make sure this value is correct. The suggested values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for the all-atom model.')
+                print('''
+NOTE: The given r_cutoff value is not the one usually employed in the
+SBM models with OpenSMOG. Make sure this value is correct. The suggested
+values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for
+the all-atom model.
+''')
             if temperature == 0:
-                print('Note: Temperature was not given.  Will assume 0')
+                print('''
+NOTE: Temperature was not given.  Will set T=0
+''')
 		
         self.temperature = (temperature / 0.00831446261815) * kelvin
         self.forceApplied = False
@@ -557,28 +573,37 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             Expression=[]
             Parameters=[]
             Pairs=[]
+            self.contacts_present=False
             if root.find('contacts') == None:
-                raise ValueError("No contacts were found in the XML file")
-            contacts_xml=root.find('contacts')
-            for i in range(len(contacts_xml)):
-                for name in contacts_xml[i].iter('contacts_type'):
-                    Force_Names.append(name.attrib['name'])
+                print('''
+NOTE: No contacts were found in the XML file. While this is allowed,
+it is unusual for a SMOG model to not contain contacts. Accordingly,
+This message may be due to an error in your workflow. However, if 
+you are expecting your model to lack contacts, then you can safely 
+ignore this message.
+''')
+            else:
+                self.contacts_present=True
+                contacts_xml=root.find('contacts')
+                for i in range(len(contacts_xml)):
+                    for name in contacts_xml[i].iter('contacts_type'):
+                        Force_Names.append(name.attrib['name'])
 
-                for expr in contacts_xml[i].iter('expression'):
-                    Expression.append(expr.attrib['expr'])
-                    
+                    for expr in contacts_xml[i].iter('expression'):
+                        Expression.append(expr.attrib['expr'])
+                        
 
-                internal_Param=[]
-                for par in contacts_xml[i].iter('parameter'):
-                    internal_Param.append(par.text)
-                Parameters.append(internal_Param)
+                    internal_Param=[]
+                    for par in contacts_xml[i].iter('parameter'):
+                        internal_Param.append(par.text)
+                    Parameters.append(internal_Param)
 
-                internal_Pairs=[]
-                for atompairs in contacts_xml[i].iter('interaction'):
-                        internal_Pairs.append(atompairs.attrib)
-                Pairs.append(internal_Pairs)
+                    internal_Pairs=[]
+                    for atompairs in contacts_xml[i].iter('interaction'):
+                            internal_Pairs.append(atompairs.attrib)
+                    Pairs.append(internal_Pairs)
 
-            xml_data['contacts']=[Expression,Parameters,Pairs,Force_Names]
+                xml_data['contacts']=[Expression,Parameters,Pairs,Force_Names]
 
             #Launch contact force function
             self.nonbond_present=False
@@ -612,14 +637,15 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             result,log=validate(Xmlfile)
 
             if not result:
-                raise ValueError("The xml file is not adhere to the required schema (same as that used by SMOG 2). Error message:\n\n"+str(log)+"\n\n This typically means your xml file was corrupted, or you are using an incompatible version of SMOG 2")
+                raise ValueError("The xml file does not adhere to the required schema (same as that used by SMOG 2). Error message:\n\n"+str(log)+"\n\n This typically means your xml file was corrupted, or you are using an incompatible version of SMOG 2.  See smog-server.org for a list of OpenSMOG-SMOG2 versions that are compatible.")
             
             self.data = import_xml2OpenSMOG(Xmlfile)
-            self._splitForces_contacts()
-            for force in self.contacts:
-                print("Creating Contacts force {:} from xml file".format(force))
-                self._customSmogForce(force, self.contacts[force])
-                self.system.addForce(self.forcesDict[force])
+            if self.contacts_present==True: 
+                self._splitForces_contacts()
+                for force in self.contacts:
+                    print("Creating Contacts force {:} from xml file".format(force))
+                    self._customSmogForce(force, self.contacts[force])
+                    self.system.addForce(self.forcesDict[force])
             
             if self.nonbond_present==True: 
                 self._splitForces_nb()
