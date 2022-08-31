@@ -37,7 +37,7 @@ import sys
 from .OpenSMOG_Reporter import forcesReporter, stateReporter
 
 class SBM:
-
+    version="1.beta"
     R"""  
     The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based (SMOG) models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, or NMR, methods) as the energetic global minimum. Find more information about SMOG models and OpenSMOG at http://smog-server.org 
     
@@ -803,6 +803,7 @@ Will try to import mdtraj...""")
 
             f.write('Date and time: {:}\n'.format(datetime.datetime.now()))
             f.write('Machine information: {:} : {:}, {:} : {:}\n'.format("System", platform.uname().system, "Version", platform.uname().version))
+            f.write('OpenSMOG version: {:}\n'.format(SBM.version))
             f.write('Platform: {:}\n'.format(self.platform.getName()))
             if (self.platform.getName() in ["CUDA", "OpenCL", "HIP"]):
                 f.write('Precision: {:}\n'.format(self.properties['Precision']))
@@ -832,7 +833,7 @@ Will try to import mdtraj...""")
             sys.stdout = ori
 
     print('{:^96s}'.format("****************************************************************************************"))
-    print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-vBeta *** *** *** *** *** *** *** ****"))
+    print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG *** *** *** *** *** *** *** ****"))
     print('')
     print('{:^96s}'.format("The OpenSMOG classes are used to perform molecular dynamics simulations using"))
     print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
@@ -855,6 +856,7 @@ Will try to import mdtraj...""")
     print("\n\n")
     print('{:^96s}'.format("For more information, including descriptions of units and examples of"))
     print('{:^96s}'.format("how to launch a simulation with OpenSMOG, issue the command SBM.help()"))
+    print('{:^96s}'.format("See version number with SBM.version"))
     print('{:^96s}'.format("Additional information available at https://smog-server.org"))
     print('{:^96s}'.format("****************************************************************************************"))
     sys.stdout.flush()
