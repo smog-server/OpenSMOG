@@ -832,7 +832,7 @@ Will try to import mdtraj...""")
             sys.stdout = ori
 
     print('{:^96s}'.format("****************************************************************************************"))
-    print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-1.1.1 *** *** *** *** *** *** *** ****"))
+    print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG-vBeta *** *** *** *** *** *** *** ****"))
     print('')
     print('{:^96s}'.format("The OpenSMOG classes are used to perform molecular dynamics simulations using"))
     print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
