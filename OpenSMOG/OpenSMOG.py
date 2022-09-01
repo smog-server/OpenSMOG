@@ -145,6 +145,9 @@ example for how to launch simulations using the OpenSMOG module with OpenMM.
 Choose some basic runtime settings.  We will call our system 2ci2
 >SMOGrun = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5)
 
+Note: By default, PBC is not turned on.  If you want to include PBCs, then use:
+>SMOGrun = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5, pbc=True)
+
 Select a platform and GPU IDs (if needed)
 >SMOGrun.setup_openmm(platform='cuda',GPUindex='default')
 
@@ -479,8 +482,15 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         table_fun={}
         for par in data[1]:
             #Check none have nans
-            if np.sum(tables[par]==np.nan)!=0:
-                raise ValueError('Nonbonded force parameter: {:} is not defined for all atom interactions'.format(par))
+            if np.sum(np.isnan(tables[par]))!=0:
+                en=np.argwhere(np.isnan(tables[par]))
+                pairs=""
+                for i in en:
+                    if i[0] <= i[1]:
+                        ati=self.atom_types[i[0]]
+                        atj=self.atom_types[i[1]]
+                        pairs=pairs+"("+ati+","+atj+") "
+                raise ValueError('XML file error: Nonbonded force parameter \"{:}\" is not defined for the following pairs of atom types: {}'.format(par,pairs))
             table_fun[par]=Discrete2DFunction(natom_types,natom_types,list(np.ravel(tables[par])))
             nonbond_ff.addTabulatedFunction(par,table_fun[par])
         #Get exceptions from topfile import
