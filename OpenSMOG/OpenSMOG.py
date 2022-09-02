@@ -478,6 +478,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 tables[par][type1][type2]=nonbond_params[par]
                 tables[par][type2][type1]=nonbond_params[par]    
 
+        missing={}
         #Generate Function from tables
         table_fun={}
         for par in data[1]:
@@ -487,12 +488,24 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 pairs=""
                 for i in en:
                     if i[0] <= i[1]:
-                        ati=self.atom_types[i[0]]
-                        atj=self.atom_types[i[1]]
-                        pairs=pairs+"("+ati+","+atj+") "
-                raise ValueError('XML file error: Nonbonded force parameter \"{:}\" is not defined for the following pairs of atom types: {}'.format(par,pairs))
+                        stri=str(i[0])+","+str(i[1])
+                        if stri in missing:
+                            missing[str(stri)].append(par)
+                        else:
+                            missing[str(stri)]=[par] 
             table_fun[par]=Discrete2DFunction(natom_types,natom_types,list(np.ravel(tables[par])))
             nonbond_ff.addTabulatedFunction(par,table_fun[par])
+        if len(missing) != 0:
+            message=""
+            for i in missing.keys():
+                j=i.split(",")
+                ati=self.atom_types[int(j[0])]
+                atj=self.atom_types[int(j[1])]
+                message=message+ati+","+atj+" : "
+                for j in missing[i]:
+                    message=message+j+" "
+                message=message+"\n"
+            raise ValueError('XML file error:\n Atom-type pairs are missing the following parameters\n{}'.format(message))
         #Get exceptions from topfile import
         for i in range(original_customnonbonded.getNumExclusions()):
             exclusion_id = original_customnonbonded.getExclusionParticles(i)
