@@ -285,11 +285,14 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             raise ValueError("\n!!!! Unknown platform !!!!\n")
         
         self.platform = platformObject
-        
-        if integrator.lower() == "langevin":
-            self.integrator = LangevinIntegrator(self.temperature,
-                self.gamma, self.dt)
-            self.integrator_type = integrator
+        if isinstance(integrator,str): 
+            if integrator.lower() == "langevin":
+                self.integrator = LangevinIntegrator(self.temperature,
+                    self.gamma, self.dt)
+                self.integrator_type = integrator
+            else:
+                raise ValueError("\n!!!! Unknown integrator: {}\n".format(integrator))
+                
         else:
             self.integrator = integrator
             self.integrator_type = "UserDefined"
