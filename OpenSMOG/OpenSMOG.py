@@ -249,8 +249,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 Numerical precision type of the simulation. Options are *single*, *mixed*, *double*. (Default value: :code:`single`).  For details check the `OpenMM Documentation <http://docs.openmm.org/latest/developerguide/developer.html#numerical-precision>`__. 
             GPUIndex (str, optional):
                 Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. (Use only when GPU != default).
-            integrator (str):
-                Integrator to use in the simulations. Options are *langevin*,  *variableLangevin*, *verlet*, *variableVerlet* and, *brownian*. (Default value: :code:`langevin`).
+            integrator (str, or integrator object):
+                Integrator to use in the simulations. Options are *langevin*, *langevinMiddle,  *variableLangevin* and, *brownian*. You may also build your own integrator object and pass it, rather than use a named integrator. (Default value: :code:`langevin`).
         """
 
         precision = precision.lower()
@@ -289,9 +289,18 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             if integrator.lower() == "langevin":
                 self.integrator = LangevinIntegrator(self.temperature,
                     self.gamma, self.dt)
-                self.integrator_type = integrator
+            elif integrator.lower() == "langevinmiddle": 
+                self.integrator = LangevinMiddleIntegrator(self.temperature,
+                    self.gamma, self.dt)
+            elif integrator.lower() == "variablelangevin": 
+                self.integrator = VariableLangevinIntegrator(self.temperature,
+                    self.gamma, self.dt)
+            elif integrator.lower() == "brownian": 
+                self.integrator = BrownianIntegrator(self.temperature,
+                    self.gamma, self.dt)
             else:
-                raise ValueError("\n!!!! Unknown integrator: {}\n".format(integrator))
+                raise ValueError("\n!!!! Unknown/unsupported integrator name: {}\n".format(integrator))
+            self.integrator_type = integrator
                 
         else:
             self.integrator = integrator
