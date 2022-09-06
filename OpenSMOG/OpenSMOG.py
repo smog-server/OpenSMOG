@@ -36,6 +36,7 @@ from lxml import etree
 import sys
 from .OpenSMOG_Reporter import forcesReporter, stateReporter
 import re as regex
+from pathlib import Path
 
 class SBM:
     version="1.beta"
@@ -320,9 +321,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             folder (str, optional):
                 Folder path to save the simulation data. If the folder path does not exist, the function will create the directory. 
         """
-
-        if os.path.exists(folder) == False:
-            os.mkdir(folder)
+        Path(folder).mkdir( parents=True, exist_ok=True )
         self.folder = folder
 
     def loadSystem(self, Grofile, Topfile, Xmlfile):
