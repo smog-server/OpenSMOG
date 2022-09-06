@@ -726,11 +726,12 @@ ignore this message.
                 else:
                     i += 1
 
-    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, interval=1000):
+    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000):
         R"""Creates the reporters to provide the output data.
 
         Args:
-
+            logFileName (str, optional):
+                 Name of log file. (Default value: :code:`OpenSMOG.log`).
             trajectory (bool, optional):
                  Whether to save the trajectory *.dcd* file containing the position of the atoms as a function of time. (Default value: :code:`True`).
             trajectoryName (str, optional):
@@ -750,6 +751,12 @@ ignore this message.
         """
 
 
+        if os.path.basename(logFileName) != logFileName:
+            raise ValueError('logFileName is invalid. To specify the path, use the saveFolder method.')
+        if not regex.search(".log$",logFileName):
+            logFileName= logFileName + ".log"
+
+        self.logFileName=logFileName
         self.outputNames = []
         if trajectory:
             trajectoryFormat=trajectoryFormat.lower()
@@ -876,7 +883,7 @@ Will try to import mdtraj...""")
     def _createLogfile(self):
         import platform
         import datetime
-        logFilename = os.path.join(self.folder, 'OpenSMOG.log')
+        logFilename = os.path.join(self.folder, self.logFileName)
         self._checkFile(logFilename)
         self.outputNames.append(logFilename)
         with open(logFilename, 'w') as f:
