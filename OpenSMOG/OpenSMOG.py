@@ -35,6 +35,7 @@ import warnings
 from lxml import etree
 import sys
 from .OpenSMOG_Reporter import forcesReporter, stateReporter
+import re as regex
 
 class SBM:
     version="1.beta"
@@ -784,7 +785,10 @@ Will try to import mdtraj...""")
             if energiesName is None:
                 energyfile = os.path.join(self.folder, self.name+ '_energies.txt')
             else:
-                 energyfile = os.path.join(self.folder, energiesName + ".txt")
+                if regex.search(".txt$",energiesName):
+                    energyfile = os.path.join(self.folder, energiesName)
+                else:
+                    energyfile = os.path.join(self.folder, energiesName + ".txt")
             self._checkFile(energyfile)
             self.outputNames.append(energyfile)
             self.simulation.reporters.append(stateReporter(energyfile, interval, step=True, 
@@ -795,7 +799,11 @@ Will try to import mdtraj...""")
             if energy_componentsName is None:
                 forcefile = os.path.join(self.folder, self.name + '_forces.txt')
             else:
-                forcefile = os.path.join(self.folder, energy_componentsName + '.txt')
+                if regex.search(".txt$",energy_componentsName):
+                    forcefile = os.path.join(self.folder, energy_componentsName)
+                else:
+                    forcefile = os.path.join(self.folder, energy_componentsName + '.txt')
+
             self._checkFile(forcefile)
             self.outputNames.append(forcefile)
             self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True))
