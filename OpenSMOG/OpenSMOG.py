@@ -821,7 +821,7 @@ Will try to import mdtraj...""")
     def run(self, nsteps, report=True, interval=10**4):
 
         if self.started != 0:
-            raise ValueError('The run method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+            raise ValueError('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
         self.started=1 
 
         R"""Run the molecular dynamics simulation.
@@ -845,7 +845,7 @@ Will try to import mdtraj...""")
     def runForClockTime(self, time, report=True, interval=10**4,checkpointFile=None, stateFile=None, checkpointInterval=None):
 
         if self.started != 0:
-            raise ValueError('The run method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+            raise ValueError('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
         self.started=1 
 
         R"""Run the molecular dynamics simulation.
