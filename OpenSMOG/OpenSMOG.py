@@ -753,7 +753,10 @@ ignore this message.
             trajectoryFormat=trajectoryFormat.lower()
             if trajectoryName is None:
                 trajfile = os.path.join(self.folder, self.name + '_trajectory.'+trajectoryFormat) 
-            else: 
+            else:
+                if os.path.basename(trajectoryName) != trajectoryName:
+                    raise ValueError('trajectoryName is invalid. To specify the path, use the saveFolder method.')
+ 
                 trajfile = os.path.join(self.folder, trajectoryName + "."+trajectoryFormat)
             self._checkFile(trajfile)   
             self.outputNames.append(trajfile)  
@@ -784,6 +787,8 @@ Will try to import mdtraj...""")
             if energiesName is None:
                 energyfile = os.path.join(self.folder, self.name+ '_energies.txt')
             else:
+                if os.path.basename(energiesName) != energiesName:
+                    raise ValueError('energiesName is invalid. To specify the path, use the saveFolder method.')
                 if regex.search(".txt$",energiesName):
                     energyfile = os.path.join(self.folder, energiesName)
                 else:
@@ -798,6 +803,8 @@ Will try to import mdtraj...""")
             if energy_componentsName is None:
                 forcefile = os.path.join(self.folder, self.name + '_forces.txt')
             else:
+                if os.path.basename(energy_componentsName) != energy_componentsName:
+                    raise ValueError('energy_componentsName is invalid. To specify the path, use the saveFolder method.')
                 if regex.search(".txt$",energy_componentsName):
                     forcefile = os.path.join(self.folder, energy_componentsName)
                 else:
@@ -870,7 +877,7 @@ Will try to import mdtraj...""")
             f.write('\nOutput Files:\n')
             f.write('-------------\n')
             for n in self.outputNames:
-                f.write(n+"\n")
+                f.write(os.path.basename(n)+"\n")
 
             sys.stdout = ori
 
