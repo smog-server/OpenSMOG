@@ -39,7 +39,7 @@ import re as regex
 from pathlib import Path
 
 class SBM:
-    version="1.beta"
+    version="1.1.1beta"
     R"""  
     The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based (SMOG) models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, or NMR, methods) as the energetic global minimum. Find more information about SMOG models and OpenSMOG at http://smog-server.org 
     

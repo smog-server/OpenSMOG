@@ -1,4 +1,4 @@
-__version__ = '1.1.1'
-
+__version__ = '1.1.1beta'
+# if you change __version__, remember to change SBM.version
 from .OpenSMOG_Reporter import forcesReporter, stateReporter
 from .OpenSMOG import SBM
