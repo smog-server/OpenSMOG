@@ -176,6 +176,8 @@ Decide how frequently to save data
 Launch the simulation
 >SMOGrun.run(nsteps=10**6, report=True, interval=10**3)
 
+Note: One can also run for clock time, rather than number of timesteps. For example, to run for 10 hours, you could use:
+>SMOGrun.runForClockTime(time=10)
 
 Optional additional considerations:
 It can be useful to save the state, or checkpoint at the end of your run,
@@ -830,7 +832,7 @@ Will try to import mdtraj...""")
                  Number of steps to be performed in the simulation. (Default value: :code:`10**7`)
             report (bool, optional):
                 Whether to print the simulation progress. (Default value: :code:`True`).
-            interval (int, required):
+            interval (int, optional):
                  Frequency to print the simulation progress. (Default value: :code:`10**4`)
         """
 
@@ -839,6 +841,37 @@ Will try to import mdtraj...""")
                                                   progress=True, speed=True, totalSteps=nsteps, separator="\t"))
         self._createLogfile()                                                   
         self.simulation.step(nsteps)
+
+    def runForClockTime(self, time, report=True, interval=10**4,checkpointFile=None, stateFile=None, checkpointInterval=None):
+
+        if self.started != 0:
+            raise ValueError('The run method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+        self.started=1 
+
+        R"""Run the molecular dynamics simulation.
+
+        Args:
+
+            nsteps (int, required):
+                 Number of steps to be performed in the simulation. (Default value: :code:`10**7`)
+            report (bool, optional):
+                 Whether to print the simulation progress. (Default value: :code:`True`).
+            interval (int, optional):
+                 Frequency to print the simulation progress. (Default value: :code:`10**4`)
+            checkpointFile (str, optional):
+                 Name of checkpoint file to save.
+            stateFile (str, optional):
+                 Name of state file to save
+            checkpointInterval (str, optional):
+                 Time between checkpoint/state file saves.
+        """
+
+        if report:
+            self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=False,
+                                                  progress=False, speed=True, separator="\t"))
+        self._createLogfile()                                                   
+        self.simulation.runForClockTime(time=time,checkpointFile=checkpointFile, stateFile=stateFile, checkpointInterval=checkpointInterval)
+
 
     def _createLogfile(self):
         import platform
