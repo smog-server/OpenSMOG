@@ -156,7 +156,7 @@ Select a platform and GPU IDs (if needed)
 Decide where to save your data (here, output_2ci2)
 >SMOGrun.saveFolder('output_2ci2')
 
-You may optionally save some input file names to variables
+You may optionally set some input file names to variables
 >SMOG_grofile = '2ci2.gro'
 >SMOG_topfile = '2ci2.top'
 >SMOG_xmlfile = '2ci2.xml'
