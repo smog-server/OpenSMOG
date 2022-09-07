@@ -153,7 +153,7 @@ Note: By default, PBC is not turned on.  If you want to include PBCs, then use:
 Select a platform and GPU IDs (if needed)
 >SMOGrun.setup_openmm(platform='cuda',GPUindex='default')
 
-Decide where to save your data (here, output_2ci2
+Decide where to save your data (here, output_2ci2)
 >SMOGrun.saveFolder('output_2ci2')
 
 You may optionally save some input file names to variables
