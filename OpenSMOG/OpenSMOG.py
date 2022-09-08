@@ -476,13 +476,13 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         atom_types=[]
         for i in range(len(data[2])):
             atom_types.append(data[2][i]['type1'])
+            atom_types.append(data[2][i]['type2'])
         self.atom_types=np.unique(np.array(atom_types))
         natom_types=len(self.atom_types)
         #Generate tables for each parameter
         tables={}
         for par in data[1]:
             tables[par]=np.ones([natom_types,natom_types])*np.nan
-
         #Fill tables with nonbond_param
         for nonbond_params in data[2]:
             #Get atoms id (name to number)
