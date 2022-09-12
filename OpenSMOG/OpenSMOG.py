@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University and Northeastern University
+# Copyright (c) 2020-2022 The Center for Theoretical Biological Physics (CTBP) - Rice University and Northeastern University
 # This file is from the OpenSMOG project, released under the MIT License. 
 
 R"""  
@@ -653,6 +653,10 @@ ignore this message.
                 NBParameters=[]
                 nonbond_xml=root.find('nonbond')
                 for i in range(len(nonbond_xml)):
+                    for cut in nonbond_xml[i].iter('cutoff'):
+                        cutoff=cut.attrib['distance']
+                        print("\nMODEL-SPECIFIC CUTOFF VALUE FOUND IN XML FILE!!!!\nWILL CHANGE NON-BONDED CUTOFF TO {} nm\n".format(cutoff))
+                        self.rcutoff=float(cutoff) * nanometer
                     for types in nonbond_xml[i].iter('nonbond_bytype'):
                         NonBond_Num.append(i)
                     for expr in nonbond_xml[i].iter('expression'):
