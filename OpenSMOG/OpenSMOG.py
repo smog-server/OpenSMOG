@@ -655,7 +655,7 @@ ignore this message.
                 for i in range(len(nonbond_xml)):
                     for cut in nonbond_xml[i].iter('cutoff'):
                         cutoff=cut.attrib['distance']
-                        print("\nMODEL-SPECIFIC CUTOFF VALUE FOUND IN XML FILE!!!!\nWILL CHANGE NON-BONDED CUTOFF TO {} nm\n".format(cutoff))
+                        print("\nMODEL-SPECIFIC CUTOFF VALUE FOUND IN XML FILE!!!!\nWILL SET NON-BONDED CUTOFF TO {} nm\n".format(cutoff))
                         self.rcutoff=float(cutoff) * nanometer
                     for types in nonbond_xml[i].iter('nonbond_bytype'):
                         NonBond_Num.append(i)
@@ -914,7 +914,7 @@ Will try to import mdtraj...""")
             f.write('Name: {:}\n'.format(self.name))
             f.write('Time step: {:}\n'.format(self.dt/picoseconds))
             f.write('Collision Rate: {:}\n'.format(self.gamma*picosecond))
-            f.write('r_Cutoff: {:}\n'.format(self.rcutoff/nanometers))
+            f.write('r_cutoff: {:}\n'.format(self.rcutoff/nanometers))
             f.write('Temperature: {:}\n'.format(self.temperature * 0.008314/kelvin))
 
             f.write('\nInput Files:\n')
