@@ -227,6 +227,11 @@ SMOG 2: https://smog-server.org
 If you have questions/suggestions, you can also email us at info@smog-server.org
 """) 
 
+
+    def opensmog_quit(message):
+        print("\n\nOpenSMOG Error:{}\n\n".format(message))
+        sys.exit(1)
+
     def minimize(self,tolerance=1.0,maxIterations=0):
         R"""Wrapper for minimization simulation.
 
@@ -259,7 +264,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         precision = precision.lower()
         if precision not in ["mixed", "single", "double"]:
-            raise ValueError("Precision must be mixed, single or double")
+            SBM.opensmog_quit("Precision must be mixed, single or double")
             
         properties = {}
         properties["Precision"] = precision
@@ -286,7 +291,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             platformObject = Platform.getPlatformByName('HIP')
 
         else:
-            raise ValueError("\n!!!! Unknown platform !!!!\n")
+            SBM.opensmog_quit("Unknown platform")
         
         self.platform = platformObject
         if isinstance(integrator,str): 
@@ -303,7 +308,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 self.integrator = BrownianIntegrator(self.temperature,
                     self.gamma, self.dt)
             else:
-                raise ValueError("\n!!!! Unknown/unsupported integrator name: {}\n".format(integrator))
+                SBM.opensmog_quit("Unknown/unsupported integrator name: {}".format(integrator))
             self.integrator_type = integrator
                 
         else:
@@ -327,7 +332,6 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self.folder = folder
 
     def loadSystem(self, Grofile, Topfile, Xmlfile):
-
         R"""Loads the input files in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
         A tutorial on how to generate the inputs files for default all-atom and C-alpha models can be found `here <https://opensmog.readthedocs.io>`__.
 
@@ -367,12 +371,12 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
             print("Loaded force field and config files.")
         else:
-            raise ValueError("setup_openmm() is not defined. Please set it before using LoadSystem()\n")
+            SBM.opensmog_quit("setup_openmm() is not defined. Please set it before using LoadSystem()\n")
         
         
     def _check_file(self, filename, ext):
         if not (filename.lower().endswith(ext)):
-            raise ValueError('Wrong file extension: {} must to be {} extension'.format(filename, ext))
+            SBM.opensmog_quit('Wrong file extension: {} must to be {} extension'.format(filename, ext))
 
         
     def loadGro(self, Grofile):
@@ -519,7 +523,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 for j in missing[i]:
                     message=message+j+" "
                 message=message+"\n"
-            raise ValueError('XML file error:\n Atom-type pairs are missing the following parameters\n{}'.format(message))
+            SBM.opensmog_quit('XML file error:\n Atom-type pairs are missing the following parameters\n{}'.format(message))
         #Get exceptions from topfile import
         for i in range(original_customnonbonded.getNumExclusions()):
             exclusion_id = original_customnonbonded.getExclusionParticles(i)
@@ -678,7 +682,7 @@ ignore this message.
             result,log=validate(Xmlfile)
 
             if not result:
-                raise ValueError("The xml file does not adhere to the required schema (same as that used by SMOG 2). Error message:\n\n"+str(log)+"\n\n This typically means your xml file was corrupted, or you are using an incompatible version of SMOG 2.  See smog-server.org for a list of OpenSMOG-SMOG2 versions that are compatible.")
+                SBM.opensmog_quit("The xml file does not adhere to the required schema (same as that used by SMOG 2). Error message:\n\n"+str(log)+"\n\n This typically means your xml file was corrupted, or you are using an incompatible version of SMOG 2.  See smog-server.org for a list of OpenSMOG-SMOG2 versions that are compatible.")
             
             self.data = import_xml2OpenSMOG(Xmlfile)
             if self.contacts_present==True: 
@@ -756,7 +760,7 @@ ignore this message.
 
 
         if os.path.basename(logFileName) != logFileName:
-            raise ValueError('logFileName is invalid. To specify the path, use the saveFolder method.')
+            SBM.opensmog_quit('logFileName is invalid. To specify the path, use the saveFolder method.')
         if not regex.search(".log$",logFileName):
             logFileName= logFileName + ".log"
 
@@ -768,7 +772,7 @@ ignore this message.
                 trajfile = os.path.join(self.folder, self.name + '_trajectory.'+trajectoryFormat) 
             else:
                 if os.path.basename(trajectoryName) != trajectoryName:
-                    raise ValueError('trajectoryName is invalid. To specify the path, use the saveFolder method.')
+                    SBM.opensmog_quit('trajectoryName is invalid. To specify the path, use the saveFolder method.')
  
                 trajfile = os.path.join(self.folder, trajectoryName + "."+trajectoryFormat)
             self._checkFile(trajfile)   
@@ -794,14 +798,14 @@ Will try to import mdtraj...""")
             elif trajectoryFormat == 'xtc':
                 self.simulation.reporters.append(md.reporters.XTCReporter(trajfile, interval))
             else:
-                raise ValueError("Trajectory format "+str(trajectoryFormat)+" not recognized")
+                SBM.opensmog_quit("Trajectory format "+str(trajectoryFormat)+" not recognized")
                 
         if energies:
             if energiesName is None:
                 energyfile = os.path.join(self.folder, self.name+ '_energies.txt')
             else:
                 if os.path.basename(energiesName) != energiesName:
-                    raise ValueError('energiesName is invalid. To specify the path, use the saveFolder method.')
+                    SBM.opensmog_quit('energiesName is invalid. To specify the path, use the saveFolder method.')
                 if regex.search(".txt$",energiesName):
                     energyfile = os.path.join(self.folder, energiesName)
                 else:
@@ -817,7 +821,7 @@ Will try to import mdtraj...""")
                 forcefile = os.path.join(self.folder, self.name + '_forces.txt')
             else:
                 if os.path.basename(energy_componentsName) != energy_componentsName:
-                    raise ValueError('energy_componentsName is invalid. To specify the path, use the saveFolder method.')
+                    SBM.opensmog_quit('energy_componentsName is invalid. To specify the path, use the saveFolder method.')
                 if regex.search(".txt$",energy_componentsName):
                     forcefile = os.path.join(self.folder, energy_componentsName)
                 else:
@@ -832,7 +836,7 @@ Will try to import mdtraj...""")
     def run(self, nsteps, report=True, interval=10**4):
 
         if self.started != 0:
-            raise ValueError('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
         self.started=1 
 
         R"""Run the molecular dynamics simulation.
@@ -856,7 +860,7 @@ Will try to import mdtraj...""")
     def runForClockTime(self, time, report=True, interval=10**4,checkpointFile=None, stateFile=None, checkpointInterval=None):
 
         if self.started != 0:
-            raise ValueError('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
         self.started=1 
 
         R"""Run the molecular dynamics simulation.
@@ -882,7 +886,7 @@ Will try to import mdtraj...""")
                                                   progress=False, speed=True, separator="\t"))
         self._createLogfile()                                                   
         self.simulation.runForClockTime(time=time,checkpointFile=checkpointFile, stateFile=stateFile, checkpointInterval=checkpointInterval)
-
+        print("\nOpenSMOG simulation completed.\n")
 
     def _createLogfile(self):
         import platform
