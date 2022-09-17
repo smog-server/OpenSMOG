@@ -1,1 +1,1 @@
-smog2 -i tests/PDBs/2ci2.adj.pdb -CAgaussian -dname opentest -OpenSMOG
+smog2 -i OSDIR/share/tests/PDBs/2ci2.adj.pdb -CAgaussian -dname opentest -OpenSMOG

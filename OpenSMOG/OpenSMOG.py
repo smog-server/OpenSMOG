@@ -108,9 +108,6 @@ NOTE: Temperature was not given.  Will set T=0
         self.nonbonded_present = False
         self.setupCheck = False
             
-    def runtests():
-        alltests()
-
     def help():
         R"""Prints information about using OpenSMOG.
         """
@@ -953,7 +950,7 @@ Will try to import mdtraj...""")
 
     # this is for testing that OpenSMOG and SMOG2 are working together.
     # the interested user may also be interested in how to compare energies
-    def alltests():
+    def opensmogtests():
         # define some functions that will be used for testing purposes
         def runSMOG(sysname):
             # based on the sysname, find the flags and run SMOG2
