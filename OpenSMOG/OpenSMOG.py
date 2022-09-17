@@ -87,7 +87,8 @@ value is: collision_rate=1.0.
 NOTE: The given r_cutoff value is not the one usually employed in the
 SBM models with OpenSMOG. Make sure this value is correct. The suggested
 values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for
-the all-atom model.
+the default all-atom model. Depending on your model, other choices may
+be more appropriate.
 ''')
             if temperature == 0:
                 print('''
