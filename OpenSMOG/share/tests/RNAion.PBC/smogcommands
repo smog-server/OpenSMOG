@@ -1,0 +1,2 @@
+smog2 -i tests/PDBs/RNA.adj.pdb -t tests/RNAion.PBC/sbm.test/ -OpenSMOG -dname opentest.pre
+smog_ions -t tests/RNAion.PBC/sbm.test/ -f opentest.pre.top -g opentest.pre.gro -of opentest.top -og opentest.gro -OpenSMOG opentest.pre.xml -OpenSMOGout opentest.xml -ionnm K -ionn 11 -mindist 0.1
