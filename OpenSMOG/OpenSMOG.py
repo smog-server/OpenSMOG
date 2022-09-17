@@ -24,8 +24,7 @@ try:
         from simtk.openmm import *
         from simtk.unit import *
 except:
-    print('Failed to load OpenMM. Check your configuration.')
-    sys.exit(1)
+    SBM.opensmog_quit('Failed to load OpenMM. Check your configuration.')
 
 
 import os
