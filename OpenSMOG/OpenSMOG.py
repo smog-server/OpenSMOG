@@ -36,6 +36,7 @@ import sys
 from .OpenSMOG_Reporter import forcesReporter, stateReporter
 import re as regex
 from pathlib import Path
+from .OpenSMOG_check import alltests
 
 class SBM:
     version="1.1.1beta"
@@ -105,6 +106,9 @@ NOTE: Temperature was not given.  Will set T=0
         self.nonbonded_present = False
         self.setupCheck = False
             
+    def runtests():
+        alltests()
+
     def help():
         R"""Prints information about using OpenSMOG.
         """
