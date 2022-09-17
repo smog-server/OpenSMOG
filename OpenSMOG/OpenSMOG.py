@@ -1011,7 +1011,7 @@ NOTE: Did not find smog2 in path. Will test OpenSMOG library,
 but not the generation of force fields with SMOG2.  Use
 smog-check to ensure SMOG 2 is also functioning properly.
 ''')
-    
+            return 0    
        
         # maxreldiff is the max relative deviation allowed
         maxreldiff=0.00001
@@ -1030,14 +1030,12 @@ smog-check to ensure SMOG 2 is also functioning properly.
 '''
                        OpenSMOG-check
 
-This will use the version of SMOG2 that is found in the path
-and try to generate OpenSMOG force fields. It will then calculate
-the energy using the OpenSMOG force field for reference 
-configurations of each system. Finally, it will check if the 
-potential energies are the same as a set of predefined reference 
-values (typically from Gromacs).
-
-For questions/suggestions email info@smog-server.org
+This will use the version of SMOG2 that is found in the path and 
+try to generate OpenSMOG force fields. It will then calculate the 
+energy using the OpenSMOG force field for reference configurations 
+of each system. Finally, it will check if the potential energies
+are the same as a set of predefined reference values (typically 
+from Gromacs).
 ''') 
 
 
@@ -1116,7 +1114,6 @@ Unable to perform tests.
             print("\n\nFAILED CHECKS!!!!\n\n")
             sys.exit(1)    
     
-        return 0
             
 #end of subroutines
 
@@ -1145,6 +1142,7 @@ Unable to perform tests.
     print("\n\n")
     print('{:^96s}'.format("For more information, including descriptions of units and examples of"))
     print('{:^96s}'.format("how to launch a simulation with OpenSMOG, issue the command SBM.help()"))
+    print('{:^96s}'.format("To check your installation of OpenSMOG/SMOG2, use SBM.opensmogcheck()"))
     print('{:^96s}'.format("Additional information available at https://smog-server.org"))
     print('{:^96s}'.format("****************************************************************************************"))
     sys.stdout.flush()
