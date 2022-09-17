@@ -95,8 +95,11 @@ Unable to perform tests.
 		sys.exit(1)	
 
 	print("Will test platform \""+platform+"\"\n")
+	listoftests = "share/tests/listoftests"
+	pt = os.path.dirname(os.path.realpath(__file__))
+	listoftests = os.path.join(pt,path)
 
-	list = open("tests/listoftests", "r")
+	list = open(listoftests, "r")
 
 	for testname in list:
 		testname=testname.strip()
