@@ -30,7 +30,6 @@ except:
 import os
 import numpy as np
 import xml.etree.ElementTree as ET
-import warnings
 from lxml import etree
 import sys
 from .OpenSMOG_Reporter import forcesReporter, stateReporter
@@ -43,7 +42,7 @@ from contextlib import redirect_stdout
 class SBM:
     version="1.1.1beta"
     R"""  
-    The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based (SMOG) models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, or NMR, methods) as the energetic global minimum. Find more information about SMOG models and OpenSMOG at http://smog-server.org 
+    The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based (SMOG) models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA, and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, cryo-EM, or NMR methods) as the energetic global minimum. Find more information about SMOG models and OpenSMOG at http://smog-server.org 
     
     
     The :class:`~.SBM` sets the environment to start the molecular dynamics simulations.
@@ -58,32 +57,57 @@ class SBM:
             Cutoff distance to consider non-bonded interactions in units of nanometers.
         pbc (boolean, optional):
             Turn PBC on/off. Default value: False
-        temperature (float):
-            Temperature in reduced units (Default: 0)
+        cmm (boolean, optional):
+            Remove center of mass motion. Default value: True
+        temperature (float,required):
+            Temperature in reduced units 
         name (str):
-            Name used in the output files. (Default value: :code:`OpenSMOG`) 
+            Name used in the output files. (Default value: :code:`OpenSMOG`)
+        warn (boolean, optional):
+            Give cautionary warnings... (Default value: True)
+              
     """
 
-    def __init__(self, time_step, collision_rate, r_cutoff, temperature = 0, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
+    def __init__(self, time_step, collision_rate, r_cutoff, temperature = -1, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
+
+        if not isinstance(temperature,(float,int)):
+            print('ERROR: temperature must be a numeric value')
+            sys.exit(1)
+        if not isinstance(r_cutoff,(float,int)):
+            print('ERROR: r_cutoff must be a numeric value')
+            sys.exit(1)
+        if not isinstance(time_step,(float,int)):
+            print('ERROR: time_step must be a numeric value')
+            sys.exit(1)
+        if not isinstance(collision_rate,(float,int)):
+            print('ERROR: collision_rate must be a numeric value')
+            sys.exit(1)
+
         self.name = name
         self.warn = warn
         self.dt = time_step * picoseconds
         self.started=0
         self.gamma = collision_rate / picosecond
         self.rcutoff = r_cutoff * nanometers  
+
+        if temperature == -1:
+            print('''
+ERROR: Temperature was not given.
+''')
+            sys.exit(1)
         if self.warn:
             if not time_step in [0.0005, 0.002]:
                 print('''
-NOTE: The given time_step value is not the one usually employed
+WARNING: The given time_step value is not the one usually employed
 in the SBM models. Make sure this value is correct. The suggested
-values are: time_step=0.0005 for C-alpha and time_step = 0.002 
-for all-atom models.
+values are: time_step=0.0005 for default C-alpha and time_step = 0.002 
+for the default all-atom model.
 ''')
             if collision_rate != 1.0:
                 print('''
-NOTE: The given collision_rate value is not the one usually employed
+WARNING: The given collision_rate value is not the one usually employed
 in the SBM models. Make sure this value is correct. The suggested
-value is: collision_rate=1.0.
+value for many models is: collision_rate=1.0.
 ''')
             if not r_cutoff in [1.1 ,0.65]:
                 print('''
@@ -92,10 +116,6 @@ SBM models with OpenSMOG. Make sure this value is correct. The suggested
 values for r_cutoff are: 1.1 for the default C-alpha model and 0.65 for
 the default all-atom model. Depending on your model, other choices may
 be more appropriate.
-''')
-            if temperature == 0:
-                print('''
-NOTE: Temperature was not given.  Will set T=0
 ''')
 		
         self.temperature = (temperature / 0.00831446261815) * kelvin
@@ -236,12 +256,12 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         sys.exit(1)
 
     def minimize(self,tolerance=1.0,maxIterations=0):
-        R"""Wrapper for minimization simulation.
+        R"""Wrapper for L-BFGS energy minimization.
 
          Args:
 
             tolerance (float, required):
-                Stopping criteria value between iteration. When the error between iteration is below this value, the minimization stops. (Default value: :code:`1.0`).
+                Stopping criteria value between iterations. When the error between iteration is below this value, the minimization stops. (Default value: :code:`1.0`).
             maxIteration (int, required):
                 Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`0`).   
         """
@@ -260,7 +280,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             precision (str, optional):
                 Numerical precision type of the simulation. Options are *single*, *mixed*, *double*. (Default value: :code:`single`).  For details check the `OpenMM Documentation <http://docs.openmm.org/latest/developerguide/developer.html#numerical-precision>`__. 
             GPUIndex (str, optional):
-                Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. (Use only when GPU != default).
+                Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. 
             integrator (str, or integrator object):
                 Integrator to use in the simulations. Options are *langevin*, *langevinMiddle,  *variableLangevin* and, *brownian*. You may also build your own integrator object and pass it, rather than use a named integrator. (Default value: :code:`langevin`).
         """
@@ -328,7 +348,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         Args:
 
-            folder (str, optional):
+            folder (str, required):
                 Folder path to save the simulation data. If the folder path does not exist, the function will create the directory. 
         """
         Path(folder).mkdir( parents=True, exist_ok=True )
@@ -336,7 +356,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
     def loadSystem(self, Grofile, Topfile, Xmlfile):
         R"""Loads the input files in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
-        A tutorial on how to generate the inputs files for default all-atom and C-alpha models can be found `here <https://opensmog.readthedocs.io>`__.
+        Tutorials for how to generate the inputs files can be found on the smog-server page, or `here <https://opensmog.readthedocs.io>`__.
 
         Args:
 
@@ -345,7 +365,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             Topfile (file, required):
                 Topology *.top* file format generated by SMOG2 software with the flag :code:`-OpenSMOG`. The topology file lists the interactions between the system atoms except for the "Native Contacts" potential that is provided to OpenSMOG in a *.xml* file. (Default value: :code:`None`).
             Xmlfile (file, required):
-                The *.xml* file that contains the all information that defines the "Contact" potential. The *.xml* file is generated by SMOG2 software with the flag :code:`-OpenSMOG`, which support custom potential functions. (Default value: :code:`None`).
+                The *.xml* file can contain the information that defines the "Contact" and nonbonded potentials. The *.xml* file is generated by SMOG2 software with the flag :code:`-OpenSMOG`, which support custom potential functions. (Default value: :code:`None`).
         """
         def _checknames(f1,f2,f3):
             fn1 = os.path.basename(f1).rsplit('.', 1)[0]
@@ -357,7 +377,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 return True
         
         if _checknames(Grofile, Topfile, Xmlfile) and  self.warn :
-            warnings.warn('The Gro, Top and Xml files have different prefixes. Most people use the same name, so this may be a mistake.')
+            print('WARNING: The Gro, Top and Xml files have different prefixes. Most people use the same name, so this may be a mistake.')
 
         self.inputNames = [Grofile, Topfile, Xmlfile]
 
@@ -384,12 +404,12 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         
     def loadGro(self, Grofile):
         R"""Loads the  *.gro* file format in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
-        A tutorial on how to generate the inputs files for the default all-atom and C-alpha models can be found `here <https://opensmog.readthedocs.io>`__.
+        Tutorial on how to generate the inputs files can be found on the smog-server page, or `here <https://opensmog.readthedocs.io>`__.
 
         Args:
 
             Grofile (file, required):
-                Initial structure for the MD simulations in *.gro* file format generated by SMOG2 software with the flag :code:`-OpenSMOG`.  (Default value: :code:`None`).
+                Initial structure for the MD simulations in *.gro* file format. This is typically generated by SMOG2 with the flag :code:`-OpenSMOG`.  (Default value: :code:`None`).
         """
         if not os.path.exists(Grofile):
             SBM.opensmog_quit("Could not find gro file {}".format(Grofile))
@@ -401,12 +421,12 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
     def loadTop(self, Topfile):
         R"""Loads the  *.top* file format in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
-        A tutorial on how to generate the inputs files for the default all-atom and C-alpha models can be found `here <https://opensmog.readthedocs.io>`__.
+        Tutorial on how to generate the inputs files can be found on the smog-server page, or `here <https://opensmog.readthedocs.io>`__.
 
         Args:
 
             Topfile (file, required):
-                Topology *.top* file format generated by SMOG2 software with the flag :code:`-OpenSMOG`. The topology file defines the interactions between atoms, except for the "Native Contacts" potential that is provided to OpenSMOG in the form of a *.xml* file. (Default value: :code:`None`).
+                Topology *.top* file format generated by SMOG2 software with the flag :code:`-OpenSMOG`. The topology file defines the interactions between atoms, but the "Contacts" and nonbonded potentials can be provided with the *.xml* file. (Default value: :code:`None`).
         """
         if not os.path.exists(Topfile):
             SBM.opensmog_quit("Could not find top file {}".format(Topfile))
@@ -584,12 +604,12 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
     def loadXml(self, Xmlfile):
         R"""Loads the  *.xml* file format in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
-        A tutorial on how to generate the inputs files for default all-atom and C-alpha models can be found `here <https://opensmog.readthedocs.io>`__.
+        Tutorial on how to generate the inputs files can be found on the smog-server page, or `here <https://opensmog.readthedocs.io>`__.
 
         Args:
 
             Xmlfile (file, required):
-                The *.xml* file that contains all information that defines the "Contact" potentials. The *.xml* file is generated by SMOG2 software with the flag :code:`-OpenSMOG`, which support custom potential energy functions. (Default value: :code:`None`).
+                The *.xml* file can contain information that defines the "Contact" and nonbonded potentials. The *.xml* file is generated by SMOG2 software with the flag :code:`-OpenSMOG`, which support custom potential energy functions. (Default value: :code:`None`).
         """
 
         def validate(Xmlfile):
@@ -768,6 +788,8 @@ ignore this message.
                  Whether to save the potential energy for each applied force in a *.txt* file containing several columns, comma-delimited. The header of the files shows the information of each column. An example of the header is: #"Step","electrostatic","Non-Contacts","Bonds","Angles","Dihedrals","contact_1-10-12". (Default value: :code:`False`).
             energy_componentsName (str, optional):
                 Name of the energy_components file.     
+            logFileName (str, optional):
+                Name of the log file.     
             interval (int, required):
                  Frequency to write the data to the output files. (Default value: :code:`10**3`)
         """
@@ -850,7 +872,7 @@ Will try to import mdtraj...""")
     def run(self, nsteps, report=True, interval=10**4):
 
         if self.started != 0:
-            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint/state files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
         self.started=1 
 
         R"""Run the molecular dynamics simulation.
@@ -874,23 +896,23 @@ Will try to import mdtraj...""")
     def runForClockTime(self, time, report=True, interval=10**4,checkpointFile=None, stateFile=None, checkpointInterval=None):
 
         if self.started != 0:
-            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to continue to a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
         self.started=1 
 
         R"""Run the molecular dynamics simulation.
 
         Args:
 
-            nsteps (int, required):
-                 Number of steps to be performed in the simulation. (Default value: :code:`10**7`)
+            time (float, required):
+                 Walltime to run the simulation (units of hours, if units are not given)
             report (bool, optional):
                  Whether to print the simulation progress. (Default value: :code:`True`).
             interval (int, optional):
                  Frequency to print the simulation progress. (Default value: :code:`10**4`)
             checkpointFile (str, optional):
-                 Name of checkpoint file to save.
+                 Name of checkpoint file to save. (Default value: :code:`None`).
             stateFile (str, optional):
-                 Name of state file to save
+                 Name of state file to save. (Default value: :code:`None`).
             checkpointInterval (str, optional):
                  Time between checkpoint/state file saves.
         """
