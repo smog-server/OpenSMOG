@@ -1,1 +1,1 @@
-include OpenSMOG/share/OpenSMOG.xsd
+graft OpenSMOG/share
