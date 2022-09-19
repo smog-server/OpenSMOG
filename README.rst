@@ -142,6 +142,17 @@ Then load and test the **smog2** installation:
     
 As described in the SMOG 2 manual, it is highly recommended that you also download smog-check and run all checks before using the SMOG 2 software.
 
+Verifying your installation
+=========
+
+After you have installed OpenSMOG (and optionally SMOG 2), you can check to see that the code is functioning properly using OpenSMOGcheck. To run the check, you just need to run the following commands (from within python):
+
+.. code-block:: bash
+
+    from OpenSMOG import SBM
+    SBM.opensmogcheck()
+
+If smog2 is in your path, then this script will check compatibility of SMOG2 and OpenSMOG.  If smog2 is not in your path, it will simply evaluate the energies for representative models/configurations and compare them to reference values.
 
 Resources
 =========
