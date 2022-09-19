@@ -152,7 +152,7 @@ After you have installed OpenSMOG (and optionally SMOG 2), you can check to see 
     from OpenSMOG import SBM
     SBM.opensmogcheck()
 
-If smog2 is in your path, then this script will check compatibility of SMOG2 and OpenSMOG.  If smog2 is not in your path, it will simply evaluate the energies for representative models/configurations and compare them to reference values.
+If smog2 is in your path, then this will check compatibility of SMOG2 and OpenSMOG.  If smog2 is not in your path, it will simply evaluate the energies for representative models/configurations and compare them to reference values.
 
 Resources
 =========
