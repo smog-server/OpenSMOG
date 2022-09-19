@@ -972,7 +972,7 @@ Will try to import mdtraj...""")
 
     # this is for testing that OpenSMOG and SMOG2 are working together.
     # the interested user may also be interested in how to compare energies
-    def opensmogtests():
+    def opensmogcheck():
         # define some functions that will be used for testing purposes
         def runSMOG(sysname):
             # based on the sysname, find the flags and run SMOG2
