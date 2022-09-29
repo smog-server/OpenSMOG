@@ -70,6 +70,6 @@
 			+B4*exp(-C4*(r-R4)^2)
 			+B5*exp(-C5*(r-R5)^2)
 			"
-        nbcutoff="2.0"/>
+        cutoff="2.0"/>
 
 </sif>
