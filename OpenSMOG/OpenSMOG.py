@@ -32,7 +32,7 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from lxml import etree
 import sys
-#from .OpenSMOG_Reporter import forcesReporter, stateReporter
+from .OpenSMOG_Reporter import forcesReporter, stateReporter
 import re as regex
 from pathlib import Path
 from sys import stdout
