@@ -213,7 +213,7 @@ To save the state file:
 
 To save the checkpoint file:
 >checkpointfilename='smog.checkpoint'
->SMOGrun.simulation.saveCheckpoint(checkpointfilename)
+>SMOGrun.saveCheckpoint(checkpointfilename)
 
 If you saved a state or checkpoint in a previous run, here is an example 
 for how to continue the simulation. 
@@ -464,8 +464,44 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self.nonbond = forces
 
     def _customSmogForce(self, name, data):
+        #before anything, check for pull-code 
+        if data[0].startswith("COM"):
+            #use for COM pull potential
+            data[0] = (data[0].split("|"))
+            Ngroups = int(data[0][1])
+            customExp = data[0][2]
+            pull_ff = CustomCentroidBondForce(Ngroups,customExp)
+            for pars in data[1]:
+                if "|" not in pars:
+                    pull_ff.addPerBondParameter(pars)
+                elif "|" in pars:
+                    groupAtom_ndx = pars.split("|")[1]
+                    groupAtom_ndx = [x.split(":")+["1"] for x in groupAtom_ndx.split(",")]
+                    groupAtom_ndx = [x[:3] for x in groupAtom_ndx]
+                    groupAtom_ndx = [list(range(int(x[0]),int(x[1])+1,int(x[2]))) for x in groupAtom_ndx]
+                    groupAtom_ndx = [x-1 for ran in groupAtom_ndx for x in ran]
+                    pull_ff.addGroup(groupAtom_ndx,[1]*len(groupAtom_ndx))
+            pars = [pars for pars in data[1] if "|" not in pars]            
+            for iteraction in data[2]:
+                group_ = [int(iteraction[chr(k+ord('i'))])-1 for k in range(Ngroups)]
+                parameters = [float(iteraction[k]) for k in pars]
+                pull_ff.addBond(group_, parameters)
+            self.forcesDict[name] =  pull_ff
+            pull_ff.setForceGroup(self.forceCount)
+            self.forceCount +=1
+            return
         #first set the equation
-        contacts_ff = CustomBondForce(data[0])
+        useCompoundBond = False
+        if "|" in data[0]:
+            # "|" is as a delimeter between number eof perticles and the expr
+            data[0] = (data[0].split("|"))
+            Nparticles = int(data[0][0])
+            customExp = data[0][1]
+            contacts_ff = CustomCompoundBondForce(Nparticles,customExp)
+            useCompoundBond = True
+        else:
+            # if delimiter "|" not used, go with the defauit 2 particles method
+            contacts_ff = CustomBondForce(data[0])
 
         #second set the number of variable
         for pars in data[1]:
@@ -474,12 +510,18 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         #third, apply the bonds from each pair of atoms and the related variables.
         pars = [pars for pars in data[1]]
 
-        for iteraction in data[2]:
-            atom_index_i = int(iteraction['i'])-1 
-            atom_index_j = int(iteraction['j'])-1
-            parameters = [float(iteraction[k]) for k in pars]
+        if not useCompoundBond:    
+            for iteraction in data[2]:
+                atom_index_i = int(iteraction['i'])-1 
+                atom_index_j = int(iteraction['j'])-1
+                parameters = [float(iteraction[k]) for k in pars]
+                contacts_ff.addBond(atom_index_i, atom_index_j, parameters)
+        elif useCompoundBond:
+            for iteraction in data[2]:
+                atom_index_ = [int(iteraction[chr(k+ord('i'))])-1 for k in range(Nparticles)]
+                parameters = [float(iteraction[k]) for k in pars]
+                contacts_ff.addBond(atom_index_, parameters)
 
-            contacts_ff.addBond(atom_index_i, atom_index_j, parameters)
         #forth, if the are global variables, add them to the force
         if self.constants_present==True:
             for const_key in self.data['constants']:
@@ -768,7 +810,8 @@ ignore this message.
                 else:
                     i += 1
 
-    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000):
+    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000, checkpoint=False, checkpointName=None, checkpointInterval=10000):
+    #def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000):
         R"""Creates the reporters to provide the output data.
 
         Args:
@@ -866,6 +909,16 @@ Will try to import mdtraj...""")
             self._checkFile(forcefile)
             self.outputNames.append(forcefile)
             self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True))
+
+    #__TESTING_DIGVIJAY__#
+        if checkpoint:
+            if checkpointName is None:
+                chkfile = os.path.join(self.folder, self.name + '_checkpoint.chk')
+            else:
+                chkfile = os.path.join(self.folder, checkpointName + '.chk')
+            self.simulation.reporters.append(CheckpointReporter(chkfile, checkpointInterval))
+
+    #____________________#
 
         
             
