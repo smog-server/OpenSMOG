@@ -213,7 +213,7 @@ To save the state file:
 
 To save the checkpoint file:
 >checkpointfilename='smog.checkpoint'
->SMOGrun.saveCheckpoint(checkpointfilename)
+>SMOGrun.simulation.saveCheckpoint(checkpointfilename)
 
 If you saved a state or checkpoint in a previous run, here is an example 
 for how to continue the simulation. 
