@@ -445,6 +445,24 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             self.forcesDict[force.__class__.__name__] = force
             self.forceCount +=1
         
+    def _splitForces_COM_pull(self):
+        #center-of-mass restrain
+        com_data=self.data['com_pull']
+        n_forces =  len(com_data[3])
+        forces = {}
+        for n in range(n_forces):
+            forces[com_data[3][n]] = [com_data[0][n], com_data[1][n], com_data[2][n],com_data[4][n]]
+        self.com_pull = forces
+
+    def _splitForces_manyparticle(self):
+        #many particle force
+        cont_data=self.data['manyparticle']
+        n_forces =  len(cont_data[3])
+        forces = {}
+        for n in range(n_forces):
+            forces[cont_data[3][n]] = [cont_data[0][n], cont_data[1][n], cont_data[2][n]]
+        self.manyparticle = forces
+        
     def _splitForces_contacts(self):
         #Contacts
         cont_data=self.data['contacts']
@@ -463,6 +481,82 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             forces[nb_data[0][n]] = [nb_data[1][n], nb_data[2][n], nb_data[3][n]]
         self.nonbond = forces
 
+    def _customCOMForce(self, name, data):
+        #first set the equation
+        """ '|' is used as a delimiter between numbre of interacting
+        groups and the expression for potential energy between those groups"""
+        if "|" in data[0]:
+            data[0] = (data[0].split("|"))
+            Ngroups = int(data[0][0])
+            customExp = data[0][1]
+        else:
+            Ngroups = 2 #default
+            customExp = data[0]
+        pull_ff = CustomCentroidBondForce(Ngroups,customExp)
+
+        #second add the atom groups
+        groupAtom_ndx = {}
+        for group in data[-1]: #data[4]
+            assert int(group["index"]) > 0, "Group index starts from 1"
+            """aomt index format atoms='b1:e1:i1,b2,e2,i2' will load atoms
+            in range b1 to e1 with interval i1 and from b2 to e2 with interval i2"""
+            group["atoms"] = [x.split(":")+["1"] for x in group["atoms"].split(",")]
+            group["atoms"] = [list(range(int(x[0]),int(x[1])+1,int(x[2]))) for x in group["atoms"]]            
+            group["atoms"] = [x-1 for ndx_range in group["atoms"] for x in ndx_range]
+            groupAtom_ndx[int(group["index"])-1] = group["atoms"]
+        #groups are to be loaded in the order of their specified index
+        groupAtom_ndx = [groupAtom_ndx[x] for x in range(Ngroups)]
+        for group in groupAtom_ndx:
+            pull_ff.addGroup(group)
+
+        #third set the number of variable
+        for pars in data[1]:
+            pull_ff.addPerBondParameter(pars)
+
+        #fourth, apply the bonds from each pair of atoms and the related variables.
+        pars = [pars for pars in data[1]]            
+
+        for iteraction in data[2]:
+            group_ = [int(iteraction[chr(k+ord('i'))])-1 for k in range(Ngroups)]
+            parameters = [float(iteraction[k]) for k in pars]
+            pull_ff.addBond(group_, parameters)
+        self.forcesDict[name] =  pull_ff
+        pull_ff.setForceGroup(self.forceCount)
+        self.forceCount +=1
+
+    def _customManyParticleForce(self, name, data):
+        #first set the equation
+        """ '|' is used as a delimiter between numbre of particles
+        and the expression for potential energy between them"""
+        if "|" in data[0]:        
+            data[0] = (data[0].split("|"))
+            Nparticles = int(data[0][0])
+            customExp = data[0][1]
+        else:
+            Nparticles = 2 #default
+            customExp = data[0]
+        contacts_ff = CustomCompoundBondForce(Nparticles,customExp)
+
+        #second set the number of variable
+        for pars in data[1]:
+            contacts_ff.addPerBondParameter(pars)
+
+        #third, apply the bonds from each pair of atoms and the related variables.
+        pars = [pars for pars in data[1]]
+
+        for iteraction in data[2]:
+            atom_index_ = [int(iteraction[chr(k+ord('i'))])-1 for k in range(Nparticles)]
+            parameters = [float(iteraction[k]) for k in pars]
+            contacts_ff.addBond(atom_index_, parameters)
+
+        #forth, if the are global variables, add them to the force
+        if self.constants_present==True:
+            for const_key in self.data['constants']:
+                contacts_ff.addGlobalParameter(const_key,self.data['constants'][const_key])
+        self.forcesDict[name] =  contacts_ff
+        contacts_ff.setForceGroup(self.forceCount)
+        self.forceCount +=1
+
     def _customSmogForce(self, name, data):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
@@ -478,8 +572,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             atom_index_i = int(iteraction['i'])-1 
             atom_index_j = int(iteraction['j'])-1
             parameters = [float(iteraction[k]) for k in pars]
-
             contacts_ff.addBond(atom_index_i, atom_index_j, parameters)
+
         #forth, if the are global variables, add them to the force
         if self.constants_present==True:
             for const_key in self.data['constants']:
@@ -633,6 +727,41 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             root = XML_potential.getroot()
             xml_data={}
 
+            #center of mass, restrain
+            Force_Names=[]
+            Expression=[]
+            Parameters=[]
+            AtomGroups = []
+            Pairs=[]
+            self.com_pull_present=False
+            if root.find('com_pull') != None:
+                self.com_pull_present=True
+                com_pull_xml=root.find('com_pull')
+                for i in range(len(com_pull_xml)):
+                    for name in com_pull_xml[i].iter('pull_type'):
+                        Force_Names.append(name.attrib['name'])
+
+                    for expr in com_pull_xml[i].iter('expression'):
+                        Expression.append(expr.attrib['expr'])
+
+                    internal_Param=[]
+                    for par in com_pull_xml[i].iter('parameter'):
+                        internal_Param.append(par.text)
+                    Parameters.append(internal_Param)
+
+
+                    internal_groups=[]
+                    for grp in com_pull_xml[i].iter('group'):
+                        internal_groups.append(grp.attrib)
+                    AtomGroups.append(internal_groups)
+
+                    internal_Pairs=[]
+                    for atompairs in com_pull_xml[i].iter('interaction'):
+                            internal_Pairs.append(atompairs.attrib)
+                    Pairs.append(internal_Pairs)
+
+                xml_data['com_pull']=[Expression,Parameters,Pairs,Force_Names,AtomGroups]
+
             ## Constants
             self.constants_present=False
             if root.find('constants') != None:
@@ -680,6 +809,35 @@ ignore this message.
 
                 xml_data['contacts']=[Expression,Parameters,Pairs,Force_Names]
 
+            ## custom many particle force 
+            Force_Names=[]
+            Expression=[]
+            Parameters=[]
+            Party=[]
+            self.manyparticle_present=False
+            if root.find('manyparticle') != None:
+                self.manyparticle_present=True
+                manyparticle_xml=root.find('manyparticle')
+                for i in range(len(manyparticle_xml)):
+                    for name in manyparticle_xml[i].iter('manyparticle_type'):
+                        Force_Names.append(name.attrib['name'])
+
+                    for expr in manyparticle_xml[i].iter('expression'):
+                        Expression.append(expr.attrib['expr'])
+
+                    internal_Param=[]
+                    for par in manyparticle_xml[i].iter('parameter'):
+                        internal_Param.append(par.text)
+                    Parameters.append(internal_Param)
+
+                    internal_Party=[]
+                    for atompairs in manyparticle_xml[i].iter('interaction'):
+                            internal_Party.append(atompairs.attrib)
+                    Party.append(internal_Party)
+
+                xml_data['manyparticle']=[Expression,Parameters,Party,Force_Names]
+
+
             #Launch contact force function
             self.nonbond_present=False
             if root.find('nonbond') != None:
@@ -725,7 +883,12 @@ ignore this message.
                     print("Creating Contacts force {:} from xml file".format(force))
                     self._customSmogForce(force, self.contacts[force])
                     self.system.addForce(self.forcesDict[force])
-            
+            if self.manyparticle_present==True:
+                self._splitForces_manyparticle()
+                for force in self.manyparticle:
+                    print("Creating many particle force {:} from xml file".format(force))
+                    self._customManyParticleForce(force, self.manyparticle[force])
+                    self.system.addForce(self.forcesDict[force])
             if self.nonbond_present==True: 
                 self._splitForces_nb()
                 for force in self.nonbond:
@@ -735,6 +898,12 @@ ignore this message.
                 ## REMOVE OTHER NONBONDED FORCES
                 self.system.removeForce(0)
                 self.system.removeForce(0)
+            if self.com_pull_present==True:   
+                self._splitForces_COM_pull()
+                for force in self.com_pull:
+                    print("Creating COM restrain force {:} from xml file".format(force))
+                    self._customCOMForce(force, self.com_pull[force])
+                    self.system.addForce(self.forcesDict[force])
             
             self.forceApplied = True
 
@@ -768,7 +937,8 @@ ignore this message.
                 else:
                     i += 1
 
-    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000):
+    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000, checkpoint=False, checkpointName=None, checkpointInterval=10000):
+    #def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000):
         R"""Creates the reporters to provide the output data.
 
         Args:
@@ -867,7 +1037,14 @@ Will try to import mdtraj...""")
             self.outputNames.append(forcefile)
             self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True))
 
-        
+
+        if checkpoint:
+            if checkpointName is None:
+                chkfile = os.path.join(self.folder, self.name + '_checkpoint.chk')
+            else:
+                chkfile = os.path.join(self.folder, checkpointName + '.chk')
+            self.simulation.reporters.append(CheckpointReporter(chkfile, checkpointInterval))
+       
             
     def run(self, nsteps, report=True, interval=10**4):
 
