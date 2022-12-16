@@ -1037,17 +1037,14 @@ Will try to import mdtraj...""")
             self.outputNames.append(forcefile)
             self.simulation.reporters.append(forcesReporter(forcefile, interval, self.forcesDict, step=True))
 
-    #__TESTING_DIGVIJAY__#
+
         if checkpoint:
             if checkpointName is None:
                 chkfile = os.path.join(self.folder, self.name + '_checkpoint.chk')
             else:
                 chkfile = os.path.join(self.folder, checkpointName + '.chk')
             self.simulation.reporters.append(CheckpointReporter(chkfile, checkpointInterval))
-
-    #____________________#
-
-        
+       
             
     def run(self, nsteps, report=True, interval=10**4):
 
