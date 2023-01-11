@@ -13,3 +13,11 @@ Tutorials/output_2ci2_AA/2ci2_energies.txt
 Tutorials/output_2ci2_AA/2ci2_trajectory.dcd
 Tutorials/output_2ci2_CA/2ci2_energies.txt
 Tutorials/output_2ci2_CA/2ci2_forces.txt
+*.tar
+OpenSMOG/Test_Custom_Dihedral/SBM_CA.ipynb
+OpenSMOG/Test_Custom_Dihedral/testODdih/OpenSMOG.xsd
+OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.contacts
+OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.gro
+OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.ndx
+OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.top
+OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.xml
