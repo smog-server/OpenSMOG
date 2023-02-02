@@ -463,6 +463,15 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             forces[nb_data[0][n]] = [nb_data[1][n], nb_data[2][n], nb_data[3][n]]
         self.nonbond = forces
 
+    def _splitForces_dihedrals(self):
+        #Custom Dihedrals
+        dihedrals_data=self.data['dihedrals']
+        n_forces =  len(dihedrals_data[3])
+        forces = {}
+        for n in range(n_forces):
+            forces[dihedrals_data[3][n]] = [dihedrals_data[0][n], dihedrals_data[1][n], dihedrals_data[2][n]]
+        self.dihedrals = forces
+
     def _customSmogForce(self, name, data):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
@@ -487,6 +496,31 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self.forcesDict[name] =  contacts_ff
         contacts_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
+
+    def _customSmogForce_cd(self, name, data):
+        #first set the equation
+        dihedrals_ff = CustomTorsionForce(data[0])
+
+        #second set the number of variable
+        for pars in data[1]:
+            dihedrals_ff.addPerTorsionParameter(pars)
+
+        #third, apply the bonds from each pair of atoms and the related variables.
+        pars = [pars for pars in data[1]]
+
+        for iteraction in data[2]:
+            atom_index_i = int(iteraction['i'])-1 
+            atom_index_j = int(iteraction['j'])-1
+            atom_index_k = int(iteraction['k'])-1 
+            atom_index_l = int(iteraction['l'])-1
+            parameters = [float(iteraction[k]) for k in pars]
+
+            dihedrals_ff.addTorsion(atom_index_i, atom_index_j, atom_index_k, atom_index_l, parameters)
+
+        self.forcesDict[name] =  dihedrals_ff
+        dihedrals_ff.setForceGroup(self.forceCount)
+        self.forceCount +=1
+
 
     def _customSmogForce_nb(self, name, data):
         #first set the equation
@@ -710,6 +744,41 @@ ignore this message.
                 xml_data['nonbond']=[NonBond_Num,NBExpression,NBExpressionParameters,NBParameters]
             else:
                 self.nonbond_present=False
+
+
+            ## Custom Dihedrals 
+            CDForce_Names=[]
+            CDExpression=[]
+            CDParameters=[]
+            ijkl=[]
+            
+            self.dihedrals_present=False
+            if root.find('dihedrals') == None:
+                print('''
+        Only dihedrals contribution in the top file will be added
+        ''')
+            else:
+                self.dihedrals_present=True
+                dihedrals_xml=root.find('dihedrals')
+                for i in range(len(dihedrals_xml)):
+                    for name in dihedrals_xml[i].iter('dihedrals_type'):
+                        CDForce_Names.append(name.attrib['name'])
+
+                    for expr in dihedrals_xml[i].iter('expression'):
+                        CDExpression.append(expr.attrib['expr'])
+                        
+                    CDinternal_Param=[]
+                    for par in dihedrals_xml[i].iter('parameter'):
+                        CDinternal_Param.append(par.text)
+                    CDParameters.append(CDinternal_Param)
+
+                    internal_ijkl=[]
+                    for atoms_ijkl in dihedrals_xml[i].iter('interaction'):
+                            internal_ijkl.append(atoms_ijkl.attrib)
+                    ijkl.append(internal_ijkl)
+
+                xml_data['dihedrals']=[CDExpression,CDParameters,ijkl,CDForce_Names]
+
             return xml_data
 
         if not (self.forceApplied):
@@ -724,6 +793,13 @@ ignore this message.
                 for force in self.contacts:
                     print("Creating Contacts force {:} from xml file".format(force))
                     self._customSmogForce(force, self.contacts[force])
+                    self.system.addForce(self.forcesDict[force])
+
+            if self.dihedrals_present==True: 
+                self._splitForces_dihedrals()
+                for force in self.dihedrals:
+                    print("Creating Dihedrals force {:} from xml file".format(force))
+                    self._customSmogForce_cd(force, self.dihedrals[force])
                     self.system.addForce(self.forcesDict[force])
             
             if self.nonbond_present==True: 

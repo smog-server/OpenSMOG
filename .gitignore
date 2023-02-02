@@ -21,3 +21,4 @@ OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.gro
 OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.ndx
 OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.top
 OpenSMOG/Test_Custom_Dihedral/testODdih/testODdih.xml
+*.ipynb

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <!-- INTERACTION TYPE -->
-  <xs:complexType name="interactionType">
+  <xs:complexType name="contactInteractionType">
     <xs:attribute name="i" type="xs:integer" use="required"/>
     <xs:attribute name="j" type="xs:integer" use="required"/>
     <xs:anyAttribute processContents="skip"/>
   </xs:complexType>
+  <xs:complexType name="dihedralInteractionType">
+    <xs:attribute name="i" type="xs:integer" use="required"/>
+    <xs:attribute name="j" type="xs:integer" use="required"/>
+    <xs:attribute name="k" type="xs:integer" use="required"/>
+    <xs:attribute name="l" type="xs:integer" use="required"/>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+ 
   <!-- nonbond_param TYPE -->
   <xs:complexType name="nonbondparamType">
     <xs:attribute name="type1" type="xs:string" use="required"/>
@@ -34,10 +42,20 @@
     <xs:sequence>
       <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
       <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
-      <xs:element name="interaction" type="interactionType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="interaction" type="contactInteractionType" minOccurs="1" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
+  <!-- DIHEDRAL POTENTIAL TYPE -->
+  <xs:complexType name="dihedralpotType">
+    <xs:sequence>
+      <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="interaction" type="dihedralInteractionType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+ 
   <!-- CONTACTS TYPE -->
   <xs:complexType name="contactsType">
     <xs:sequence>
@@ -53,6 +71,12 @@
   <xs:complexType name="constantsType">
     <xs:sequence>
       <xs:element name="constant" type="constantType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- DIHEDRALS TYPE -->
+  <xs:complexType name="dihedralsType">
+    <xs:sequence>
+      <xs:element name="dihedrals_type" type="dihedralpotType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
   <!-- NB TYPE -->
@@ -74,6 +98,7 @@
   <xs:complexType name="OpenSMOGType">
     <xs:all>
       <xs:element name="contacts" type="contactsType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="dihedrals" type="dihedralsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="nonbond" type="nonbondType" minOccurs="0" maxOccurs="1"/>
     </xs:all>
