@@ -13,7 +13,6 @@
     <xs:attribute name="l" type="xs:integer" use="required"/>
     <xs:anyAttribute processContents="skip"/>
   </xs:complexType>
- 
   <!-- nonbond_param TYPE -->
   <xs:complexType name="nonbondparamType">
     <xs:attribute name="type1" type="xs:string" use="required"/>
@@ -25,7 +24,6 @@
     <xs:attribute name="distance" type="xs:decimal" use="required"/>
     <xs:anyAttribute processContents="skip"/>
   </xs:complexType>
-
   <!-- PARAMETER TYPE -->
   <xs:complexType name="parameterType">
     <xs:simpleContent>
@@ -55,7 +53,6 @@
     </xs:sequence>
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
- 
   <!-- CONTACTS TYPE -->
   <xs:complexType name="contactsType">
     <xs:sequence>
