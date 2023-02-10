@@ -1,0 +1,1 @@
+smog2 -i OSDIR/share/tests/PDBs/2ci2.adj.pdb -t OSDIR/share/tests/2ci2.AA.CustomDihedrals/SBM_AA+CustomDihedrals -dname opentest -OpenSMOG
