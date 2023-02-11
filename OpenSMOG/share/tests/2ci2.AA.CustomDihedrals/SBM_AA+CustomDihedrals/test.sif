@@ -9,13 +9,28 @@
     <function name="bond_type6" directive="bonds"/>
     <function name="angle_harmonic" directive="angles"/>
     <function name="dihedral_harmonic" directive="dihedrals"/>
+    <function name="dihedral_ncos" directive="dihedrals"/>
+    <function name="cusdihharm1"
+       directive="OpenSMOG"
+       OpenSMOGtype="dihedral"
+       OpenSMOGpotential="weight*(0.5*min(dtheta, 2*pi-dtheta)^2); dtheta = abs(theta-theta0); pi = 3.1415926535"
+       OpenSMOGparameters="theta0,weight"
+    />
     <function name="contact_1" directive="pairs" exclusions="1"/>
+    <function name="cusdih13"
+       directive="OpenSMOG"
+       OpenSMOGtype="dihedral"
+       OpenSMOGpotential="weight*((1-cos((theta-theta0))) + 0.5*(1-cos(3*(theta-theta0)))   )"
+       OpenSMOGparameters="theta0,weight"
+    />
     <function name="cusdih1"
        directive="OpenSMOG"
        OpenSMOGtype="dihedral"
        OpenSMOGpotential="weight*(1-cos(multiplicity*(theta-theta0)))"
        OpenSMOGparameters="theta0,weight,multiplicity"
     />
+
+
 
   </functions>
   <!-- HAMILTONIAN SETTINGS -->

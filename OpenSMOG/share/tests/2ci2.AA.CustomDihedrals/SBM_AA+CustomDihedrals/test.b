@@ -37,19 +37,19 @@
       <bType>*</bType>
     </dihedral>
     <!-- AMINO DIHEDRALS -->
-    <dihedral func="cusdih1(?,1,1)+cusdih1(?,0.5,3)" energyGroup="bb_a">
+    <dihedral func="cusdih13(?,1)" energyGroup="bb_a">
       <bType>*</bType>
       <bType>*</bType>
       <bType>*</bType>
       <bType>*</bType>
     </dihedral>
-    <dihedral func="cusdih1(?,1,1)+cusdih1(?,0.5,3)" energyGroup="sc_a">
+    <dihedral func="dihedral_ncos(?,1,1)+dihedral_ncos(3*?,0.5,3)" energyGroup="sc_a">
       <bType>*</bType>
       <bType>*</bType>
       <bType>*</bType>
       <bType>*</bType>
     </dihedral>
-    <dihedral func="dihedral_harmonic(?,40)" energyGroup="pr_a">
+    <dihedral func="cusdihharm1(?,40)" energyGroup="pr_a">
       <bType>*</bType>
       <bType>*</bType>
       <bType>*</bType>
