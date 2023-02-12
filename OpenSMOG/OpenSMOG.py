@@ -1106,8 +1106,11 @@ Will try to import mdtraj...""")
         
             print ('''
 NOTE: Did not find smog2 in path. Will test OpenSMOG library,
-but not the generation of force fields with SMOG2.  Use
-smog-check to ensure SMOG 2 is also functioning properly.
+but not the generation of force fields with SMOG 2. To ensure 
+that SMOG 2 is generating correct force fields for use with
+OpenSMOG, you should run smog-check (comes with SMOG 2) and 
+also run SBM.opensmogcheck() with the smog2 executable in 
+your path.
 ''')
             return 0    
        
