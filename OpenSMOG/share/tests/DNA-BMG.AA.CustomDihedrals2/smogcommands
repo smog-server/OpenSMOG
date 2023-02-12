@@ -1,0 +1,1 @@
+smog2 -i OSDIR/share/tests/PDBs/DNA.terminal.BMG.pdb -t OSDIR/share/tests/DNA-BMG.AA.CustomDihedrals2/SBM_AA+CustomDihedrals -dname opentest -OpenSMOG
