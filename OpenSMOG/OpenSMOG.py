@@ -498,7 +498,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         groupAtom_ndx = {}
         for group in data[-1]: #data[4]
             assert int(group["index"]) > 0, "Group index starts from 1"
-            """aomt index format atoms='b1:e1:i1,b2,e2,i2' will load atoms
+            """atom index format atoms='b1:e1:i1,b2,e2,i2' will load atoms
             in range b1 to e1 with interval i1 and from b2 to e2 with interval i2"""
             group["atoms"] = [x.split(":")+["1"] for x in group["atoms"].split(",")]
             group["atoms"] = [list(range(int(x[0]),int(x[1])+1,int(x[2]))) for x in group["atoms"]]            
@@ -513,7 +513,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         for pars in data[1]:
             pull_ff.addPerBondParameter(pars)
 
-        #fourth, apply the bonds from each pair of atoms and the related variables.
+        #fourth, apply the bonds from each pair of atom groups and the related variables.
         pars = [pars for pars in data[1]]            
 
         for iteraction in data[2]:
@@ -560,6 +560,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
     def _customSmogForce(self, name, data):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
+        contacts_ff.setUsesPeriodicBoundaryConditions(True)
+
 
         #second set the number of variable
         for pars in data[1]:
