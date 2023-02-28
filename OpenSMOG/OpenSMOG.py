@@ -476,9 +476,10 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             forces[dihedrals_data[3][n]] = [dihedrals_data[0][n], dihedrals_data[1][n], dihedrals_data[2][n]]
         self.dihedrals = forces
 
-    def _customSmogForce(self, name, data):
+    def _customSmogForce(self, name, data, pbc):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
+        contacts_ff.setUsesPeriodicBoundaryConditions(pbc)
 
         #second set the number of variable
         for pars in data[1]:
@@ -501,10 +502,10 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         contacts_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
 
-    def _customSmogForce_cd(self, name, data):
+    def _customSmogForce_cd(self, name, data, pbc):
         #first set the equation
         dihedrals_ff = CustomTorsionForce(data[0])
-
+        dihedrals_ff.setUsesPeriodicBoundaryConditions(pbc)
         #second set the number of variable
         for pars in data[1]:
             dihedrals_ff.addPerTorsionParameter(pars)
@@ -795,14 +796,14 @@ ignore this message.
                 self._splitForces_contacts()
                 for force in self.contacts:
                     print("        Creating Contacts force {:} from xml file".format(force))
-                    self._customSmogForce(force, self.contacts[force])
+                    self._customSmogForce(force, self.contacts[force],self.pbc)
                     self.system.addForce(self.forcesDict[force])
 
             if self.dihedrals_present==True: 
                 self._splitForces_dihedrals()
                 for force in self.dihedrals:
                     print("        Creating Dihedrals force {:} from xml file".format(force))
-                    self._customSmogForce_cd(force, self.dihedrals[force])
+                    self._customSmogForce_cd(force, self.dihedrals[force], self.pbc)
                     self.system.addForce(self.forcesDict[force])
             
             if self.nonbond_present==True: 
