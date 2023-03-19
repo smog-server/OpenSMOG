@@ -99,7 +99,7 @@
       <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="nonbond" type="nonbondType" minOccurs="0" maxOccurs="1"/>
     </xs:all>
-    <xs:attribute name="minOpenSMOGversion" type="xs:string" use="optional"/>
+    <xs:attribute name="OpenSMOGversion" type="xs:string" use="optional"/>
   </xs:complexType>
   <!-- OpenSMOG SCHEMA -->
   <xs:element name="OpenSMOGforces" type="OpenSMOGType"/>

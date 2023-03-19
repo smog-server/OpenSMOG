@@ -673,11 +673,11 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             root = XML_potential.getroot()
             xml_data={}
             if 'minOpenSMOGversion' in root.attrib:
-                OSv=root.attrib['minOpenSMOGversion']
+                OSv=root.attrib['OpenSMOGversion']
                 if OSv != SBM.version:
-                    print("WARNING: You are using OpenSMOG v{}, but the input SMOG2-generated XML file indidates that it is for use with v{}. You may want to update your version of OpenSMOG and/or SMOG 2.\n".format(SBM.version,OSv)) 
+                    print("WARNING: You are using OpenSMOG v{}, but the input SMOG2-generated XML file indidates that it is for use with v{}. You may want to use the current versions of OpenSMOG and SMOG 2.\n".format(SBM.version,OSv)) 
             else:
-                print('WARNING: No minimum OpenSMOG version listed in the XML file.  This probably means it was generated with a version of SMOG 2 that is earlier than 2.4.6. Your XML file should still be compatible with this version of OpenSMOG, but you may want to update your version of SMOG 2.')
+                print('WARNING: No OpenSMOG version listed in the XML file.  This probably means it was generated with a version of SMOG 2 that is earlier than 2.4.6. Your XML file should still be compatible with this version of OpenSMOG, but you may want to update your version of SMOG 2.')
             ## Constants
             self.constants_present=False
             if root.find('constants') != None:
