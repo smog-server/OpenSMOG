@@ -672,7 +672,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             XML_potential = ET.parse(file_xml)
             root = XML_potential.getroot()
             xml_data={}
-            if 'minOpenSMOGversion' in root.attrib:
+            if 'OpenSMOGversion' in root.attrib:
                 OSv=root.attrib['OpenSMOGversion']
                 if OSv != SBM.version:
                     print("WARNING: You are using OpenSMOG v{}, but the input SMOG2-generated XML file indidates that it is for use with v{}. You may want to use the current versions of OpenSMOG and SMOG 2.\n".format(SBM.version,OSv)) 
