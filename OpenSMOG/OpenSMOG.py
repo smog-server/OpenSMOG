@@ -672,7 +672,12 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             XML_potential = ET.parse(file_xml)
             root = XML_potential.getroot()
             xml_data={}
-
+            if 'minOpenSMOGversion' in root.attrib:
+                OSv=root.attrib['minOpenSMOGversion']
+                if OSv != SBM.version:
+                    print("WARNING: You are using OpenSMOG v{}, but the input SMOG2-generated XML file indidates that it is for use with v{}. You may want to update your version of OpenSMOG and/or SMOG 2.\n".format(SBM.version,OSv)) 
+            else:
+                print('WARNING: No minimum OpenSMOG version listed in the XML file.  This probably means it was generated with a version of SMOG 2 that is earlier than 2.4.6. Your XML file should still be compatible with this version of OpenSMOG, but you may want to update your version of SMOG 2.')
             ## Constants
             self.constants_present=False
             if root.find('constants') != None:
@@ -809,7 +814,7 @@ ignore this message.
             if self.nonbond_present==True: 
                 self._splitForces_nb()
                 for force in self.nonbond:
-                    print("        Creating Nonbonded force {:} from xml file".format(force))
+                    print("        Creating Nonbonded force {:} from xml file.\n        This will replace any nonbonded definitions given in the .top file\n".format(force))
                     self._customSmogForce_nb(force, self.nonbond[force])
                     self.system.addForce(self.forcesDict['Nonbonded'+str(force)])
                 ## REMOVE OTHER NONBONDED FORCES
