@@ -618,9 +618,9 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             molecule=molecules_keys[i]
             mult=molecules_mul[i]
             # Loop over atoms in each molecule
-            for atom in self.Top._moleculeTypes[molecule].atoms:
-                # If atoms are repeated, then include the same entrie (CL,CL,CL,... or MG,MG,MG,...)
-                for _ in range(mult):
+            for _ in range(mult):
+                # If multiple copies of a molecule are defined in the system (in the top file), then include the atoms in that molecule multiple times. (CL,CL,CL,... or MG,MG,MG,... or CA, CB, CA, CB, CA, CB...). Notes, these two for loops were improperly nested in versions 1.1.1 and earlier
+                for atom in self.Top._moleculeTypes[molecule].atoms:
                     atom_types.append(atom[1])
         for i in range(self.system.getNumParticles()):
             # GET ATOM TYPE
