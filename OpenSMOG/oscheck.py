@@ -6,6 +6,7 @@ The :class:`~.SBMCHECK` class is used to test the health of OpenSMOG and SMOG 2.
 """
 
 import os
+import io
 import sys
 import re as regex
 import subprocess
@@ -64,14 +65,18 @@ class SBMCHECK():
                 topname=sysname+"opentest.top"
                 xmlname=sysname+"opentest.xml"
         
-        
-            f = open(os.devnull, 'w')
-            with redirect_stdout(f):
-                sbm_test = SBM(name='testss', time_step=0.002, collision_rate=1.0, r_cutoff=2, temperature=0.1, pbc = PBC, warn = False)
-                sbm_test.setup_openmm(platform=platform,GPUindex='default')
-                sbm_test.saveFolder('.')
-                sbm_test.loadSystem(Grofile=sysname+"frame.0.gro", Topfile=topname, Xmlfile=xmlname)
-                sbm_test.createSimulation()
+            buffer=io.StringIO()
+            try:
+                with redirect_stdout(buffer):
+                    sbm_test = SBM(name='testss', time_step=0.002, collision_rate=1.0, r_cutoff=2, temperature=0.1, pbc = PBC, warn = False)
+                    sbm_test.setup_openmm(platform=platform,GPUindex='default')
+                    sbm_test.saveFolder('.')
+                    sbm_test.loadSystem(Grofile=sysname+"frame.0.gro", Topfile=topname, Xmlfile=xmlname)
+                    sbm_test.createSimulation()
+            except:
+                print("Failed to launch OpenSMOG using the available input files.  This often means that you are using an older version of OpenSMOG with a newer version of SMOG2. Using the newest versions together is recommended.\n\nThis is the message returned by OpenSMOG\n\n:{}\n\nQUITTING TESTING WITHOUT COMPLETING".format(buffer.getvalue()))
+                sys.exit(1)
+
             return sbm_test
         
         def comparevalues(ref,open):
