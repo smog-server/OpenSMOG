@@ -139,15 +139,17 @@ from Gromacs).
     
         runsmog = which("smog2")
         print('What platform would you like to test?')
-        print("\tOptions: OpenCL, HIP, CUDA, CPU, reference")
-        plats = ['opencl', 'hip', 'cuda', 'cpu', 'reference']
+        print("\tYour registered platforms are:")
+        plats = []
+        for i in range(Platform.getNumPlatforms()):
+            pn=Platform.getPlatform(i).getName().lower()
+            print("\t\t{} ".format(pn))
+            plats.append(pn)
         for line in sys.stdin:
             platform = line.rstrip()
             break
         if not (platform.lower() in plats):
             print('''Unrecognized platform! 
-Options are (case-insensitive): 
-OpenCL, HIP, CUDA, CPU, reference
 
 Unable to perform tests.
 ''')
