@@ -289,8 +289,9 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         precision = precision.lower()
         if precision not in ["mixed", "single", "double"]:
-            SBM.opensmog_quit("Precision must be mixed, single or double")
-            
+            print("Precision must be mixed, single or double.\nTry running setup_openmm again.")
+            return
+
         properties = {}
         properties["Precision"] = precision
         if GPUindex.lower() != "default":
@@ -298,6 +299,19 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             
         self.properties = properties
 
+        platslower = []
+        plats = []
+        for i in range(Platform.getNumPlatforms()):
+            pn=Platform.getPlatform(i).getName()
+            plats.append(pn)
+            platslower.append(pn.lower())
+        if not (platform.lower() in platslower):
+            print("\"{}\" is not a registered platform.\nRegistered platforms are:".format(platform))
+            for i in plats:
+                print("\t{}".format(i))
+            print("Try rerunning setup_openmm again.")
+            return    
+ 
         if platform.lower() == "opencl":
             platformObject = Platform.getPlatformByName('OpenCL')
 
@@ -316,7 +330,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             platformObject = Platform.getPlatformByName('HIP')
 
         else:
-            SBM.opensmog_quit("Unknown platform")
+            platformObject = Platform.getPlatformByName(platform)
         
         self.platform = platformObject
         if isinstance(integrator,str): 
