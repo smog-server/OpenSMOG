@@ -122,8 +122,31 @@ be more appropriate.
         self.pbc=pbc
         self.cmm=cmm
         self.nonbonded_present = False
-        self.setupCheck = False
-            
+
+# setup_openmm defaults
+        
+        self.forceDict = {}
+        self.forcesDict = {}
+ 
+        self.integrator = LangevinIntegrator(self.temperature,
+            self.gamma, self.dt)
+        self.integrator_type = 'langevin'
+
+        properties={}
+        properties["Precision"] = 'single'
+        self.properties = properties
+
+        plats = []
+        for i in range(Platform.getNumPlatforms()):
+            pn=Platform.getPlatform(i).getName()
+            plats.append(pn)
+
+        for tryplat in ['HIP','CUDA','OpenCL','CPU','Reference']:
+            if tryplat in plats:
+                self.platform = Platform.getPlatformByName(tryplat)
+                self.platformname=tryplat
+                break
+
     def help():
         R"""Prints information about using OpenSMOG.
         """
@@ -171,10 +194,11 @@ Choose some basic runtime settings.  We will call our system 2ci2
 Note: By default, PBC is not turned on.  If you want to include PBCs, then use:
 >SMOGrun = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5, pbc=True)
 
-Select a platform and GPU IDs (if needed)
+Select a platform and GPU IDs (if needed) - This is optional. If not given, then OpenSMOG will try to pick
+the fastest platform, and the precision will be set to single.
 >SMOGrun.setup_openmm(platform='cuda',GPUindex='default')
 
-Decide where to save your data (here, output_2ci2)
+Decide where to save your data (here, output_2ci2) - This is optional. If not given, will write to current dir.
 >SMOGrun.saveFolder('output_2ci2')
 
 You may optionally set some input file names to variables
@@ -217,6 +241,7 @@ If you saved a state or checkpoint in a previous run, here is an example
 for how to continue the simulation. 
 >from OpenSMOG import SBM
 >SMOGrun2 = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5)
+note: setup_openmm and saveFolder are optional
 >SMOGrun2.setup_openmm(platform='cuda',GPUindex='default')
 >SMOGrun2.saveFolder('output_2ci2')
 >SMOG_grofile = '2ci2.gro'
@@ -271,7 +296,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
         print("Minimization completed")
 
-    def setup_openmm(self, platform='opencl', precision='single', GPUindex='default', integrator="langevin"):
+    def setup_openmm(self, platform="", precision="", GPUindex="", integrator=""):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
 
@@ -287,15 +312,23 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 Integrator to use in the simulations. Options are *langevin*, *langevinMiddle,  *variableLangevin* and, *brownian*. You may also build your own integrator object and pass it, rather than use a named integrator. (Default value: :code:`langevin`).
         """
 
-        precision = precision.lower()
-        if precision not in ["mixed", "single", "double"]:
-            print("Precision must be mixed, single or double.\nTry running setup_openmm again.")
-            return
-
         properties = {}
-        properties["Precision"] = precision
-        if GPUindex.lower() != "default":
-            properties["DeviceIndex"] = GPUindex
+        if precision == "":
+            # use the default value that was set with _init_
+            properties["Precision"] = self.properties["Precision"]
+        else:
+            precision = precision.lower()
+            if precision not in ["mixed", "single", "double"]:
+                print("Precision must be mixed, single or double.\nTry running setup_openmm again.")
+                return
+            properties["Precision"] = precision
+
+        if GPUindex != "" and GPUindex.lower() != "default":
+            if isinstance(GPUindex,int):
+                 properties["DeviceIndex"] = GPUindex
+            else:
+                 print('Setup incomplete!\nGPUindex must be an integer. Given: {}\nTry rerunning setup_openmm again.'.format(GPUindex))
+                 return
             
         self.properties = properties
 
@@ -313,26 +346,23 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             return    
  
         if platform.lower() == "opencl":
-            platformObject = Platform.getPlatformByName('OpenCL')
-
+            nametmp='OpenCL'
         elif platform.lower() == "reference":
-            platformObject = Platform.getPlatformByName('Reference')
+            nametmp='Reference'
             self.properties = {}
-
         elif platform.lower() == "cuda":
-            platformObject = Platform.getPlatformByName('CUDA')
-
+            nametmp='CUDA'
         elif platform.lower() == "cpu":
-            platformObject = Platform.getPlatformByName('CPU')
+            nametmp='CPU'
             self.properties = {}
-
         elif platform.lower() == "hip":
-            platformObject = Platform.getPlatformByName('HIP')
-
+            nametmp='HIP'
         else:
-            platformObject = Platform.getPlatformByName(platform)
+            nametmp=platform
         
-        self.platform = platformObject
+        self.platform = Platform.getPlatformByName(nametmp)
+        self.platformname = nametmp
+
         if isinstance(integrator,str): 
             if integrator.lower() == "langevin":
                 self.integrator = LangevinIntegrator(self.temperature,
@@ -346,18 +376,14 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             elif integrator.lower() == "brownian": 
                 self.integrator = BrownianIntegrator(self.temperature,
                     self.gamma, self.dt)
-            else:
+            elif integrator != "": 
                 SBM.opensmog_quit("Unknown/unsupported integrator name: {}".format(integrator))
-            self.integrator_type = integrator
-                
+            if integrator != "": 
+                self.integrator_type = integrator
         else:
             self.integrator = integrator
             self.integrator_type = "UserDefined"
 
-        self.setupCheck = True  
-        self.forceDict = {}
-        self.forcesDict = {}
-        
     def saveFolder(self, folder):
 
         R"""Sets the folder path to save data.
@@ -397,20 +423,16 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         self.inputNames = [Grofile, Topfile, Xmlfile]
 
-        if (self.setupCheck):
+        self._check_file(Grofile, '.gro')
+        self.loadGro(Grofile)
 
-            self._check_file(Grofile, '.gro')
-            self.loadGro(Grofile)
+        self._check_file(Topfile, '.top')
+        self.loadTop(Topfile)
 
-            self._check_file(Topfile, '.top')
-            self.loadTop(Topfile)
+        self._check_file(Xmlfile, '.xml')
+        self.loadXml(Xmlfile)
 
-            self._check_file(Xmlfile, '.xml')
-            self.loadXml(Xmlfile)
-
-            print("Loaded force field and config files.")
-        else:
-            SBM.opensmog_quit("setup_openmm() is not defined. Please set it before using LoadSystem()\n")
+        print("Loaded force field and config files.")
         
         
     def _check_file(self, filename, ext):
