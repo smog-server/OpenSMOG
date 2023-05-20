@@ -299,6 +299,11 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
     def setup_openmm(self, platform="", precision="", GPUindex="", integrator=""):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
+    This is optional.  If it is not used, then the following defaults will be used:
+        precision: single
+        integrator: Langevin
+        platform: a guess of the fastest platform available
+        GPUindex: Default
 
         Args:
 
@@ -387,6 +392,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
     def saveFolder(self, folder):
 
         R"""Sets the folder path to save data.
+    This is option.  If not used, output will be written to current directory.
 
         Args:
 
