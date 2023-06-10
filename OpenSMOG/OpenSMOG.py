@@ -1007,7 +1007,7 @@ Will try to import mdtraj...""")
         Args:
 
             nsteps (int, required):
-                 Number of steps to be performed in the simulation. (Default value: :code:`10**7`)
+                 Number of steps to be performed in the simulation. 
             report (bool, optional):
                 Whether to print the simulation progress. (Default value: :code:`True`).
             interval (int, optional):
