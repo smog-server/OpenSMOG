@@ -328,12 +328,15 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 return
             properties["Precision"] = precision
 
-        if GPUindex != "" and GPUindex.lower() != "default":
-            if isinstance(GPUindex,int):
-                 properties["DeviceIndex"] = GPUindex
-            else:
-                 print('Setup incomplete!\nGPUindex must be an integer. Given: {}\nTry rerunning setup_openmm again.'.format(GPUindex))
-                 return
+        if isinstance(GPUindex,int):
+            properties["DeviceIndex"] = GPUindex
+        elif isinstance(GPUindex,str):
+            if GPUindex.lower() != "default":
+                print('Setup incomplete!\nGPUindex must be an integer. Given: {}\nTry rerunning setup_openmm again.'.format(GPUindex))
+                return
+        else:
+            print('Setup incomplete!\nGPUindex must be an integer or \"default\". Given: {}\nTry rerunning setup_openmm again.'.format(GPUindex))
+            return
             
         self.properties = properties
 
