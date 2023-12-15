@@ -296,7 +296,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
         print("Minimization completed")
 
-    def setup_openmm(self, platform="", precision="", GPUindex="", integrator=""):
+    def setup_openmm(self, platform="", precision="", GPUindex="default", integrator=""):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
     This is optional.  If it is not used, then the following defaults will be used:
