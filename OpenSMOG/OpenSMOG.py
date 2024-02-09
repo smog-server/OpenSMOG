@@ -150,6 +150,22 @@ be more appropriate.
                 self.platformname=tryplat
                 break
 
+    def runAA(name='sbmtest',time_step=0.002, nsteps=10000,collision_rate=1.0, r_cutoff=0.65, temperature=0.5,gro="opensmog.gro",top="opensmog.top",xml="opensmog.xml",saveinterval=1000,trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log'):
+        R"""A quick way to start a simulation with default AA parameters.
+    You can also override many parameters, if needed. But, this may not be suitable for production runs.
+        """
+        SMOGrun=SBM(name=name, time_step=time_step, collision_rate=collision_rate, r_cutoff=r_cutoff, temperature=temperature)
+        SMOGrun.loadSystem(Grofile=gro, Topfile=top, Xmlfile=xml)
+        SMOGrun.createSimulation()
+        SMOGrun.minimize(tolerance=1)
+        SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=saveinterval,trajectoryName=trajectoryName, trajectoryFormat=trajectoryFormat, energiesName=energiesName, energy_componentsName=energy_componentsName, logFileName='OpenSMOG.log')
+        SMOGrun.run(nsteps=nsteps, report=True, interval=saveinterval)
+        # return the object, in case we want to do something else with it
+        if returnobject:
+            return SMOGrun
+
+
+
     def help():
         R"""Prints information about using OpenSMOG.
         """
@@ -268,6 +284,8 @@ After loading either the state, or checkpoint, then run the simulation
 
 >SMOGrun2.run(nsteps=10**6, report=True, interval=10**3)
 
+
+Alternate quick launch: Many of the standard calls can be obtained with a single call to runAA
 
 For more information and help, see the OpenSMOG and SMOG 2 websites.
 OpenSMOG: https://opensmog.readthedocs.io/en/latest/
@@ -885,7 +903,7 @@ ignore this message.
         """
 
         
-        print("Creating the simulation with the following parameters:\n   name : {}\n   platform : {}\n   precision : {}\n   integrator : {}\n   timestep : {}\n   temperature : {}\n   r_cutoff : {}\n   pbc : {} \n   remove cmm : {}\n".format(self.name,self.platformname,self.properties["Precision"],self.integrator_type,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
+        print("Creating the simulation with the following parameters:\n        name : {}\n        platform : {}\n        precision : {}\n        integrator : {}\n        timestep : {}\n        temperature : {}\n        r_cutoff : {}\n        pbc : {} \n        remove cmm : {}\n".format(self.name,self.platformname,self.properties["Precision"],self.integrator_type,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
 
         if not self.loaded:
             self.simulation = Simulation(self.Top.topology, self.system, self.integrator, self.platform, self.properties) 
