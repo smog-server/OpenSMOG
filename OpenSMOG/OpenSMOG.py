@@ -160,9 +160,6 @@ be more appropriate.
         SMOGrun.minimize(tolerance=1)
         SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=saveinterval,trajectoryName=trajectoryName, trajectoryFormat=trajectoryFormat, energiesName=energiesName, energy_componentsName=energy_componentsName, logFileName='OpenSMOG.log')
         SMOGrun.run(nsteps=nsteps, report=True, interval=saveinterval)
-        # return the object, in case we want to do something else with it
-        if returnobject:
-            return SMOGrun
 
 
 
