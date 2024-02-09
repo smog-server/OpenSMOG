@@ -81,8 +81,10 @@ class SBM:
 
         self.name = name
         self.warn = warn
+        self.time_step=time_step
         self.dt = time_step * picoseconds
         self.started=0
+        self.collision_rate=collision_rate
         self.gamma = collision_rate / picosecond
         self.rcutoff = r_cutoff * nanometers  
 
@@ -114,6 +116,7 @@ the default all-atom model. Depending on your model, other choices may
 be more appropriate.
 ''')
 		
+        self.temperature_reduced = temperature 
         self.temperature = (temperature / 0.00831446261815) * kelvin
         self.forceApplied = False
         self.loaded = False
@@ -378,19 +381,21 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             if integrator.lower() == "langevin":
                 self.integrator = LangevinIntegrator(self.temperature,
                     self.gamma, self.dt)
+                self.integrator_type = 'langevin'
             elif integrator.lower() == "langevinmiddle": 
                 self.integrator = LangevinMiddleIntegrator(self.temperature,
                     self.gamma, self.dt)
+                self.integrator_type = 'langevinmiddle'
             elif integrator.lower() == "variablelangevin": 
                 self.integrator = VariableLangevinIntegrator(self.temperature,
                     self.gamma, self.dt)
+                self.integrator_type = 'variablelangevin'
             elif integrator.lower() == "brownian": 
                 self.integrator = BrownianIntegrator(self.temperature,
                     self.gamma, self.dt)
+                self.integrator_type = 'brownian'
             elif integrator != "": 
                 SBM.opensmog_quit("Unknown/unsupported integrator name: {}".format(integrator))
-            if integrator != "": 
-                self.integrator_type = integrator
         else:
             self.integrator = integrator
             self.integrator_type = "UserDefined"
@@ -878,6 +883,9 @@ ignore this message.
 
         R"""Creates the simulation context and loads into the OpenMM platform.
         """
+
+        
+        print("Creating the simulation with the following parameters:\n   name : {}\n   platform : {}\n   precision : {}\n   integrator : {}\n   timestep : {}\n   temperature : {}\n   r_cutoff : {}\n   pbc : {} \n   remove cmm : {}\n".format(self.name,self.platformname,self.properties["Precision"],self.integrator_type,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
 
         if not self.loaded:
             self.simulation = Simulation(self.Top.topology, self.system, self.integrator, self.platform, self.properties) 
