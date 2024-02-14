@@ -147,7 +147,6 @@ be more appropriate.
         for tryplat in ['HIP','CUDA','OpenCL','CPU','Reference']:
             if tryplat in plats:
                 self.platform = Platform.getPlatformByName(tryplat)
-                self.platformname=tryplat
                 break
 
     def runAA(name='sbmtest',time_step=0.002, nsteps=10000,collision_rate=1.0, r_cutoff=0.65, temperature=0.5,gro="opensmog.gro",top="opensmog.top",xml="opensmog.xml",saveinterval=1000,trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log'):
@@ -390,7 +389,6 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             nametmp=platform
         
         self.platform = Platform.getPlatformByName(nametmp)
-        self.platformname = nametmp
 
         if isinstance(integrator,str): 
             if integrator.lower() == "langevin":
@@ -899,8 +897,12 @@ ignore this message.
         R"""Creates the simulation context and loads into the OpenMM platform.
         """
 
+        if (self.platform.getName() in ["CUDA", "OpenCL", "HIP"]):
+            tmpprec=self.properties["Precision"]
+        else:
+            tmpprec="N/A"
         
-        print("Creating the simulation with the following parameters:\n        name : {}\n        platform : {}\n        precision : {}\n        integrator : {}\n        timestep : {}\n        temperature : {}\n        r_cutoff : {}\n        pbc : {} \n        remove cmm : {}\n".format(self.name,self.platformname,self.properties["Precision"],self.integrator_type,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
+        print("Creating the simulation with the following parameters:\n        name : {}\n        platform : {}\n        precision : {}\n        integrator : {}\n        timestep : {}\n        temperature : {}\n        r_cutoff : {}\n        pbc : {} \n        remove cmm : {}\n".format(self.name,self.platform.getName(),tmpprec,self.integrator_type,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
 
         if not self.loaded:
             self.simulation = Simulation(self.Top.topology, self.system, self.integrator, self.platform, self.properties) 
