@@ -345,18 +345,14 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 return
             properties["Precision"] = precision
 
-        try:
-            # if an int, use it, but save as string
-            properties["DeviceIndex"] = str(int(GPUindex))
-        except ValueError:
-            # not an int, or int-like string
-            if isinstance(GPUindex,str):
-                if GPUindex.lower() != "default":
-                    print('Setup incomplete!\nGPUindex must be an integer, or \"default\". Given: {}\nTry rerunning setup_openmm again.'.format(GPUindex))
-                    return
-            else:
-                print('Setup incomplete!\nGPUindex must be an integer or \"default\". Given: {}\nTry rerunning setup_openmm again.'.format(GPUindex))
+        if isinstance(GPUindex,str):
+            if regex.search("^\d((,\d)*)?$",GPUindex):
+                properties["DeviceIndex"] = GPUindex
+            elif GPUindex.lower() != "default":
+                print('Setup incomplete!\nGPUindex must be an integer, a string of comma-separated integers, or \"default\". Given: \"{}\"\nTry rerunning setup_openmm again.'.format(GPUindex))
                 return
+        elif isinstance(GPUindex,int):
+            properties["DeviceIndex"] = str(GPUindex)
 
         self.properties = properties
 
@@ -762,13 +758,17 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             self.contacts_present=False
             if root.find('contacts') == None:
                 print('''
-NOTE: No contacts were found in the XML file. While this is allowed,
-it is unusual for a SMOG model to not contain contacts. Accordingly,
-This message may be due to an error in your workflow. However, if 
-you are expecting your model to lack contacts, then you can safely 
-ignore this message.
+No contacts were found in the xml file. This likely means your
+system does not have contacts, your contacts are defined in 
+the top file, or there is an mistake in your files. If you 
+were not expecting this message, you may want to see why 
+it was flagged.
 ''')
             else:
+                print('''
+Contacts found in the xml file.  Will include definitions
+provided in the top and xml files.
+''')
                 self.contacts_present=True
                 contacts_xml=root.find('contacts')
                 for i in range(len(contacts_xml)):
@@ -793,7 +793,17 @@ ignore this message.
 
             #Launch contact force function
             self.nonbond_present=False
-            if root.find('nonbond') != None:
+            if root.find('nonbond') == None:
+                print('''
+Nonbonded parameters not found in XML file.  Will
+only use information nonbonded parameters that
+are provided in the top file.
+''') 
+            else:
+                print('''
+Nonbonded parameters found in XML file. Nonbonded
+parameters in top file will be ignored.
+''') 
                 self.nonbond_present=True
                 nonbond_xml=root.find('nonbond')
                 NonBond_Num=[]
@@ -819,8 +829,6 @@ ignore this message.
                         internal_NBParam.append(nbpar.attrib)
                     NBParameters.append(internal_NBParam)
                 xml_data['nonbond']=[NonBond_Num,NBExpression,NBExpressionParameters,NBParameters]
-            else:
-                self.nonbond_present=False
 
 
             ## Custom Dihedrals 
@@ -831,8 +839,15 @@ ignore this message.
             
             self.dihedrals_present=False
             if root.find('dihedrals') == None:
-                print('''        No dihedral definitions found in XML file. Will only use dihedral information provided in the top file''')
+                print('''
+Dihedral definitions not found in XML file. Will only 
+use dihedral information provided in the top file.
+''')
             else:
+                print('''
+Dihedral definitions found in XML file. Will include 
+dihedral information provided in the top and xml files.
+''')
                 self.dihedrals_present=True
                 dihedrals_xml=root.find('dihedrals')
                 for i in range(len(dihedrals_xml)):
