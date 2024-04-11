@@ -210,7 +210,7 @@ Note: By default, PBC is not turned on.  If you want to include PBCs, then use:
 >SMOGrun = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5, pbc=True)
 
 Select a platform and GPU IDs (if needed) - This is optional. If not given, then OpenSMOG will try to pick
-the fastest platform, and the precision will be set to single.
+the fastest platform, the LangevinMiddle integrator will be used and precision will be set to single.
 >SMOGrun.setup_openmm(platform='cuda',GPUindex='default')
 
 Decide where to save your data (here, output_2ci2) - This is optional. If not given, will write to current dir.
