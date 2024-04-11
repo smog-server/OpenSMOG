@@ -133,7 +133,7 @@ be more appropriate.
  
         self.integrator = LangevinIntegrator(self.temperature,
             self.gamma, self.dt)
-        self.integrator_type = 'langevin'
+        self.integrator_type = 'langevinmiddle'
 
         properties={}
         properties["Precision"] = 'single'
@@ -318,7 +318,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         R"""Sets up the parameters of the simulation OpenMM platform.
     This is optional.  If it is not used, then the following defaults will be used:
         precision: single
-        integrator: Langevin
+        integrator: LangevinMiddle
         platform: a guess of the fastest platform available
         GPUindex: Default
 
@@ -331,7 +331,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             GPUIndex (str, optional):
                 Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. 
             integrator (str, or integrator object):
-                Integrator to use in the simulations. Options are *langevin*, *langevinMiddle,  *variableLangevin* and, *brownian*. You may also build your own integrator object and pass it, rather than use a named integrator. (Default value: :code:`langevin`).
+                Integrator to use in the simulations. Options are *langevin*, *langevinMiddle,  *variableLangevin* and, *brownian*. You may also build your own custom integrator and pass it, rather than use a standard integrator. (Default value: :code:`langevinmiddle`).
         """
 
         properties = {}
