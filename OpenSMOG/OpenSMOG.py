@@ -128,7 +128,6 @@ be more appropriate.
 
 # setup_openmm defaults
         
-        self.forceDict = {}
         self.forcesDict = {}
  
         self.integrator = LangevinIntegrator(self.temperature,
@@ -505,7 +504,6 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             print('This simulation will not use Periodic boundary conditions')
             self.Top = GromacsTopFile(Topfile)
             self.system = self.Top.createSystem(nonbondedMethod=CutoffNonPeriodic,nonbondedCutoff=self.rcutoff,removeCMMotion = self.cmm)
-        nforces = len(self.system.getForces())
         for force_id, force in enumerate(self.system.getForces()):  
             force.setForceGroup(force_id)
             self.forcesDict[force.__class__.__name__] = force
