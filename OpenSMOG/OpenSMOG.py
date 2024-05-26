@@ -1165,6 +1165,16 @@ Will try to import mdtraj...""")
     print('{:^96s}'.format("****************************************************************************************"))
     print('{:^96s}'.format("**** *** *** *** *** *** *** *** OpenSMOG (v"+version+") *** *** *** *** *** *** *** ****"))
     print('')
+
+    # this was added so that we can add additional information about the version, such as a git commit number, if desired
+    pt = os.path.dirname(os.path.realpath(__file__))
+    pt = pt+"/.versionnotes"
+    if os.path.exists(pt):
+        fh=open(pt,'r')
+        lines=fh.readlines()
+        for line in lines:
+            print('{:^96s}'.format(line.rstrip()))
+        
     print('{:^96s}'.format("The OpenSMOG class is used to perform molecular dynamics simulations using"))
     print('{:^96s}'.format("Structure-Based Models (SBM) for biomolecular systems,"))
     print('{:^96s}'.format("and it allows for the simulation of a wide variety of potential forms."))
