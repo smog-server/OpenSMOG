@@ -788,7 +788,7 @@ provided in the top and xml files.
                 contacts_xml=root.find('contacts')
                 for i in range(len(contacts_xml)):
                     for name in contacts_xml[i].iter('contacts_type'):
-                        Force_Names.append(name.attrib['name'])
+                        Force_Names.append("c"+str(i)+"."+name.attrib['name'])
 
                     for expr in contacts_xml[i].iter('expression'):
                         Expression.append(expr.attrib['expr'])
@@ -867,7 +867,7 @@ dihedral information provided in the top and xml files.
                 dihedrals_xml=root.find('dihedrals')
                 for i in range(len(dihedrals_xml)):
                     for name in dihedrals_xml[i].iter('dihedrals_type'):
-                        CDForce_Names.append(name.attrib['name'])
+                        CDForce_Names.append("d"+str(i)+"."+name.attrib['name'])
 
                     for expr in dihedrals_xml[i].iter('expression'):
                         CDExpression.append(expr.attrib['expr'])
