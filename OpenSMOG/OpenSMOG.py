@@ -1002,13 +1002,6 @@ dihedral information provided in the top and xml files.
             self._checkFile(trajfile)   
             self.outputNames.append(trajfile)  
 
-            for i in ['hdf5', 'xtc', 'netcdf']:
-                if i == trajectoryFormat:
-                    print("""
-The """+str(trajectoryFormat)+""" trajectory format requires mdtraj to be loaded.
-Will try to import mdtraj...""")
-                    import mdtraj as md
-
             if trajectoryFormat == 'dcd':
                 self.simulation.reporters.append(DCDReporter(trajfile, interval))
             elif trajectoryFormat == 'pdb':
@@ -1016,11 +1009,26 @@ Will try to import mdtraj...""")
             elif trajectoryFormat == 'pdbx':
                 self.simulation.reporters.append(PDBxReporter(trajfile, interval))
             elif trajectoryFormat == 'hdf5':
+                print("""
+The hdf5 trajectory format requires mdtraj to be loaded.
+Will try to import mdtraj...""")
+                import mdtraj as md
+
                 self.simulation.reporters.append(md.reporters.HDF5Reporter(trajfile, interval))
             elif trajectoryFormat == 'netcdf':
+                print("""
+The netcdf trajectory format requires mdtraj to be loaded.
+Will try to import mdtraj...""")
+                import mdtraj as md
                 self.simulation.reporters.append(md.reporters.NetCDFReporter(trajfile, interval))
             elif trajectoryFormat == 'xtc':
-                self.simulation.reporters.append(md.reporters.XTCReporter(trajfile, interval))
+                try:
+                    repor=XTCReporter(trajfile, interval)
+                except:
+                    print("xtc reporter class not found. This must mean you are using a version of OpenMM that is older than 8.1.1. In that case, you need to use mdtraj to write to an xtc format. Will try to load mdtraj now...")
+                    import mdtraj as md
+                    repor=md.reporters.XTCReporter(trajfile, interval)
+                self.simulation.reporters.append(repor)
             else:
                 SBM.opensmog_quit("Trajectory format "+str(trajectoryFormat)+" not recognized")
                 
