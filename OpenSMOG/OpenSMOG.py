@@ -967,7 +967,7 @@ dihedral information provided in the top and xml files.
             trajectoryName (str, optional):
                 Name of the trajectory file.
             trajectoryFormat (str, optional):
-                File format of the trajectory file. Options are dcd, pdb, pdbx, hdf5, netcdf, and xtc. Saving the trajectory in the file formats hdf5, netcdf, and xtc require the MDTraj package. (Default value: :code:`dcd`).
+                File format of the trajectory file. Options are dcd, pdb, pdbx, hdf5, netcdf, and xtc. Saving the trajectory in the file formats hdf5 and netcdf require the MDTraj package. xtc only requires MDtraj if using older versions of OpenMM (Default value: :code:`dcd`).
             energies (bool, optional):
                  Whether to save the energies in a *.txt* file containing five columns, comma-delimited. The header of the files shows the information of each collum: #"Step","Potential Energy (kJ/mole)","Kinetic Energy (kJ/mole)","Total Energy (kJ/mole)","Temperature (K)". (Default value: :code:`True`).
             energiesName (str, optional):
