@@ -788,7 +788,9 @@ provided in the top and xml files.
                 contacts_xml=root.find('contacts')
                 for i in range(len(contacts_xml)):
                     for name in contacts_xml[i].iter('contacts_type'):
-                        Force_Names.append("c"+str(i)+"."+name.attrib['name'])
+                        if name.attrib['name'] in Force_Names:
+                            SBM.opensmog_quit("contacts_type name \""+name.attrib['name']+"\" is used more than once in the OpenSMOG xml file.  The name of each contacts_type must be unique.")
+                        Force_Names.append(name.attrib['name'])
 
                     for expr in contacts_xml[i].iter('expression'):
                         Expression.append(expr.attrib['expr'])
@@ -867,7 +869,9 @@ dihedral information provided in the top and xml files.
                 dihedrals_xml=root.find('dihedrals')
                 for i in range(len(dihedrals_xml)):
                     for name in dihedrals_xml[i].iter('dihedrals_type'):
-                        CDForce_Names.append("d"+str(i)+"."+name.attrib['name'])
+                        if name.attrib['name'] in CDForce_Names:
+                            SBM.opensmog_quit("XML input error: dihedrals_type name \""+name.attrib['name']+"\" is used more than once in the OpenSMOG xml file.  The name of each dihedrals_type must be unique.")
+                        CDForce_Names.append(name.attrib['name'])
 
                     for expr in dihedrals_xml[i].iter('expression'):
                         CDExpression.append(expr.attrib['expr'])
