@@ -52,13 +52,13 @@ class stateReporter(StateDataReporter):
 
         Returns: a list of strings giving the title of each observable being reported on.
         """
-        headers = []
+        headers = .
         if self._progress:
             headers.append('Progress (%)')
         if self._step:
             headers.append('Step')
         if self._time:
-            headers.append('Time (ps)')
+            headers.append('Time')
         if self._potentialEnergy:
             headers.append('Potential Energy')
         if self._kineticEnergy:
@@ -66,13 +66,13 @@ class stateReporter(StateDataReporter):
         if self._totalEnergy:
             headers.append('Total Energy')
         if self._temperature:
-            headers.append('Temperature (R.U.)')
+            headers.append('Temperature')
         if self._volume:
             headers.append('Box Volume (nm^3)')
         if self._density:
             headers.append('Density (g/mL)')
         if self._speed:
-            headers.append('Speed (ns/day)')
+            headers.append('Speed (x1000 R.U./day)')
         if self._elapsedTime:
             headers.append('Elapsed Time (s)')
         if self._remainingTime:

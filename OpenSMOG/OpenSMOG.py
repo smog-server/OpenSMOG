@@ -172,17 +172,20 @@ be more appropriate.
 
 #############################################################################
 
-                              Units in OpenSMOG                              
+                              UNITS IN OpenSMOG                              
 
-Time: When using OpenSMOG, it is important to consider the units. Since 
-OpenSMOG is built on OpenMM libraries, some unit labels can be misleading. 
-Specifically, SMOG models use reduced units (R.U.). While it is possible to
-estimate the effective timescales in these models, OpenMM reporters may label 
-the timescales as \"ns\". One should not consider this label to be meaningful.
-In terms of accounting, 1 \"ns\" is equal to 1000 reduced time units. For 
-detailed discussions of units, one can consult any number of recent papers 
-by the SMOG team, such as Yang et al. JCP 2019, 151, 085102, which estimated
-that one reduced unit corresponds to 50-1000 ps.
+OpenSMOG uses reduced units (R.U.) for all variables and output. 
+Length is in nm, while energy, time and temperature are in their 
+corresponding reduced units.
+
+Time: Since OpenSMOG is built on OpenMM libraries, some unit labels can be 
+misleading. While it is possible to estimate the effective timescales in 
+these models, OpenMM reporters may label the timescales as \"ns\". One 
+should not consider this label to be meaningful. In terms of accounting, 
+1 \"ns\" is equal to 1000 reduced time units. For detailed discussions of 
+units, one can consult any number of recent papers by the SMOG team, such as 
+Yang et al. JCP 2019, 151, 085102, which estimated that one reduced unit 
+corresponds to 50-1000 ps.
 
 Temperature: When initializing your simulation with the SBM class, the 
 temperature is provided in reduced units, where a typical protein will fold
@@ -195,7 +198,7 @@ libraries may still label the energies as units of kJ/mol. This label should
 be ignored, unless you calibrated your SMOG model to use this energy scale. 
 
 
-                                Usage Example 
+                               USAGE EXAMPLES 
 
 While a broad range of simulation protocols may be used, here is a very basic
 example for how to launch simulations using the OpenSMOG module with OpenMM.
@@ -208,7 +211,7 @@ Choose some basic runtime settings.  We will call our system 2ci2
 Note: By default, PBC is not turned on.  If you want to include PBCs, then use:
 >SMOGrun = SBM(name='2ci2', time_step=0.002, collision_rate=1.0, r_cutoff=1.2, temperature=0.5, pbc=True)
 
-Select a platform and GPU IDs (if needed) - This is optional. If not given, then OpenSMOG will try to pick
+Select a platform and GPU IDs (if needed) - This is optional. If not given, OpenSMOG will try to pick
 the fastest platform, the LangevinMiddle integrator will be used and precision will be set to single.
 >SMOGrun.setup_openmm(platform='cuda',GPUindex='default')
 
@@ -327,7 +330,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         Args:
 
             platform (str, optional):
-                Platform to use in the simulations. Opitions are *CUDA*, *OpenCL*, *HIP*, *CPU*, *Reference*. (Default value: :code:`OpenCL`). 
+                Platform to use in the simulations. Options are *CUDA*, *OpenCL*, *HIP*, *CPU*, *Reference*. (Default value: :code:`OpenCL`). 
             precision (str, optional):
                 Numerical precision type of the simulation. Options are *single*, *mixed*, *double*. (Default value: :code:`single`).  For details check the `OpenMM Documentation <http://docs.openmm.org/latest/developerguide/developer.html#numerical-precision>`__. 
             GPUIndex (str, optional):
