@@ -52,7 +52,7 @@ class stateReporter(StateDataReporter):
 
         Returns: a list of strings giving the title of each observable being reported on.
         """
-        headers = .
+        headers = []
         if self._progress:
             headers.append('Progress (%)')
         if self._step:
