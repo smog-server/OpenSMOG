@@ -56,7 +56,7 @@ class SBMCHECK():
                         sys.exit(1)    
         
         
-        def prepOpenSMOG(runsmog,sysname,platform,PBC):
+        def prepOpenSMOG(runsmog,sysname,platform,PBC,xml):
             # make and return a system.
             if runsmog:
                 topname="opentest.top"
@@ -71,7 +71,10 @@ class SBMCHECK():
                     sbm_test = SBM(name='testss', time_step=0.002, collision_rate=1.0, r_cutoff=2, temperature=0.1, pbc = PBC, warn = False)
                     sbm_test.setup_openmm(platform=platform,GPUindex='default')
                     sbm_test.saveFolder('.')
-                    sbm_test.loadSystem(Grofile=sysname+"frame.0.gro", Topfile=topname, Xmlfile=xmlname)
+                    if xml:
+                        sbm_test.loadSystem(Grofile=sysname+"frame.0.gro", Topfile=topname, Xmlfile=xmlname)
+                    else:
+                        sbm_test.loadSystem(Grofile=sysname+"frame.0.gro", Topfile=topname, noxml=True)
                     sbm_test.createSimulation()
             except:
                 print("Failed to launch OpenSMOG using the available input files.  This often means that you are using an older version of OpenSMOG with a newer version of SMOG2. Using the newest versions together is recommended.\n\nThis is the message returned by OpenSMOG\n\n:{}\n\nQUITTING TESTING WITHOUT COMPLETING".format(buffer.getvalue()))
@@ -170,8 +173,11 @@ Unable to perform tests.
             testname=testname.strip()
     
             PBC=False
+            xml=True
             if regex.search(".PBC$",testname):
                 PBC=True
+            if regex.search(".noxml$",testname):
+                xml=False
     
             sysname = "share/tests/"+testname+"/"
             pt = os.path.dirname(os.path.realpath(__file__))
@@ -185,7 +191,7 @@ Unable to perform tests.
                 nummatch+=10
                 if runsmog:
                     runSMOG(sysname)
-                sbm_test = prepOpenSMOG(runsmog,sysname,platform,PBC)
+                sbm_test = prepOpenSMOG(runsmog,sysname,platform,PBC,xml)
                 energies = open(sysname+"energies", "r")
                 for frame in range(10):
                     newgro = app.GromacsGroFile(sysname+"frame."+str(frame)+".gro")
