@@ -126,7 +126,7 @@ be more appropriate.
         self.cmm=cmm
         self.nonbonded_present = False
 
-# setup_openmm defaults
+# setup defaults, in case setup_openmm and/or createReporters is not called
         
         self.forcesDict = {}
  
@@ -136,7 +136,8 @@ be more appropriate.
         properties={}
         properties["Precision"] = 'single'
         self.properties = properties
-
+        self.outputNames = []
+        self.logFileName = 'OpenSMOG.log'
         plats = []
         for i in range(Platform.getNumPlatforms()):
             pn=Platform.getPlatform(i).getName()
@@ -235,7 +236,7 @@ Create the context, and prepare the simulation to run
 Perform energy minimization
 >SMOGrun.minimize(tolerance=1)
 
-Decide how frequently to save data
+Decide how frequently to save data. If this is skipped, energies and coordinates will not be written.
 >SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=10**3)
 
 Launch the simulation
@@ -980,7 +981,7 @@ dihedral information provided in the top and xml files.
                 Name of the energy_components file.     
             logFileName (str, optional):
                 Name of the log file.     
-            interval (int, required):
+            interval (int, optional):
                  Frequency to write the data to the output files. (Default value: :code:`10**3`)
         """
 
@@ -991,7 +992,6 @@ dihedral information provided in the top and xml files.
             logFileName= logFileName + ".log"
 
         self.logFileName=logFileName
-        self.outputNames = []
         if trajectory:
             trajectoryFormat=trajectoryFormat.lower()
             if trajectoryName is None:
