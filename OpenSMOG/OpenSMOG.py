@@ -8,6 +8,7 @@ Details about the default models in SMOG 2 can be found at the following resourc
     - **SMOG server**: https://smog-server.org/smog2/
 """
 
+from math import *
 # with OpenMM 7.7.0, the import calls have changed. So, try both, if needed
 try:
     try:
@@ -138,6 +139,7 @@ be more appropriate.
         self.properties = properties
         self.outputNames = []
         self.logFileName = 'OpenSMOG.log'
+        self.integratorname = False
         plats = []
         for i in range(Platform.getNumPlatforms()):
             pn=Platform.getPlatform(i).getName()
@@ -319,6 +321,35 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
         print("Minimization completed")
 
+    def _LangevinMiddleTruncatedIntegrator(temperature,gamma,dt):
+        R"""Langevin Middle Integrator with a truncated Gaussian
+When using SMOG models, we have found that there are rare instabilities that arise from the random noise term during Langevin Dynamics simulations. These are typically found in large systems (e.g. the ribosome) when simulated for long timescales (>10**8 timesteps). 
+
+To alleviate this instability, we allow one to truncate the Gaussian term at 4*sigma.  This threshold was chosen since it is comparable to the discretized and truncated Gaussian that is used in Gromacs.
+
+         Args:
+
+            temperature (float, required):
+                temperature of the simulation, in reduced units.
+            gamma (float, required):
+                collision frequency, in reduced units
+            dt (float, required):
+                time step, in reduced units
+        """
+
+
+        integrator=CustomIntegrator(dt);
+        integrator.addGlobalVariable("a", exp(-gamma*dt));
+        integrator.addGlobalVariable("b", sqrt(temperature*(1-exp(-2*gamma*dt))));
+        integrator.addGlobalVariable("kT", temperature);
+        integrator.addPerDofVariable("x1", 0);
+        integrator.addUpdateContextState();
+        integrator.addComputePerDof("v", "v + dt*f/m");
+        integrator.addComputePerDof("x", "x + 0.5*dt*v");
+        integrator.addComputePerDof("v", "a*v + b/sqrt(1/m)*max(-4,min(4,gaussian))");
+        integrator.addComputePerDof("x", "x + 0.5*dt*v");
+        return integrator
+
     def setup_openmm(self, platform="", precision="", GPUindex="default", integrator=""):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
@@ -405,6 +436,10 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             elif integrator.lower() == "brownian": 
                 self.integrator = BrownianIntegrator(self.temperature,
                     self.gamma, self.dt)
+            elif integrator.lower() == "langevinmiddletruncated": 
+                self.integrator = SBM._LangevinMiddleTruncatedIntegrator(self.temperature_reduced,
+                    self.gamma, self.dt)
+                self.integratorname = "LangevinMiddleTruncated"
             elif integrator != "": 
                 SBM.opensmog_quit("Unknown/unsupported integrator name: {}".format(integrator))
         else:
@@ -934,8 +969,11 @@ dihedral information provided in the top and xml files.
             tmpprec=self.properties["Precision"]
         else:
             tmpprec="not set"
-        
-        print("Creating the simulation with the following parameters:\n        name : {}\n        platform : {}\n        precision : {}\n        integrator : {}\n        timestep : {}\n        temperature : {}\n        r_cutoff : {}\n        pbc : {} \n        remove cmm : {}\n".format(self.name,self.platform.getName(),tmpprec,self.integrator.__class__.__name__,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
+
+        if not self.integratorname:
+            self.integratorname=self.integrator.__class__.__name__
+
+        print("Creating the simulation with the following parameters:\n        name : {}\n        platform : {}\n        precision : {}\n        integrator : {}\n        timestep : {}\n        temperature : {}\n        r_cutoff : {}\n        pbc : {} \n        remove cmm : {}\n".format(self.name,self.platform.getName(),tmpprec,self.integratorname,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
 
         if not self.loaded:
             self.simulation = Simulation(self.Top.topology, self.system, self.integrator, self.platform, self.properties) 
@@ -1152,7 +1190,7 @@ Will try to import mdtraj...""")
             f.write('Collision Rate: {:}\n'.format(self.gamma*picosecond))
             f.write('r_cutoff: {:}\n'.format(self.rcutoff/nanometers))
             f.write('Temperature: {:}\n'.format(self.temperature * 0.008314/kelvin))
-            f.write('Integrator: {:}\n'.format(self.integrator.__class__.__name__))
+            f.write('Integrator: {:}\n'.format(self.integratorname))
 
             f.write('\nInput Files:\n')
             f.write('------------\n')
