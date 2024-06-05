@@ -130,9 +130,8 @@ be more appropriate.
         
         self.forcesDict = {}
  
-        self.integrator = LangevinIntegrator(self.temperature,
+        self.integrator = LangevinMiddleIntegrator(self.temperature,
             self.gamma, self.dt)
-        self.integrator_type = 'langevinmiddle'
 
         properties={}
         properties["Precision"] = 'single'
@@ -143,6 +142,7 @@ be more appropriate.
             pn=Platform.getPlatform(i).getName()
             plats.append(pn)
 
+	# set the default platform.
         for tryplat in ['HIP','CUDA','OpenCL','CPU','Reference']:
             if tryplat in plats:
                 self.platform = Platform.getPlatformByName(tryplat)
@@ -395,24 +395,19 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             if integrator.lower() == "langevin":
                 self.integrator = LangevinIntegrator(self.temperature,
                     self.gamma, self.dt)
-                self.integrator_type = 'langevin'
             elif integrator.lower() == "langevinmiddle": 
                 self.integrator = LangevinMiddleIntegrator(self.temperature,
                     self.gamma, self.dt)
-                self.integrator_type = 'langevinmiddle'
             elif integrator.lower() == "variablelangevin": 
                 self.integrator = VariableLangevinIntegrator(self.temperature,
                     self.gamma, self.dt)
-                self.integrator_type = 'variablelangevin'
             elif integrator.lower() == "brownian": 
                 self.integrator = BrownianIntegrator(self.temperature,
                     self.gamma, self.dt)
-                self.integrator_type = 'brownian'
             elif integrator != "": 
                 SBM.opensmog_quit("Unknown/unsupported integrator name: {}".format(integrator))
         else:
             self.integrator = integrator
-            self.integrator_type = "UserDefined"
 
     def saveFolder(self, folder):
 
@@ -937,9 +932,9 @@ dihedral information provided in the top and xml files.
         if (self.platform.getName() in ["CUDA", "OpenCL", "HIP"]):
             tmpprec=self.properties["Precision"]
         else:
-            tmpprec="N/A"
+            tmpprec="not set"
         
-        print("Creating the simulation with the following parameters:\n        name : {}\n        platform : {}\n        precision : {}\n        integrator : {}\n        timestep : {}\n        temperature : {}\n        r_cutoff : {}\n        pbc : {} \n        remove cmm : {}\n".format(self.name,self.platform.getName(),tmpprec,self.integrator_type,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
+        print("Creating the simulation with the following parameters:\n        name : {}\n        platform : {}\n        precision : {}\n        integrator : {}\n        timestep : {}\n        temperature : {}\n        r_cutoff : {}\n        pbc : {} \n        remove cmm : {}\n".format(self.name,self.platform.getName(),tmpprec,self.integrator.__class__.__name__,self.time_step,self.temperature_reduced,self.rcutoff,self.pbc,self.cmm))
 
         if not self.loaded:
             self.simulation = Simulation(self.Top.topology, self.system, self.integrator, self.platform, self.properties) 
@@ -1139,7 +1134,7 @@ Will try to import mdtraj...""")
             sys.stdout = ori
         
         #system_information
-            f.write('\nSystem Information:\n')
+            f.write('\nComputation Information:\n')
             f.write('-------------------\n')
 
             f.write('Date and time: {:}\n'.format(datetime.datetime.now()))
@@ -1148,8 +1143,6 @@ Will try to import mdtraj...""")
             f.write('Platform: {:}\n'.format(self.platform.getName()))
             if (self.platform.getName() in ["CUDA", "OpenCL", "HIP"]):
                 f.write('Precision: {:}\n'.format(self.properties['Precision']))
-            f.write('Integrator: {:}\n'.format(self.integrator_type))
-            f.write('Savefolder: {:}\n'.format(self.folder))
 
             f.write('\nSimulation Information:\n')
             f.write('-----------------------\n')
@@ -1159,6 +1152,7 @@ Will try to import mdtraj...""")
             f.write('Collision Rate: {:}\n'.format(self.gamma*picosecond))
             f.write('r_cutoff: {:}\n'.format(self.rcutoff/nanometers))
             f.write('Temperature: {:}\n'.format(self.temperature * 0.008314/kelvin))
+            f.write('Integrator: {:}\n'.format(self.integrator.__class__.__name__))
 
             f.write('\nInput Files:\n')
             f.write('------------\n')
@@ -1168,6 +1162,7 @@ Will try to import mdtraj...""")
 
             f.write('\nOutput Files:\n')
             f.write('-------------\n')
+            f.write('Savefolder: {:}\n'.format(self.folder))
             for n in self.outputNames:
                 f.write(os.path.basename(n)+"\n")
 
