@@ -335,6 +335,8 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
                 collision frequency, in reduced units
             dt (float, required):
                 time step, in reduced units
+            constraints (boolean, optional):
+                indicate whether velocity and position constraints should be applied (Default value: :code:`False`).
         """
 
 
