@@ -1003,7 +1003,7 @@ dihedral information provided in the top and xml files.
                 else:
                     i += 1
 
-    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000):
+    def createReporters(self, trajectory=True, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log', interval=1000,checkpoint=True,checkpointName='smog.chk', checkpointInterval=1000000):
         R"""Creates the reporters to provide the output data.
 
         Args:
@@ -1027,15 +1027,36 @@ dihedral information provided in the top and xml files.
                 Name of the log file.     
             interval (int, optional):
                  Frequency to write the data to the output files. (Default value: :code:`10**3`)
+            checkpoint (bool,optional):
+                 Turn on periodic checkpointing (Default value: :code:`True`) 
+            checkpointName (str,optional):
+                 Name of checkpoint/state file. (Default value: :code:`smog.chk`)
+            checkpointInterval (int,optional)
+                 Interval (in time steps) for writing checkpoint files (Default value: :code:`1E6`) 
         """
 
-
+        # set up load file info
         if os.path.basename(logFileName) != logFileName:
             SBM.opensmog_quit('logFileName is invalid. To specify the path, use the saveFolder method.')
         if not regex.search(".log$",logFileName):
             logFileName= logFileName + ".log"
-
         self.logFileName=logFileName
+
+        # set up checkpointing
+        if not isinstance(checkpointName,str):
+            SBM.opensmog_quit('checkpointName must be a string.')
+        if os.path.basename(checkpointName) != checkpointName:
+            SBM.opensmog_quit('checkpointName is invalid. To specify the path, use the saveFolder method.')
+        if not regex.search(".chk$",checkpointName):
+            checkpointName= checkpointName + ".chk"
+        self.checkpointName=checkpointName
+        if not isinstance(checkpointInterval,int):
+            SBM.opensmog_quit('checkpointInterval must be an integer.')
+        checkpointName=os.path.join(self.folder, checkpointName)
+        if checkpoint:
+            self.simulation.reporters.append(CheckpointReporter(checkpointName, checkpointInterval)) 
+
+        # set up trajectory saving
         if trajectory:
             trajectoryFormat=trajectoryFormat.lower()
             if trajectoryName is None:
