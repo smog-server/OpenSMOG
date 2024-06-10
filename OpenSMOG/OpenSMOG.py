@@ -328,7 +328,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
         print("Minimization completed")
 
-    def _LangevinMiddleTruncatedIntegrator(temperature,gamma,dt):
+    def _LangevinMiddleTruncatedIntegrator(temperature,gamma,dt,constraints=False):
         R"""Langevin Middle Integrator with a truncated Gaussian
 When using SMOG models, we have found that there are rare instabilities that arise from the random noise term during Langevin Dynamics simulations. These are typically found in large systems (e.g. the ribosome) when simulated for long timescales (>10**8 timesteps). 
 
@@ -342,6 +342,8 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
                 collision frequency, in reduced units
             dt (float, required):
                 time step, in reduced units
+            constraints (boolean, optional):
+                indicate whether velocity and position constraints should be applied (Default value: :code:`False`).
         """
 
 
@@ -349,12 +351,21 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         integrator.addGlobalVariable("a", exp(-gamma*dt));
         integrator.addGlobalVariable("b", sqrt(temperature*(1-exp(-2*gamma*dt))));
         integrator.addGlobalVariable("kT", temperature);
-        integrator.addPerDofVariable("x1", 0);
+        if constraints:
+            integrator.addPerDofVariable("x1", 0);
         integrator.addUpdateContextState();
         integrator.addComputePerDof("v", "v + dt*f/m");
+        if constraints:
+            integrator.addConstrainVelocities()
+
         integrator.addComputePerDof("x", "x + 0.5*dt*v");
         integrator.addComputePerDof("v", "a*v + b/sqrt(1/m)*max(-4,min(4,gaussian))");
         integrator.addComputePerDof("x", "x + 0.5*dt*v");
+        if constraints:
+            integrator.addComputePerDof("x1", "x");
+            integrator.addConstrainPositions();
+            integrator.addComputePerDof("v", "v + (x-x1)/dt");
+
         return integrator
 
     def setup_openmm(self, platform="", precision="", GPUindex="default", integrator=""):
