@@ -53,15 +53,15 @@ class SBM:
         r_cutoff (float, required):
             Cutoff distance to consider non-bonded interactions in units of nanometers.
         pbc (boolean, optional):
-            Turn PBC on/off. Default value: False
+            Turn PBC on/off. (Default value: :code:`False`)
         cmm (boolean, optional):
-            Remove center of mass motion. Default value: True
+            Remove center of mass motion. (Default value: :code:`True`)
         temperature (float,required):
             Temperature in reduced units 
         name (str):
             Name used in the output files. (Default value: :code:`OpenSMOG`)
         warn (boolean, optional):
-            Give cautionary warnings... (Default value: True)
+            Give cautionary warnings... (Default value: :code:`True`)
               
     """
 
@@ -161,6 +161,45 @@ be more appropriate.
     def runAA(name='sbmtest',time_step=0.002, nsteps=10000,collision_rate=1.0, r_cutoff=0.65, temperature=0.5,gro="smog.gro",top="smog.top",xml="smog.xml",saveinterval=1000,trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log'):
         R"""A quick way to start a simulation with default AA parameters.
     You can also override many parameters, if needed. But, this may not be suitable for production runs.
+
+
+        Args:
+
+            name (str, optional):
+                Name to use for system. This will serve as the default prefix for all output file. (Default value: :code:`smogtest`)
+            time_step (float, optional):
+                simulation time step, in Reduced Units (Default value: :code:`0.002`)
+            nsteps (int, optional):
+                number of simulated time steps (Default value: :code:`10000`)
+            collision_rate (float, optional):
+                drag constant for Langevin Dynamics simulations (Default value: :code:`1`)
+            r_cutoff (float, optional):
+                distance cutoff for nonbonded interactions (Default value: :code:`0.65`)
+            temperature (float, optional):
+                simulated temperature, in Reduced Units (Default value: :code:`0.5`)
+            gro (str, optional):
+                name of input gro file (Default value: :code:`smog.gro`)
+            top (str, optional):
+                name of input top file (Default value: :code:`smog.top`)
+            xml (str, optional):
+                name of input xml file (Default value: :code:`smog.xml`)
+            saveinterval (int, optional):
+                interval (in time steps) between data saves (Default value: :code:`1000`)
+            trajectoryName (str, optional):
+                name of output trajectory file. Note, if this is set to :code: `None`, then the value of :code:`name` will be used (Default : :code:`None`)
+            trajectoryFormat (str, optional):
+                type of trajectory file to save (Default value: :code:`dcd`)
+            energies (bool, optional):
+                calculate and report the system energy (Default value: :code:`True`)
+            energiesName (str, optional):
+                name of output energy file. Note, if this is set to :code: `None`, then the value of :code:`name` will be used (Default : :code:`None`)
+            energy_components (bool, optional):
+                calculate and report the energy, by type (Default value: :code:`False`)
+            energy_componentsName (str, optional):
+                name of output energy component file. Note, if this is set to :code: `None`, then the value of :code:`name` will be used (Default : :code:`None`)
+            logFileName (str, optional):
+                name of log file. (Default : :code:`OpenSMOG.log`)
+
         """
         SMOGrun=SBM(name=name, time_step=time_step, collision_rate=collision_rate, r_cutoff=r_cutoff, temperature=temperature)
         SMOGrun.loadSystem(Grofile=gro, Topfile=top, Xmlfile=xml, noxml=False)
