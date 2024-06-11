@@ -39,7 +39,7 @@
   <xs:complexType name="contpotType">
     <xs:sequence>
       <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
-      <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="parameter" type="parameterType" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="interaction" type="contactInteractionType" minOccurs="1" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="name" type="xs:string" use="required"/>
@@ -48,7 +48,7 @@
   <xs:complexType name="dihedralpotType">
     <xs:sequence>
       <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
-      <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="parameter" type="parameterType" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="interaction" type="dihedralInteractionType" minOccurs="1" maxOccurs="unbounded"/>
     </xs:sequence>
     <xs:attribute name="name" type="xs:string" use="required"/>
@@ -88,7 +88,7 @@
   <!-- NONBOND TYPE -->
   <xs:complexType name="nonbondType">
     <xs:sequence>
-      <xs:element name="nonbond_bytype" type="nbType" maxOccurs="unbounded"/>
+      <xs:element name="nonbond_bytype" type="nbType" maxOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
   <!-- OpenSMOG TYPE -->
