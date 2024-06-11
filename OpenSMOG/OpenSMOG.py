@@ -1263,9 +1263,8 @@ Will try to import mdtraj...""")
                 print("When calling runForClockTime/run more than one time, the progress reported to screen will not be accurate. But, the actual simulation should be fine.")
             else:
 
-            self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=False,
-                                                  progress=False, speed=True, separator="\t"))
-            self.reporteradded=True
+                self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=False,progress=False, speed=True, separator="\t"))
+                self.reporteradded=True
 
         self._createLogfile()                                                   
         self.simulation.runForClockTime(time=time,checkpointFile=checkpointFile, stateFile=stateFile, checkpointInterval=checkpointInterval)
