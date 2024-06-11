@@ -93,6 +93,7 @@ class SBM:
         self.time_step=time_step
         self.dt = time_step * picoseconds
         self.started=0
+        self.reporteradded=False
         self.collision_rate=collision_rate
         self.gamma = collision_rate / picosecond
         self.rcutoff = r_cutoff * nanometers  
@@ -1205,9 +1206,9 @@ Will try to import mdtraj...""")
             
     def run(self, nsteps, report=True, interval=10**4):
 
-        if self.started != 0:
-            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint/state files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
-        self.started=1 
+        #if self.started != 0:
+        #    SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint/state files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+        self.started+=1 
 
         R"""Run the molecular dynamics simulation.
 
@@ -1222,16 +1223,22 @@ Will try to import mdtraj...""")
         """
 
         if report:
-            self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=True,
+            if self.reporteradded :
+                print("When calling run more than one time, the progress reported to screen will not be accurate. But, the actual simulation should be fine.")
+            else:
+                # only add reporter one time
+                self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=True,
                                                   progress=True, speed=True, totalSteps=nsteps, separator="\t"))
+                self.reporteradded=True
+
         self._createLogfile()                                                   
         self.simulation.step(nsteps)
 
     def runForClockTime(self, time, report=True, interval=10**4,checkpointFile=None, stateFile=None, checkpointInterval=None):
 
-        if self.started != 0:
-            SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
-        self.started=1 
+        #if self.started != 0:
+        #    SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+        self.started+=1 
 
         R"""Run the molecular dynamics simulation.
 
@@ -1252,8 +1259,14 @@ Will try to import mdtraj...""")
         """
 
         if report:
+            if self.reporteradded :
+                print("When calling runForClockTime/run more than one time, the progress reported to screen will not be accurate. But, the actual simulation should be fine.")
+            else:
+
             self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=False,
                                                   progress=False, speed=True, separator="\t"))
+            self.reporteradded=True
+
         self._createLogfile()                                                   
         self.simulation.runForClockTime(time=time,checkpointFile=checkpointFile, stateFile=stateFile, checkpointInterval=checkpointInterval)
         print("\nOpenSMOG simulation completed.\n")
@@ -1264,7 +1277,14 @@ Will try to import mdtraj...""")
         logFilename = os.path.join(self.folder, self.logFileName)
         self._checkFile(logFilename)
         self.outputNames.append(logFilename)
-        with open(logFilename, 'w') as f:
+        if self.started == 1:
+            # if this is the first time, then create a new file
+            wa='w'
+        else:
+            # if run is called a second time, then append
+            wa='a'
+
+        with open(logFilename, wa) as f:
             ori = sys.stdout
             sys.stdout = f
             sys.stdout = ori
