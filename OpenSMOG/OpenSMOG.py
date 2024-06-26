@@ -442,7 +442,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             properties["Precision"] = precision
 
         if isinstance(GPUindex,str):
-            if regex.search("^\d((,\d)*)?$",GPUindex):
+            if regex.search(r"^\d((,\d)*)?$",GPUindex):
                 properties["DeviceIndex"] = GPUindex
             elif GPUindex.lower() != "default":
                 print('Setup incomplete!\nGPUindex must be an integer, a string of comma-separated integers, or \"default\". Given: \"{}\"\nTry rerunning setup_openmm again.'.format(GPUindex))
