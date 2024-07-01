@@ -7,7 +7,7 @@ OpenSMOG+ is a modified version of OpenSMOG v1.1.1. The modified version only di
 If your work does not involve using either of the above mentioned options, then we recommend using the official updated version of OpenSMOG. 
 Note: OpenSMOG+ is only intended for testing different models.
 
-Below of the README section of the original OpenSMOG v1.1.1.
+Below is the README section of the original OpenSMOG v1.1.1.
 
 ========
 OpenSMOG
