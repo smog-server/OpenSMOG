@@ -1,0 +1,1 @@
+smog2 -i OSDIR/share/tests/PDBs/RNA.adj2.pdb -t OSDIR/share/tests/RNAion2.PBC/sbm.test/ -OpenSMOG -dname opentest

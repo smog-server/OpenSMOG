@@ -1,0 +1,1 @@
+This tests to see if we get the same energy when ions are included in the original PDB, instead of using smog_ion to add them. 
