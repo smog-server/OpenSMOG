@@ -1096,7 +1096,7 @@ dihedral information provided in the top and xml files.
         if (self.platform.getName() in ["CUDA", "OpenCL", "HIP"]):
             tmpprec=self.properties["Precision"]
         else:
-            tmpprec="not set"
+            tmpprec="platform default"
 
         if not self.integratorname:
             self.integratorname=self.integrator.__class__.__name__
