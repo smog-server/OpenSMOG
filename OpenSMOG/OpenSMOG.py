@@ -301,11 +301,11 @@ upon the above use case.
 
 To save the state file:
 >statefilename='smog.state'
->SMOGrun.simulation.saveState(statefilename)
+>SMOGrun.saveState(statefilename)
 
 To save the checkpoint file:
 >checkpointfilename='smog.checkpoint'
->SMOGrun.simulation.saveCheckpoint(checkpointfilename)
+>SMOGrun.saveCheckpoint(checkpointfilename)
 
 If you saved a state or checkpoint in a previous run, here is an example 
 for how to continue the simulation. 
@@ -325,11 +325,11 @@ Load the previous state OR checkpoint file.
 
 How to load state file
 >statefilename='smog.state'
->SMOGrun2.simulation.loadState(statefilename)
+>SMOGrun2.loadState(statefilename)
 
 How to load a checkpoint
 >checkpointfilename='smog.checkpoint'
->SMOGrun2.simulation.loadCheckpoint(checkpointfilename)
+>SMOGrun2.loadCheckpoint(checkpointfilename)
 
 After loading either the state, or checkpoint, then run the simulation
 
@@ -351,6 +351,60 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
     def opensmog_quit(message):
         print("\n\nOpenSMOG error: {}\n\n".format(message))
         sys.exit(1)
+
+    def saveState(self,filename):
+        R"""Wrapper for saving State files.
+
+         Arg:
+
+            filename (str, required):
+                name of the state file to be written
+        """
+        try:
+            self.simulation.saveState(filename) 
+        except Exception as mess:
+             SBM.opensmog_quit("Failed to write the state file. Make sure you specify a valid file name, there is enough space on the disk and you have write privileges.\nException returned below :\n\n{}".format(mess))
+
+    def saveCheckpoint(self,filename):
+        R"""Wrapper for saving checkpoint files.
+
+         Arg:
+
+            filename (str, required):
+                name of the checkpoint file to be written
+        """
+        try:
+            self.simulation.saveCheckpoint(filename) 
+        except Exception as mess:
+             SBM.opensmog_quit("Failed to write the checkpoint file. Make sure you specify a valid file name, there is enough space on the disk and you have write privileges.\nException returned below :\n\n{}".format(mess))
+
+    def loadState(self,filename):
+        R"""Wrapper for loading State files.
+
+         Arg:
+
+            filename (str, required):
+                name of the state file to be read
+        """
+        try:
+            self.simulation.loadState(filename) 
+        except Exception as mess:
+             SBM.opensmog_quit("Failed to load the state file. This can happen for a variety of reasons, such as:\n\t-The state file has been corrupted.\n\t-The file was written when using a different integrator (common with custom integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
+
+    def loadCheckpoint(self,filename):
+        R"""Wrapper for loading Checkpoint files.
+
+         Arg:
+
+            filename (str, required):
+                name of the checkpoint file to be read
+        """
+        try:
+            self.simulation.loadCheckpoint(filename) 
+        except Exception as mess:
+             SBM.opensmog_quit("Failed to load the checkpoint file. This can happen for a variety of reasons, such as:\n\t-The file was generated when using a different machine.\n\tThe file has been corrupted.\n\t-The file was written for a different system (e.g. changing integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
+
+
 
     def minimize(self,tolerance=1.0,maxIterations=0):
         print("Starting minimization using L-BFGS method")
