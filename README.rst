@@ -1,11 +1,11 @@
 ========
-OpenSMOG+
+OpenSMOGmod
 ========
-OpenSMOG+ is a modified version of OpenSMOG v1.1.1. The modified version only differes in
+OpenSMOGmod is a modified version of OpenSMOG v1.1.1. The modified version only differes in
    1) Allowing expressions with more than 2 or 4 atoms.
    2) Allowing a potential for COM pull between 2 or more groups of atoms.
 If your work does not involve using either of the above mentioned options, then we recommend using the official updated version of OpenSMOG. 
-Note: OpenSMOG+ is only intended for testing different models.
+Note: OpenSMOGmod is only intended for testing different models.
 
 Below is the README section of the original OpenSMOG v1.1.1.
 
