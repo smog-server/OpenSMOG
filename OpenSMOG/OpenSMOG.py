@@ -524,7 +524,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         pull_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
 
-    def _customManyParticleForce(self, name, data):
+    def _customManyParticleForce(self, name, data, pbc):
         #first set the equation
         """ '|' is used as a delimiter between numbre of particles
         and the expression for potential energy between them"""
@@ -536,6 +536,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             Nparticles = 2 #default
             customExp = data[0]
         contacts_ff = CustomCompoundBondForce(Nparticles,customExp)
+        contacts_ff.setUsesPeriodicBoundaryConditions(pbc)
 
         #second set the number of variable
         for pars in data[1]:
@@ -557,10 +558,10 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         contacts_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
 
-    def _customSmogForce(self, name, data):
+    def _customSmogForce(self, name, data, pbc):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
-        contacts_ff.setUsesPeriodicBoundaryConditions(True)
+        contacts_ff.setUsesPeriodicBoundaryConditions(pbc)
 
 
         #second set the number of variable
@@ -883,13 +884,13 @@ ignore this message.
                 self._splitForces_contacts()
                 for force in self.contacts:
                     print("Creating Contacts force {:} from xml file".format(force))
-                    self._customSmogForce(force, self.contacts[force])
+                    self._customSmogForce(force, self.contacts[force], self.pbc)
                     self.system.addForce(self.forcesDict[force])
             if self.manyparticle_present==True:
                 self._splitForces_manyparticle()
                 for force in self.manyparticle:
                     print("Creating many particle force {:} from xml file".format(force))
-                    self._customManyParticleForce(force, self.manyparticle[force])
+                    self._customManyParticleForce(force, self.manyparticle[force], self.pbc)
                     self.system.addForce(self.forcesDict[force])
             if self.nonbond_present==True: 
                 self._splitForces_nb()
