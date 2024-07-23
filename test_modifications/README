@@ -1,0 +1,48 @@
+This directory contains three files
+
+> cp2tr.gro
+> cp2tr.top
+> cp2tr.xml
+
+This system contains  a protein homodimer with a 20nt ssRNA. 
+Amino acid coarse-grained to 2-beads: Calpha (CA) + Cbeta (CB)
+Nucleotide coarse-grained to 3-beads: Phosphate (P) + Sugar (C') + N-base (N)
+
+################ Many Particle Potential energy function #######
+The ssRNA backbone uses P-P-P-P and N-C'-C'-N torsions with some P-P-P or N-C'-C' angles ~180 deg. To avoid artifacts, we use a custom 4-particle interaction term: 
+
+ <manyparticle>
+  <manyparticle_type name="CustomDihedrals">
+   <expression expr="4|select(check,V,V_pi);check=floor(10000*sin(angle(p1,p2,p3))*sin(angle(p2,p3,p4)));V_pi=0.0;V=Kd*(1+cos(n*phi-phi0));phi=dihedral(p1,p2,p3,p4);phi0=phi0_deg*3.141592653589793/180"/>
+
+> In the above expression, '|' is used as a delimiter between number of particles (4 in expression above) and the enerhy function.
+> The function uses a check condition, "check=floor(10000*sin(angle(p1,p2,p3))*sin(angle(p2,p3,p4)))", where p1, p2, p3 and p4 are 4 beads/pariticles involved in torsion potenail. The condition checks for product of sin of angle b/w (p, p2, p3) and sin of angle (p2, p3, p4). if the product (check) is equal to 0 (if either of the angle is equal to 0 or 180 deg), then V_pi=0.0 is selected (energy set to 0) as the energy function, instead of the actual torsion fcuntion. 
+
+########### COM pull function ##################
+
+A harmonic potential is also used between the centroid of the two protein chains and the centroid of the protein and the RNA molecule. 
+
+group of COM calculation are defined by using atom numbers separated by comma ',' or by using atom number range. Example 60:316:1 is atom 60 to 316 (including 316) with the interval  1 
+
+Note: For each pair of COM groups, a new pull type entry '<pull_type>' is needed
+
+ <com_pull>
+  <pull_type name="Prot-RNA_harmonicpull">
+   <expression expr="2|0.5*K*(distance(g1,g2)-r0)^2"/>
+   <group index="1" name="RNA" atoms="1:59:1"/>
+   <group index="2" name="Protein" atoms="60:573:1"/>
+   <parameter>K</parameter>
+   <parameter>r0</parameter>
+   <interaction i="1" j="2" r0="1.5" K="0.25"/>
+  </pull_type>
+  <pull_type name="Prot-Chain-A-B_harmonicPull">
+   <expression expr="2|0.5*K*(distance(g1,g2)-r0)^2"/>
+   <group index="1" name="Chain_A" atoms="60:316:1"/>
+   <group index="2" name="Chain_B" atoms="317:573:1"/>
+   <parameter>K</parameter>
+   <parameter>r0</parameter>
+   <interaction i="1" j="2" r0="1.6" K="1.00"/>
+  </pull_type>
+ </com_pull>
+
+##############################################

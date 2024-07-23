@@ -1,0 +1,2104 @@
+<OpenSMOGforces>
+ <nonbond>
+  <nonbond_bytype>
+   <expression expr="(inv_4pieps/D)*Bk*q1q2(type1,type2)*exp(-r*inv_dl)/r + A(type1,type2)/r^12-B(type1,type2)/r^10; inv_4pieps=3.320558e+01; D=70; Bk=exp(inv_dl*ion_rad)/(1+inv_dl*ion_rad); inv_dl=0.348; ion_rad=0.140"/>
+   <parameter>A</parameter>
+   <parameter>B</parameter>
+   <parameter>q1q2</parameter>
+   <nonbond_param type1="NA" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NU" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NG" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NG" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NG" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NG" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NG" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NG" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NG" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NC" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NC" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NC" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NC" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NC" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NC" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="P" type2="P" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="P" type2="CRA" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="P" type2="CRU" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="P" type2="CRG" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="P" type2="CRC" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRA" type2="CRA" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRA" type2="CRU" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRA" type2="CRG" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRA" type2="CRC" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRU" type2="CRU" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRU" type2="CRG" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRU" type2="CRC" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRG" type2="CRG" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRG" type2="CRC" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CRC" type2="CRC" A="2.696377e-02" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CA" A="9.065738e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBA" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBK" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBL" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBE" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBT" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBV" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBN" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBI" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBD" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBQ" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBP" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBR" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBS" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBY" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBC" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CBF" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBK" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBL" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBE" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBT" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBV" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBN" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBK" A="5.314410e-07" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBK" type2="CBL" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBE" A="5.314410e-07" B="0.000000e+00" q1q2="-1"/>
+   <nonbond_param type1="CBK" type2="CBT" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBV" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBN" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="-1"/>
+   <nonbond_param type1="CBK" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBK" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBL" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBE" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBT" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBV" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBN" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBE" A="5.314410e-07" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBE" type2="CBT" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBV" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBN" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBE" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="-1"/>
+   <nonbond_param type1="CBE" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBT" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBV" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBN" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBV" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBN" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBN" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBI" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CBD" A="5.314410e-07" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBD" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="-1"/>
+   <nonbond_param type1="CBD" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CBQ" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CBP" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CBR" A="5.314410e-07" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBR" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CBS" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="CBY" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="CBC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBF" type2="CBF" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="NA" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="NC" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="NG" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="NU" A="2.386421e-06" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CRA" A="9.511660e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CRC" A="9.511660e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CRG" A="9.511660e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="CRU" A="9.511660e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CA" type2="P" A="9.511660e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBA" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBC" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBD" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBE" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBE" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="1"/>
+   <nonbond_param type1="CBF" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBF" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBF" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBF" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBF" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBI" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBK" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="-1"/>
+   <nonbond_param type1="CBL" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBL" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBN" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBP" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBQ" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBR" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="-1"/>
+   <nonbond_param type1="CBS" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBS" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBT" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="NA" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="NC" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="NG" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="NU" A="5.314410e-07" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBV" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="CRA" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="CRC" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="CRG" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="CRU" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="CBY" type2="P" A="3.908770e-04" B="0.000000e+00" q1q2="0"/>
+   <nonbond_param type1="NA" type2="CBY" A="7.818329e-05" B="7.239194e-04" q1q2="0"/>
+   <nonbond_param type1="NU" type2="CBY" A="4.975300e-05" B="4.606760e-04" q1q2="0"/>
+   <nonbond_param type1="NG" type2="CBY" A="6.870653e-05" B="6.361716e-04" q1q2="0"/>
+   <nonbond_param type1="NC" type2="CBY" A="3.316867e-05" B="3.071173e-04" q1q2="0"/>
+   <nonbond_param type1="NA" type2="CBF" A="7.818329e-05" B="7.239194e-04" q1q2="0"/>
+   <nonbond_param type1="NU" type2="CBF" A="6.159896e-05" B="5.703607e-04" q1q2="0"/>
+   <nonbond_param type1="NG" type2="CBF" A="7.107572e-05" B="6.581085e-04" q1q2="0"/>
+   <nonbond_param type1="NC" type2="CBF" A="4.027624e-05" B="3.729282e-04" q1q2="0"/>
+  </nonbond_bytype>
+ </nonbond>
+ <contacts>
+  <contacts_type name="contact_1-10-12">
+   <expression expr="A/r^12-B/r^10"/>
+   <parameter>A</parameter>
+   <parameter>B</parameter>
+   <interaction i="60" j="568" A="2.003983e-02" B="6.033759e-02"/>
+   <interaction i="60" j="571" A="1.062610e-03" B="5.219809e-03"/>
+   <interaction i="60" j="567" A="8.481275e-03" B="2.947093e-02"/>
+   <interaction i="60" j="555" A="6.705065e-05" B="5.220099e-04"/>
+   <interaction i="60" j="572" A="1.438025e-02" B="4.575955e-02"/>
+   <interaction i="60" j="570" A="2.731537e-04" B="1.682734e-03"/>
+   <interaction i="61" j="555" A="3.174552e-04" B="1.907267e-03"/>
+   <interaction i="61" j="567" A="4.772007e-03" B="1.824990e-02"/>
+   <interaction i="61" j="571" A="1.325964e-04" B="9.214094e-04"/>
+   <interaction i="62" j="572" A="1.686152e-03" B="7.669319e-03"/>
+   <interaction i="63" j="573" A="6.523549e+01" B="5.102068e+01"/>
+   <interaction i="64" j="102" A="2.820651e-02" B="8.022333e-02"/>
+   <interaction i="65" j="102" A="3.062250e-02" B="8.590994e-02"/>
+   <interaction i="65" j="107" A="3.440187e-03" B="1.389402e-02"/>
+   <interaction i="65" j="120" A="1.983436e-04" B="1.288817e-03"/>
+   <interaction i="65" j="124" A="8.079947e-04" B="4.154480e-03"/>
+   <interaction i="65" j="571" A="3.824559e-04" B="2.227550e-03"/>
+   <interaction i="66" j="102" A="2.245736e-04" B="1.429361e-03"/>
+   <interaction i="66" j="97" A="5.975347e-01" B="1.021674e+00"/>
+   <interaction i="68" j="97" A="4.052084e-03" B="1.592484e-02"/>
+   <interaction i="68" j="99" A="2.334258e-04" B="1.476161e-03"/>
+   <interaction i="68" j="102" A="5.367997e-05" B="4.336971e-04"/>
+   <interaction i="69" j="102" A="1.010548e-03" B="5.005804e-03"/>
+   <interaction i="69" j="96" A="1.770468e-05" B="1.720877e-04"/>
+   <interaction i="70" j="93" A="3.188400e-01" B="6.053227e-01"/>
+   <interaction i="70" j="95" A="7.609888e-03" B="2.692515e-02"/>
+   <interaction i="70" j="97" A="1.337698e-03" B="6.323748e-03"/>
+   <interaction i="70" j="98" A="9.871151e-02" B="2.278502e-01"/>
+   <interaction i="70" j="96" A="2.162925e-02" B="6.429997e-02"/>
+   <interaction i="71" j="124" A="3.454326e-05" B="3.003625e-04"/>
+   <interaction i="71" j="545" A="7.178215e-04" B="3.764350e-03"/>
+   <interaction i="71" j="98" A="5.313318e-02" B="1.359819e-01"/>
+   <interaction i="71" j="549" A="1.766081e-04" B="1.169998e-03"/>
+   <interaction i="72" j="93" A="1.236959e-02" B="4.036198e-02"/>
+   <interaction i="74" j="92" A="2.659878e-02" B="7.639432e-02"/>
+   <interaction i="74" j="94" A="1.331392e-01" B="2.923690e-01"/>
+   <interaction i="74" j="93" A="9.673583e-04" B="4.826871e-03"/>
+   <interaction i="74" j="91" A="5.617433e-03" B="2.090697e-02"/>
+   <interaction i="75" j="531" A="2.710105e-03" B="1.138932e-02"/>
+   <interaction i="75" j="537" A="1.174266e-03" B="5.673029e-03"/>
+   <interaction i="75" j="94" A="1.711801e-02" B="5.291198e-02"/>
+   <interaction i="76" j="92" A="3.923360e-04" B="2.275401e-03"/>
+   <interaction i="76" j="89" A="1.104273e-01" B="2.501728e-01"/>
+   <interaction i="76" j="91" A="1.339362e-03" B="6.330305e-03"/>
+   <interaction i="77" j="89" A="2.107927e-03" B="9.237529e-03"/>
+   <interaction i="77" j="86" A="6.520648e-04" B="3.474710e-03"/>
+   <interaction i="78" j="88" A="3.200395e-01" B="6.072198e-01"/>
+   <interaction i="79" j="86" A="3.221856e-04" B="1.930922e-03"/>
+   <interaction i="79" j="85" A="5.628621e-01" B="9.720261e-01"/>
+   <interaction i="79" j="90" A="2.033652e-03" B="8.965478e-03"/>
+   <interaction i="79" j="529" A="7.742180e-04" B="4.009242e-03"/>
+   <interaction i="79" j="87" A="6.839233e-03" B="2.463291e-02"/>
+   <interaction i="79" j="89" A="1.231222e-03" B="5.901421e-03"/>
+   <interaction i="80" j="531" A="3.241627e-02" B="9.008353e-02"/>
+   <interaction i="80" j="90" A="8.206274e-02" B="1.953430e-01"/>
+   <interaction i="80" j="94" A="1.464691e-01" B="3.165663e-01"/>
+   <interaction i="80" j="523" A="3.099614e-03" B="1.273794e-02"/>
+   <interaction i="80" j="529" A="5.963884e-04" B="3.225650e-03"/>
+   <interaction i="81" j="529" A="3.751925e-04" B="2.192240e-03"/>
+   <interaction i="81" j="521" A="4.290557e-04" B="2.451533e-03"/>
+   <interaction i="81" j="90" A="1.811503e-04" B="1.195021e-03"/>
+   <interaction i="81" j="520" A="1.461340e-03" B="6.807207e-03"/>
+   <interaction i="81" j="522" A="9.395933e-05" B="6.915010e-04"/>
+   <interaction i="82" j="521" A="1.435023e-04" B="9.841441e-04"/>
+   <interaction i="83" j="513" A="7.132502e-06" B="8.066984e-05"/>
+   <interaction i="83" j="515" A="3.900994e-02" B="1.051128e-01"/>
+   <interaction i="83" j="521" A="3.893186e-04" B="2.260809e-03"/>
+   <interaction i="85" j="90" A="4.754338e-04" B="2.670451e-03"/>
+   <interaction i="78" j="86" A="8.358529e-03" B="2.911507e-02"/>
+   <interaction i="78" j="87" A="2.541895e-03" B="1.079711e-02"/>
+   <interaction i="78" j="89" A="8.157839e-02" B="1.943818e-01"/>
+   <interaction i="80" j="89" A="8.475552e-02" B="2.006702e-01"/>
+   <interaction i="80" j="91" A="5.336044e-02" B="1.364664e-01"/>
+   <interaction i="75" j="93" A="3.123113e-03" B="1.281837e-02"/>
+   <interaction i="94" j="523" A="1.198998e-04" B="8.472759e-04"/>
+   <interaction i="94" j="145" A="3.173971e-03" B="1.299208e-02"/>
+   <interaction i="94" j="128" A="1.975037e-03" B="8.749614e-03"/>
+   <interaction i="95" j="129" A="8.919284e-02" B="2.093877e-01"/>
+   <interaction i="95" j="127" A="1.077510e-02" B="3.597720e-02"/>
+   <interaction i="95" j="125" A="5.205390e-01" B="9.107251e-01"/>
+   <interaction i="95" j="128" A="4.325900e-02" B="1.145706e-01"/>
+   <interaction i="97" j="125" A="1.520080e-03" B="7.034473e-03"/>
+   <interaction i="69" j="97" A="1.481699e-03" B="6.886148e-03"/>
+   <interaction i="71" j="97" A="3.557788e-03" B="1.428871e-02"/>
+   <interaction i="98" j="124" A="1.031128e-02" B="3.468194e-02"/>
+   <interaction i="98" j="128" A="1.797617e-01" B="3.754833e-01"/>
+   <interaction i="99" j="124" A="5.901407e-02" B="1.484132e-01"/>
+   <interaction i="99" j="125" A="6.222338e-03" B="2.276692e-02"/>
+   <interaction i="69" j="99" A="1.717173e-04" B="1.142935e-03"/>
+   <interaction i="99" j="123" A="7.719866e-03" B="2.724903e-02"/>
+   <interaction i="100" j="130" A="1.989698e-04" B="1.292208e-03"/>
+   <interaction i="100" j="126" A="4.466089e-04" B="2.534831e-03"/>
+   <interaction i="101" j="121" A="5.228041e-02" B="1.341607e-01"/>
+   <interaction i="101" j="124" A="1.026686e-02" B="3.455738e-02"/>
+   <interaction i="102" j="124" A="9.764133e-02" B="2.257898e-01"/>
+   <interaction i="103" j="121" A="2.976493e-03" B="1.231488e-02"/>
+   <interaction i="103" j="123" A="1.118122e-03" B="5.446078e-03"/>
+   <interaction i="103" j="124" A="2.300223e-01" B="4.611242e-01"/>
+   <interaction i="104" j="122" A="6.742953e-02" B="1.658510e-01"/>
+   <interaction i="105" j="121" A="4.943064e-03" B="1.879345e-02"/>
+   <interaction i="105" j="119" A="9.046966e-03" B="3.110012e-02"/>
+   <interaction i="105" j="117" A="6.972690e-01" B="1.161921e+00"/>
+   <interaction i="105" j="122" A="1.575434e-02" B="4.937529e-02"/>
+   <interaction i="105" j="120" A="2.211976e-02" B="6.551287e-02"/>
+   <interaction i="106" j="119" A="1.369082e-04" B="9.463117e-04"/>
+   <interaction i="106" j="117" A="3.228972e-03" B="1.317943e-02"/>
+   <interaction i="107" j="573" A="8.714760e-03" B="3.014550e-02"/>
+   <interaction i="107" j="120" A="7.222092e-05" B="5.553440e-04"/>
+   <interaction i="108" j="118" A="1.111776e-02" B="3.692812e-02"/>
+   <interaction i="108" j="115" A="1.104620e-02" B="3.672995e-02"/>
+   <interaction i="108" j="117" A="2.032470e-03" B="8.961136e-03"/>
+   <interaction i="108" j="116" A="6.860207e-03" B="2.469585e-02"/>
+   <interaction i="109" j="115" A="3.078128e-03" B="1.266432e-02"/>
+   <interaction i="114" j="155" A="2.119521e-02" B="6.322289e-02"/>
+   <interaction i="116" j="156" A="1.318747e-01" B="2.900532e-01"/>
+   <interaction i="116" j="155" A="1.870227e-03" B="8.360934e-03"/>
+   <interaction i="116" j="573" A="4.857723e-06" B="5.857382e-05"/>
+   <interaction i="116" j="154" A="1.372651e-02" B="4.401930e-02"/>
+   <interaction i="116" j="152" A="8.704265e-01" B="1.397826e+00"/>
+   <interaction i="107" j="117" A="1.795949e-02" B="5.507077e-02"/>
+   <interaction i="117" j="155" A="3.506410e-06" B="4.464045e-05"/>
+   <interaction i="109" j="117" A="3.245709e-02" B="9.017806e-02"/>
+   <interaction i="117" j="573" A="8.271301e-04" B="4.236310e-03"/>
+   <interaction i="117" j="152" A="6.697138e-03" B="2.420568e-02"/>
+   <interaction i="118" j="151" A="3.318348e-02" B="9.185678e-02"/>
+   <interaction i="118" j="155" A="2.870287e-06" B="3.778163e-05"/>
+   <interaction i="107" j="119" A="9.256316e-05" B="6.829277e-04"/>
+   <interaction i="119" j="153" A="1.723251e-02" B="5.320674e-02"/>
+   <interaction i="119" j="155" A="4.842979e-03" B="1.847581e-02"/>
+   <interaction i="119" j="148" A="6.468906e-01" B="1.091529e+00"/>
+   <interaction i="119" j="150" A="6.189593e-03" B="2.266703e-02"/>
+   <interaction i="119" j="152" A="2.203836e-03" B="9.586476e-03"/>
+   <interaction i="119" j="151" A="3.737609e-02" B="1.014311e-01"/>
+   <interaction i="120" j="571" A="6.720751e-05" B="5.230273e-04"/>
+   <interaction i="65" j="121" A="8.574523e-03" B="2.974070e-02"/>
+   <interaction i="104" j="121" A="1.161187e+00" B="1.777303e+00"/>
+   <interaction i="121" j="148" A="8.150540e-03" B="2.851007e-02"/>
+   <interaction i="122" j="147" A="8.134270e-02" B="1.939137e-01"/>
+   <interaction i="123" j="149" A="6.496542e-03" B="2.359997e-02"/>
+   <interaction i="123" j="144" A="6.339217e-01" B="1.073262e+00"/>
+   <interaction i="123" j="146" A="7.112076e-03" B="2.544915e-02"/>
+   <interaction i="123" j="147" A="1.625155e+00" B="2.351916e+00"/>
+   <interaction i="104" j="123" A="3.145995e+00" B="4.078257e+00"/>
+   <interaction i="98" j="123" A="8.820563e-04" B="4.469475e-03"/>
+   <interaction i="123" j="148" A="1.715180e-03" B="7.779191e-03"/>
+   <interaction i="124" j="149" A="4.607950e-03" B="1.772554e-02"/>
+   <interaction i="124" j="549" A="3.539746e-05" B="3.065394e-04"/>
+   <interaction i="125" j="144" A="5.752493e-03" B="2.132503e-02"/>
+   <interaction i="125" j="146" A="3.306788e-04" B="1.973248e-03"/>
+   <interaction i="98" j="125" A="2.329080e-05" B="2.162701e-04"/>
+   <interaction i="100" j="125" A="1.109846e-02" B="3.687470e-02"/>
+   <interaction i="126" j="147" A="1.240953e-01" B="2.757227e-01"/>
+   <interaction i="127" j="143" A="6.910848e-04" B="3.647140e-03"/>
+   <interaction i="127" j="144" A="1.540172e-03" B="7.111872e-03"/>
+   <interaction i="98" j="127" A="4.652203e-05" B="3.849389e-04"/>
+   <interaction i="128" j="145" A="9.829048e-03" B="3.332492e-02"/>
+   <interaction i="128" j="143" A="1.743543e-02" B="5.372835e-02"/>
+   <interaction i="100" j="129" A="1.746929e-04" B="1.159415e-03"/>
+   <interaction i="129" j="143" A="7.419535e-05" B="5.679675e-04"/>
+   <interaction i="131" j="143" A="9.009600e-07" B="1.438569e-05"/>
+   <interaction i="132" j="143" A="7.398653e-04" B="3.860440e-03"/>
+   <interaction i="134" j="141" A="4.126382e-02" B="1.101499e-01"/>
+   <interaction i="134" j="143" A="8.972147e-03" B="3.088564e-02"/>
+   <interaction i="134" j="142" A="7.385173e-02" B="1.789137e-01"/>
+   <interaction i="135" j="141" A="1.045002e-02" B="3.507038e-02"/>
+   <interaction i="136" j="143" A="5.266698e-03" B="1.981336e-02"/>
+   <interaction i="136" j="147" A="1.815016e-03" B="8.154735e-03"/>
+   <interaction i="138" j="195" A="1.147652e-01" B="2.583359e-01"/>
+   <interaction i="140" j="195" A="3.077777e-03" B="1.266311e-02"/>
+   <interaction i="141" j="199" A="3.972892e-05" B="3.374934e-04"/>
+   <interaction i="141" j="216" A="1.514158e-04" B="1.029167e-03"/>
+   <interaction i="142" j="191" A="1.390990e-01" B="3.032352e-01"/>
+   <interaction i="142" j="195" A="8.441900e-04" B="4.308999e-03"/>
+   <interaction i="142" j="190" A="7.101641e-01" B="1.179800e+00"/>
+   <interaction i="126" j="144" A="1.163287e-01" B="2.612655e-01"/>
+   <interaction i="128" j="144" A="6.975405e-02" B="1.706020e-01"/>
+   <interaction i="98" j="144" A="2.041407e-03" B="8.993958e-03"/>
+   <interaction i="144" j="195" A="1.903462e-04" B="1.245364e-03"/>
+   <interaction i="144" j="190" A="1.146787e-02" B="3.789470e-02"/>
+   <interaction i="145" j="523" A="1.129475e-03" B="5.492121e-03"/>
+   <interaction i="145" j="195" A="2.458167e-03" B="1.049991e-02"/>
+   <interaction i="145" j="193" A="4.433533e-03" B="1.716463e-02"/>
+   <interaction i="146" j="189" A="6.089798e-01" B="1.037955e+00"/>
+   <interaction i="146" j="191" A="1.010468e-01" B="2.323335e-01"/>
+   <interaction i="146" j="190" A="1.921059e-03" B="8.549883e-03"/>
+   <interaction i="146" j="188" A="9.921935e-03" B="3.358715e-02"/>
+   <interaction i="146" j="186" A="7.295484e-01" B="1.206576e+00"/>
+   <interaction i="122" j="148" A="1.049895e-02" B="3.520717e-02"/>
+   <interaction i="124" j="148" A="7.375459e-03" B="2.623214e-02"/>
+   <interaction i="148" j="186" A="7.299393e-03" B="2.600650e-02"/>
+   <interaction i="149" j="189" A="2.024755e-03" B="8.932781e-03"/>
+   <interaction i="149" j="539" A="2.086590e-04" B="1.344437e-03"/>
+   <interaction i="150" j="187" A="5.709358e-02" B="1.443773e-01"/>
+   <interaction i="150" j="185" A="1.594694e-02" B="4.987780e-02"/>
+   <interaction i="150" j="182" A="2.113771e-01" B="4.297585e-01"/>
+   <interaction i="150" j="184" A="5.764251e-03" B="2.136135e-02"/>
+   <interaction i="150" j="186" A="2.218588e-03" B="9.639922e-03"/>
+   <interaction i="151" j="187" A="1.655961e-03" B="7.554714e-03"/>
+   <interaction i="120" j="152" A="1.809361e-03" B="8.133557e-03"/>
+   <interaction i="152" j="182" A="6.388068e-03" B="2.327113e-02"/>
+   <interaction i="118" j="152" A="4.477004e-02" B="1.178960e-01"/>
+   <interaction i="153" j="185" A="5.489164e-03" B="2.050838e-02"/>
+   <interaction i="153" j="551" A="2.543938e-02" B="7.360914e-02"/>
+   <interaction i="153" j="549" A="7.897380e-03" B="2.777018e-02"/>
+   <interaction i="153" j="557" A="1.916740e-04" B="1.252599e-03"/>
+   <interaction i="154" j="181" A="5.549153e-03" B="2.069499e-02"/>
+   <interaction i="154" j="183" A="1.716243e-01" B="3.612645e-01"/>
+   <interaction i="154" j="182" A="1.878144e-03" B="8.390419e-03"/>
+   <interaction i="154" j="180" A="5.628803e-03" B="2.094223e-02"/>
+   <interaction i="154" j="178" A="4.130405e-01" B="7.510522e-01"/>
+   <interaction i="156" j="180" A="2.869130e-04" B="1.753079e-03"/>
+   <interaction i="156" j="178" A="5.467959e-03" B="2.044234e-02"/>
+   <interaction i="156" j="181" A="1.342583e-03" B="6.342989e-03"/>
+   <interaction i="157" j="181" A="2.721141e-03" B="1.142796e-02"/>
+   <interaction i="157" j="565" A="1.136693e-03" B="5.521353e-03"/>
+   <interaction i="157" j="569" A="2.173143e-03" B="9.475086e-03"/>
+   <interaction i="158" j="179" A="4.503325e-02" B="1.184733e-01"/>
+   <interaction i="158" j="177" A="3.967954e+00" B="4.948593e+00"/>
+   <interaction i="158" j="174" A="6.484635e-01" B="1.093740e+00"/>
+   <interaction i="158" j="176" A="1.024052e-02" B="3.448349e-02"/>
+   <interaction i="158" j="178" A="1.375645e-03" B="6.472889e-03"/>
+   <interaction i="159" j="179" A="4.527326e-03" B="1.746671e-02"/>
+   <interaction i="160" j="177" A="3.888335e-02" B="1.048285e-01"/>
+   <interaction i="162" j="172" A="4.835471e-04" B="2.708374e-03"/>
+   <interaction i="162" j="174" A="9.906063e-04" B="4.923348e-03"/>
+   <interaction i="162" j="177" A="4.642364e-02" B="1.215138e-01"/>
+   <interaction i="162" j="171" A="1.555264e+00" B="2.267321e+00"/>
+   <interaction i="163" j="177" A="6.896569e-04" B="3.640859e-03"/>
+   <interaction i="164" j="172" A="8.554572e-03" B="2.968302e-02"/>
+   <interaction i="164" j="173" A="4.801387e-02" B="1.249727e-01"/>
+   <interaction i="164" j="171" A="2.829486e-01" B="5.479814e-01"/>
+   <interaction i="165" j="171" A="7.948570e-03" B="2.792011e-02"/>
+   <interaction i="166" j="173" A="3.268025e-03" B="1.331212e-02"/>
+   <interaction i="165" j="170" A="3.162171e-05" B="2.790385e-04"/>
+   <interaction i="171" j="179" A="7.350751e-03" B="2.615889e-02"/>
+   <interaction i="172" j="248" A="4.319266e-05" B="3.618411e-04"/>
+   <interaction i="163" j="172" A="2.216475e-02" B="6.562390e-02"/>
+   <interaction i="173" j="248" A="9.113535e-02" B="2.131811e-01"/>
+   <interaction i="163" j="174" A="1.141799e-02" B="3.775731e-02"/>
+   <interaction i="174" j="243" A="6.893911e-03" B="2.479691e-02"/>
+   <interaction i="175" j="242" A="3.459355e-06" B="4.414066e-05"/>
+   <interaction i="176" j="241" A="7.278576e-03" B="2.594468e-02"/>
+   <interaction i="176" j="239" A="4.322691e-01" B="7.800781e-01"/>
+   <interaction i="176" j="243" A="1.763985e-03" B="7.963218e-03"/>
+   <interaction i="176" j="242" A="1.400557e-02" B="4.476379e-02"/>
+   <interaction i="176" j="244" A="3.396919e-01" B="6.381370e-01"/>
+   <interaction i="177" j="565" A="9.226796e-03" B="3.161443e-02"/>
+   <interaction i="157" j="178" A="6.692839e-03" B="2.419273e-02"/>
+   <interaction i="159" j="178" A="5.355863e-03" B="2.009251e-02"/>
+   <interaction i="178" j="239" A="7.282919e-03" B="2.595758e-02"/>
+   <interaction i="180" j="238" A="1.279770e-02" B="4.152275e-02"/>
+   <interaction i="180" j="240" A="2.335506e-01" B="4.670109e-01"/>
+   <interaction i="180" j="239" A="1.217028e-03" B="5.844672e-03"/>
+   <interaction i="180" j="237" A="4.880566e-03" B="1.859522e-02"/>
+   <interaction i="180" j="235" A="2.678349e-01" B="5.234785e-01"/>
+   <interaction i="181" j="240" A="3.795036e-02" B="1.027282e-01"/>
+   <interaction i="181" j="559" A="5.541569e-06" B="6.536876e-05"/>
+   <interaction i="155" j="182" A="1.147426e-02" B="3.791231e-02"/>
+   <interaction i="153" j="182" A="2.620997e-02" B="7.546258e-02"/>
+   <interaction i="182" j="235" A="6.490795e-03" B="2.358257e-02"/>
+   <interaction i="184" j="231" A="4.448520e-01" B="7.989555e-01"/>
+   <interaction i="184" j="235" A="1.593334e-03" B="7.315857e-03"/>
+   <interaction i="184" j="233" A="7.343639e-03" B="2.613780e-02"/>
+   <interaction i="184" j="236" A="6.077231e-03" B="2.232361e-02"/>
+   <interaction i="185" j="539" A="2.001987e-04" B="1.298855e-03"/>
+   <interaction i="185" j="236" A="9.767398e-03" B="3.315065e-02"/>
+   <interaction i="185" j="551" A="7.544971e-05" B="5.759581e-04"/>
+   <interaction i="186" j="233" A="1.490102e-04" B="1.015523e-03"/>
+   <interaction i="186" j="231" A="4.342751e-03" B="1.687124e-02"/>
+   <interaction i="149" j="186" A="6.464329e-02" B="1.601201e-01"/>
+   <interaction i="151" j="186" A="9.115068e-03" B="3.129509e-02"/>
+   <interaction i="187" j="234" A="6.522048e-01" B="1.098996e+00"/>
+   <interaction i="188" j="231" A="1.132449e-03" B="5.504168e-03"/>
+   <interaction i="188" j="229" A="3.871085e-03" B="1.532981e-02"/>
+   <interaction i="188" j="227" A="4.074995e-01" B="7.426465e-01"/>
+   <interaction i="188" j="232" A="9.645219e-04" B="4.815074e-03"/>
+   <interaction i="188" j="230" A="4.202458e+00" B="5.191136e+00"/>
+   <interaction i="189" j="232" A="2.657870e-04" B="1.644830e-03"/>
+   <interaction i="189" j="531" A="7.744845e-05" B="5.886451e-04"/>
+   <interaction i="189" j="533" A="7.149218e-04" B="3.751673e-03"/>
+   <interaction i="189" j="539" A="1.545081e-04" B="1.046652e-03"/>
+   <interaction i="145" j="190" A="1.513804e+00" B="2.216839e+00"/>
+   <interaction i="190" j="230" A="8.831261e-02" B="2.076643e-01"/>
+   <interaction i="190" j="227" A="7.408297e-03" B="2.632944e-02"/>
+   <interaction i="191" j="230" A="3.017307e-03" B="1.245544e-02"/>
+   <interaction i="191" j="226" A="1.394873e-03" B="6.548198e-03"/>
+   <interaction i="192" j="223" A="3.557278e-01" B="6.631439e-01"/>
+   <interaction i="145" j="192" A="1.028774e-02" B="3.461595e-02"/>
+   <interaction i="192" j="226" A="5.200755e-01" B="9.100493e-01"/>
+   <interaction i="192" j="228" A="8.542087e-04" B="4.351573e-03"/>
+   <interaction i="192" j="225" A="3.767834e-03" B="1.498831e-02"/>
+   <interaction i="192" j="227" A="1.109513e-03" B="5.411113e-03"/>
+   <interaction i="193" j="228" A="7.291936e-04" B="3.813982e-03"/>
+   <interaction i="193" j="523" A="6.356432e-04" B="3.401633e-03"/>
+   <interaction i="193" j="525" A="1.372174e-05" B="1.391609e-04"/>
+   <interaction i="194" j="223" A="4.299495e-03" B="1.673109e-02"/>
+   <interaction i="194" j="225" A="3.382757e-04" B="2.010953e-03"/>
+   <interaction i="194" j="226" A="7.460129e-03" B="2.648286e-02"/>
+   <interaction i="145" j="194" A="2.248479e-02" B="6.641258e-02"/>
+   <interaction i="195" j="220" A="3.410862e-02" B="9.398597e-02"/>
+   <interaction i="195" j="226" A="1.068312e-01" B="2.433650e-01"/>
+   <interaction i="196" j="223" A="1.620398e-03" B="7.419268e-03"/>
+   <interaction i="196" j="221" A="3.646001e-02" B="9.935511e-02"/>
+   <interaction i="196" j="219" A="9.192151e-03" B="3.151548e-02"/>
+   <interaction i="196" j="217" A="4.350466e-01" B="7.842527e-01"/>
+   <interaction i="196" j="220" A="4.724131e-03" B="1.809719e-02"/>
+   <interaction i="196" j="224" A="1.197095e+00" B="1.822986e+00"/>
+   <interaction i="197" j="224" A="1.008087e-01" B="2.318772e-01"/>
+   <interaction i="197" j="517" A="3.510839e-02" B="9.627614e-02"/>
+   <interaction i="141" j="198" A="9.617594e-05" B="7.050690e-04"/>
+   <interaction i="198" j="216" A="1.972717e-02" B="5.955207e-02"/>
+   <interaction i="198" j="217" A="9.335153e-03" B="3.192352e-02"/>
+   <interaction i="199" j="216" A="6.076587e-03" B="2.232164e-02"/>
+   <interaction i="200" j="217" A="8.068432e-02" B="1.926048e-01"/>
+   <interaction i="201" j="222" A="1.656804e-03" B="7.557920e-03"/>
+   <interaction i="202" j="215" A="1.669995e-04" B="1.116706e-03"/>
+   <interaction i="202" j="216" A="2.315910e-03" B="9.991048e-03"/>
+   <interaction i="203" j="216" A="1.709343e-04" B="1.138590e-03"/>
+   <interaction i="141" j="215" A="6.644022e-04" B="3.529410e-03"/>
+   <interaction i="203" j="215" A="1.749160e-04" B="1.160649e-03"/>
+   <interaction i="220" j="226" A="3.574283e-06" B="4.535937e-05"/>
+   <interaction i="195" j="223" A="3.084253e-01" B="5.888002e-01"/>
+   <interaction i="197" j="223" A="6.156036e-03" B="2.256458e-02"/>
+   <interaction i="224" j="517" A="5.440633e-03" B="2.035717e-02"/>
+   <interaction i="224" j="511" A="2.214520e-04" B="1.412785e-03"/>
+   <interaction i="224" j="507" A="1.494003e-01" B="3.218368e-01"/>
+   <interaction i="225" j="498" A="6.242433e-01" B="1.059590e+00"/>
+   <interaction i="191" j="225" A="1.175940e-04" B="8.336756e-04"/>
+   <interaction i="225" j="503" A="5.967318e-02" B="1.497933e-01"/>
+   <interaction i="227" j="498" A="1.064141e-02" B="3.560484e-02"/>
+   <interaction i="193" j="227" A="8.756038e-03" B="3.026444e-02"/>
+   <interaction i="191" j="227" A="4.627800e-03" B="1.778914e-02"/>
+   <interaction i="228" j="501" A="3.035274e-03" B="1.251722e-02"/>
+   <interaction i="228" j="525" A="3.329756e-05" B="2.913085e-04"/>
+   <interaction i="229" j="496" A="5.040861e-03" B="1.910279e-02"/>
+   <interaction i="229" j="501" A="7.509061e-02" B="1.814113e-01"/>
+   <interaction i="229" j="499" A="7.970447e-05" B="6.028998e-04"/>
+   <interaction i="229" j="497" A="4.511946e-01" B="8.084370e-01"/>
+   <interaction i="229" j="498" A="2.311823e-03" B="9.976350e-03"/>
+   <interaction i="229" j="494" A="3.320291e-01" B="6.261183e-01"/>
+   <interaction i="230" j="499" A="8.255456e-03" B="2.881556e-02"/>
+   <interaction i="187" j="231" A="7.216573e-01" B="1.195690e+00"/>
+   <interaction i="189" j="231" A="3.810735e-03" B="1.513039e-02"/>
+   <interaction i="231" j="497" A="2.583274e-03" B="1.094339e-02"/>
+   <interaction i="231" j="496" A="3.299274e-04" B="1.969510e-03"/>
+   <interaction i="231" j="494" A="6.126104e-03" B="2.247311e-02"/>
+   <interaction i="232" j="497" A="2.725004e-04" B="1.679380e-03"/>
+   <interaction i="232" j="525" A="1.086788e-02" B="3.623517e-02"/>
+   <interaction i="233" j="495" A="2.798749e-02" B="7.970389e-02"/>
+   <interaction i="233" j="493" A="4.801688e-03" B="1.834444e-02"/>
+   <interaction i="187" j="233" A="3.875555e-01" B="7.122315e-01"/>
+   <interaction i="233" j="490" A="2.047510e-01" B="4.185023e-01"/>
+   <interaction i="233" j="492" A="2.892771e-03" B="1.202554e-02"/>
+   <interaction i="233" j="494" A="2.503163e-03" B="1.065984e-02"/>
+   <interaction i="234" j="495" A="6.022714e-05" B="4.773494e-04"/>
+   <interaction i="185" j="235" A="1.154149e-02" B="3.809732e-02"/>
+   <interaction i="235" j="493" A="2.269878e-03" B="9.825282e-03"/>
+   <interaction i="183" j="235" A="1.863523e-01" B="3.869206e-01"/>
+   <interaction i="235" j="492" A="2.663573e-04" B="1.647771e-03"/>
+   <interaction i="235" j="490" A="2.992888e-03" B="1.237138e-02"/>
+   <interaction i="236" j="276" A="5.381082e-05" B="4.345779e-04"/>
+   <interaction i="236" j="533" A="7.613106e-03" B="2.693464e-02"/>
+   <interaction i="236" j="493" A="8.516232e-03" B="2.957212e-02"/>
+   <interaction i="237" j="490" A="1.246318e-03" B="5.961658e-03"/>
+   <interaction i="237" j="488" A="2.492311e-03" B="1.062131e-02"/>
+   <interaction i="237" j="486" A="5.400225e-01" B="9.390444e-01"/>
+   <interaction i="237" j="489" A="3.697247e-03" B="1.475395e-02"/>
+   <interaction i="237" j="491" A="2.426443e-02" B="7.076491e-02"/>
+   <interaction i="238" j="491" A="1.038528e-02" B="3.488924e-02"/>
+   <interaction i="179" j="239" A="3.356556e-01" B="6.318119e-01"/>
+   <interaction i="181" j="239" A="6.101416e-03" B="2.239762e-02"/>
+   <interaction i="239" j="488" A="2.612746e-04" B="1.621526e-03"/>
+   <interaction i="239" j="486" A="1.841101e-02" B="5.622218e-02"/>
+   <interaction i="239" j="489" A="1.552556e-04" B="1.050870e-03"/>
+   <interaction i="240" j="489" A="4.299578e-04" B="2.455827e-03"/>
+   <interaction i="240" j="541" A="1.260670e-03" B="6.018811e-03"/>
+   <interaction i="240" j="559" A="6.669283e-04" B="3.540589e-03"/>
+   <interaction i="240" j="276" A="2.989425e-05" B="2.662763e-04"/>
+   <interaction i="240" j="268" A="5.575840e-03" B="2.077789e-02"/>
+   <interaction i="241" j="485" A="2.010715e-02" B="6.050644e-02"/>
+   <interaction i="241" j="484" A="1.043815e-02" B="3.503718e-02"/>
+   <interaction i="241" j="486" A="6.421106e-03" B="2.337139e-02"/>
+   <interaction i="175" j="241" A="4.574882e-04" B="2.586185e-03"/>
+   <interaction i="242" j="487" A="5.354396e-05" B="4.327811e-04"/>
+   <interaction i="243" j="252" A="1.538228e-05" B="1.530594e-04"/>
+   <interaction i="177" j="243" A="1.044428e+00" B="1.627078e+00"/>
+   <interaction i="175" j="243" A="3.810173e-05" B="3.259344e-04"/>
+   <interaction i="244" j="268" A="9.419759e-05" B="6.929620e-04"/>
+   <interaction i="244" j="485" A="3.476947e-03" B="1.401763e-02"/>
+   <interaction i="244" j="559" A="8.944680e-04" B="4.521823e-03"/>
+   <interaction i="244" j="565" A="1.706364e-02" B="5.277189e-02"/>
+   <interaction i="244" j="262" A="1.840292e-01" B="3.828969e-01"/>
+   <interaction i="244" j="252" A="4.133203e-02" B="1.103016e-01"/>
+   <interaction i="177" j="245" A="1.708540e-01" B="3.599127e-01"/>
+   <interaction i="245" j="252" A="3.674742e-06" B="4.641931e-05"/>
+   <interaction i="175" j="245" A="4.952374e-05" B="4.055280e-04"/>
+   <interaction i="246" j="481" A="1.400724e-03" B="6.571081e-03"/>
+   <interaction i="246" j="252" A="7.384293e-06" B="8.303611e-05"/>
+   <interaction i="177" j="247" A="6.444598e-04" B="3.440906e-03"/>
+   <interaction i="249" j="481" A="1.915504e-04" B="1.251926e-03"/>
+   <interaction i="250" j="481" A="5.047100e+00" B="6.047063e+00"/>
+   <interaction i="251" j="262" A="7.918482e-03" B="2.783201e-02"/>
+   <interaction i="246" j="251" A="9.565389e-05" B="7.018783e-04"/>
+   <interaction i="251" j="260" A="5.825331e-03" B="2.154981e-02"/>
+   <interaction i="251" j="481" A="2.415786e-06" B="3.272590e-05"/>
+   <interaction i="252" j="481" A="1.322750e-03" B="6.264808e-03"/>
+   <interaction i="252" j="260" A="3.028826e-02" B="8.512782e-02"/>
+   <interaction i="252" j="262" A="4.644078e-02" B="1.215512e-01"/>
+   <interaction i="253" j="260" A="7.810559e-03" B="2.751554e-02"/>
+   <interaction i="253" j="262" A="1.741529e-04" B="1.156428e-03"/>
+   <interaction i="253" j="481" A="6.061907e-05" B="4.799367e-04"/>
+   <interaction i="253" j="261" A="1.798804e-02" B="5.514374e-02"/>
+   <interaction i="254" j="481" A="5.353710e-06" B="6.351680e-05"/>
+   <interaction i="254" j="260" A="3.396521e-03" B="1.374690e-02"/>
+   <interaction i="255" j="340" A="8.411191e-05" B="6.305567e-04"/>
+   <interaction i="255" j="264" A="6.295489e-03" B="2.298974e-02"/>
+   <interaction i="255" j="262" A="1.784916e-06" B="2.543066e-05"/>
+   <interaction i="255" j="263" A="1.208099e-02" B="3.957566e-02"/>
+   <interaction i="255" j="560" A="1.058243e-03" B="5.201927e-03"/>
+   <interaction i="255" j="561" A="6.536893e-02" B="1.616165e-01"/>
+   <interaction i="256" j="262" A="2.364155e-03" B="1.016419e-02"/>
+   <interaction i="256" j="340" A="3.444739e-06" B="4.398519e-05"/>
+   <interaction i="256" j="561" A="4.347530e-03" B="1.688671e-02"/>
+   <interaction i="256" j="563" A="1.155081e-04" B="8.213345e-04"/>
+   <interaction i="257" j="266" A="2.112100e+00" B="2.925982e+00"/>
+   <interaction i="257" j="340" A="1.132041e-06" B="1.740048e-05"/>
+   <interaction i="257" j="265" A="1.326730e-02" B="4.278863e-02"/>
+   <interaction i="257" j="264" A="1.363961e-03" B="6.427043e-03"/>
+   <interaction i="258" j="340" A="9.480656e-04" B="4.746516e-03"/>
+   <interaction i="259" j="268" A="5.165730e-03" B="1.949632e-02"/>
+   <interaction i="259" j="266" A="1.285483e-01" B="2.839432e-01"/>
+   <interaction i="254" j="259" A="1.444782e-02" B="4.593864e-02"/>
+   <interaction i="259" j="267" A="1.706077e-02" B="5.276449e-02"/>
+   <interaction i="260" j="481" A="3.215573e-04" B="1.927783e-03"/>
+   <interaction i="260" j="454" A="2.589680e-05" B="2.362552e-04"/>
+   <interaction i="261" j="561" A="5.984190e-02" B="1.501461e-01"/>
+   <interaction i="261" j="559" A="9.256719e-02" B="2.159685e-01"/>
+   <interaction i="261" j="270" A="9.666245e+00" B="1.039260e+01"/>
+   <interaction i="261" j="268" A="5.532687e-05" B="4.447572e-04"/>
+   <interaction i="244" j="261" A="1.027005e-04" B="7.447091e-04"/>
+   <interaction i="261" j="269" A="1.128679e-02" B="3.739542e-02"/>
+   <interaction i="262" j="559" A="2.324739e+00" B="3.169480e+00"/>
+   <interaction i="262" j="565" A="6.061727e-03" B="2.227614e-02"/>
+   <interaction i="262" j="561" A="3.262703e-01" B="6.170555e-01"/>
+   <interaction i="263" j="272" A="5.898427e-03" B="2.177491e-02"/>
+   <interaction i="263" j="561" A="3.993512e-04" B="2.309256e-03"/>
+   <interaction i="263" j="271" A="1.357189e-02" B="4.360569e-02"/>
+   <interaction i="263" j="270" A="2.310930e-01" B="4.629121e-01"/>
+   <interaction i="264" j="561" A="1.090042e-04" B="7.826103e-04"/>
+   <interaction i="264" j="340" A="8.363176e-05" B="6.275557e-04"/>
+   <interaction i="265" j="272" A="8.895648e-03" B="3.066603e-02"/>
+   <interaction i="265" j="274" A="4.066245e-01" B="7.413174e-01"/>
+   <interaction i="265" j="337" A="8.139439e-04" B="4.179955e-03"/>
+   <interaction i="265" j="273" A="1.250224e-02" B="4.072233e-02"/>
+   <interaction i="266" j="450" A="1.621683e-03" B="7.424169e-03"/>
+   <interaction i="266" j="402" A="2.324916e-04" B="1.471236e-03"/>
+   <interaction i="266" j="351" A="2.831071e-04" B="1.733679e-03"/>
+   <interaction i="266" j="337" A="4.856997e-03" B="1.852036e-02"/>
+   <interaction i="266" j="274" A="2.867778e-03" B="1.193890e-02"/>
+   <interaction i="267" j="276" A="1.179947e-01" B="2.643798e-01"/>
+   <interaction i="267" j="446" A="4.549686e-04" B="2.574310e-03"/>
+   <interaction i="267" j="274" A="2.016442e-02" B="6.065003e-02"/>
+   <interaction i="267" j="275" A="1.126607e-02" B="3.733820e-02"/>
+   <interaction i="268" j="450" A="7.106306e-03" B="2.543194e-02"/>
+   <interaction i="269" j="541" A="6.946618e-04" B="3.662864e-03"/>
+   <interaction i="269" j="278" A="1.270652e-02" B="4.127607e-02"/>
+   <interaction i="269" j="276" A="9.426581e-03" B="3.218386e-02"/>
+   <interaction i="240" j="269" A="3.892741e-04" B="2.260594e-03"/>
+   <interaction i="269" j="277" A="2.357358e-02" B="6.908190e-02"/>
+   <interaction i="270" j="278" A="8.694503e-03" B="3.008709e-02"/>
+   <interaction i="270" j="541" A="5.317011e-03" B="1.997097e-02"/>
+   <interaction i="270" j="543" A="3.213811e-04" B="1.926903e-03"/>
+   <interaction i="270" j="553" A="3.600977e-03" B="1.443311e-02"/>
+   <interaction i="270" j="559" A="2.629392e+00" B="3.512009e+00"/>
+   <interaction i="271" j="280" A="1.159462e-02" B="3.824342e-02"/>
+   <interaction i="271" j="278" A="1.099462e-04" B="7.882425e-04"/>
+   <interaction i="271" j="337" A="2.470683e-05" B="2.271732e-04"/>
+   <interaction i="271" j="279" A="1.729581e-02" B="5.336957e-02"/>
+   <interaction i="272" j="337" A="3.624718e-04" B="2.130123e-03"/>
+   <interaction i="273" j="281" A="1.216700e-02" B="3.981033e-02"/>
+   <interaction i="273" j="280" A="1.506099e-03" B="6.980514e-03"/>
+   <interaction i="273" j="337" A="1.020892e-05" B="1.087659e-04"/>
+   <interaction i="273" j="446" A="6.070977e-04" B="3.273847e-03"/>
+   <interaction i="273" j="282" A="7.523459e-03" B="2.667007e-02"/>
+   <interaction i="274" j="282" A="6.931672e-04" B="3.656295e-03"/>
+   <interaction i="274" j="337" A="4.961452e-02" B="1.284350e-01"/>
+   <interaction i="274" j="351" A="7.177521e-06" B="8.109392e-05"/>
+   <interaction i="274" j="402" A="4.161599e-03" B="1.628270e-02"/>
+   <interaction i="274" j="406" A="5.054904e-03" B="1.914713e-02"/>
+   <interaction i="274" j="446" A="2.369920e-05" B="2.194258e-04"/>
+   <interaction i="274" j="355" A="7.798416e-05" B="5.920362e-04"/>
+   <interaction i="274" j="450" A="2.230801e-04" B="1.421435e-03"/>
+   <interaction i="275" j="541" A="5.526958e-04" B="3.027480e-03"/>
+   <interaction i="275" j="446" A="3.962077e-04" B="2.294098e-03"/>
+   <interaction i="275" j="282" A="1.519738e-03" B="7.033155e-03"/>
+   <interaction i="275" j="284" A="1.389569e-03" B="6.527441e-03"/>
+   <interaction i="275" j="283" A="1.310992e-02" B="4.236522e-02"/>
+   <interaction i="276" j="284" A="5.707809e-04" B="3.109812e-03"/>
+   <interaction i="276" j="493" A="7.486012e-03" B="2.655941e-02"/>
+   <interaction i="276" j="541" A="2.362335e-04" B="1.490942e-03"/>
+   <interaction i="277" j="541" A="2.649546e-05" B="2.407978e-04"/>
+   <interaction i="277" j="286" A="1.599853e-02" B="5.001224e-02"/>
+   <interaction i="277" j="284" A="2.928482e-04" B="1.783248e-03"/>
+   <interaction i="277" j="285" A="2.709516e-02" B="7.758053e-02"/>
+   <interaction i="278" j="541" A="2.249991e-05" B="2.101326e-04"/>
+   <interaction i="279" j="287" A="1.083465e-02" B="3.614282e-02"/>
+   <interaction i="279" j="332" A="3.484479e-05" B="3.025458e-04"/>
+   <interaction i="279" j="288" A="3.733288e-02" B="1.013334e-01"/>
+   <interaction i="279" j="286" A="1.228262e-04" B="8.644742e-04"/>
+   <interaction i="280" j="332" A="3.856308e-06" B="4.832286e-05"/>
+   <interaction i="281" j="332" A="6.844799e-05" B="5.310599e-04"/>
+   <interaction i="281" j="294" A="1.430546e-04" B="9.815848e-04"/>
+   <interaction i="281" j="288" A="9.947271e-05" B="7.251528e-04"/>
+   <interaction i="282" j="406" A="1.282088e-05" B="1.315047e-04"/>
+   <interaction i="282" j="332" A="5.882980e-03" B="2.172738e-02"/>
+   <interaction i="282" j="294" A="6.929630e-04" B="3.655398e-03"/>
+   <interaction i="283" j="527" A="9.556472e-02" B="2.217810e-01"/>
+   <interaction i="283" j="296" A="5.476789e-02" B="1.394594e-01"/>
+   <interaction i="283" j="294" A="1.441177e-04" B="9.876599e-04"/>
+   <interaction i="284" j="535" A="7.659981e-04" B="3.973739e-03"/>
+   <interaction i="284" j="497" A="2.951875e-03" B="1.222995e-02"/>
+   <interaction i="284" j="533" A="6.287013e-05" B="4.947432e-04"/>
+   <interaction i="284" j="294" A="1.825436e-02" B="5.582325e-02"/>
+   <interaction i="285" j="527" A="1.212874e-02" B="3.970598e-02"/>
+   <interaction i="285" j="296" A="4.922933e-04" B="2.749136e-03"/>
+   <interaction i="287" j="296" A="2.646565e-04" B="1.638998e-03"/>
+   <interaction i="287" j="295" A="2.439047e-02" B="7.107111e-02"/>
+   <interaction i="288" j="328" A="3.756391e-03" B="1.495037e-02"/>
+   <interaction i="288" j="294" A="8.442691e-04" B="4.309336e-03"/>
+   <interaction i="289" j="298" A="1.461339e-02" B="4.637694e-02"/>
+   <interaction i="289" j="297" A="2.855754e-02" B="8.105445e-02"/>
+   <interaction i="289" j="296" A="4.032456e-05" B="3.417047e-04"/>
+   <interaction i="291" j="299" A="1.226668e-02" B="4.008194e-02"/>
+   <interaction i="291" j="300" A="4.046539e-03" B="1.590667e-02"/>
+   <interaction i="291" j="318" A="2.531758e-03" B="1.076122e-02"/>
+   <interaction i="291" j="298" A="1.398109e-02" B="4.469858e-02"/>
+   <interaction i="292" j="318" A="2.118735e-02" B="6.320335e-02"/>
+   <interaction i="292" j="381" A="1.928558e-04" B="1.259032e-03"/>
+   <interaction i="292" j="322" A="1.325212e-04" B="9.209740e-04"/>
+   <interaction i="293" j="300" A="2.492274e-05" B="2.288264e-04"/>
+   <interaction i="293" j="301" A="1.074197e-02" B="3.588499e-02"/>
+   <interaction i="293" j="303" A="3.439120e-01" B="6.447367e-01"/>
+   <interaction i="293" j="302" A="6.655161e-03" B="2.407918e-02"/>
+   <interaction i="288" j="293" A="7.046337e-04" B="3.706629e-03"/>
+   <interaction i="294" j="300" A="2.419043e-02" B="7.058502e-02"/>
+   <interaction i="294" j="410" A="1.447502e-03" B="6.753447e-03"/>
+   <interaction i="294" j="442" A="1.484992e-04" B="1.012619e-03"/>
+   <interaction i="295" j="304" A="2.664668e-05" B="2.419425e-04"/>
+   <interaction i="295" j="306" A="5.963369e-02" B="1.497106e-01"/>
+   <interaction i="295" j="527" A="1.338462e-03" B="6.326759e-03"/>
+   <interaction i="295" j="305" A="2.064084e-01" B="4.213235e-01"/>
+   <interaction i="295" j="303" A="5.454102e-03" B="2.039916e-02"/>
+   <interaction i="295" j="302" A="1.591805e-03" B="7.310005e-03"/>
+   <interaction i="296" j="304" A="4.247454e-03" B="1.656215e-02"/>
+   <interaction i="296" j="527" A="3.188984e-04" B="1.914491e-03"/>
+   <interaction i="297" j="318" A="6.041782e-04" B="3.260722e-03"/>
+   <interaction i="297" j="310" A="3.222293e-04" B="1.931140e-03"/>
+   <interaction i="297" j="306" A="2.820945e-03" B="1.177620e-02"/>
+   <interaction i="297" j="305" A="1.772976e-03" B="7.997027e-03"/>
+   <interaction i="297" j="307" A="1.703438e-02" B="5.269648e-02"/>
+   <interaction i="297" j="309" A="8.069413e-03" B="2.827339e-02"/>
+   <interaction i="298" j="306" A="1.683267e-02" B="5.217597e-02"/>
+   <interaction i="298" j="318" A="1.681939e-03" B="7.653349e-03"/>
+   <interaction i="298" j="310" A="4.641986e-04" B="2.617758e-03"/>
+   <interaction i="299" j="308" A="2.276222e-01" B="4.571111e-01"/>
+   <interaction i="299" j="307" A="7.063996e-04" B="3.714368e-03"/>
+   <interaction i="299" j="309" A="8.737746e-04" B="4.434477e-03"/>
+   <interaction i="299" j="438" A="1.067065e-02" B="3.568633e-02"/>
+   <interaction i="299" j="414" A="1.898349e-02" B="5.767527e-02"/>
+   <interaction i="299" j="318" A="1.902414e-04" B="1.244793e-03"/>
+   <interaction i="300" j="410" A="1.324799e-02" B="4.273672e-02"/>
+   <interaction i="301" j="501" A="4.266141e-03" B="1.662285e-02"/>
+   <interaction i="301" j="308" A="3.888104e-03" B="1.538595e-02"/>
+   <interaction i="301" j="519" A="1.713781e-01" B="3.608325e-01"/>
+   <interaction i="302" j="527" A="7.750833e-03" B="2.734009e-02"/>
+   <interaction i="302" j="438" A="5.941906e-02" B="1.492615e-01"/>
+   <interaction i="302" j="497" A="1.987887e-03" B="8.797028e-03"/>
+   <interaction i="302" j="501" A="1.808056e-03" B="8.128668e-03"/>
+   <interaction i="303" j="519" A="2.085363e-03" B="9.155054e-03"/>
+   <interaction i="303" j="513" A="4.512927e-02" B="1.186838e-01"/>
+   <interaction i="303" j="512" A="1.183276e-03" B="5.709281e-03"/>
+   <interaction i="304" j="527" A="3.117793e-05" B="2.757712e-04"/>
+   <interaction i="304" j="521" A="1.651175e-04" B="1.106209e-03"/>
+   <interaction i="304" j="519" A="5.969824e-01" B="1.020887e+00"/>
+   <interaction i="307" j="414" A="3.959213e-03" B="1.562009e-02"/>
+   <interaction i="308" j="501" A="2.451112e-02" B="7.136394e-02"/>
+   <interaction i="308" j="519" A="2.705491e-03" B="1.137317e-02"/>
+   <interaction i="308" j="434" A="2.905266e-03" B="1.206881e-02"/>
+   <interaction i="309" j="318" A="5.479712e-04" B="3.005899e-03"/>
+   <interaction i="300" j="309" A="1.063484e-02" B="3.558649e-02"/>
+   <interaction i="309" j="414" A="2.312202e-03" B="9.977715e-03"/>
+   <interaction i="310" j="318" A="1.560347e-03" B="7.189423e-03"/>
+   <interaction i="311" j="318" A="1.651599e-03" B="7.538127e-03"/>
+   <interaction i="311" j="414" A="7.025790e-06" B="7.966280e-05"/>
+   <interaction i="312" j="414" A="6.974395e-05" B="5.394258e-04"/>
+   <interaction i="312" j="418" A="8.792835e-04" B="4.457764e-03"/>
+   <interaction i="313" j="322" A="2.905798e-03" B="1.207065e-02"/>
+   <interaction i="313" j="364" A="1.843592e-02" B="5.628555e-02"/>
+   <interaction i="313" j="377" A="2.256939e-04" B="1.435300e-03"/>
+   <interaction i="314" j="322" A="4.680866e-04" B="2.636016e-03"/>
+   <interaction i="314" j="377" A="6.297630e-06" B="7.272055e-05"/>
+   <interaction i="315" j="322" A="8.175333e-03" B="2.858232e-02"/>
+   <interaction i="310" j="317" A="1.524390e-03" B="7.051091e-03"/>
+   <interaction i="292" j="317" A="4.143947e-02" B="1.105405e-01"/>
+   <interaction i="298" j="317" A="1.471527e-04" B="1.004962e-03"/>
+   <interaction i="292" j="319" A="1.004004e-01" B="2.310942e-01"/>
+   <interaction i="321" j="359" A="1.311106e-02" B="4.236829e-02"/>
+   <interaction i="316" j="321" A="1.072719e+01" B="1.133482e+01"/>
+   <interaction i="322" j="359" A="2.943850e-02" B="8.313285e-02"/>
+   <interaction i="322" j="377" A="4.468971e-05" B="3.722624e-04"/>
+   <interaction i="322" j="381" A="1.827087e-03" B="8.199907e-03"/>
+   <interaction i="323" j="356" A="1.558642e-02" B="4.893635e-02"/>
+   <interaction i="323" j="359" A="1.475581e-04" B="1.007269e-03"/>
+   <interaction i="323" j="381" A="2.748303e-02" B="7.850490e-02"/>
+   <interaction i="323" j="354" A="5.144716e-01" B="9.018703e-01"/>
+   <interaction i="323" j="358" A="3.381553e-03" B="1.369640e-02"/>
+   <interaction i="325" j="359" A="1.872365e-04" B="1.228386e-03"/>
+   <interaction i="325" j="356" A="2.143785e-04" B="1.375078e-03"/>
+   <interaction i="325" j="354" A="4.920179e-03" B="1.872091e-02"/>
+   <interaction i="326" j="359" A="2.101991e-04" B="1.352701e-03"/>
+   <interaction i="327" j="355" A="1.996709e-02" B="6.015503e-02"/>
+   <interaction i="327" j="354" A="1.606570e-03" B="7.366468e-03"/>
+   <interaction i="327" j="352" A="6.891124e-03" B="2.478856e-02"/>
+   <interaction i="327" j="350" A="3.474990e-01" B="6.503356e-01"/>
+   <interaction i="327" j="353" A="1.158140e-02" B="3.820708e-02"/>
+   <interaction i="328" j="381" A="9.593440e-06" B="1.032733e-04"/>
+   <interaction i="329" j="350" A="7.858210e-03" B="2.765536e-02"/>
+   <interaction i="331" j="350" A="1.512172e-03" B="7.003964e-03"/>
+   <interaction i="331" j="348" A="5.131762e-03" B="1.938943e-02"/>
+   <interaction i="331" j="346" A="9.250986e-01" B="1.470617e+00"/>
+   <interaction i="331" j="349" A="2.890840e-02" B="8.188349e-02"/>
+   <interaction i="331" j="351" A="3.064608e-02" B="8.596508e-02"/>
+   <interaction i="332" j="351" A="6.310028e-02" B="1.569287e-01"/>
+   <interaction i="333" j="346" A="3.221920e-02" B="8.962694e-02"/>
+   <interaction i="333" j="349" A="1.409780e-04" B="9.696962e-04"/>
+   <interaction i="272" j="334" A="6.246923e-02" B="1.556197e-01"/>
+   <interaction i="334" j="346" A="7.440765e-03" B="2.642556e-02"/>
+   <interaction i="334" j="344" A="5.360765e-04" B="2.951426e-03"/>
+   <interaction i="334" j="343" A="5.320200e-05" B="4.304766e-04"/>
+   <interaction i="336" j="343" A="7.922975e-05" B="5.999059e-04"/>
+   <interaction i="336" j="344" A="3.737566e-03" B="1.488791e-02"/>
+   <interaction i="336" j="347" A="5.781147e-02" B="1.458886e-01"/>
+   <interaction i="336" j="342" A="2.361971e-01" B="4.714168e-01"/>
+   <interaction i="272" j="336" A="5.639961e-04" B="3.078976e-03"/>
+   <interaction i="336" j="346" A="1.342242e-03" B="6.341645e-03"/>
+   <interaction i="337" j="347" A="1.353636e+00" B="2.019581e+00"/>
+   <interaction i="338" j="347" A="3.883120e-03" B="1.536952e-02"/>
+   <interaction i="272" j="338" A="8.212243e-04" B="4.211089e-03"/>
+   <interaction i="264" j="338" A="7.035638e-04" B="3.701938e-03"/>
+   <interaction i="264" j="339" A="4.150862e-04" B="2.384834e-03"/>
+   <interaction i="342" j="347" A="1.195580e-04" B="8.452626e-04"/>
+   <interaction i="335" j="343" A="2.740744e-02" B="7.832491e-02"/>
+   <interaction i="342" j="346" A="2.144042e-02" B="6.383184e-02"/>
+   <interaction i="337" j="346" A="9.647110e-02" B="2.235325e-01"/>
+   <interaction i="337" j="348" A="6.686592e-02" B="1.646949e-01"/>
+   <interaction i="332" j="350" A="9.708117e-02" B="2.247098e-01"/>
+   <interaction i="351" j="385" A="1.441776e-01" B="3.124335e-01"/>
+   <interaction i="351" j="402" A="3.495758e-04" B="2.066779e-03"/>
+   <interaction i="352" j="382" A="3.073018e-01" B="5.870123e-01"/>
+   <interaction i="352" j="386" A="3.354061e-03" B="1.360354e-02"/>
+   <interaction i="352" j="387" A="1.166973e-03" B="5.643652e-03"/>
+   <interaction i="352" j="385" A="1.603354e-02" B="5.010343e-02"/>
+   <interaction i="352" j="384" A="7.451989e-03" B="2.645878e-02"/>
+   <interaction i="353" j="387" A="1.437126e-04" B="9.853458e-04"/>
+   <interaction i="354" j="382" A="7.211562e-04" B="3.778917e-03"/>
+   <interaction i="326" j="354" A="5.090056e-02" B="1.312034e-01"/>
+   <interaction i="328" j="354" A="5.350395e-03" B="2.007541e-02"/>
+   <interaction i="354" j="381" A="1.579532e-03" B="7.263010e-03"/>
+   <interaction i="355" j="406" A="2.497453e-03" B="1.063957e-02"/>
+   <interaction i="355" j="381" A="7.617198e-04" B="3.955235e-03"/>
+   <interaction i="356" j="381" A="6.712752e-03" B="2.425270e-02"/>
+   <interaction i="356" j="378" A="8.819487e-01" B="1.413228e+00"/>
+   <interaction i="356" j="380" A="3.785331e-03" B="1.504629e-02"/>
+   <interaction i="356" j="382" A="4.804666e-03" B="1.835392e-02"/>
+   <interaction i="356" j="383" A="6.978292e-03" B="2.504958e-02"/>
+   <interaction i="357" j="383" A="7.833512e-05" B="5.942557e-04"/>
+   <interaction i="358" j="380" A="2.969494e-04" B="1.804035e-03"/>
+   <interaction i="358" j="381" A="2.853474e-03" B="1.188925e-02"/>
+   <interaction i="358" j="378" A="1.154074e-02" B="3.809525e-02"/>
+   <interaction i="360" j="378" A="1.126528e-03" B="5.480179e-03"/>
+   <interaction i="361" j="379" A="2.255673e-01" B="4.536696e-01"/>
+   <interaction i="362" j="379" A="1.417287e-02" B="4.520895e-02"/>
+   <interaction i="362" j="374" A="6.225589e-01" B="1.057207e+00"/>
+   <interaction i="362" j="378" A="2.102961e-02" B="6.281098e-02"/>
+   <interaction i="363" j="374" A="1.951743e-03" B="8.663536e-03"/>
+   <interaction i="363" j="376" A="1.712639e-04" B="1.140419e-03"/>
+   <interaction i="364" j="377" A="8.978619e-05" B="6.658109e-04"/>
+   <interaction i="365" j="372" A="7.926020e-03" B="2.785409e-02"/>
+   <interaction i="365" j="373" A="1.732330e-03" B="7.843956e-03"/>
+   <interaction i="365" j="374" A="1.683780e-03" B="7.660330e-03"/>
+   <interaction i="366" j="375" A="8.867301e-04" B="4.489202e-03"/>
+   <interaction i="366" j="372" A="1.756382e-06" B="2.509143e-05"/>
+   <interaction i="366" j="371" A="3.530570e-04" B="2.083916e-03"/>
+   <interaction i="371" j="412" A="3.064008e-02" B="8.595105e-02"/>
+   <interaction i="373" j="411" A="2.749297e-02" B="7.852855e-02"/>
+   <interaction i="364" j="373" A="3.900553e-02" B="1.051029e-01"/>
+   <interaction i="373" j="412" A="4.604197e-03" B="1.771350e-02"/>
+   <interaction i="373" j="409" A="1.038398e+00" B="1.619246e+00"/>
+   <interaction i="374" j="409" A="3.825774e-03" B="1.518014e-02"/>
+   <interaction i="366" j="374" A="8.801246e-03" B="3.039460e-02"/>
+   <interaction i="374" j="412" A="1.056790e-03" B="5.195971e-03"/>
+   <interaction i="364" j="374" A="1.058806e-02" B="3.545603e-02"/>
+   <interaction i="375" j="412" A="1.630032e-04" B="1.094392e-03"/>
+   <interaction i="375" j="408" A="1.596093e-02" B="4.991428e-02"/>
+   <interaction i="376" j="405" A="5.867530e-01" B="1.006288e+00"/>
+   <interaction i="376" j="409" A="2.716859e-03" B="1.141297e-02"/>
+   <interaction i="364" j="376" A="9.531150e-05" B="6.997840e-04"/>
+   <interaction i="376" j="408" A="1.057505e-02" B="3.541970e-02"/>
+   <interaction i="376" j="410" A="2.062222e-02" B="6.179534e-02"/>
+   <interaction i="376" j="407" A="4.732591e-03" B="1.812419e-02"/>
+   <interaction i="378" j="405" A="4.542561e-03" B="1.751568e-02"/>
+   <interaction i="378" j="407" A="2.345263e-04" B="1.481958e-03"/>
+   <interaction i="322" j="378" A="4.242240e-03" B="1.654521e-02"/>
+   <interaction i="359" j="378" A="6.190604e-01" B="1.052254e+00"/>
+   <interaction i="361" j="378" A="9.710704e-01" B="1.531270e+00"/>
+   <interaction i="378" j="408" A="2.374514e-04" B="1.497345e-03"/>
+   <interaction i="379" j="408" A="5.672935e-06" B="6.665757e-05"/>
+   <interaction i="361" j="380" A="2.314295e+00" B="3.157610e+00"/>
+   <interaction i="380" j="406" A="6.007617e-03" B="2.211031e-02"/>
+   <interaction i="380" j="405" A="1.393071e-03" B="6.541148e-03"/>
+   <interaction i="380" j="401" A="5.844038e-01" B="1.002930e+00"/>
+   <interaction i="380" j="403" A="8.920355e-03" B="3.073699e-02"/>
+   <interaction i="381" j="406" A="4.296263e-03" B="1.672061e-02"/>
+   <interaction i="382" j="401" A="3.909021e-03" B="1.545490e-02"/>
+   <interaction i="357" j="382" A="8.625792e-04" B="4.387079e-03"/>
+   <interaction i="355" j="382" A="3.212347e-03" B="1.312285e-02"/>
+   <interaction i="382" j="395" A="1.011953e-03" B="5.011602e-03"/>
+   <interaction i="383" j="396" A="3.173521e-05" B="2.798729e-04"/>
+   <interaction i="384" j="393" A="4.730697e-03" B="1.811815e-02"/>
+   <interaction i="384" j="395" A="3.861891e-04" B="2.245654e-03"/>
+   <interaction i="384" j="396" A="1.676606e-03" B="7.633120e-03"/>
+   <interaction i="357" j="384" A="9.720849e-04" B="4.846517e-03"/>
+   <interaction i="355" j="384" A="1.131493e-02" B="3.747309e-02"/>
+   <interaction i="351" j="384" A="1.080431e-02" B="3.605844e-02"/>
+   <interaction i="384" j="401" A="7.856360e-03" B="2.764993e-02"/>
+   <interaction i="384" j="402" A="4.229166e-03" B="1.650271e-02"/>
+   <interaction i="385" j="402" A="2.668359e-02" B="7.659725e-02"/>
+   <interaction i="385" j="394" A="5.813379e-03" B="2.151296e-02"/>
+   <interaction i="357" j="386" A="4.464842e-05" B="3.719758e-04"/>
+   <interaction i="388" j="396" A="4.167297e-05" B="3.512004e-04"/>
+   <interaction i="388" j="394" A="1.574448e-04" B="1.063204e-03"/>
+   <interaction i="388" j="395" A="1.976248e-04" B="1.284924e-03"/>
+   <interaction i="389" j="397" A="2.147302e-01" B="4.354322e-01"/>
+   <interaction i="385" j="389" A="7.090835e-02" B="1.729514e-01"/>
+   <interaction i="389" j="396" A="7.439040e-04" B="3.877993e-03"/>
+   <interaction i="391" j="399" A="4.501258e-02" B="1.184280e-01"/>
+   <interaction i="391" j="398" A="2.726490e-04" B="1.680143e-03"/>
+   <interaction i="391" j="400" A="9.451643e-03" B="3.225515e-02"/>
+   <interaction i="392" j="400" A="2.278277e-02" B="6.714520e-02"/>
+   <interaction i="392" j="398" A="2.092220e-03" B="9.180135e-03"/>
+   <interaction i="393" j="402" A="3.168846e-02" B="8.839490e-02"/>
+   <interaction i="385" j="393" A="1.005108e-02" B="3.395106e-02"/>
+   <interaction i="393" j="401" A="5.869304e-03" B="2.168528e-02"/>
+   <interaction i="393" j="400" A="5.926437e-03" B="2.186105e-02"/>
+   <interaction i="385" j="395" A="7.308213e-02" B="1.773586e-01"/>
+   <interaction i="383" j="395" A="2.551531e-05" B="2.333513e-04"/>
+   <interaction i="399" j="447" A="4.130381e-01" B="7.510485e-01"/>
+   <interaction i="399" j="452" A="2.729799e-04" B="1.681842e-03"/>
+   <interaction i="400" j="452" A="5.342928e-02" B="1.366131e-01"/>
+   <interaction i="400" j="477" A="4.292617e-02" B="1.138356e-01"/>
+   <interaction i="401" j="452" A="1.183048e-04" B="8.378732e-04"/>
+   <interaction i="401" j="447" A="7.264817e-03" B="2.590380e-02"/>
+   <interaction i="383" j="401" A="3.298681e-02" B="9.140287e-02"/>
+   <interaction i="402" j="450" A="1.505125e-03" B="6.976752e-03"/>
+   <interaction i="403" j="446" A="3.001876e-01" B="5.756655e-01"/>
+   <interaction i="403" j="448" A="1.152694e-01" B="2.592813e-01"/>
+   <interaction i="403" j="447" A="1.234815e-03" B="5.915768e-03"/>
+   <interaction i="403" j="445" A="1.317138e-02" B="4.253069e-02"/>
+   <interaction i="403" j="443" A="3.853015e-01" B="7.087779e-01"/>
+   <interaction i="404" j="448" A="3.302707e-01" B="6.233537e-01"/>
+   <interaction i="379" j="405" A="2.332983e-02" B="6.848612e-02"/>
+   <interaction i="405" j="443" A="5.036641e-03" B="1.908946e-02"/>
+   <interaction i="381" j="405" A="3.185117e-02" B="8.877297e-02"/>
+   <interaction i="406" j="446" A="6.656881e-03" B="2.408437e-02"/>
+   <interaction i="407" j="443" A="1.627913e-03" B="7.447928e-03"/>
+   <interaction i="407" j="441" A="9.200133e-03" B="3.153828e-02"/>
+   <interaction i="407" j="439" A="3.830078e-01" B="7.052600e-01"/>
+   <interaction i="379" j="407" A="3.347072e-04" B="1.993259e-03"/>
+   <interaction i="407" j="442" A="2.495790e-02" B="7.244631e-02"/>
+   <interaction i="375" j="407" A="4.232080e-02" B="1.124962e-01"/>
+   <interaction i="407" j="444" A="1.978857e+00" B="2.771330e+00"/>
+   <interaction i="408" j="444" A="2.218203e+00" B="3.047969e+00"/>
+   <interaction i="375" j="409" A="1.696858e-02" B="5.252678e-02"/>
+   <interaction i="377" j="409" A="3.399402e-03" B="1.375662e-02"/>
+   <interaction i="409" j="439" A="5.980554e-03" B="2.202727e-02"/>
+   <interaction i="410" j="442" A="2.674096e-04" B="1.653194e-03"/>
+   <interaction i="375" j="411" A="8.979262e-04" B="4.536387e-03"/>
+   <interaction i="411" j="440" A="1.497093e-01" B="3.223915e-01"/>
+   <interaction i="411" j="435" A="3.512545e-01" B="6.561873e-01"/>
+   <interaction i="411" j="437" A="5.842217e-03" B="2.160185e-02"/>
+   <interaction i="411" j="439" A="1.748689e-03" B="7.905633e-03"/>
+   <interaction i="411" j="438" A="4.173447e-02" B="1.111959e-01"/>
+   <interaction i="413" j="438" A="2.651190e-04" B="1.641384e-03"/>
+   <interaction i="413" j="435" A="4.476208e-03" B="1.730221e-02"/>
+   <interaction i="413" j="437" A="2.285522e-04" B="1.450432e-03"/>
+   <interaction i="414" j="438" A="3.343641e-03" B="1.356832e-02"/>
+   <interaction i="415" j="433" A="1.050827e-02" B="3.523321e-02"/>
+   <interaction i="415" j="428" A="1.184490e-02" B="3.893012e-02"/>
+   <interaction i="415" j="436" A="6.187520e-01" B="1.051817e+00"/>
+   <interaction i="415" j="435" A="1.684586e-03" B="7.663385e-03"/>
+   <interaction i="415" j="434" A="1.267578e+00" B="1.912002e+00"/>
+   <interaction i="416" j="436" A="2.548094e-01" B="5.021759e-01"/>
+   <interaction i="416" j="428" A="8.909396e-04" B="4.506954e-03"/>
+   <interaction i="417" j="428" A="9.086916e-01" B="1.448850e+00"/>
+   <interaction i="417" j="434" A="6.816425e-03" B="2.456444e-02"/>
+   <interaction i="418" j="434" A="7.028989e-03" B="2.520115e-02"/>
+   <interaction i="419" j="427" A="5.489621e-04" B="3.010428e-03"/>
+   <interaction i="419" j="429" A="5.351931e-04" B="2.947372e-03"/>
+   <interaction i="419" j="434" A="4.564548e-02" B="1.198140e-01"/>
+   <interaction i="419" j="428" A="1.663913e+00" B="2.398567e+00"/>
+   <interaction i="420" j="505" A="3.259141e-03" B="1.328196e-02"/>
+   <interaction i="420" j="434" A="5.789250e-04" B="3.146744e-03"/>
+   <interaction i="421" j="429" A="9.653666e-03" B="3.282866e-02"/>
+   <interaction i="421" j="428" A="3.285041e+00" B="4.227921e+00"/>
+   <interaction i="422" j="428" A="3.291817e+00" B="4.235187e+00"/>
+   <interaction i="422" j="427" A="5.115744e-03" B="1.933898e-02"/>
+   <interaction i="428" j="436" A="4.971745e-04" B="2.771832e-03"/>
+   <interaction i="428" j="440" A="4.342383e-05" B="3.634542e-04"/>
+   <interaction i="420" j="429" A="4.200014e-03" B="1.640786e-02"/>
+   <interaction i="429" j="505" A="1.087061e+00" B="1.682240e+00"/>
+   <interaction i="431" j="505" A="7.226625e-01" B="1.197078e+00"/>
+   <interaction i="431" j="500" A="2.994630e-03" B="1.237738e-02"/>
+   <interaction i="431" j="502" A="3.055356e-04" B="1.847400e-03"/>
+   <interaction i="431" j="504" A="3.932745e-03" B="1.553303e-02"/>
+   <interaction i="432" j="499" A="9.744204e-04" B="4.856218e-03"/>
+   <interaction i="433" j="501" A="6.284046e-01" B="1.065473e+00"/>
+   <interaction i="433" j="496" A="4.464141e-01" B="8.012927e-01"/>
+   <interaction i="433" j="498" A="1.022973e-02" B="3.445321e-02"/>
+   <interaction i="433" j="500" A="1.561588e-03" B="7.194186e-03"/>
+   <interaction i="434" j="501" A="2.858158e+01" B="2.564965e+01"/>
+   <interaction i="435" j="496" A="7.491503e-03" B="2.657564e-02"/>
+   <interaction i="416" j="435" A="6.320418e-03" B="2.306558e-02"/>
+   <interaction i="414" j="435" A="1.546000e-01" B="3.311444e-01"/>
+   <interaction i="436" j="495" A="3.262457e-04" B="1.951178e-03"/>
+   <interaction i="436" j="499" A="1.845507e-03" B="8.268740e-03"/>
+   <interaction i="437" j="492" A="3.492717e-01" B="6.530990e-01"/>
+   <interaction i="437" j="497" A="1.935329e-01" B="3.993054e-01"/>
+   <interaction i="437" j="495" A="1.224219e-02" B="4.001523e-02"/>
+   <interaction i="437" j="496" A="1.447385e-03" B="6.752991e-03"/>
+   <interaction i="437" j="494" A="5.501797e-03" B="2.054771e-02"/>
+   <interaction i="438" j="497" A="2.572084e-01" B="5.061127e-01"/>
+   <interaction i="439" j="492" A="6.613790e-03" B="2.395438e-02"/>
+   <interaction i="412" j="439" A="8.598746e-03" B="2.981070e-02"/>
+   <interaction i="410" j="439" A="6.248095e-02" B="1.556441e-01"/>
+   <interaction i="440" j="495" A="8.812796e-04" B="4.466195e-03"/>
+   <interaction i="441" j="491" A="1.542351e-01" B="3.304930e-01"/>
+   <interaction i="441" j="493" A="4.888767e-03" B="1.862126e-02"/>
+   <interaction i="441" j="488" A="4.885075e-01" B="8.637783e-01"/>
+   <interaction i="441" j="490" A="9.000835e-03" B="3.096791e-02"/>
+   <interaction i="441" j="492" A="1.285667e-03" B="6.118101e-03"/>
+   <interaction i="442" j="493" A="4.844343e-03" B="1.848014e-02"/>
+   <interaction i="408" j="443" A="1.848692e-02" B="5.641527e-02"/>
+   <interaction i="406" j="443" A="7.481591e-03" B="2.654633e-02"/>
+   <interaction i="443" j="488" A="9.259084e-03" B="3.170659e-02"/>
+   <interaction i="444" j="491" A="2.290537e-06" B="3.130575e-05"/>
+   <interaction i="406" j="445" A="1.059860e-03" B="5.208549e-03"/>
+   <interaction i="445" j="484" A="5.636007e-01" B="9.730889e-01"/>
+   <interaction i="445" j="486" A="2.407577e-03" B="1.031953e-02"/>
+   <interaction i="445" j="488" A="1.947717e-03" B="8.648639e-03"/>
+   <interaction i="445" j="487" A="1.330227e+01" B="1.356067e+01"/>
+   <interaction i="446" j="489" A="6.979925e-03" B="2.505447e-02"/>
+   <interaction i="447" j="484" A="1.213320e-02" B="3.971814e-02"/>
+   <interaction i="447" j="486" A="2.148685e-04" B="1.377696e-03"/>
+   <interaction i="404" j="447" A="9.583007e-01" B="1.514471e+00"/>
+   <interaction i="447" j="487" A="1.776235e+00" B="2.532755e+00"/>
+   <interaction i="402" j="447" A="2.579468e-01" B="5.073232e-01"/>
+   <interaction i="448" j="487" A="1.770764e-02" B="5.442647e-02"/>
+   <interaction i="448" j="483" A="9.193179e-01" B="1.462955e+00"/>
+   <interaction i="449" j="485" A="2.758214e-03" B="1.155756e-02"/>
+   <interaction i="449" j="480" A="7.300705e-01" B="1.207295e+00"/>
+   <interaction i="449" j="482" A="9.207083e-03" B="3.155813e-02"/>
+   <interaction i="449" j="484" A="2.400751e-03" B="1.029514e-02"/>
+   <interaction i="402" j="449" A="3.906039e-03" B="1.544508e-02"/>
+   <interaction i="451" j="480" A="4.699082e-03" B="1.801719e-02"/>
+   <interaction i="451" j="482" A="1.260994e-04" B="8.836297e-04"/>
+   <interaction i="451" j="483" A="4.045772e-03" B="1.590416e-02"/>
+   <interaction i="452" j="483" A="1.231742e-01" B="2.740160e-01"/>
+   <interaction i="452" j="477" A="2.002958e-01" B="4.109000e-01"/>
+   <interaction i="453" j="476" A="5.452870e-03" B="2.039532e-02"/>
+   <interaction i="453" j="478" A="1.303498e-02" B="4.216332e-02"/>
+   <interaction i="260" j="453" A="1.938621e-04" B="1.264505e-03"/>
+   <interaction i="453" j="477" A="1.096091e-01" B="2.486271e-01"/>
+   <interaction i="453" j="479" A="1.599985e-01" B="3.407529e-01"/>
+   <interaction i="453" j="481" A="2.425619e-01" B="4.819793e-01"/>
+   <interaction i="453" j="480" A="8.425694e-04" B="4.302105e-03"/>
+   <interaction i="454" j="481" A="1.593560e-02" B="4.984826e-02"/>
+   <interaction i="455" j="474" A="1.772932e-03" B="7.996865e-03"/>
+   <interaction i="455" j="476" A="3.514080e-05" B="3.046860e-04"/>
+   <interaction i="455" j="478" A="1.477732e-03" B="6.870779e-03"/>
+   <interaction i="456" j="477" A="5.168294e-03" B="1.950438e-02"/>
+   <interaction i="457" j="472" A="1.899536e-03" B="8.469984e-03"/>
+   <interaction i="457" j="474" A="4.903591e-03" B="1.866830e-02"/>
+   <interaction i="457" j="473" A="9.556366e-02" B="2.217789e-01"/>
+   <interaction i="457" j="475" A="1.145925e-01" B="2.580120e-01"/>
+   <interaction i="458" j="479" A="2.537527e-03" B="1.078165e-02"/>
+   <interaction i="460" j="473" A="8.199523e-04" B="4.205653e-03"/>
+   <interaction i="461" j="467" A="8.083350e-03" B="2.831408e-02"/>
+   <interaction i="462" j="467" A="3.147956e-03" B="1.290328e-02"/>
+   <interaction i="460" j="468" A="1.352461e-02" B="4.347907e-02"/>
+   <interaction i="460" j="472" A="1.000330e-04" B="7.285548e-04"/>
+   <interaction i="458" j="474" A="1.614116e-02" B="5.038352e-02"/>
+   <interaction i="456" j="474" A="2.993228e-04" B="1.816043e-03"/>
+   <interaction i="476" j="483" A="2.229505e-04" B="1.420746e-03"/>
+   <interaction i="456" j="476" A="1.592851e-05" B="1.575756e-04"/>
+   <interaction i="477" j="483" A="1.122297e-05" B="1.176972e-04"/>
+   <interaction i="454" j="480" A="4.594811e-03" B="1.768341e-02"/>
+   <interaction i="452" j="480" A="3.379296e-01" B="6.353769e-01"/>
+   <interaction i="448" j="482" A="2.320971e-02" B="6.819215e-02"/>
+   <interaction i="448" j="484" A="1.410156e-02" B="4.501930e-02"/>
+   <interaction i="450" j="484" A="2.962041e-02" B="8.356070e-02"/>
+   <interaction i="446" j="486" A="5.479232e-02" B="1.395113e-01"/>
+   <interaction i="448" j="486" A="3.496249e-04" B="2.067021e-03"/>
+   <interaction i="242" j="486" A="1.652452e-02" B="5.137875e-02"/>
+   <interaction i="444" j="488" A="4.786018e-03" B="1.829454e-02"/>
+   <interaction i="446" j="488" A="2.713863e-02" B="7.768423e-02"/>
+   <interaction i="236" j="490" A="7.041296e-03" B="2.523791e-02"/>
+   <interaction i="238" j="490" A="9.559595e-03" B="3.256186e-02"/>
+   <interaction i="444" j="490" A="1.029520e-04" B="7.462289e-04"/>
+   <interaction i="234" j="492" A="1.629869e-02" B="5.079296e-02"/>
+   <interaction i="440" j="492" A="8.249006e-01" B="1.336629e+00"/>
+   <interaction i="442" j="492" A="5.864347e-03" B="2.167002e-02"/>
+   <interaction i="493" j="533" A="1.906350e-04" B="1.246939e-03"/>
+   <interaction i="234" j="494" A="1.738627e-04" B="1.154822e-03"/>
+   <interaction i="234" j="496" A="1.759383e-02" B="5.413480e-02"/>
+   <interaction i="436" j="496" A="2.345261e-02" B="6.878634e-02"/>
+   <interaction i="438" j="496" A="8.019083e-03" B="2.812636e-02"/>
+   <interaction i="497" j="533" A="4.222172e-05" B="3.550500e-04"/>
+   <interaction i="497" j="525" A="1.357425e-01" B="2.971251e-01"/>
+   <interaction i="436" j="498" A="2.688798e-04" B="1.660764e-03"/>
+   <interaction i="432" j="498" A="1.267836e-03" B="6.047311e-03"/>
+   <interaction i="228" j="498" A="3.685585e-02" B="1.002532e-01"/>
+   <interaction i="500" j="509" A="2.348621e-05" B="2.177812e-04"/>
+   <interaction i="434" j="500" A="2.400978e+00" B="3.255865e+00"/>
+   <interaction i="432" j="500" A="2.571479e-02" B="7.427262e-02"/>
+   <interaction i="501" j="519" A="3.549838e-01" B="6.619879e-01"/>
+   <interaction i="501" j="509" A="3.690503e-02" B="1.003647e-01"/>
+   <interaction i="502" j="509" A="4.061751e-06" B="5.045884e-05"/>
+   <interaction i="503" j="509" A="8.554721e-04" B="4.356936e-03"/>
+   <interaction i="224" j="506" A="2.489939e-05" B="2.286477e-04"/>
+   <interaction i="508" j="517" A="3.621473e-06" B="4.585788e-05"/>
+   <interaction i="503" j="508" A="9.388522e-03" B="3.207554e-02"/>
+   <interaction i="224" j="508" A="6.813631e-04" B="3.604334e-03"/>
+   <interaction i="508" j="519" A="9.119588e-03" B="3.130802e-02"/>
+   <interaction i="509" j="519" A="7.071697e-02" B="1.725623e-01"/>
+   <interaction i="509" j="517" A="7.031425e-05" B="5.430990e-04"/>
+   <interaction i="224" j="510" A="1.240590e-02" B="4.046067e-02"/>
+   <interaction i="510" j="518" A="1.681157e-02" B="5.212146e-02"/>
+   <interaction i="510" j="517" A="7.319846e-05" B="5.616010e-04"/>
+   <interaction i="510" j="519" A="1.244792e-04" B="8.741584e-04"/>
+   <interaction i="511" j="517" A="1.435531e-04" B="9.844343e-04"/>
+   <interaction i="83" j="512" A="2.292271e-05" B="2.134181e-04"/>
+   <interaction i="512" j="519" A="2.485057e-06" B="3.350605e-05"/>
+   <interaction i="512" j="521" A="9.292930e-03" B="3.180315e-02"/>
+   <interaction i="304" j="512" A="7.872828e-02" B="1.887058e-01"/>
+   <interaction i="512" j="520" A="1.454143e-02" B="4.618654e-02"/>
+   <interaction i="513" j="519" A="9.330516e-04" B="4.683792e-03"/>
+   <interaction i="514" j="522" A="1.290565e-02" B="4.181443e-02"/>
+   <interaction i="83" j="514" A="6.118928e-06" B="7.099684e-05"/>
+   <interaction i="514" j="521" A="6.492351e-04" B="3.462140e-03"/>
+   <interaction i="514" j="523" A="2.359503e+00" B="3.208928e+00"/>
+   <interaction i="516" j="524" A="1.416134e-02" B="4.517830e-02"/>
+   <interaction i="193" j="516" A="1.921634e-03" B="8.552016e-03"/>
+   <interaction i="511" j="516" A="2.666724e-02" B="7.655812e-02"/>
+   <interaction i="516" j="523" A="8.830243e-02" B="2.076443e-01"/>
+   <interaction i="516" j="525" A="3.613567e-03" B="1.447515e-02"/>
+   <interaction i="302" j="518" A="7.916285e-03" B="2.782557e-02"/>
+   <interaction i="518" j="526" A="1.892083e-02" B="5.751658e-02"/>
+   <interaction i="304" j="518" A="4.923334e-02" B="1.276122e-01"/>
+   <interaction i="501" j="518" A="9.018572e-05" B="6.682789e-04"/>
+   <interaction i="518" j="525" A="7.399870e-04" B="3.860969e-03"/>
+   <interaction i="518" j="527" A="4.433859e-01" B="7.967606e-01"/>
+   <interaction i="304" j="520" A="4.521401e-04" B="2.560966e-03"/>
+   <interaction i="520" j="527" A="6.534551e-04" B="3.480882e-03"/>
+   <interaction i="520" j="529" A="4.999697e-03" B="1.897271e-02"/>
+   <interaction i="520" j="528" A="1.351250e-02" B="4.344663e-02"/>
+   <interaction i="521" j="527" A="3.028408e-04" B="1.833813e-03"/>
+   <interaction i="80" j="522" A="4.584180e-04" B="2.590564e-03"/>
+   <interaction i="522" j="529" A="8.306612e-03" B="2.896429e-02"/>
+   <interaction i="522" j="531" A="8.505669e-02" B="2.012643e-01"/>
+   <interaction i="522" j="530" A="1.136795e-02" B="3.761935e-02"/>
+   <interaction i="523" j="531" A="9.374517e-03" B="3.203566e-02"/>
+   <interaction i="524" j="531" A="8.007287e-04" B="4.123324e-03"/>
+   <interaction i="524" j="533" A="1.391977e-01" B="3.034144e-01"/>
+   <interaction i="524" j="532" A="1.448752e-02" B="4.604382e-02"/>
+   <interaction i="302" j="526" A="3.312459e-04" B="1.976067e-03"/>
+   <interaction i="526" j="534" A="1.436423e-02" B="4.571706e-02"/>
+   <interaction i="526" j="535" A="6.497373e-03" B="2.360248e-02"/>
+   <interaction i="526" j="533" A="9.466460e-03" B="3.229728e-02"/>
+   <interaction i="80" j="528" A="3.229563e-05" B="2.839854e-04"/>
+   <interaction i="528" j="537" A="8.666417e-03" B="3.000608e-02"/>
+   <interaction i="528" j="535" A="6.089243e-05" B="4.817396e-04"/>
+   <interaction i="528" j="536" A="1.355035e-02" B="4.354801e-02"/>
+   <interaction i="75" j="530" A="2.643851e-05" B="2.403664e-04"/>
+   <interaction i="80" j="530" A="4.100294e-06" B="5.085755e-05"/>
+   <interaction i="530" j="537" A="1.385435e-03" B="6.511257e-03"/>
+   <interaction i="530" j="539" A="4.329795e-02" B="1.146566e-01"/>
+   <interaction i="530" j="538" A="8.397175e-03" B="2.922720e-02"/>
+   <interaction i="189" j="532" A="3.185533e-05" B="2.807553e-04"/>
+   <interaction i="532" j="540" A="1.116549e-02" B="3.706021e-02"/>
+   <interaction i="532" j="539" A="2.317781e-03" B="9.997774e-03"/>
+   <interaction i="532" j="541" A="6.762237e-02" B="1.662461e-01"/>
+   <interaction i="534" j="543" A="9.167135e-03" B="3.144399e-02"/>
+   <interaction i="534" j="541" A="2.812571e-03" B="1.174706e-02"/>
+   <interaction i="284" j="534" A="3.405556e-04" B="2.022241e-03"/>
+   <interaction i="534" j="542" A="1.720954e-02" B="5.314763e-02"/>
+   <interaction i="75" j="536" A="3.886111e-03" B="1.537938e-02"/>
+   <interaction i="536" j="543" A="1.996935e-05" B="1.902448e-04"/>
+   <interaction i="536" j="545" A="1.107764e-01" B="2.508316e-01"/>
+   <interaction i="536" j="544" A="1.130398e-02" B="3.744287e-02"/>
+   <interaction i="537" j="543" A="2.633398e-04" B="1.632200e-03"/>
+   <interaction i="75" j="538" A="1.345169e-03" B="6.353169e-03"/>
+   <interaction i="538" j="545" A="1.673965e-03" B="7.623098e-03"/>
+   <interaction i="538" j="551" A="3.659815e-04" B="2.147297e-03"/>
+   <interaction i="538" j="550" A="6.525627e-02" B="1.613844e-01"/>
+   <interaction i="539" j="551" A="2.135723e-04" B="1.370767e-03"/>
+   <interaction i="539" j="545" A="7.656673e-02" B="1.843782e-01"/>
+   <interaction i="540" j="553" A="8.089084e-01" B="1.315000e+00"/>
+   <interaction i="540" j="551" A="2.095227e-05" B="1.980169e-04"/>
+   <interaction i="270" j="540" A="3.126160e-04" B="1.883008e-03"/>
+   <interaction i="541" j="551" A="1.571798e-02" B="4.928032e-02"/>
+   <interaction i="542" j="553" A="7.292510e-02" B="1.770410e-01"/>
+   <interaction i="270" j="542" A="4.601705e-06" B="5.598976e-05"/>
+   <interaction i="544" j="552" A="3.447120e-02" B="9.481780e-02"/>
+   <interaction i="544" j="553" A="9.288392e-03" B="3.179021e-02"/>
+   <interaction i="270" j="544" A="2.656193e-03" B="1.120021e-02"/>
+   <interaction i="546" j="553" A="2.321365e-05" B="2.156730e-04"/>
+   <interaction i="546" j="555" A="2.655416e-04" B="1.643564e-03"/>
+   <interaction i="546" j="554" A="1.112851e-02" B="3.695788e-02"/>
+   <interaction i="547" j="555" A="2.633319e-02" B="7.575810e-02"/>
+   <interaction i="547" j="553" A="3.549637e-03" B="1.426142e-02"/>
+   <interaction i="548" j="555" A="2.473573e-04" B="1.549222e-03"/>
+   <interaction i="548" j="557" A="5.782543e-03" B="2.141782e-02"/>
+   <interaction i="548" j="556" A="1.490107e-02" B="4.713652e-02"/>
+   <interaction i="61" j="548" A="2.645312e-03" B="1.116196e-02"/>
+   <interaction i="550" j="559" A="1.335365e-02" B="4.302057e-02"/>
+   <interaction i="550" j="557" A="8.017404e-05" B="6.058583e-04"/>
+   <interaction i="550" j="560" A="3.621142e-01" B="6.730503e-01"/>
+   <interaction i="550" j="558" A="7.483861e-03" B="2.655305e-02"/>
+   <interaction i="552" j="563" A="4.718005e-02" B="1.231615e-01"/>
+   <interaction i="552" j="559" A="5.839839e-02" B="1.471218e-01"/>
+   <interaction i="552" j="562" A="1.832562e-01" B="3.815562e-01"/>
+   <interaction i="552" j="560" A="3.374177e-03" B="1.367150e-02"/>
+   <interaction i="552" j="561" A="4.570690e-05" B="3.793101e-04"/>
+   <interaction i="553" j="561" A="1.518523e-03" B="7.028468e-03"/>
+   <interaction i="554" j="562" A="5.216935e-03" B="1.965724e-02"/>
+   <interaction i="554" j="564" A="2.591490e-02" B="7.475397e-02"/>
+   <interaction i="554" j="566" A="8.366029e-03" B="2.913684e-02"/>
+   <interaction i="554" j="563" A="5.284071e-03" B="1.986782e-02"/>
+   <interaction i="554" j="567" A="1.329664e-03" B="6.292085e-03"/>
+   <interaction i="555" j="563" A="2.403548e-01" B="4.783219e-01"/>
+   <interaction i="556" j="564" A="2.937335e-04" B="1.787739e-03"/>
+   <interaction i="556" j="566" A="6.004487e-04" B="3.243940e-03"/>
+   <interaction i="181" j="556" A="4.611120e-03" B="1.773570e-02"/>
+   <interaction i="556" j="565" A="1.331004e-01" B="2.922979e-01"/>
+   <interaction i="244" j="558" A="5.010403e-03" B="1.900656e-02"/>
+   <interaction i="262" j="558" A="8.705525e-02" B="2.051975e-01"/>
+   <interaction i="558" j="565" A="6.708932e-03" B="2.424120e-02"/>
+   <interaction i="262" j="560" A="7.676794e-04" B="3.981006e-03"/>
+   <interaction i="256" j="560" A="1.450329e-03" B="6.764439e-03"/>
+   <interaction i="256" j="562" A="1.890969e-02" B="5.748835e-02"/>
+   <interaction i="157" j="564" A="4.210788e-04" B="2.413491e-03"/>
+   <interaction i="61" j="566" A="1.022582e-03" B="5.055430e-03"/>
+   <interaction i="557" j="566" A="5.388196e-03" B="2.019354e-02"/>
+   <interaction i="61" j="568" A="1.440604e-03" B="6.726617e-03"/>
+   <interaction i="157" j="568" A="3.162430e-03" B="1.295270e-02"/>
+   <interaction i="61" j="570" A="2.541981e-05" B="2.326232e-04"/>
+   <interaction i="65" j="570" A="5.093006e-03" B="1.926732e-02"/>
+   <interaction i="107" j="570" A="1.830365e-02" B="5.594884e-02"/>
+   <interaction i="120" j="570" A="9.363024e-04" B="4.697387e-03"/>
+   <interaction i="63" j="572" A="8.476208e-03" B="2.945626e-02"/>
+   <interaction i="65" j="572" A="5.503542e-02" B="1.400269e-01"/>
+  </contacts_type>
+  <contacts_type name="base_stacking-10-12">
+   <expression expr="A/r^12-B/r^10"/>
+   <parameter>A</parameter>
+   <parameter>B</parameter>
+   <interaction i="2" j="5" A="3.079948e-05" B="2.851804e-04"/>
+   <interaction i="5" j="8" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="8" j="11" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="11" j="14" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="14" j="17" A="3.079948e-05" B="2.851804e-04"/>
+   <interaction i="17" j="20" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="20" j="23" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="23" j="26" A="3.079948e-05" B="2.851804e-04"/>
+   <interaction i="26" j="29" A="3.079948e-05" B="2.851804e-04"/>
+   <interaction i="29" j="32" A="3.079948e-05" B="2.851804e-04"/>
+   <interaction i="32" j="35" A="3.316867e-05" B="3.071173e-04"/>
+   <interaction i="35" j="38" A="4.264543e-05" B="3.948651e-04"/>
+   <interaction i="38" j="41" A="4.264543e-05" B="3.948651e-04"/>
+   <interaction i="41" j="44" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="44" j="47" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="47" j="50" A="4.264543e-05" B="3.948651e-04"/>
+   <interaction i="50" j="53" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="53" j="56" A="3.553786e-05" B="3.290543e-04"/>
+   <interaction i="56" j="59" A="3.079948e-05" B="2.851804e-04"/>
+  </contacts_type>
+  <contacts_type name="basepair-10-12">
+   <expression expr="A/r^12-B/r^10"/>
+   <parameter>A</parameter>
+   <parameter>B</parameter>
+   <interaction i="2" j="59" A="1.088391e-02" B="3.627971e-02"/>
+   <interaction i="2" j="58" A="5.000000e+00" B="6.000000e+00"/>
+   <interaction i="1" j="59" A="5.000000e+00" B="6.000000e+00"/>
+   <interaction i="5" j="56" A="2.176782e-02" B="7.255942e-02"/>
+   <interaction i="5" j="55" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="4" j="56" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="26" j="38" A="2.176782e-02" B="7.255942e-02"/>
+   <interaction i="25" j="38" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="26" j="37" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="23" j="41" A="2.176782e-02" B="7.255942e-02"/>
+   <interaction i="22" j="41" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="23" j="40" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="20" j="44" A="2.176782e-02" B="7.255942e-02"/>
+   <interaction i="19" j="44" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="20" j="43" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="8" j="53" A="2.176782e-02" B="7.255942e-02"/>
+   <interaction i="8" j="52" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="7" j="53" A="1.000000e+01" B="1.200000e+01"/>
+   <interaction i="17" j="47" A="1.088391e-02" B="3.627971e-02"/>
+   <interaction i="17" j="46" A="5.000000e+00" B="6.000000e+00"/>
+   <interaction i="16" j="47" A="5.000000e+00" B="6.000000e+00"/>
+   <interaction i="11" j="50" A="1.088391e-02" B="3.627971e-02"/>
+   <interaction i="11" j="49" A="5.000000e+00" B="6.000000e+00"/>
+   <interaction i="10" j="50" A="5.000000e+00" B="6.000000e+00"/>
+  </contacts_type>
+ </contacts>
+ <manyparticle>
+  <manyparticle_type name="CustomDihedrals">
+   <expression expr="4|select(check,V,V_pi);check=floor(10000*sin(angle(p1,p2,p3))*sin(angle(p2,p3,p4)));V_pi=0.0;V=Kd*(1+cos(n*phi-phi0));phi=dihedral(p1,p2,p3,p4);phi0=phi0_deg*3.141592653589793/180"/>
+   <parameter>Kd</parameter>
+   <parameter>phi0_deg</parameter>
+   <parameter>n</parameter>
+   <interaction i="2" j="1" k="4" l="5" phi0_deg="2.003816e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="2" j="1" k="4" l="5" phi0_deg="6.011449e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="3" j="6" k="9" l="12" phi0_deg="1.908066e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="3" j="6" k="9" l="12" phi0_deg="5.724199e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="5" j="4" k="7" l="8" phi0_deg="1.962916e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="5" j="4" k="7" l="8" phi0_deg="5.888748e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="6" j="9" k="12" l="15" phi0_deg="5.163945e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="6" j="9" k="12" l="15" phi0_deg="1.549183e+03" Kd="9.000000e-01" n="3"/>
+   <interaction i="8" j="7" k="10" l="11" phi0_deg="1.979158e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="8" j="7" k="10" l="11" phi0_deg="5.937473e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="9" j="12" k="15" l="18" phi0_deg="2.962275e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="9" j="12" k="15" l="18" phi0_deg="8.886825e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="11" j="10" k="13" l="14" phi0_deg="4.004781e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="11" j="10" k="13" l="14" phi0_deg="1.201434e+03" Kd="1.500000e+00" n="3"/>
+   <interaction i="12" j="15" k="18" l="21" phi0_deg="4.583726e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="12" j="15" k="18" l="21" phi0_deg="1.375118e+03" Kd="9.000000e-01" n="3"/>
+   <interaction i="14" j="13" k="16" l="17" phi0_deg="2.716947e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="14" j="13" k="16" l="17" phi0_deg="8.150841e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="15" j="18" k="21" l="24" phi0_deg="2.241806e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="15" j="18" k="21" l="24" phi0_deg="6.725418e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="17" j="16" k="19" l="20" phi0_deg="1.970802e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="17" j="16" k="19" l="20" phi0_deg="5.912406e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="18" j="21" k="24" l="27" phi0_deg="1.931539e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="18" j="21" k="24" l="27" phi0_deg="5.794618e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="20" j="19" k="22" l="23" phi0_deg="2.005793e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="20" j="19" k="22" l="23" phi0_deg="6.017380e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="21" j="24" k="27" l="30" phi0_deg="5.235756e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="21" j="24" k="27" l="30" phi0_deg="1.570727e+03" Kd="9.000000e-01" n="3"/>
+   <interaction i="23" j="22" k="25" l="26" phi0_deg="1.963935e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="23" j="22" k="25" l="26" phi0_deg="5.891804e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="24" j="27" k="30" l="33" phi0_deg="5.274738e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="24" j="27" k="30" l="33" phi0_deg="1.582421e+03" Kd="9.000000e-01" n="3"/>
+   <interaction i="26" j="25" k="28" l="29" phi0_deg="4.220443e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="26" j="25" k="28" l="29" phi0_deg="1.266133e+03" Kd="1.500000e+00" n="3"/>
+   <interaction i="27" j="30" k="33" l="36" phi0_deg="4.733147e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="27" j="30" k="33" l="36" phi0_deg="1.419944e+03" Kd="9.000000e-01" n="3"/>
+   <interaction i="29" j="28" k="31" l="32" phi0_deg="3.162421e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="29" j="28" k="31" l="32" phi0_deg="9.487264e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="30" j="33" k="36" l="39" phi0_deg="1.954164e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="30" j="33" k="36" l="39" phi0_deg="5.862491e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="32" j="31" k="34" l="35" phi0_deg="2.075392e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="32" j="31" k="34" l="35" phi0_deg="6.226175e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="33" j="36" k="39" l="42" phi0_deg="5.344605e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="33" j="36" k="39" l="42" phi0_deg="1.603382e+03" Kd="9.000000e-01" n="3"/>
+   <interaction i="35" j="34" k="37" l="38" phi0_deg="4.526777e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="35" j="34" k="37" l="38" phi0_deg="1.358033e+03" Kd="1.500000e+00" n="3"/>
+   <interaction i="36" j="39" k="42" l="45" phi0_deg="2.609808e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="36" j="39" k="42" l="45" phi0_deg="7.829423e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="38" j="37" k="40" l="41" phi0_deg="1.966136e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="38" j="37" k="40" l="41" phi0_deg="5.898408e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="39" j="42" k="45" l="48" phi0_deg="2.237930e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="39" j="42" k="45" l="48" phi0_deg="6.713791e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="41" j="40" k="43" l="44" phi0_deg="2.022030e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="41" j="40" k="43" l="44" phi0_deg="6.066091e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="42" j="45" k="48" l="51" phi0_deg="5.359598e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="42" j="45" k="48" l="51" phi0_deg="1.607880e+03" Kd="9.000000e-01" n="3"/>
+   <interaction i="44" j="43" k="46" l="47" phi0_deg="1.937746e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="44" j="43" k="46" l="47" phi0_deg="5.813239e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="45" j="48" k="51" l="54" phi0_deg="1.953023e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="45" j="48" k="51" l="54" phi0_deg="5.859069e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="47" j="46" k="49" l="50" phi0_deg="2.058262e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="47" j="46" k="49" l="50" phi0_deg="6.174787e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="48" j="51" k="54" l="57" phi0_deg="2.099124e+02" Kd="9.000000e-01" n="1"/>
+   <interaction i="48" j="51" k="54" l="57" phi0_deg="6.297371e+02" Kd="9.000000e-01" n="3"/>
+   <interaction i="50" j="49" k="52" l="53" phi0_deg="1.959197e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="50" j="49" k="52" l="53" phi0_deg="5.877590e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="53" j="52" k="55" l="56" phi0_deg="1.993601e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="53" j="52" k="55" l="56" phi0_deg="5.980803e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="56" j="55" k="58" l="59" phi0_deg="2.008933e+02" Kd="1.500000e+00" n="1"/>
+   <interaction i="56" j="55" k="58" l="59" phi0_deg="6.026798e+02" Kd="1.500000e+00" n="3"/>
+   <interaction i="60" j="62" k="64" l="66" phi0_deg="4.315458e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="60" j="62" k="64" l="66" phi0_deg="1.294637e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="62" j="64" k="66" l="68" phi0_deg="3.217506e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="62" j="64" k="66" l="68" phi0_deg="9.652519e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="64" j="66" k="68" l="70" phi0_deg="4.836439e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="64" j="66" k="68" l="70" phi0_deg="1.450932e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="66" j="68" k="70" l="72" phi0_deg="3.951352e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="66" j="68" k="70" l="72" phi0_deg="1.185406e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="68" j="70" k="72" l="74" phi0_deg="3.826013e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="68" j="70" k="72" l="74" phi0_deg="1.147804e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="70" j="72" k="74" l="76" phi0_deg="3.801909e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="70" j="72" k="74" l="76" phi0_deg="1.140573e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="72" j="74" k="76" l="77" phi0_deg="3.934235e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="72" j="74" k="76" l="77" phi0_deg="1.180270e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="74" j="76" k="77" l="79" phi0_deg="5.301783e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="74" j="76" k="77" l="79" phi0_deg="1.590535e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="76" j="77" k="79" l="81" phi0_deg="3.570746e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="76" j="77" k="79" l="81" phi0_deg="1.071224e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="77" j="79" k="81" l="82" phi0_deg="2.062227e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="77" j="79" k="81" l="82" phi0_deg="6.186680e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="79" j="81" k="82" l="84" phi0_deg="5.029996e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="79" j="81" k="82" l="84" phi0_deg="1.508999e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="81" j="82" k="84" l="86" phi0_deg="2.092726e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="81" j="82" k="84" l="86" phi0_deg="6.278177e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="82" j="84" k="86" l="87" phi0_deg="4.163178e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="82" j="84" k="86" l="87" phi0_deg="1.248953e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="84" j="86" k="87" l="89" phi0_deg="2.937970e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="84" j="86" k="87" l="89" phi0_deg="8.813909e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="86" j="87" k="89" l="91" phi0_deg="2.632908e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="86" j="87" k="89" l="91" phi0_deg="7.898723e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="87" j="89" k="91" l="93" phi0_deg="3.857187e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="87" j="89" k="91" l="93" phi0_deg="1.157156e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="89" j="91" k="93" l="95" phi0_deg="3.921575e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="89" j="91" k="93" l="95" phi0_deg="1.176473e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="91" j="93" k="95" l="97" phi0_deg="3.808776e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="91" j="93" k="95" l="97" phi0_deg="1.142633e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="93" j="95" k="97" l="99" phi0_deg="3.680945e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="93" j="95" k="97" l="99" phi0_deg="1.104283e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="95" j="97" k="99" l="101" phi0_deg="3.864733e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="95" j="97" k="99" l="101" phi0_deg="1.159420e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="97" j="99" k="101" l="103" phi0_deg="4.457191e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="97" j="99" k="101" l="103" phi0_deg="1.337157e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="99" j="101" k="103" l="105" phi0_deg="3.591843e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="99" j="101" k="103" l="105" phi0_deg="1.077553e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="101" j="103" k="105" l="106" phi0_deg="4.410284e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="101" j="103" k="105" l="106" phi0_deg="1.323085e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="103" j="105" k="106" l="108" phi0_deg="4.588116e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="103" j="105" k="106" l="108" phi0_deg="1.376435e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="105" j="106" k="108" l="110" phi0_deg="3.926349e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="105" j="106" k="108" l="110" phi0_deg="1.177905e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="106" j="108" k="110" l="112" phi0_deg="3.743842e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="106" j="108" k="110" l="112" phi0_deg="1.123153e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="108" j="110" k="112" l="114" phi0_deg="2.619973e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="108" j="110" k="112" l="114" phi0_deg="7.859920e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="110" j="112" k="114" l="116" phi0_deg="1.895191e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="110" j="112" k="114" l="116" phi0_deg="5.685573e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="112" j="114" k="116" l="117" phi0_deg="4.284362e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="112" j="114" k="116" l="117" phi0_deg="1.285308e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="114" j="116" k="117" l="119" phi0_deg="3.375360e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="114" j="116" k="117" l="119" phi0_deg="1.012608e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="116" j="117" k="119" l="121" phi0_deg="3.855452e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="116" j="117" k="119" l="121" phi0_deg="1.156635e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="117" j="119" k="121" l="123" phi0_deg="3.836098e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="117" j="119" k="121" l="123" phi0_deg="1.150829e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="119" j="121" k="123" l="125" phi0_deg="3.668892e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="119" j="121" k="123" l="125" phi0_deg="1.100668e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="121" j="123" k="125" l="127" phi0_deg="3.652747e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="121" j="123" k="125" l="127" phi0_deg="1.095824e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="123" j="125" k="127" l="129" phi0_deg="4.336677e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="123" j="125" k="127" l="129" phi0_deg="1.301003e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="125" j="127" k="129" l="131" phi0_deg="4.454943e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="125" j="127" k="129" l="131" phi0_deg="1.336483e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="127" j="129" k="131" l="132" phi0_deg="2.881382e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="127" j="129" k="131" l="132" phi0_deg="8.644145e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="129" j="131" k="132" l="134" phi0_deg="4.279189e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="129" j="131" k="132" l="134" phi0_deg="1.283757e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="131" j="132" k="134" l="136" phi0_deg="2.417665e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="131" j="132" k="134" l="136" phi0_deg="7.252995e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="132" j="134" k="136" l="138" phi0_deg="3.871287e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="132" j="134" k="136" l="138" phi0_deg="1.161386e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="134" j="136" k="138" l="140" phi0_deg="2.462461e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="134" j="136" k="138" l="140" phi0_deg="7.387384e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="136" j="138" k="140" l="142" phi0_deg="2.254698e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="136" j="138" k="140" l="142" phi0_deg="6.764095e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="138" j="140" k="142" l="144" phi0_deg="2.902102e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="138" j="140" k="142" l="144" phi0_deg="8.706306e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="140" j="142" k="144" l="146" phi0_deg="4.217857e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="140" j="142" k="144" l="146" phi0_deg="1.265357e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="142" j="144" k="146" l="148" phi0_deg="3.725454e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="142" j="144" k="146" l="148" phi0_deg="1.117636e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="144" j="146" k="148" l="150" phi0_deg="3.656071e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="144" j="146" k="148" l="150" phi0_deg="1.096821e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="146" j="148" k="150" l="152" phi0_deg="3.766544e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="146" j="148" k="150" l="152" phi0_deg="1.129963e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="148" j="150" k="152" l="154" phi0_deg="3.680994e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="148" j="150" k="152" l="154" phi0_deg="1.104298e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="150" j="152" k="154" l="156" phi0_deg="3.457470e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="150" j="152" k="154" l="156" phi0_deg="1.037241e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="152" j="154" k="156" l="158" phi0_deg="3.808795e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="152" j="154" k="156" l="158" phi0_deg="1.142638e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="154" j="156" k="158" l="160" phi0_deg="3.808639e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="154" j="156" k="158" l="160" phi0_deg="1.142592e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="156" j="158" k="160" l="162" phi0_deg="3.984715e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="156" j="158" k="160" l="162" phi0_deg="1.195414e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="158" j="160" k="162" l="164" phi0_deg="4.635272e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="158" j="160" k="162" l="164" phi0_deg="1.390582e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="160" j="162" k="164" l="166" phi0_deg="3.775180e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="160" j="162" k="164" l="166" phi0_deg="1.132554e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="162" j="164" k="166" l="168" phi0_deg="4.427831e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="162" j="164" k="166" l="168" phi0_deg="1.328349e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="164" j="166" k="168" l="170" phi0_deg="2.209055e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="164" j="166" k="168" l="170" phi0_deg="6.627164e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="166" j="168" k="170" l="172" phi0_deg="2.244685e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="166" j="168" k="170" l="172" phi0_deg="6.734054e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="168" j="170" k="172" l="174" phi0_deg="3.642148e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="168" j="170" k="172" l="174" phi0_deg="1.092644e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="170" j="172" k="174" l="176" phi0_deg="2.730303e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="170" j="172" k="174" l="176" phi0_deg="8.190908e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="172" j="174" k="176" l="178" phi0_deg="4.157112e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="172" j="174" k="176" l="178" phi0_deg="1.247133e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="174" j="176" k="178" l="180" phi0_deg="3.753040e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="174" j="176" k="178" l="180" phi0_deg="1.125912e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="176" j="178" k="180" l="182" phi0_deg="3.714477e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="176" j="178" k="180" l="182" phi0_deg="1.114343e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="178" j="180" k="182" l="184" phi0_deg="3.730686e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="178" j="180" k="182" l="184" phi0_deg="1.119206e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="180" j="182" k="184" l="186" phi0_deg="3.562804e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="180" j="182" k="184" l="186" phi0_deg="1.068841e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="182" j="184" k="186" l="188" phi0_deg="3.566310e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="182" j="184" k="186" l="188" phi0_deg="1.069893e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="184" j="186" k="188" l="190" phi0_deg="3.770291e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="184" j="186" k="188" l="190" phi0_deg="1.131087e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="186" j="188" k="190" l="192" phi0_deg="3.756601e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="186" j="188" k="190" l="192" phi0_deg="1.126980e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="188" j="190" k="192" l="194" phi0_deg="3.655029e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="188" j="190" k="192" l="194" phi0_deg="1.096509e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="190" j="192" k="194" l="196" phi0_deg="3.685197e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="190" j="192" k="194" l="196" phi0_deg="1.105559e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="192" j="194" k="196" l="198" phi0_deg="4.037822e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="192" j="194" k="196" l="198" phi0_deg="1.211347e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="194" j="196" k="198" l="200" phi0_deg="3.805836e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="194" j="196" k="198" l="200" phi0_deg="1.141751e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="196" j="198" k="200" l="202" phi0_deg="3.576968e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="196" j="198" k="200" l="202" phi0_deg="1.073090e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="198" j="200" k="202" l="204" phi0_deg="3.928871e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="198" j="200" k="202" l="204" phi0_deg="1.178661e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="200" j="202" k="204" l="206" phi0_deg="4.116374e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="200" j="202" k="204" l="206" phi0_deg="1.234912e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="202" j="204" k="206" l="208" phi0_deg="4.376800e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="202" j="204" k="206" l="208" phi0_deg="1.313040e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="204" j="206" k="208" l="209" phi0_deg="4.965481e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="204" j="206" k="208" l="209" phi0_deg="1.489644e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="206" j="208" k="209" l="211" phi0_deg="2.867907e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="206" j="208" k="209" l="211" phi0_deg="8.603721e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="208" j="209" k="211" l="213" phi0_deg="4.865582e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="208" j="209" k="211" l="213" phi0_deg="1.459675e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="209" j="211" k="213" l="215" phi0_deg="5.141583e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="209" j="211" k="213" l="215" phi0_deg="1.542475e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="211" j="213" k="215" l="217" phi0_deg="4.581787e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="211" j="213" k="215" l="217" phi0_deg="1.374536e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="213" j="215" k="217" l="219" phi0_deg="4.008679e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="213" j="215" k="217" l="219" phi0_deg="1.202604e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="215" j="217" k="219" l="221" phi0_deg="4.318753e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="215" j="217" k="219" l="221" phi0_deg="1.295626e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="217" j="219" k="221" l="223" phi0_deg="3.267504e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="217" j="219" k="221" l="223" phi0_deg="9.802512e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="219" j="221" k="223" l="225" phi0_deg="2.369043e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="219" j="221" k="223" l="225" phi0_deg="7.107130e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="221" j="223" k="225" l="227" phi0_deg="3.542324e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="221" j="223" k="225" l="227" phi0_deg="1.062697e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="223" j="225" k="227" l="229" phi0_deg="3.702228e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="223" j="225" k="227" l="229" phi0_deg="1.110668e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="225" j="227" k="229" l="231" phi0_deg="3.696859e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="225" j="227" k="229" l="231" phi0_deg="1.109058e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="227" j="229" k="231" l="233" phi0_deg="3.669668e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="227" j="229" k="231" l="233" phi0_deg="1.100900e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="229" j="231" k="233" l="235" phi0_deg="3.658230e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="229" j="231" k="233" l="235" phi0_deg="1.097469e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="231" j="233" k="235" l="237" phi0_deg="3.700827e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="231" j="233" k="235" l="237" phi0_deg="1.110248e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="233" j="235" k="237" l="239" phi0_deg="3.709380e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="233" j="235" k="237" l="239" phi0_deg="1.112814e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="235" j="237" k="239" l="241" phi0_deg="3.702374e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="235" j="237" k="239" l="241" phi0_deg="1.110712e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="237" j="239" k="241" l="243" phi0_deg="3.721000e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="237" j="239" k="241" l="243" phi0_deg="1.116300e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="239" j="241" k="243" l="245" phi0_deg="3.492406e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="239" j="241" k="243" l="245" phi0_deg="1.047722e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="241" j="243" k="245" l="247" phi0_deg="4.233136e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="241" j="243" k="245" l="247" phi0_deg="1.269941e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="243" j="245" k="247" l="249" phi0_deg="4.378634e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="243" j="245" k="247" l="249" phi0_deg="1.313590e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="245" j="247" k="249" l="251" phi0_deg="2.253675e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="245" j="247" k="249" l="251" phi0_deg="6.761024e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="247" j="249" k="251" l="253" phi0_deg="3.224453e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="247" j="249" k="251" l="253" phi0_deg="9.673358e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="249" j="251" k="253" l="255" phi0_deg="4.153113e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="249" j="251" k="253" l="255" phi0_deg="1.245934e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="251" j="253" k="255" l="257" phi0_deg="4.046012e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="251" j="253" k="255" l="257" phi0_deg="1.213803e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="253" j="255" k="257" l="259" phi0_deg="2.413676e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="253" j="255" k="257" l="259" phi0_deg="7.241028e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="255" j="257" k="259" l="261" phi0_deg="2.203169e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="255" j="257" k="259" l="261" phi0_deg="6.609507e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="257" j="259" k="261" l="263" phi0_deg="2.334872e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="257" j="259" k="261" l="263" phi0_deg="7.004615e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="259" j="261" k="263" l="265" phi0_deg="2.237289e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="259" j="261" k="263" l="265" phi0_deg="6.711867e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="261" j="263" k="265" l="267" phi0_deg="2.373308e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="261" j="263" k="265" l="267" phi0_deg="7.119923e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="263" j="265" k="267" l="269" phi0_deg="2.190896e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="263" j="265" k="267" l="269" phi0_deg="6.572689e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="265" j="267" k="269" l="271" phi0_deg="2.386478e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="265" j="267" k="269" l="271" phi0_deg="7.159433e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="267" j="269" k="271" l="273" phi0_deg="2.184856e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="267" j="269" k="271" l="273" phi0_deg="6.554569e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="269" j="271" k="273" l="275" phi0_deg="2.381687e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="269" j="271" k="273" l="275" phi0_deg="7.145062e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="271" j="273" k="275" l="277" phi0_deg="2.274112e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="271" j="273" k="275" l="277" phi0_deg="6.822336e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="273" j="275" k="277" l="279" phi0_deg="2.339905e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="273" j="275" k="277" l="279" phi0_deg="7.019715e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="275" j="277" k="279" l="281" phi0_deg="2.216044e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="275" j="277" k="279" l="281" phi0_deg="6.648131e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="277" j="279" k="281" l="283" phi0_deg="2.357066e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="277" j="279" k="281" l="283" phi0_deg="7.071197e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="279" j="281" k="283" l="285" phi0_deg="2.339672e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="279" j="281" k="283" l="285" phi0_deg="7.019015e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="281" j="283" k="285" l="287" phi0_deg="2.243121e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="281" j="283" k="285" l="287" phi0_deg="6.729364e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="283" j="285" k="287" l="289" phi0_deg="2.839265e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="283" j="285" k="287" l="289" phi0_deg="8.517795e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="285" j="287" k="289" l="291" phi0_deg="4.261935e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="285" j="287" k="289" l="291" phi0_deg="1.278581e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="287" j="289" k="291" l="293" phi0_deg="2.428347e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="287" j="289" k="291" l="293" phi0_deg="7.285040e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="289" j="291" k="293" l="295" phi0_deg="2.170339e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="289" j="291" k="293" l="295" phi0_deg="6.511017e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="291" j="293" k="295" l="297" phi0_deg="2.472372e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="291" j="293" k="295" l="297" phi0_deg="7.417116e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="293" j="295" k="297" l="299" phi0_deg="2.128027e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="293" j="295" k="297" l="299" phi0_deg="6.384081e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="295" j="297" k="299" l="301" phi0_deg="2.449019e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="295" j="297" k="299" l="301" phi0_deg="7.347056e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="297" j="299" k="301" l="303" phi0_deg="1.950549e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="297" j="299" k="301" l="303" phi0_deg="5.851647e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="299" j="301" k="303" l="305" phi0_deg="2.326511e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="299" j="301" k="303" l="305" phi0_deg="6.979532e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="301" j="303" k="305" l="307" phi0_deg="1.971102e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="301" j="303" k="305" l="307" phi0_deg="5.913306e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="303" j="305" k="307" l="309" phi0_deg="4.090798e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="303" j="305" k="307" l="309" phi0_deg="1.227240e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="305" j="307" k="309" l="311" phi0_deg="3.453440e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="305" j="307" k="309" l="311" phi0_deg="1.036032e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="307" j="309" k="311" l="313" phi0_deg="4.235643e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="307" j="309" k="311" l="313" phi0_deg="1.270693e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="309" j="311" k="313" l="315" phi0_deg="4.485848e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="309" j="311" k="313" l="315" phi0_deg="1.345754e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="317" j="319" k="321" l="323" phi0_deg="4.177196e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="317" j="319" k="321" l="323" phi0_deg="1.253159e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="319" j="321" k="323" l="325" phi0_deg="3.136326e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="319" j="321" k="323" l="325" phi0_deg="9.408977e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="321" j="323" k="325" l="327" phi0_deg="4.883634e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="321" j="323" k="325" l="327" phi0_deg="1.465090e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="323" j="325" k="327" l="329" phi0_deg="3.820430e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="323" j="325" k="327" l="329" phi0_deg="1.146129e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="325" j="327" k="329" l="331" phi0_deg="3.807053e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="325" j="327" k="329" l="331" phi0_deg="1.142116e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="327" j="329" k="331" l="333" phi0_deg="3.729455e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="327" j="329" k="331" l="333" phi0_deg="1.118836e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="329" j="331" k="333" l="334" phi0_deg="3.660512e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="329" j="331" k="333" l="334" phi0_deg="1.098154e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="331" j="333" k="334" l="336" phi0_deg="2.152628e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="331" j="333" k="334" l="336" phi0_deg="6.457885e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="333" j="334" k="336" l="338" phi0_deg="3.410178e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="333" j="334" k="336" l="338" phi0_deg="1.023053e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="334" j="336" k="338" l="339" phi0_deg="2.134524e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="334" j="336" k="338" l="339" phi0_deg="6.403571e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="336" j="338" k="339" l="341" phi0_deg="4.877984e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="336" j="338" k="339" l="341" phi0_deg="1.463395e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="338" j="339" k="341" l="343" phi0_deg="2.159837e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="338" j="339" k="341" l="343" phi0_deg="6.479510e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="339" j="341" k="343" l="344" phi0_deg="4.116913e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="339" j="341" k="343" l="344" phi0_deg="1.235074e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="341" j="343" k="344" l="346" phi0_deg="2.989550e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="341" j="343" k="344" l="346" phi0_deg="8.968650e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="343" j="344" k="346" l="348" phi0_deg="2.634485e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="343" j="344" k="346" l="348" phi0_deg="7.903456e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="344" j="346" k="348" l="350" phi0_deg="3.931532e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="344" j="346" k="348" l="350" phi0_deg="1.179460e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="346" j="348" k="350" l="352" phi0_deg="3.866326e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="346" j="348" k="350" l="352" phi0_deg="1.159898e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="348" j="350" k="352" l="354" phi0_deg="3.793312e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="348" j="350" k="352" l="354" phi0_deg="1.137994e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="350" j="352" k="354" l="356" phi0_deg="3.670335e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="350" j="352" k="354" l="356" phi0_deg="1.101101e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="352" j="354" k="356" l="358" phi0_deg="3.775274e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="352" j="354" k="356" l="358" phi0_deg="1.132582e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="354" j="356" k="358" l="360" phi0_deg="4.438173e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="354" j="356" k="358" l="360" phi0_deg="1.331452e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="356" j="358" k="360" l="362" phi0_deg="3.742675e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="356" j="358" k="360" l="362" phi0_deg="1.122803e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="358" j="360" k="362" l="363" phi0_deg="4.764318e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="358" j="360" k="362" l="363" phi0_deg="1.429295e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="360" j="362" k="363" l="365" phi0_deg="4.230610e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="360" j="362" k="363" l="365" phi0_deg="1.269183e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="362" j="363" k="365" l="367" phi0_deg="4.217650e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="362" j="363" k="365" l="367" phi0_deg="1.265295e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="363" j="365" k="367" l="369" phi0_deg="3.783196e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="363" j="365" k="367" l="369" phi0_deg="1.134959e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="365" j="367" k="369" l="371" phi0_deg="2.491186e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="365" j="367" k="369" l="371" phi0_deg="7.473558e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="367" j="369" k="371" l="373" phi0_deg="5.396791e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="367" j="369" k="371" l="373" phi0_deg="1.619037e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="369" j="371" k="373" l="374" phi0_deg="4.307854e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="369" j="371" k="373" l="374" phi0_deg="1.292356e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="371" j="373" k="374" l="376" phi0_deg="3.322691e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="371" j="373" k="374" l="376" phi0_deg="9.968072e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="373" j="374" k="376" l="378" phi0_deg="3.927839e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="373" j="374" k="376" l="378" phi0_deg="1.178352e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="374" j="376" k="378" l="380" phi0_deg="3.856258e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="374" j="376" k="378" l="380" phi0_deg="1.156877e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="376" j="378" k="380" l="382" phi0_deg="3.698643e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="376" j="378" k="380" l="382" phi0_deg="1.109593e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="378" j="380" k="382" l="384" phi0_deg="3.588094e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="378" j="380" k="382" l="384" phi0_deg="1.076428e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="380" j="382" k="384" l="386" phi0_deg="4.716932e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="380" j="382" k="384" l="386" phi0_deg="1.415080e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="382" j="384" k="386" l="388" phi0_deg="4.383046e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="382" j="384" k="386" l="388" phi0_deg="1.314914e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="384" j="386" k="388" l="389" phi0_deg="3.485830e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="384" j="386" k="388" l="389" phi0_deg="1.045749e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="386" j="388" k="389" l="391" phi0_deg="3.687147e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="386" j="388" k="389" l="391" phi0_deg="1.106144e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="388" j="389" k="391" l="393" phi0_deg="5.264056e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="388" j="389" k="391" l="393" phi0_deg="1.579217e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="389" j="391" k="393" l="395" phi0_deg="2.449537e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="389" j="391" k="393" l="395" phi0_deg="7.348611e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="391" j="393" k="395" l="397" phi0_deg="2.514278e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="391" j="393" k="395" l="397" phi0_deg="7.542834e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="393" j="395" k="397" l="399" phi0_deg="2.227317e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="393" j="395" k="397" l="399" phi0_deg="6.681951e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="395" j="397" k="399" l="401" phi0_deg="2.225750e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="395" j="397" k="399" l="401" phi0_deg="6.677249e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="397" j="399" k="401" l="403" phi0_deg="2.388117e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="397" j="399" k="401" l="403" phi0_deg="7.164350e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="399" j="401" k="403" l="405" phi0_deg="3.590283e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="399" j="401" k="403" l="405" phi0_deg="1.077085e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="401" j="403" k="405" l="407" phi0_deg="3.632826e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="401" j="403" k="405" l="407" phi0_deg="1.089848e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="403" j="405" k="407" l="409" phi0_deg="3.656213e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="403" j="405" k="407" l="409" phi0_deg="1.096864e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="405" j="407" k="409" l="411" phi0_deg="3.702882e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="405" j="407" k="409" l="411" phi0_deg="1.110865e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="407" j="409" k="411" l="413" phi0_deg="3.540149e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="407" j="409" k="411" l="413" phi0_deg="1.062045e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="409" j="411" k="413" l="415" phi0_deg="3.774013e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="409" j="411" k="413" l="415" phi0_deg="1.132204e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="411" j="413" k="415" l="417" phi0_deg="3.803741e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="411" j="413" k="415" l="417" phi0_deg="1.141122e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="413" j="415" k="417" l="419" phi0_deg="3.972159e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="413" j="415" k="417" l="419" phi0_deg="1.191648e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="415" j="417" k="419" l="421" phi0_deg="4.716980e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="415" j="417" k="419" l="421" phi0_deg="1.415094e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="417" j="419" k="421" l="423" phi0_deg="3.330458e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="417" j="419" k="421" l="423" phi0_deg="9.991373e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="419" j="421" k="423" l="425" phi0_deg="4.677526e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="419" j="421" k="423" l="425" phi0_deg="1.403258e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="421" j="423" k="425" l="427" phi0_deg="2.103036e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="421" j="423" k="425" l="427" phi0_deg="6.309107e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="423" j="425" k="427" l="429" phi0_deg="2.392379e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="423" j="425" k="427" l="429" phi0_deg="7.177137e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="425" j="427" k="429" l="431" phi0_deg="3.321541e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="425" j="427" k="429" l="431" phi0_deg="9.964624e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="427" j="429" k="431" l="433" phi0_deg="2.365428e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="427" j="429" k="431" l="433" phi0_deg="7.096283e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="429" j="431" k="433" l="435" phi0_deg="4.335724e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="429" j="431" k="433" l="435" phi0_deg="1.300717e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="431" j="433" k="435" l="437" phi0_deg="3.878468e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="431" j="433" k="435" l="437" phi0_deg="1.163540e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="433" j="435" k="437" l="439" phi0_deg="3.702786e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="433" j="435" k="437" l="439" phi0_deg="1.110836e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="435" j="437" k="439" l="441" phi0_deg="3.706581e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="435" j="437" k="439" l="441" phi0_deg="1.111974e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="437" j="439" k="441" l="443" phi0_deg="3.656381e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="437" j="439" k="441" l="443" phi0_deg="1.096914e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="439" j="441" k="443" l="445" phi0_deg="3.677645e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="439" j="441" k="443" l="445" phi0_deg="1.103293e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="441" j="443" k="445" l="447" phi0_deg="3.714936e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="441" j="443" k="445" l="447" phi0_deg="1.114481e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="443" j="445" k="447" l="449" phi0_deg="3.648933e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="443" j="445" k="447" l="449" phi0_deg="1.094680e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="445" j="447" k="449" l="451" phi0_deg="3.515295e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="445" j="447" k="449" l="451" phi0_deg="1.054589e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="447" j="449" k="451" l="453" phi0_deg="3.766948e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="447" j="449" k="451" l="453" phi0_deg="1.130084e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="449" j="451" k="453" l="455" phi0_deg="3.920915e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="449" j="451" k="453" l="455" phi0_deg="1.176274e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="451" j="453" k="455" l="457" phi0_deg="3.543375e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="451" j="453" k="455" l="457" phi0_deg="1.063012e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="453" j="455" k="457" l="459" phi0_deg="3.714564e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="453" j="455" k="457" l="459" phi0_deg="1.114369e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="455" j="457" k="459" l="461" phi0_deg="4.242696e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="455" j="457" k="459" l="461" phi0_deg="1.272809e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="457" j="459" k="461" l="463" phi0_deg="4.088801e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="457" j="459" k="461" l="463" phi0_deg="1.226640e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="459" j="461" k="463" l="465" phi0_deg="4.450338e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="459" j="461" k="463" l="465" phi0_deg="1.335101e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="461" j="463" k="465" l="466" phi0_deg="2.030270e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="461" j="463" k="465" l="466" phi0_deg="6.090811e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="463" j="465" k="466" l="468" phi0_deg="2.710419e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="463" j="465" k="466" l="468" phi0_deg="8.131258e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="465" j="466" k="468" l="470" phi0_deg="3.844528e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="465" j="466" k="468" l="470" phi0_deg="1.153359e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="466" j="468" k="470" l="472" phi0_deg="2.519018e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="466" j="468" k="470" l="472" phi0_deg="7.557053e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="468" j="470" k="472" l="474" phi0_deg="4.179465e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="468" j="470" k="472" l="474" phi0_deg="1.253839e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="470" j="472" k="474" l="476" phi0_deg="3.893323e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="470" j="472" k="474" l="476" phi0_deg="1.167997e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="472" j="474" k="476" l="478" phi0_deg="4.225669e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="472" j="474" k="476" l="478" phi0_deg="1.267701e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="474" j="476" k="478" l="480" phi0_deg="3.495924e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="474" j="476" k="478" l="480" phi0_deg="1.048777e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="476" j="478" k="480" l="482" phi0_deg="2.093021e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="476" j="478" k="480" l="482" phi0_deg="6.279064e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="478" j="480" k="482" l="484" phi0_deg="3.766357e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="478" j="480" k="482" l="484" phi0_deg="1.129907e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="480" j="482" k="484" l="486" phi0_deg="3.621706e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="480" j="482" k="484" l="486" phi0_deg="1.086512e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="482" j="484" k="486" l="488" phi0_deg="3.429435e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="482" j="484" k="486" l="488" phi0_deg="1.028831e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="484" j="486" k="488" l="490" phi0_deg="3.847640e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="484" j="486" k="488" l="490" phi0_deg="1.154292e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="486" j="488" k="490" l="492" phi0_deg="3.879634e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="486" j="488" k="490" l="492" phi0_deg="1.163890e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="488" j="490" k="492" l="494" phi0_deg="3.668447e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="488" j="490" k="492" l="494" phi0_deg="1.100534e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="490" j="492" k="494" l="496" phi0_deg="3.631521e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="490" j="492" k="494" l="496" phi0_deg="1.089456e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="492" j="494" k="496" l="498" phi0_deg="3.727482e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="492" j="494" k="496" l="498" phi0_deg="1.118245e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="494" j="496" k="498" l="500" phi0_deg="3.786687e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="494" j="496" k="498" l="500" phi0_deg="1.136006e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="496" j="498" k="500" l="502" phi0_deg="3.606479e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="496" j="498" k="500" l="502" phi0_deg="1.081944e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="498" j="500" k="502" l="504" phi0_deg="4.166344e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="498" j="500" k="502" l="504" phi0_deg="1.249903e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="500" j="502" k="504" l="506" phi0_deg="4.260481e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="500" j="502" k="504" l="506" phi0_deg="1.278144e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="502" j="504" k="506" l="508" phi0_deg="2.312889e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="502" j="504" k="506" l="508" phi0_deg="6.938668e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="504" j="506" k="508" l="510" phi0_deg="3.121071e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="504" j="506" k="508" l="510" phi0_deg="9.363212e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="506" j="508" k="510" l="512" phi0_deg="4.085514e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="506" j="508" k="510" l="512" phi0_deg="1.225654e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="508" j="510" k="512" l="514" phi0_deg="4.116806e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="508" j="510" k="512" l="514" phi0_deg="1.235042e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="510" j="512" k="514" l="516" phi0_deg="2.373622e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="510" j="512" k="514" l="516" phi0_deg="7.120866e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="512" j="514" k="516" l="518" phi0_deg="2.230533e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="512" j="514" k="516" l="518" phi0_deg="6.691599e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="514" j="516" k="518" l="520" phi0_deg="2.360306e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="514" j="516" k="518" l="520" phi0_deg="7.080919e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="516" j="518" k="520" l="522" phi0_deg="2.239290e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="516" j="518" k="520" l="522" phi0_deg="6.717870e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="518" j="520" k="522" l="524" phi0_deg="2.374320e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="518" j="520" k="522" l="524" phi0_deg="7.122961e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="520" j="522" k="524" l="526" phi0_deg="2.260673e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="520" j="522" k="524" l="526" phi0_deg="6.782018e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="522" j="524" k="526" l="528" phi0_deg="2.313563e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="522" j="524" k="526" l="528" phi0_deg="6.940689e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="524" j="526" k="528" l="530" phi0_deg="2.215410e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="524" j="526" k="528" l="530" phi0_deg="6.646231e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="526" j="528" k="530" l="532" phi0_deg="2.348483e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="526" j="528" k="530" l="532" phi0_deg="7.045449e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="528" j="530" k="532" l="534" phi0_deg="2.261444e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="528" j="530" k="532" l="534" phi0_deg="6.784332e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="530" j="532" k="534" l="536" phi0_deg="2.341460e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="530" j="532" k="534" l="536" phi0_deg="7.024379e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="532" j="534" k="536" l="538" phi0_deg="2.182376e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="532" j="534" k="536" l="538" phi0_deg="6.547128e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="534" j="536" k="538" l="540" phi0_deg="2.373350e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="534" j="536" k="538" l="540" phi0_deg="7.120051e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="536" j="538" k="540" l="542" phi0_deg="2.286313e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="536" j="538" k="540" l="542" phi0_deg="6.858939e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="538" j="540" k="542" l="544" phi0_deg="2.332015e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="538" j="540" k="542" l="544" phi0_deg="6.996046e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="540" j="542" k="544" l="546" phi0_deg="2.826108e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="540" j="542" k="544" l="546" phi0_deg="8.478323e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="542" j="544" k="546" l="548" phi0_deg="4.209326e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="542" j="544" k="546" l="548" phi0_deg="1.262798e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="544" j="546" k="548" l="550" phi0_deg="2.464742e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="544" j="546" k="548" l="550" phi0_deg="7.394226e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="546" j="548" k="550" l="552" phi0_deg="2.157086e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="546" j="548" k="550" l="552" phi0_deg="6.471258e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="548" j="550" k="552" l="554" phi0_deg="2.371898e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="548" j="550" k="552" l="554" phi0_deg="7.115695e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="550" j="552" k="554" l="556" phi0_deg="2.250369e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="550" j="552" k="554" l="556" phi0_deg="6.751108e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="552" j="554" k="556" l="558" phi0_deg="2.288518e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="552" j="554" k="556" l="558" phi0_deg="6.865553e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="554" j="556" k="558" l="560" phi0_deg="2.075419e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="554" j="556" k="558" l="560" phi0_deg="6.226258e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="556" j="558" k="560" l="562" phi0_deg="2.278989e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="556" j="558" k="560" l="562" phi0_deg="6.836967e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="558" j="560" k="562" l="564" phi0_deg="1.940372e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="558" j="560" k="562" l="564" phi0_deg="5.821115e+02" Kd="1.000000e+00" n="3"/>
+   <interaction i="560" j="562" k="564" l="566" phi0_deg="4.106686e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="560" j="562" k="564" l="566" phi0_deg="1.232006e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="562" j="564" k="566" l="568" phi0_deg="3.449658e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="562" j="564" k="566" l="568" phi0_deg="1.034897e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="564" j="566" k="568" l="570" phi0_deg="4.106888e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="564" j="566" k="568" l="570" phi0_deg="1.232066e+03" Kd="1.000000e+00" n="3"/>
+   <interaction i="566" j="568" k="570" l="572" phi0_deg="4.402542e+02" Kd="1.000000e+00" n="1"/>
+   <interaction i="566" j="568" k="570" l="572" phi0_deg="1.320763e+03" Kd="1.000000e+00" n="3"/>
+  </manyparticle_type>
+ </manyparticle>
+ <com_pull>
+  <pull_type name="Prot-RNA_harmonicpull">
+   <expression expr="2|0.5*K*(distance(g1,g2)-r0)^2"/>
+   <group index="1" name="RNA" atoms="1:59:1"/>   
+   <group index="2" name="Protein" atoms="60:573:1"/>
+   <parameter>K</parameter>
+   <parameter>r0</parameter>
+   <interaction i="1" j="2" r0="1.5" K="0.25"/>
+  </pull_type>
+  <pull_type name="Prot-Chain-A-B_harmonicPull">
+   <expression expr="2|0.5*K*(distance(g1,g2)-r0)^2"/>
+   <group index="1" name="Chain_A" atoms="60:316:1"/>
+   <group index="2" name="Chain_B" atoms="317:573:1"/>
+   <parameter>K</parameter>
+   <parameter>r0</parameter>
+   <interaction i="1" j="2" r0="1.6" K="1.00"/>
+  </pull_type>
+ </com_pull>
+</OpenSMOGforces>
