@@ -432,10 +432,10 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
             temperature (float, required):
                 temperature of the simulation, in reduced units.
-            gamma (float, required):
-                collision frequency, in reduced units
-            dt (float, required):
-                time step, in reduced units
+            gamma (quantity with inverse time units, required):
+                drag coefficient
+            dt (quantity with time units, required):
+                time step
             constraints (boolean, optional):
                 indicate whether velocity and position constraints should be applied (Default value: :code:`False`).
         """
