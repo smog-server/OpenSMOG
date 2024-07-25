@@ -432,10 +432,10 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
             temperature (float, required):
                 temperature of the simulation, in reduced units.
-            gamma (quantity with inverse time units, required):
-                drag coefficient
-            dt (quantity with time units, required):
-                time step
+            gamma (quantity, required):
+                drag coefficient, inverse time units
+            dt (quantity, required):
+                time step, with time units
             constraints (boolean, optional):
                 indicate whether velocity and position constraints should be applied (Default value: :code:`False`).
         """
@@ -453,7 +453,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             integrator.addConstrainVelocities()
 
         integrator.addComputePerDof("x", "x + 0.5*dt*v");
-        integrator.addComputePerDof("v", "a*v + b/sqrt(1/m)*max(-4,min(4,gaussian))");
+        integrator.addComputePerDof("v", "a*v + b*sqrt(1/m)*max(-4,min(4,gaussian))");
         integrator.addComputePerDof("x", "x + 0.5*dt*v");
         if constraints:
             integrator.addComputePerDof("x1", "x");
