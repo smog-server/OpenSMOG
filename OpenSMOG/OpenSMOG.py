@@ -443,8 +443,8 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         integrator=CustomIntegrator(dt);
         integrator.addGlobalVariable("a", exp(-gamma*dt));
-        integrator.addGlobalVariable("b", sqrt(1-exp(-2*gamma*dt)) );
         integrator.addGlobalVariable("kT", temperature);
+        integrator.addGlobalVariable("b", sqrt(kT*(1-exp(-2*gamma*dt))) );
         if constraints:
             integrator.addPerDofVariable("x1", 0);
         integrator.addUpdateContextState();
@@ -453,7 +453,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             integrator.addConstrainVelocities()
 
         integrator.addComputePerDof("x", "x + 0.5*dt*v");
-        integrator.addComputePerDof("v", "a*v + b*sqrt(kT/m)*max(-4,min(4,gaussian))");
+        integrator.addComputePerDof("v", "a*v + b/sqrt(m)*max(-4,min(4,gaussian))");
         integrator.addComputePerDof("x", "x + 0.5*dt*v");
         if constraints:
             integrator.addComputePerDof("x1", "x");
