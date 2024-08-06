@@ -76,8 +76,8 @@ class SBMCHECK():
                     else:
                         sbm_test.loadSystem(Grofile=sysname+"frame.0.gro", Topfile=topname, noxml=True)
                     sbm_test.createSimulation()
-            except:
-                print("Failed to launch OpenSMOG using the available input files.  This often means that you are using an older version of OpenSMOG with a newer version of SMOG2. Using the newest versions together is recommended.\n\nThis is the message returned by OpenSMOG\n\n:{}\n\nQUITTING TESTING WITHOUT COMPLETING".format(buffer.getvalue()))
+            except Exception as mess:
+                print("Failed to launch OpenSMOG using the available input files.  This often means that you are using an older version of OpenSMOG with a newer version of SMOG2. Using the newest versions together is recommended.\n\nHere is the OpenSMOG output and exception:\n\n{}\n\n*******************\nException:\n\n{}\n\nQUITTING TESTING WITHOUT COMPLETING".format(buffer.getvalue(),mess))
                 sys.exit(1)
 
             return sbm_test
