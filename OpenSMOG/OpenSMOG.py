@@ -669,7 +669,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         print("Will try to load force field from {}".format(Topfile))
         if self.pbc == True:
             print('This simulation will use periodic boundary conditions')
-            self.Top = GromacsTopFile(Topfile,unitCellDimensions=self.Gro.getUnitCellDimensions())
+            self.Top = GromacsTopFile(Topfile,periodicBoxVectors=self.Gro.getPeriodicBoxVectors())
             self.system = self.Top.createSystem(nonbondedMethod=CutoffPeriodic,nonbondedCutoff=self.rcutoff,removeCMMotion = self.cmm)
         else:
             print('This simulation will not use Periodic boundary conditions')
