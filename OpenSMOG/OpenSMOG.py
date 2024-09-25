@@ -31,7 +31,7 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from lxml import etree
 import sys
-from .OpenSMOG_Reporter import forcesReporter, stateReporter
+from .OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationReporter
 import re as regex
 from pathlib import Path
 from .oscheck import SBMCHECK
@@ -404,23 +404,27 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         except Exception as mess:
              SBM.opensmog_quit("Failed to load the checkpoint file. This can happen for a variety of reasons, such as:\n\t-The file was generated when using a different machine.\n\tThe file has been corrupted.\n\t-The file was written for a different system (e.g. changing integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
 
-
-
-    def minimize(self,tolerance=1.0,maxIterations=0):
+    def minimize(self,tolerance=1.0,maxIterations=0,reportInterval=100):
         print("Starting minimization using L-BFGS method")
+        print("step, energy")
         R"""Wrapper for L-BFGS energy minimization.
 
          Args:
 
             tolerance (float, required):
                 Stopping criteria value between iterations. When the error between iteration is below this value, the minimization stops. (Default value: :code:`1.0`).
-            maxIteration (int, required):
+            maxIteration (int, optional):
                 Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`0`).   
+            reportInterval (int, optional):
+                Frequency to write energy to screen. (Default value: :code:`100` steps).   
         """
-        self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations)
+        reporter = SMOGMinimizationReporter()
+        reporter.reportInterval=reportInterval
+        self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations,reporter=reporter)
         # it is very important that we reset the velocities. minimization warps the velocity values
         self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
         print("Minimization completed")
+
 
     def _LangevinMiddleTruncatedIntegrator(temperature,gamma,dt,constraints=False):
         R"""Langevin Middle Integrator with a truncated Gaussian
