@@ -192,7 +192,15 @@ class SMOGMinimizationReporter(MinimizationReporter):
         if iteration % self.reportInterval == 0: # only print to screen as frequently as indicated
             current_energy = args['system energy']
             print("{} {}".format(iteration,current_energy))
-
+            atomx=[]
+            if self.mintraj != None:
+                atompos=[]
+                for xval in x:
+                    atompos.append(xval)
+                    if len(atompos) == 3:
+                        atomx.append(atompos)
+                        atompos=[]
+                self.mintraj.writeModel(atomx)
         # The report method must return a bool specifying if minimization should be stopped.
         # You can use this functionality for early termination.
         return False

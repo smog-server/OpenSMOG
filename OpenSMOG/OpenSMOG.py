@@ -404,7 +404,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         except Exception as mess:
              SBM.opensmog_quit("Failed to load the checkpoint file. This can happen for a variety of reasons, such as:\n\t-The file was generated when using a different machine.\n\tThe file has been corrupted.\n\t-The file was written for a different system (e.g. changing integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
 
-    def minimize(self,tolerance=1.0,maxIterations=0,reportInterval=100):
+    def minimize(self,tolerance=1.0,maxIterations=0,reportInterval=100,minTrajectory=None):
         print("Starting minimization using L-BFGS method")
         print("step, energy")
         R"""Wrapper for L-BFGS energy minimization.
@@ -417,12 +417,23 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 Number of maximum steps to be performed in the minimization simulation. (Default value: :code:`0`).   
             reportInterval (int, optional):
                 Frequency to write energy to screen. (Default value: :code:`100` steps).   
+            minTrajectory (str, optional):
+                Name of file to write trajectory. If set to :code:`None`, then no file would be written. (Default value: :code:`None`).   
         """
         reporter = SMOGMinimizationReporter()
         reporter.reportInterval=reportInterval
+
+        reporter.mintraj = None
+
+        if minTrajectory != None:
+            trajfile = open(minTrajectory, "wb")
+            reporter.mintraj=dcdfile.DCDFile(trajfile, self.Top.topology, 1, 0, interval=reportInterval)
+
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations,reporter=reporter)
         # it is very important that we reset the velocities. minimization warps the velocity values
         self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
+        if minTrajectory != None:
+            trajfile.close()
         print("Minimization completed")
 
 
