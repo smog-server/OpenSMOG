@@ -431,7 +431,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations,reporter=reporter)
         # it is very important that we reset the velocities. minimization warps the velocity values
-        self.simulation.context.setVelocitiesToTemperature(self.temperature*kelvin)
+        self.simulation.context.setVelocitiesToTemperature(self.temperature)
         if minTrajectory != None:
             trajfile.close()
         print("Minimization completed")
