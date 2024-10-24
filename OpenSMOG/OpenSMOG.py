@@ -9,21 +9,12 @@ Details about the default models in SMOG 2 can be found at the following resourc
 """
 
 from math import *
-# with OpenMM 7.7.0, the import calls have changed. So, try both, if needed
 try:
-    try:
-        # >=7.7.0
-        from openmm.app import *
-        from openmm import *
-        from openmm.unit import *
-    except:
-        # earlier
-        print('Unable to load OpenMM as \'openmm\'. Will try the older way \'simtk.openmm\'')
-        from simtk.openmm.app import *
-        from simtk.openmm import *
-        from simtk.unit import *
+    from openmm.app import *
+    from openmm import *
+    from openmm.unit import *
 except:
-    SBM.opensmog_quit('Failed to load OpenMM. Check your configuration.')
+    SBM.opensmog_quit('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
 
 
 import os
