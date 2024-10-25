@@ -194,7 +194,10 @@ be more appropriate.
 
         """
         SMOGrun=SBM(name=name, time_step=time_step, collision_rate=collision_rate, r_cutoff=r_cutoff, temperature=temperature)
-        SMOGrun.loadSystem(Grofile=gro, Topfile=top, Xmlfile=xml, noxml=False)
+        if xml == None:
+            SMOGrun.loadSystem(Grofile=gro, Topfile=top, noxml=True)
+        else:
+            SMOGrun.loadSystem(Grofile=gro, Topfile=top, Xmlfile=xml, noxml=False)
         SMOGrun.createSimulation()
         SMOGrun.minimize(tolerance=1)
         SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=saveinterval,trajectoryName=trajectoryName, trajectoryFormat=trajectoryFormat, energiesName=energiesName, energy_componentsName=energy_componentsName, logFileName='OpenSMOG.log')
@@ -327,7 +330,9 @@ After loading either the state, or checkpoint, then run the simulation
 >SMOGrun2.run(nsteps=10**6, report=True, interval=10**3)
 
 
-Alternate quick launch: Many of the standard calls can be obtained with a single call to runAA
+Alternate quick launch: Many of the standard calls can be obtained with a single call to runAA. Here
+is an example, with default values shown.
+>SBM.runAA(name='sbmtest',time_step=0.002, nsteps=10000,collision_rate=1.0, r_cutoff=0.65, temperature=0.5,gro="smog.gro",top="smog.top",xml="smog.xml",saveinterval=1000,trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log')
 
 For more information and help, see the OpenSMOG and SMOG 2 websites.
 OpenSMOG: https://opensmog.readthedocs.io/en/latest/
