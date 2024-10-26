@@ -1090,7 +1090,25 @@ dihedral information provided in the top and xml files.
             self.system.removeForce(0)
             self.system.removeForce(0)
         
+    def addForce(self,force,name=None):
 
+
+        R"""Wrapper that streamlines the addition of a new force and name for it.
+        Args:
+            force (force object, required):
+            name (str, optional):
+                 Optional name to give the new force.  This is the name that will be used in the force file.  If no value is provided, then the name "forceN" will be used.
+        """
+        if name == None:
+            name = 'force'+str(self.forceCount)
+            print("Note: addForce was called without providing a value for \"name\". The label \"{}\" will be used to refer to the following force:\n{}".format(name,force))
+        if name in self.forcesDict:
+            SBM.opensmog_quit("addForce was called with the name \"{}\", but this name is already used for another force.  All force names must be unique.".format(name))
+ 
+        self.forcesDict[name] =  force
+        force.setForceGroup(self.forceCount)
+        self.forceCount +=1
+        self.system.addForce(force)
         
     def createSimulation(self):
 
