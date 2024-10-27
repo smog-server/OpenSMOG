@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2022 The Center for Theoretical Biological Physics (CTBP) - Rice University and Northeastern University
+# Copyright (c) 2020-2022,2024 The Center for Theoretical Biological Physics (CTBP) - Rice University and Northeastern University
 # This file is from the OpenSMOG project, released under the MIT License. 
 
 R"""  
@@ -1439,7 +1439,7 @@ Will try to import mdtraj...""")
     print('{:^96s}'.format("Udayan Mohanty, Ailun Wang, Heiko Lammert, Ryan Hayes,"))
     print('{:^96s}'.format("Jose Onuchic & Paul Whitford"))
     print('')
-    print('{:^96s}'.format("Copyright (c) 2021, 2022, The SMOG development team at"))
+    print('{:^96s}'.format("Copyright (c) 2021, 2022, 2024 The SMOG development team at"))
     print('{:^96s}'.format("Rice University and Northeastern University"))
     print("\n\n")
     print('{:^96s}'.format("For more information, including descriptions of units and examples of"))
