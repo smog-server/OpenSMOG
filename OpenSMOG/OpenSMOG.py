@@ -472,13 +472,13 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         return integrator
 
-    def setup_openmm(self, platform="", precision="", GPUindex="default", integrator=""):
+    def setup_openmm(self, platform=None, precision="", GPUindex="default", integrator=""):
         
         R"""Sets up the parameters of the simulation OpenMM platform.
     This is optional.  If it is not used, then the following defaults will be used:
         precision: single
         integrator: LangevinMiddle
-        platform: a guess of the fastest platform available
+        platform: Use a guess for the fastest platform available
         GPUindex: Default
 
         Args:
@@ -516,35 +516,36 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         self.properties = properties
 
-        platslower = []
-        plats = []
-        for i in range(Platform.getNumPlatforms()):
-            pn=Platform.getPlatform(i).getName()
-            plats.append(pn)
-            platslower.append(pn.lower())
-        if not (platform.lower() in platslower):
-            print("\"{}\" is not a registered platform.\nRegistered platforms are:".format(platform))
-            for i in plats:
-                print("\t{}".format(i))
-            print("Try rerunning setup_openmm again.")
-            return    
+        if platform != None:
+            platslower = []
+            plats = []
+            for i in range(Platform.getNumPlatforms()):
+                pn=Platform.getPlatform(i).getName()
+                plats.append(pn)
+                platslower.append(pn.lower())
+            if not (platform.lower() in platslower):
+                print("\"{}\" is not a registered platform.\nRegistered platforms are:".format(platform))
+                for i in plats:
+                    print("\t{}".format(i))
+                print("Try rerunning setup_openmm again.")
+                return    
  
-        if platform.lower() == "opencl":
-            nametmp='OpenCL'
-        elif platform.lower() == "reference":
-            nametmp='Reference'
-            self.properties = {}
-        elif platform.lower() == "cuda":
-            nametmp='CUDA'
-        elif platform.lower() == "cpu":
-            nametmp='CPU'
-            self.properties = {}
-        elif platform.lower() == "hip":
-            nametmp='HIP'
-        else:
-            nametmp=platform
-        
-        self.platform = Platform.getPlatformByName(nametmp)
+            if platform.lower() == "opencl":
+                nametmp='OpenCL'
+            elif platform.lower() == "reference":
+                nametmp='Reference'
+                self.properties = {}
+            elif platform.lower() == "cuda":
+                nametmp='CUDA'
+            elif platform.lower() == "cpu":
+                nametmp='CPU'
+                self.properties = {}
+            elif platform.lower() == "hip":
+                nametmp='HIP'
+            else:
+                nametmp=platform
+            
+            self.platform = Platform.getPlatformByName(nametmp)
 
         if isinstance(integrator,str): 
             if integrator.lower() == "langevin":
