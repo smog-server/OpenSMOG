@@ -75,17 +75,12 @@ The code below will install **OpenSMOG** from `PyPI <https://pypi.org/project/Op
 
     pip install OpenSMOG
 
-Install OpenMM
+OpenMM
 --------------
 
-The **OpenSMOG** library uses `OpenMM <http://openmm.org/>`_ API to run the molecular dynamics simulations.
-These requirements can be met by installing the following packages from the `conda-forge channel <https://conda-forge.org/>`__:
-
-.. code-block:: bash
-
-    conda install -c conda-forge openmm
+The **OpenSMOG** library uses `OpenMM <http://openmm.org/>`_ API to run the molecular dynamics simulations. While the above methods should automatically install OpenMM, you can find additional installation options on the OpenMM page..
     
-The following are libraries **required** for installing **OpenSMOG**:
+The following libraries are **required** for installing **OpenSMOG**:
 
     - `Python <https://www.python.org/>`__ (>=3.6)
     - `NumPy <https://www.numpy.org/>`__ (>=1.14)
