@@ -156,10 +156,12 @@ class SMOGMinimizationReporter(MinimizationReporter):
     # From the OpenMM cookbook: you must override the report method and it must have this signature.
     def report(self, iteration, x, grad, args):
         '''
-        the report method is called every iteration of the minimization.
+        The report method is called every iteration of minimization.
 
         This organization of the args is required by OpenMM standards.
+
         Args:
+
             iteration (int): The index of the current iteration. This refers
                              to the current call to the L-BFGS optimizer.
                              Each time the minimizer increases the restraint strength,
