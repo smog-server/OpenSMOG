@@ -91,68 +91,10 @@ The following are libraries **required** for installing **OpenSMOG**:
     - `NumPy <https://www.numpy.org/>`__ (>=1.14)
     - `lxml <https://lxml.de/>`__ (>=4.6.2)
 
-Installing SMOG2
+Installing/Configuring SMOG2
 ================
 
-The inputs **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ (version 2.4 and later). Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_ (Linux and Windows-WSL only).
-
-First, download SMOG 2 (v2.4, or later) at `smog-server.org <https://smog-server.org/smog2/>`__
-
-Second, create a new conda environment and activate it (called smog2.4, but name as appropriate):
-
-.. code-block:: bash
-
-    conda create --name smog2.4 perl
-    
-.. code-block:: bash
-
-    conda activate smog2.4
-
-Next, it is necessary to install a few **Perl** modules:
-
-.. code-block:: bash
-
-    conda install -c bioconda perl-xml-simple perl-xml-libxml java-jdk
-
-.. code-block:: bash
-
-    conda install -c eumetsat perl-pdl
-
-.. code-block:: bash
-
-    perl -MCPAN -e 'install XML::Validator::Schema'
-
-Add the **Perl** and **smog2** path into the configure.smog2 file (described in the README that comes with SMOG 2).
-
-.. hint:: Use the following command line to find out which installed **Perl** is being used.
-
-.. code-block:: bash
-
-    which perl
-
-Then load and test the **smog2** installation:
-
-.. code-block:: bash
-
-    source configure.smog2
-    
-.. code-block:: bash
-
-    ./test-config
-    
-As described in the SMOG 2 manual, it is highly recommended that you also download smog-check and run all checks before using the SMOG 2 software.
-
-Verifying your installation
-=========
-
-After you have installed OpenSMOG (and optionally SMOG 2), you can check to see that the code is functioning properly using OpenSMOGcheck. To run the check, you just need to run the following commands (from within python):
-
-.. code-block:: bash
-
-    from OpenSMOG import SBM
-    SBM.opensmogcheck()
-
-If smog2 is in your path, then this will check compatibility of SMOG2 and OpenSMOG.  If smog2 is not in your path, it will simply evaluate the energies for representative models/configurations and compare them to reference values.
+The inputs required for **OpenSMOG** simulations can be generated using `SMOG 2 <https://smog-server.org/smog2>`_ (version 2.4 and later). For a description of the various ways in which you may access SMOG 2 (e.g. Docker/Singularity container, conda, etc), see the README file in the `SMOG 2 GitHub repo><https://github.com/smog-server/SMOG2/>`__. 
 
 Resources
 =========
