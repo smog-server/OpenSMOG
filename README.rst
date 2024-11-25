@@ -89,7 +89,7 @@ The following libraries are **required** for installing **OpenSMOG**:
 Installing/Configuring SMOG2
 ================
 
-The inputs required for **OpenSMOG** simulations can be generated using `SMOG 2 <https://smog-server.org/smog2>`_ (version 2.4 and later). For a description of the various ways in which you may access SMOG 2 (e.g. Docker/Singularity container, conda, etc), see the README file in the `SMOG 2 GitHub repo><https://github.com/smog-server/SMOG2/>`__. 
+The inputs required for **OpenSMOG** simulations can be generated using `SMOG 2 <https://smog-server.org/smog2>`_ (version 2.4 and later). For a description of the various ways in which you may access SMOG 2 (e.g. Docker/Singularity container, conda, etc), see the README file in the `SMOG 2 GitHub repo<https://github.com/smog-server/SMOG2/>`__. 
 
 Resources
 =========
