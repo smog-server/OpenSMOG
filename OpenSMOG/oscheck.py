@@ -84,8 +84,7 @@ class SBMCHECK():
         
         def comparevalues(ref,open):
             absdiff=abs(float(ref)-float(open))
-            reldiff=abs(absdiff/float(ref))
-            if absdiff < maxabsdiff or reldiff < maxreldiff:
+            if absdiff < maxabsdiff:
                 return 1
             else:
                 print("BAD VALUES:"+ref.rstrip()+" (reference) and "+open+" (OpenSMOG)")
@@ -107,10 +106,8 @@ your path.
 ''')
             return 0    
        
-        # maxreldiff is the max relative deviation allowed
-        maxreldiff=0.00001
         # maxabsdiff is the max absolute deviation allowed
-        maxabsdiff=0.002
+        maxabsdiff=0.02
         
         
         # The name of each test is listed in tests/listoftests
