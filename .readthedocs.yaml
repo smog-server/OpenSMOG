@@ -18,8 +18,8 @@ conda:
 sphinx:
    configuration: docs/source/conf.py
 
-# Install your package so that autodoc can import it
-python:
-  install:
-    - method: pip
-      path: .
+# # Install your package so that autodoc can import it
+# python:
+#   install:
+#     - method: pip
+#       path: .
