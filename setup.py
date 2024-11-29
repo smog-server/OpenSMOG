@@ -15,8 +15,8 @@ setup(
     version=__version__,
     description="Structure-based Models for Biomolecules using OpenMM",
     url="https://github.com/smog-server/OpenSMOG",
-    author=["Antonio Bento de Oliveira Junior","Vinicius de Godoi Contessoto"],
-    author_email="antonio.oliveira@rice.edu,contessoto@rice.edu",
+    author=["Antonio Bento de Oliveira Junior","Vinicius de Godoi Contessoto","Paul Whitford"],
+    author_email="antonio.oliveira@rice.edu,contessoto@rice.edu,p.whitford@northeastern.edu",
     classifiers=[
         "License :: MIT",
         "Operating System :: OS Independent",

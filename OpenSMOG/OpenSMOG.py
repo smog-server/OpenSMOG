@@ -26,7 +26,6 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from lxml import etree
 import sys
-# from .OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationReporter
 from OpenSMOG.OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationReporter
 import re as regex
 from pathlib import Path
