@@ -12,14 +12,8 @@ build:
 
 # Specify the Conda environment file
 conda:
-  environment: environment.yml  # Path to your Conda environment file
+  environment: docs/environment.yml  # Path to your Conda environment file
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
    configuration: docs/source/conf.py
-
-# # Install your package so that autodoc can import it
-# python:
-#   install:
-#     - method: pip
-#       path: .
