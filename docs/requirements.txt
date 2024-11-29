@@ -6,3 +6,4 @@ sphinxcontrib-bibtex==2.5.0
 openmm
 mdtraj
 lxml
+numpy
