@@ -10,10 +10,14 @@ build:
   tools:
     python: "3.9"
 
-# Specify the Conda environment file
-conda:
-  environment: docs/environment.yml  # Path to your Conda environment file
+# # Specify the Conda environment file
+# conda:
+#   environment: docs/environment.yml  # Path to your Conda environment file
 
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
    configuration: docs/source/conf.py
+
+python:
+   install:
+   - requirements: docs/requirements.txt

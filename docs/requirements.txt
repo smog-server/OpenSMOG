@@ -4,3 +4,5 @@ nbsphinx==0.9.2
 jupyter-sphinx==0.4.0
 sphinxcontrib-bibtex==2.5.0
 openmm
+mdtraj
+lxml
