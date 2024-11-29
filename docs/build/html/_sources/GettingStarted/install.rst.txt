@@ -7,7 +7,7 @@ Installation
 Installing OpenSMOG
 ===================
 
-The **OpenSMOG** library can be installed via `conda <https://conda.io/projects/conda/>`_ or `pip <https://pypi.org/>`_, or compiled from `source (GitHub) <https://github.com/junioreif/OpenSMOG>`_.
+The **OpenSMOG** library can be installed via `conda <https://conda.io/projects/conda/>`_ or `pip <https://pypi.org/>`_, or compiled from `source (GitHub) <https://github.com/smog-server/OpenSMOG>`_.
 
 Install via conda
 -----------------
@@ -31,13 +31,13 @@ Install OpenMM
 --------------
 
 The **OpenSMOG** library uses `OpenMM <http://openmm.org/>`_ API to run the molecular dynamics simulations.
-These requirements can be met by installing the following packages from the `conda-forge channel <https://conda-forge.org/>`__:
+**OpenMM**  may be installed from the `conda-forge channel <https://conda-forge.org/>`__:
 
 .. code-block:: bash
 
     conda install -c conda-forge openmm
     
-The following are libraries **required** for installing **OpenSMOG**:
+The following libraries are **required** when installing **OpenSMOG**:
 
     - `Python <https://www.python.org/>`__ (>=3.6)
     - `NumPy <https://www.numpy.org/>`__ (>=1.14)
@@ -46,9 +46,9 @@ The following are libraries **required** for installing **OpenSMOG**:
 Installing SMOG2
 ================
 
-The inputs **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ > 2.4. Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_.
+The input files for **OpenSMOG** simulations are generated using `SMOG2 <https://smog-server.org/smog2>`_ (version 2.4, or newer). Here, there is a quick installation guide based on `conda <https://conda.io/projects/conda/>`_ (Linux and Windows-WSL only). Alternate installation options are described in the SMOG2 manual.
 
-First, just create a new environment and activate it:
+First, create a new environment and activate it:
 
 .. code-block:: bash
 
@@ -58,7 +58,7 @@ First, just create a new environment and activate it:
 
     conda activate smog2.4
 
-Next, it is necessary an installation of a few **Perl** modules:
+Next, it is necessary to instal a few **Perl** modules (a complete list of modules is in the SMOG2 README file):
 
 .. code-block:: bash
 
@@ -72,15 +72,9 @@ Next, it is necessary an installation of a few **Perl** modules:
 
     perl -MCPAN -e 'install XML::Validator::Schema'
 
-Add the **Perl** and **smog2** path into the configure.smog2 file.
+Enter the **Perl** and **smog2** paths in the configure.smog2 file.
 
-.. hint:: Use the following command line to find out which installed **Perl** is being used.
-
-.. code-block:: bash
-
-    which perl
-
-Then load and test the **smog2** installation:
+Then load and test your **smog2** configuration:
 
 .. code-block:: bash
 
@@ -89,3 +83,5 @@ Then load and test the **smog2** installation:
 .. code-block:: bash
 
     ./test-config
+    
+It is also **STRONGLY** recommended that you download **smog-check** (available at smog-server.org) and run all tests before using **smog2** for production calculations.

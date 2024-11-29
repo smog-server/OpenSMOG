@@ -18,7 +18,9 @@ Table of Contents
    :maxdepth: 2
    :caption: Tutorials
 
+   Tutorials/SMOG2_usage
    Tutorials/SBM_CA
+   Tutorials/SBM_AA
    
 .. toctree::
    :maxdepth: 2

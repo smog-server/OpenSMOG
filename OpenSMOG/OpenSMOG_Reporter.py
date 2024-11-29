@@ -6,6 +6,8 @@ The :class:`~.OpenSMOG_Reporter` class stores the potential energy information f
 """
 
 # with OpenMM 7.7.0, the import calls have changed. So, try both, if needed
+from openmm.app import StateDataReporter
+
 try:
     try:
         # >=7.7.0

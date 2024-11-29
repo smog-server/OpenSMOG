@@ -1,0 +1,3 @@
+[console_scripts]
+mdconvert = mdtraj.scripts.mdconvert:entry_point
+mdinspect = mdtraj.scripts.mdinspect:entry_point

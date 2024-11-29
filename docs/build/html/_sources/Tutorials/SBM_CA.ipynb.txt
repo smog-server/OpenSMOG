@@ -3,11 +3,11 @@
   {
    "cell_type": "markdown",
    "source": [
-    "### C-alpha Structure-based Model simulation using OpenSMOG\n",
-    "\n",
-    "This tutorial should take between 5 to 15 minutes of reading and performing simulations.\n",
-    "\n",
-    "Input files for this tutorial can be found [here](https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SBM_CA/input)"
+    "### Perform a simulation with a C-alpha Structure-Based Model using OpenSMOG\r\n",
+    "\r\n",
+    "This tutorial should take between 5 to 15 minutes to complete.\r\n",
+    "\r\n",
+    "Input files for this tutorial can be found [here](https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SMOG2_CA_CI2)"
    ],
    "metadata": {}
   },
@@ -30,15 +30,15 @@
   {
    "cell_type": "markdown",
    "source": [
-    "SBM class sets the initial parameters of the simulation:\r\n",
+    "SBM class sets the parameters for the simulation:\r\n",
     "\r\n",
-    "`name=\"1hk0\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*. <br>\r\n",
-    "`time_step=0.002 ` (**picoseconds**) Sets the time step used in integration. <br>\r\n",
-    "`collision_rate=1.0` (**picoseconds**) Sets the collision rate of Langevin integrator.  <br>\r\n",
+    "`name=\"2ci2\"` Sets the name of each simulation *(this name is used as prefix for the outputs)*. <br>\r\n",
+    "`time_step=0.0005 ` (**reduced time unit**) Sets the time step used in integration. <br>\r\n",
+    "`collision_rate=1.0` (**reduced inverse-time unit**) Sets the collision rate for the Langevin integrator.  <br>\r\n",
     "`r_cutoff=3.0` (**nanometers**) Sets the non-bonded cutoff. <br>\r\n",
-    "`temperature=0.5` (**reduced units of temperature**) Sets the Temperature of the simulation. <br>\r\n",
+    "`temperature=0.5` (**reduced temperature unit**) Sets the temperature in the simulation. <br>\r\n",
     "\r\n",
-    "sbm_CA is a chosen variable name for the SBM object"
+    "sbm_CA is an arbitrarily chosen variable name for the SBM object"
    ],
    "metadata": {}
   },
@@ -46,7 +46,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA = SBM(name='1hk0', time_step=0.002, collision_rate=1.0, r_cutoff=3.0, temperature=0.5)"
+    "sbm_CA = SBM(name='2ci2', time_step=0.0005, collision_rate=1.0, r_cutoff=3.0, temperature=0.5)"
    ],
    "outputs": [],
    "metadata": {}
@@ -61,7 +61,7 @@
     "`platform=\"opencl\"` <br>\r\n",
     "`platform=\"cpu\"` <br>\r\n",
     "\r\n",
-    "if **cuda**, **opencl** or **HIP** is choosen the GPUindex can be define as \"0\" or \"0,1\" for multiples GPUS \r\n"
+    "if **cuda**, **opencl** or **HIP** is choosen the GPUindex can be defined as \"0\". If two GPUs are used, one may give \"0,1\" \r\n"
    ],
    "metadata": {}
   },
@@ -69,7 +69,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.setup_openmm(platform='cuda', GPUindex='default')"
+    "sbm_CA.setup_openmm(platform='cuda',GPUindex='default')"
    ],
    "outputs": [],
    "metadata": {
@@ -87,7 +87,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.saveFolder('output')"
+    "sbm_CA.saveFolder('output_2ci2_CA')"
    ],
    "outputs": [],
    "metadata": {}
@@ -95,7 +95,7 @@
   {
    "cell_type": "markdown",
    "source": [
-    "Load the **gro** file into the sbm_CA object"
+    "Load the **gro**, **top** and **xml** files into the sbm_CA object"
    ],
    "metadata": {}
   },
@@ -103,7 +103,11 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.loadGro('input/1hk0_CA.gro')"
+    "sbm_CA_grofile = 'SMOG2_CA_CI2/2ci2.CA.gro'\r\n",
+    "sbm_CA_topfile = 'SMOG2_CA_CI2/2ci2.CA.top'\r\n",
+    "sbm_CA_xmlfile = 'SMOG2_CA_CI2/2ci2.CA.xml'\r\n",
+    "\r\n",
+    "sbm_CA.loadSystem(Grofile=sbm_CA_grofile, Topfile=sbm_CA_topfile, Xmlfile=sbm_CA_xmlfile)"
    ],
    "outputs": [],
    "metadata": {}
@@ -111,43 +115,15 @@
   {
    "cell_type": "markdown",
    "source": [
-    "Load the **top** file into the sbm_CA object "
+    "This function returns the name of each contact potential that is being used in the current model.\n",
+    "In this example, only a Lennard-Jones-style 10-12 potential is being applied."
    ],
-   "metadata": {}
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "source": [
-    "sbm_CA.loadTop('input/1hk0_CA.top')"
-   ],
-   "outputs": [],
    "metadata": {}
   },
   {
    "cell_type": "markdown",
    "source": [
-    "Load the **xml** file into the sbm_CA object\n",
-    "\n",
-    "This function returns the name of each force added.\n",
-    "\n",
-    "In this example, only the Lennard-Jones 10-12 potential is being applied."
-   ],
-   "metadata": {}
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "source": [
-    "sbm_CA.loadXml('input/1hk0_CA.xml')"
-   ],
-   "outputs": [],
-   "metadata": {}
-  },
-  {
-   "cell_type": "markdown",
-   "source": [
-    "The Simulation **context** is created with all information given in previous steps."
+    "The simulation **context** is created with all information given in the previous steps."
    ],
    "metadata": {}
   },
@@ -165,11 +141,11 @@
   {
    "cell_type": "markdown",
    "source": [
-    "Creates the **reporters** that will save the simulation data in output folder.\r\n",
+    "Create the **reporters** that will save the simulation data in an output folder.\r\n",
     "\r\n",
     "`trajectory=True` Save the trajectory in .dcd format. <br>\r\n",
     "`energies=True` Save the energy in text format separated by a comma. <br>\r\n",
-    "`interval=10**3` The step interval to save both trajectory and energies data."
+    "`interval=10**3` The interval (in steps) at which the trajectory and energies are saved."
    ],
    "metadata": {}
   },
@@ -177,7 +153,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.createReporters(trajectory=True, energies=True, forces=True, interval=10**3)"
+    "sbm_CA.createReporters(trajectory=True, energies=True, energy_components=True, interval=10**3)"
    ],
    "outputs": [],
    "metadata": {
@@ -189,9 +165,9 @@
    "source": [
     "The `run` function receives the following parameters:\n",
     "\n",
-    "`nsteps=10**7` Number os steps to perform the simulation. <br>\n",
-    "`report=True` Shows the simulation details (Progress (%), Step and Time Remaining) <br>\n",
-    "`interval=10**4` The step interval to show the details"
+    "`nsteps=10**6` Number of steps to be performed in the simulation. <br>\n",
+    "`report=True` Show the simulation details (Progress (%), Step and Time Remaining) <br>\n",
+    "`interval=10**3` The step interval to show the details"
    ],
    "metadata": {}
   },
@@ -199,7 +175,7 @@
    "cell_type": "code",
    "execution_count": null,
    "source": [
-    "sbm_CA.run(nsteps=10**7, report=True, interval=10**4)"
+    "sbm_CA.run(nsteps=10**6, report=True, interval=10**3)"
    ],
    "outputs": [],
    "metadata": {
@@ -216,24 +192,24 @@
   }
  ],
  "metadata": {
+  "interpreter": {
+   "hash": "242cae9b8452ece2cb6489a184e39dc6b7b0499be08472c01ccb8b91635bb5bf"
+  },
   "kernelspec": {
    "name": "python3",
-   "display_name": "Python 3.8.8 64-bit ('base': conda)"
+   "display_name": "Python 3.7.11 64-bit ('openmm': conda)"
   },
   "language_info": {
+   "name": "python",
+   "version": "3.9.6",
+   "mimetype": "text/x-python",
    "codemirror_mode": {
     "name": "ipython",
     "version": 3
    },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.8"
-  },
-  "interpreter": {
-   "hash": "6c1e1dc993528b01ea0560a49e19c0e55ea625de972d398fe3046f8c57ef6008"
+   "nbconvert_exporter": "python",
+   "file_extension": ".py"
   }
  },
  "nbformat": 4,

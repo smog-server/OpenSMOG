@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using SMOG2 to generate C-alpha and All-Atom Structure-Based models &mdash; OpenSMOG 1.1.2rc1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Perform a simulation with a C-alpha Structure-Based Model using OpenSMOG" href="SBM_CA.html" />
+    <link rel="prev" title="OpenSMOG" href="../OpenSMOG.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            OpenSMOG
+          </a>
+              <div class="version">
+                1.1.2rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/intro.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenSMOG Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../OpenSMOG.html">OpenSMOG</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preparing-your-pdb-file">Preparing your PDB file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-opensmog-input-files-for-a-c-alpha-model">Generate OpenSMOG input files for a C-alpha model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-opensmog-input-files-for-an-all-atom-model">Generate OpenSMOG input files for an all-atom model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SBM_CA.html">Perform a simulation with a C-alpha Structure-Based Model using OpenSMOG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SBM_AA.html">Perform a simulation with an All-Atom Structure-Based Model using OpenSMOG</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/citing.html">How to cite <strong>OpenSMOG</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OpenSMOG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Tutorials/SMOG2_usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-smog2-to-generate-c-alpha-and-all-atom-structure-based-models">
+<span id="smog2-usage"></span><h1>Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models<a class="headerlink" href="#using-smog2-to-generate-c-alpha-and-all-atom-structure-based-models" title="Permalink to this heading"></a></h1>
+<p>This tutorial should take between 5 to 10 minutes to complete. Here, we will use the <strong>SMOG2</strong> software pacakge to generate the SBM (Structure-Based Model) input files that will be used to perform a simulation with <strong>OpenSMOG</strong>. To install SMOG2, please check the installation notes in the SMOG 2 user manual, or use the guide <a class="reference external" href="https://opensmog.readthedocs.io/en/latest/GettingStarted/install.html#installing-smog2">here</a>. First, download SMOG2 package at the <a class="reference external" href="https://smog-server.org/smog2/">SMOG-SERVER</a>. Details of SMOG2 usage and options are described in the <a class="reference external" href="https://smog-server.org/smog2/">manual</a>. It is assumed that the executable <strong>smog2</strong> is in your path.</p>
+<section id="preparing-your-pdb-file">
+<h2>Preparing your PDB file<a class="headerlink" href="#preparing-your-pdb-file" title="Permalink to this heading"></a></h2>
+<p>The following instructions will use a PDB file of CI2 protein (<a class="reference external" href="https://www.rcsb.org/structure/2CI2">2ci2.pdb</a>).</p>
+<p>First, download the PDB file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>http://www.rcsb.org/pdb/files/2ci2.pdb
+</pre></div>
+</div>
+<p>Then, it is necessary to clean up the file and only keep information needed to define a structure-based model. In this case, let us keep only the ATOM lines:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s2">&quot;^ATOM&quot;</span><span class="w"> </span>2ci2.pdb<span class="w"> </span>&gt;<span class="w"> </span>2ci2.atoms.pdb
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sometimes, you also want HETATMs. This is up to the user. HETATMs can be things that we don’t want to include (e.g. HOH), or things that we may want to included (e.g. posttranslational modifications). In this case, we only want ATOM lines.</p>
+</div>
+<p>Next, add an END line to the file 2ci2.atoms.pdb:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span>-i<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;\$aEND&quot;</span><span class="w"> </span>2ci2.atoms.pdb
+</pre></div>
+</div>
+<p>Adjust the file, so that the naming convention conforms with the default SMOG models:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog_adjustPDB<span class="w"> </span>-i<span class="w"> </span>2ci2.atoms.pdb<span class="w"> </span>-o<span class="w"> </span>2ci2.adj.pdb
+</pre></div>
+</div>
+</section>
+<section id="generate-opensmog-input-files-for-a-c-alpha-model">
+<h2>Generate OpenSMOG input files for a C-alpha model<a class="headerlink" href="#generate-opensmog-input-files-for-a-c-alpha-model" title="Permalink to this heading"></a></h2>
+<p>Use the adjusted file to generate your input CA model:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog2<span class="w"> </span>-i<span class="w"> </span>2ci2.adj.pdb<span class="w"> </span>-CA<span class="w"> </span>-dname<span class="w"> </span>2ci2.CA<span class="w"> </span>-OpenSMOG
+</pre></div>
+</div>
+</section>
+<section id="generate-opensmog-input-files-for-an-all-atom-model">
+<h2>Generate OpenSMOG input files for an all-atom model<a class="headerlink" href="#generate-opensmog-input-files-for-an-all-atom-model" title="Permalink to this heading"></a></h2>
+<p>To generate input files for the all-atom model, you only need to change the flag -CA to -AA:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>smog2<span class="w"> </span>-i<span class="w"> </span>2ci2.adj.pdb<span class="w"> </span>-AA<span class="w"> </span>-dname<span class="w"> </span>2ci2.AA<span class="w"> </span>-OpenSMOG
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When running the simulation in OpenSMOG, there are differences in the simulation protocols and settings. For example, in the case of AA, the cutoff is typically much shorter than the values used with the CA model. However, larger timesteps can typically be used with the AA model. Please, check the <a class="reference external" href="https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_CA.html">C-alpha</a>  and <a class="reference external" href="https://opensmog.readthedocs.io/en/latest/Tutorials/SBM_AA.html">All-Atom</a> simulation tutorial pages.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../OpenSMOG.html" class="btn btn-neutral float-left" title="OpenSMOG" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="SBM_CA.html" class="btn btn-neutral float-right" title="Perform a simulation with a C-alpha Structure-Based Model using OpenSMOG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University &amp; Northeastern University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

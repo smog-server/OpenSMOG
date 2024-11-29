@@ -8,13 +8,17 @@ Details about the default models in SMOG 2 can be found at the following resourc
     - **SMOG server**: https://smog-server.org/smog2/
 """
 
+def opensmog_quit(message):
+    print("\n\nOpenSMOG error: {}\n\n".format(message))
+    sys.exit(1)
+
 from math import *
 try:
     from openmm.app import *
     from openmm import *
     from openmm.unit import *
 except:
-    SBM.opensmog_quit('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
+    opensmog_quit('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
 
 
 import os
@@ -22,10 +26,11 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from lxml import etree
 import sys
-from .OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationReporter
+# from .OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationReporter
+from OpenSMOG.OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationReporter
 import re as regex
 from pathlib import Path
-from .oscheck import SBMCHECK
+from OpenSMOG.oscheck import SBMCHECK
 
 class SBM:
     version="1.2-beta"
@@ -337,10 +342,6 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 
     def opensmogcheck():
         SBMCHECK.run()
-
-    def opensmog_quit(message):
-        print("\n\nOpenSMOG error: {}\n\n".format(message))
-        sys.exit(1)
 
     def saveState(self,filename):
         R"""Wrapper for saving State files.

@@ -1,0 +1,2 @@
+[console_scripts]
+CLINAME = OpenSMOG._cli:main

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perform a simulation with an All-Atom Structure-Based Model using OpenSMOG &mdash; OpenSMOG 1.1.2rc1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/jupyter-sphinx.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/thebelab.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/nbsphinx-code-cells.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/thebelab-helper.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="How to cite OpenSMOG" href="../Reference/citing.html" />
+    <link rel="prev" title="Perform a simulation with a C-alpha Structure-Based Model using OpenSMOG" href="SBM_CA.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            OpenSMOG
+          </a>
+              <div class="version">
+                1.1.2rc1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/intro.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OpenSMOG Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../OpenSMOG.html">OpenSMOG</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="SMOG2_usage.html">Using SMOG2 to generate  C-alpha and All-Atom Structure-Based models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SBM_CA.html">Perform a simulation with a C-alpha Structure-Based Model using OpenSMOG</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Perform a simulation with an All-Atom Structure-Based Model using OpenSMOG</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/citing.html">How to cite <strong>OpenSMOG</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Reference/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">OpenSMOG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Perform a simulation with an All-Atom Structure-Based Model using OpenSMOG</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Tutorials/SBM_AA.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Perform-a-simulation-with-an-All-Atom-Structure-Based-Model-using-OpenSMOG">
+<h1>Perform a simulation with an All-Atom Structure-Based Model using OpenSMOG<a class="headerlink" href="#Perform-a-simulation-with-an-All-Atom-Structure-Based-Model-using-OpenSMOG" title="Permalink to this heading"></a></h1>
+<p>This tutorial should take between 5 to 15 minutes of reading and performing simulations.</p>
+<p>Input files for this tutorial can be found <a class="reference external" href="https://github.com/junioreif/OpenSMOG/tree/main/Tutorials/SMOG2_AA_CI2">here</a></p>
+<p>The first step is to import the <strong>OpenSMOG</strong> module</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">OpenSMOG</span> <span class="kn">import</span> <span class="n">SBM</span>
+</pre></div>
+</div>
+</div>
+<p>SBM class sets the parameters for the simulation:</p>
+<p><code class="docutils literal notranslate"><span class="pre">name=&quot;2ci2&quot;</span></code> Sets the name of each simulation <em>(this name is used as prefix for the outputs)</em>. <code class="docutils literal notranslate"><span class="pre">time_step=0.002</span></code> (<strong>reduced time unit</strong>) Sets the time step used in integration. <code class="docutils literal notranslate"><span class="pre">collision_rate=1.0</span></code> (<strong>reduced inverse-time unit</strong>) Sets the collision rate in the Langevin integrator. <code class="docutils literal notranslate"><span class="pre">r_cutoff=1.2</span></code> (<strong>nanometers</strong>) Sets the non-bonded cutoff. <code class="docutils literal notranslate"><span class="pre">temperature=0.5</span></code> (<strong>reduced temperature unit</strong>) Sets the temperature for the simulation.</p>
+<p>sbm_AA is an arbitrarily chosen variable name for the SBM object</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbm_AA</span> <span class="o">=</span> <span class="n">SBM</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;2ci2&#39;</span><span class="p">,</span> <span class="n">time_step</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span> <span class="n">collision_rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">r_cutoff</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>There are three hardware platform options to run the simulations:</p>
+<p><code class="docutils literal notranslate"><span class="pre">platform=&quot;cuda&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">platform=&quot;HIP&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">platform=&quot;opencl&quot;</span></code> <code class="docutils literal notranslate"><span class="pre">platform=&quot;cpu&quot;</span></code></p>
+<p>if <strong>cuda</strong>, <strong>opencl</strong> or <strong>HIP</strong> is choosen the GPUindex can be define as “0”. If two GPUs are used, one may give “0,1”</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbm_AA</span><span class="o">.</span><span class="n">setup_openmm</span><span class="p">(</span><span class="n">platform</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">,</span><span class="n">GPUindex</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Sets the directory name where the output files are saved</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbm_AA</span><span class="o">.</span><span class="n">saveFolder</span><span class="p">(</span><span class="s1">&#39;output_2ci2_AA&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Load the <strong>gro</strong>, <strong>top</strong> and <strong>xml</strong> files into the sbm_AA object</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbm_AA_grofile</span> <span class="o">=</span> <span class="s1">&#39;SMOG2_AA_CI2/2ci2.AA.gro&#39;</span>
+<span class="n">sbm_AA_topfile</span> <span class="o">=</span> <span class="s1">&#39;SMOG2_AA_CI2/2ci2.AA.top&#39;</span>
+<span class="n">sbm_AA_xmlfile</span> <span class="o">=</span> <span class="s1">&#39;SMOG2_AA_CI2/2ci2.AA.xml&#39;</span>
+
+<span class="n">sbm_AA</span><span class="o">.</span><span class="n">loadSystem</span><span class="p">(</span><span class="n">Grofile</span><span class="o">=</span><span class="n">sbm_AA_grofile</span><span class="p">,</span> <span class="n">Topfile</span><span class="o">=</span><span class="n">sbm_AA_topfile</span><span class="p">,</span> <span class="n">Xmlfile</span><span class="o">=</span><span class="n">sbm_AA_xmlfile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>This function returns the name of each contact potential that is being used in the current model. In this example, only a Lennard-Jones-style 6-12 potential is being applied.</p>
+<p>The simulation <strong>context</strong> is created with all information given in the previous steps.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbm_AA</span><span class="o">.</span><span class="n">createSimulation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Create the <strong>reporters</strong> that will save the simulation data in an output folder.</p>
+<p><code class="docutils literal notranslate"><span class="pre">trajectory=True</span></code> Save the trajectory in .dcd format. <code class="docutils literal notranslate"><span class="pre">energies=True</span></code> Save the energy in text format separated by a comma. <code class="docutils literal notranslate"><span class="pre">interval=10**3</span></code> The interval (in steps) at which the trajectory and energies are saved.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbm_AA</span><span class="o">.</span><span class="n">createReporters</span><span class="p">(</span><span class="n">trajectory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energies</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">energy_components</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">run</span></code> function receives the following parameters:</p>
+<p><code class="docutils literal notranslate"><span class="pre">nsteps=10**6</span></code> Number of steps to perform in the simulation. <code class="docutils literal notranslate"><span class="pre">report=True</span></code> Shows the simulation details (Progress (%), Step and Time Remaining) <code class="docutils literal notranslate"><span class="pre">interval=10**3</span></code> The step interval to show the details</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbm_AA</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">nsteps</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span> <span class="n">report</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The output files are located in the output folder</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SBM_CA.html" class="btn btn-neutral float-left" title="Perform a simulation with a C-alpha Structure-Based Model using OpenSMOG" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Reference/citing.html" class="btn btn-neutral float-right" title="How to cite OpenSMOG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2021 The Center for Theoretical Biological Physics (CTBP) - Rice University &amp; Northeastern University.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

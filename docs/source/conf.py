@@ -13,12 +13,18 @@
 import os
 import sys
 
+print("Python executable:", sys.executable)
+print("sys.path:", sys.path)
+
+
 # sys.path.insert(0, os.path.abspath(".."))
-# sys.path.insert(0, os.path.abspath("../.."))
+sys.path.insert(0, os.path.abspath("../.."))
 # sys.path.insert(0, os.path.abspath("../../.."))
 
-sys.path.insert(0, os.path.abspath("../../OpenSMOG"))
-autodoc_mock_imports = ["simtk","numpy","lxml","OpenSMOG_Reporter"]
+print("sys.path:", sys.path)
+
+# sys.path.insert(0, os.path.abspath("../../OpenSMOG"))
+autodoc_mock_imports = ["simtk", "numpy", "lxml", "OpenSMOG_Reporter"]
 
 
 # -- Project information -----------------------------------------------------
@@ -28,8 +34,9 @@ copyright = '2020-2021 The Center for Theoretical Biological Physics (CTBP) - Ri
 author = 'Antonio B. Oliveira Jr., Vinícius G. Contessoto & Paul Whitford'
 
 # The full version, including alpha/beta/rc tags
-version = '1.1.1'
-release = '1.1.1'
+version = '1.1.2rc1'
+release = '1.1.2rc1'
+
 
 # -- General configuration ---------------------------------------------------
 
