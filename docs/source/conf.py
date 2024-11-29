@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 print("sys.path:", sys.path)
 
 # sys.path.insert(0, os.path.abspath("../../OpenSMOG"))
-autodoc_mock_imports = ["simtk", "numpy", "lxml", "OpenSMOG_Reporter"]
+autodoc_mock_imports = ["simtk", "lxml", "numpy", "OpenSMOG_Reporter", "openmm"]
 # autodoc_mock_imports = ["simtk", "lxml"]
 
 
