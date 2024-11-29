@@ -5,5 +5,11 @@ OpenSMOG Module
    :members:
    :undoc-members:
    :show-inheritance:
-   :inherited-members:
-   :private-members:
+
+SBM Class
+---------
+
+.. autoclass:: OpenSMOG.SBM
+   :members:
+   :undoc-members:
+   :show-inheritance:
