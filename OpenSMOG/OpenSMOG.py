@@ -656,11 +656,10 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         if not os.path.exists(Grofile):
             SBM.opensmog_quit("Could not find gro file {}".format(Grofile))
            
-        try:
+        else:
             print("Will try to load coordinates from {}".format(Grofile))
             self.Gro = GromacsGroFile(Grofile)
-        except:
-            SBM.opensmog_quit("Failed to load {}".format(Grofile))
+
 
     def loadTop(self, Topfile):
         R"""Loads the  *.top* file format in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
