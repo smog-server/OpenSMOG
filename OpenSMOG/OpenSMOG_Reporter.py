@@ -8,7 +8,7 @@ The :class:`~.OpenSMOG_Reporter` class stores the potential energy information f
 try:
     from openmm.app import *
     from openmm import *
-    from openmm.unit import *
+    import openmm.unit as unit
 except:
     SBM.opensmog_quit('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
 
