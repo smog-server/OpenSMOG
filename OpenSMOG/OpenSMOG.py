@@ -487,7 +487,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             GPUIndex (str, optional):
                 Set of Platform device index IDs. Ex: 0,1,2 for the system to use the devices 0, 1 and 2. 
             integrator (str, or integrator object):
-                Integrator to use in the simulations. Options are *langevin*, *langevinMiddle,  *variableLangevin*, *langevinmiddletruncated* and *brownian*. You may also build your own custom integrator and pass it, rather than use a standard integrator. (Default value: :code:`langevinmiddle`).
+                Integrator to use in the simulations. Options are *langevin*, *langevinMiddle,  *variableLangevin*, *langevinMiddleTruncated* and *brownian*. You may also build your own custom integrator and pass it, rather than use a standard integrator. (Default value: :code:`langevinmiddle`).
         """
         # this tag keeps track of failed efforts to run setup.  If one calls setup_openmm and it fails, then this is left in a False state.  If it completes, it is set to True. If it is False, subsequent simulation steps will not run.
         self._setuppassed=False
