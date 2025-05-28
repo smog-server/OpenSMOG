@@ -169,7 +169,7 @@ be more appropriate.
             saveinterval (int, optional):
                 interval (in time steps) between data saves (Default value: :code:`1000`)
             trajectoryName (str, optional):
-                name of output trajectory file. Note, if this is set to :code: `None`, then the value of :code:`name` will be used (Default : :code:`None`)
+                name of output trajectory file. Note, if this is set to :code:`None`, then the value of :code:`name` will be used (Default : :code:`None`)
             trajectoryFormat (str, optional):
                 type of trajectory file to save (Default value: :code:`dcd`)
             energies (bool, optional):
