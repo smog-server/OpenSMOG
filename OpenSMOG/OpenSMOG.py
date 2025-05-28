@@ -1330,7 +1330,7 @@ Will try to import mdtraj...""")
                  Name of checkpoint file to save. (Default value: :code:`None`).
             stateFile (str, optional):
                  Name of state file to save. (Default value: :code:`None`).
-            checkpointInterval (str, optional):
+            checkpointInterval (float, optional):
                  Time between checkpoint/state file saves.
         """
 
