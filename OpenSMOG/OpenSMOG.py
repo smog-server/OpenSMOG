@@ -1143,10 +1143,9 @@ dihedral information provided in the top and xml files.
             i = 1
             ck = True
             while i <= 10 and ck:
-                root, ext = os.path.splitext(filename)
-                newname = f"{root}_{i}{ext}"
+                newname = filename + "_" + str(i)
                 if not os.path.isfile(newname):
-                    print(f"{filename} already exists.  Backing up to {newname}")
+                    print("{:} already exists.  Backing up to {:}".format(filename,newname))
                     os.rename(filename, newname)
                     ck = False
                 else:
