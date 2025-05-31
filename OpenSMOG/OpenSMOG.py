@@ -1303,7 +1303,7 @@ Will try to import mdtraj...""")
                 print("When calling run more than one time, the progress reported to screen will not be accurate. But, the actual simulation should be fine.")
             else:
                 # only add reporter one time
-                self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=True,
+                self.simulation.reporters.append(stateReporter(sys.stdout, interval, step=True, remainingTime=True,
                                                   progress=True, speed=True, totalSteps=nsteps, separator="\t"))
                 self.reporteradded=True
 
@@ -1339,7 +1339,7 @@ Will try to import mdtraj...""")
                 print("When calling runForClockTime/run more than one time, the progress reported to screen will not be accurate. But, the actual simulation should be fine.")
             else:
 
-                self.simulation.reporters.append(StateDataReporter(sys.stdout, interval, step=True, remainingTime=False,progress=False, speed=True, separator="\t"))
+                self.simulation.reporters.append(stateReporter(sys.stdout, interval, step=True, remainingTime=False,progress=False, speed=True, separator="\t"))
                 self.reporteradded=True
 
         self._createLogfile()                                                   
