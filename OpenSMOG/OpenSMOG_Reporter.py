@@ -8,7 +8,7 @@ The :class:`~.OpenSMOG_Reporter` class stores the potential energy information f
 try:
     from openmm.app import *
     from openmm import *
-    import openmm.unit as unit
+    from openmm.unit import *
 except:
     SBM.opensmog_quit('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
 
@@ -33,7 +33,7 @@ class forcesReporter(StateDataReporter):
         values = super()._constructReportValues(simulation, state)
 
         for i,n in enumerate(self._forces):
-            values.append(simulation.context.getState(getEnergy=True, groups={i}).getPotentialEnergy().value_in_unit(unit.kilojoules_per_mole))
+            values.append(simulation.context.getState(getEnergy=True, groups={i}).getPotentialEnergy().value_in_unit(kilojoules_per_mole))
 
         return values
 
@@ -95,22 +95,22 @@ class stateReporter(StateDataReporter):
         if self._step:
             values.append(simulation.currentStep)
         if self._time:
-            values.append(state.getTime().value_in_unit(unit.picosecond))
+            values.append(state.getTime().value_in_unit(picosecond))
         if self._potentialEnergy:
-            values.append(state.getPotentialEnergy().value_in_unit(unit.kilojoules_per_mole))
+            values.append(state.getPotentialEnergy().value_in_unit(kilojoules_per_mole))
         if self._kineticEnergy:
-            values.append(state.getKineticEnergy().value_in_unit(unit.kilojoules_per_mole))
+            values.append(state.getKineticEnergy().value_in_unit(kilojoules_per_mole))
         if self._totalEnergy:
-            values.append((state.getKineticEnergy()+state.getPotentialEnergy()).value_in_unit(unit.kilojoules_per_mole))
+            values.append((state.getKineticEnergy()+state.getPotentialEnergy()).value_in_unit(kilojoules_per_mole))
         if self._temperature:
-            values.append((2*state.getKineticEnergy()/(self._dof*unit.MOLAR_GAS_CONSTANT_R)).value_in_unit(unit.kelvin) * 0.00831446261815 )
+            values.append((2*state.getKineticEnergy()/(self._dof*MOLAR_GAS_CONSTANT_R)).value_in_unit(kelvin) * 0.00831446261815 )
         if self._volume:
-            values.append(volume.value_in_unit(unit.nanometer**3))
+            values.append(volume.value_in_unit(nanometer**3))
         if self._density:
-            values.append((self._totalMass/volume).value_in_unit(unit.gram/unit.item/unit.milliliter))
+            values.append((self._totalMass/volume).value_in_unit(gram/item/milliliter))
         if self._speed:
             elapsedDays = (clockTime-self._initialClockTime)/86400.0
-            elapsedNs = (state.getTime()-self._initialSimulationTime).value_in_unit(unit.nanosecond)
+            elapsedNs = (state.getTime()-self._initialSimulationTime).value_in_unit(nanosecond)
             if elapsedDays > 0.0:
                 values.append('%.3g' % (elapsedNs/elapsedDays))
             else:
