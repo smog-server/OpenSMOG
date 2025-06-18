@@ -451,23 +451,23 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         """
 
 
-        integrator=CustomIntegrator(dt);
-        integrator.addGlobalVariable("a", exp(-gamma*dt));
-        integrator.addGlobalVariable("b", sqrt(temperature*(1-exp(-2*gamma*dt))) );
+        integrator=CustomIntegrator(dt)
+        integrator.addGlobalVariable("a", exp(-gamma*dt))
+        integrator.addGlobalVariable("b", sqrt(temperature*(1-exp(-2*gamma*dt))) )
         if constraints:
-            integrator.addPerDofVariable("x1", 0);
-        integrator.addUpdateContextState();
-        integrator.addComputePerDof("v", "v + dt*f/m");
+            integrator.addPerDofVariable("x1", 0)
+        integrator.addUpdateContextState()
+        integrator.addComputePerDof("v", "v + dt*f/m")
         if constraints:
             integrator.addConstrainVelocities()
 
-        integrator.addComputePerDof("x", "x + 0.5*dt*v");
-        integrator.addComputePerDof("v", "a*v + b/sqrt(m)*max(-4,min(4,gaussian))");
-        integrator.addComputePerDof("x", "x + 0.5*dt*v");
+        integrator.addComputePerDof("x", "x + 0.5*dt*v")
+        integrator.addComputePerDof("v", "a*v + b/sqrt(m)*max(-4,min(4,gaussian))")
+        integrator.addComputePerDof("x", "x + 0.5*dt*v")
         if constraints:
-            integrator.addComputePerDof("x1", "x");
-            integrator.addConstrainPositions();
-            integrator.addComputePerDof("v", "v + (x-x1)/dt");
+            integrator.addComputePerDof("x1", "x")
+            integrator.addConstrainPositions()
+            integrator.addComputePerDof("v", "v + (x-x1)/dt")
 
         return integrator
 
