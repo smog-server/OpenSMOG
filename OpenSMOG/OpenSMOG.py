@@ -713,6 +713,15 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             forces[dihedrals_data[3][n]] = [dihedrals_data[0][n], dihedrals_data[1][n], dihedrals_data[2][n]]
         self.dihedrals = forces
 
+    def _splitForces_angles(self):
+        #Custom Angles
+        angles_data=self.data['angles']
+        n_forces =  len(angles_data[3])
+        forces = {}
+        for n in range(n_forces):
+            forces[angles_data[3][n]] = [angles_data[0][n], angles_data[1][n], angles_data[2][n]]
+        self.angles = forces
+
     def _customSmogForce(self, name, data, pbc):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
