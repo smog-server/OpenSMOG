@@ -27,7 +27,6 @@ from pathlib import Path
 from .oscheck import SBMCHECK
 
 class SBM:
-    version="1.2"
     R"""  
     The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based (SMOG) models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, cryo-EM, or NMR methods) as the energetic global minimum. Find more information about SMOG models and OpenSMOG at http://smog-server.org 
     
@@ -54,6 +53,7 @@ class SBM:
                 Give cautionary warnings... (Default value: :code:`True`)
               
     """
+    version="1.2"
 
     def __init__(self, time_step=None, collision_rate=None, r_cutoff=None, temperature = None, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
 
@@ -397,8 +397,6 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
              SBM.opensmog_quit("Failed to load the checkpoint file. This can happen for a variety of reasons, such as:\n\t-The file was generated when using a different machine.\n\tThe file has been corrupted.\n\t-The file was written for a different system (e.g. changing integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
 
     def minimize(self,tolerance=1.0,maxIterations=None,reportInterval=100,minTrajectory=None):
-        print("Starting minimization using L-BFGS method")
-        print("step, energy")
         R"""Wrapper for L-BFGS energy minimization.
 
          Args:
@@ -412,6 +410,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             minTrajectory (str, optional):
                 Name of file to write trajectory (currently, only dcd files are supported). If set to :code:`None`, then no file would be written. (Default value: :code:`None`).   
         """
+        print("Starting minimization using L-BFGS method")
+        print("step, energy")
         if maxIterations == None:
             maxIterations=0
 
@@ -1365,9 +1365,6 @@ Will try to import mdtraj...""")
         
             
     def run(self, nsteps, report=True, interval=10**4):
-
-        self.started+=1 
-
         R"""Run a molecular dynamics simulation.
 
         Args:
@@ -1379,6 +1376,8 @@ Will try to import mdtraj...""")
             interval (int, optional):
                  Frequency to print the simulation progress. (Default value: :code:`10**4`)
         """
+
+        self.started+=1 
 
         if report:
             if self.reporteradded :
@@ -1393,11 +1392,6 @@ Will try to import mdtraj...""")
         self.simulation.step(nsteps)
 
     def runForClockTime(self, time, report=True, interval=10**4,checkpointFile=None, stateFile=None, checkpointInterval=None):
-
-        #if self.started != 0:
-        #    SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
-        self.started+=1 
-
         R"""Run a molecular dynamics simulation for a specified walltime.
 
         Args:
@@ -1415,6 +1409,9 @@ Will try to import mdtraj...""")
             checkpointInterval (float, optional):
                  Time between checkpoint/state file saves.
         """
+        #if self.started != 0:
+        #    SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+        self.started+=1 
 
         if report:
             if self.reporteradded :
