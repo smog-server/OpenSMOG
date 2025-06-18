@@ -1084,6 +1084,47 @@ dihedral information provided in the top and xml files.
                     ijkl.append(internal_ijkl)
 
                 xml_data['dihedrals']=[CDExpression,CDParameters,ijkl,CDForce_Names]
+            
+
+            ## Custom Angles 
+            CAForce_Names=[]
+            CAExpression=[]
+            CAParameters=[]
+            ijk=[]
+            
+            self.angles_present=False
+            if root.find('angles') == None:
+                print('''
+Angles definitions not found in XML file. Will only 
+use angles information provided in the top file.
+''')
+            else:
+                print('''
+Angles definitions found in XML file. Will include 
+angles information provided in the top and xml files.
+''')
+                self.angles_present=True
+                angles_xml=root.find('angles')
+                for i in range(len(angles_xml)):
+                    for name in angles_xml[i].iter('angles_type'):
+                        if name.attrib['name'] in CAForce_Names:
+                            SBM.opensmog_quit("XML input error: angles_type name \""+name.attrib['name']+"\" is used more than once in the OpenSMOG xml file.  The name of each angles_type must be unique.")
+                        CAForce_Names.append(name.attrib['name'])
+
+                    for expr in angles_xml[i].iter('expression'):
+                        CAExpression.append(expr.attrib['expr'])
+                        
+                    CAinternal_Param=[]
+                    for par in angles_xml[i].iter('parameter'):
+                        CAinternal_Param.append(par.text)
+                    CAParameters.append(CAinternal_Param)
+
+                    internal_ijk=[]
+                    for atoms_ijk in angles_xml[i].iter('interaction'):
+                            internal_ijk.append(atoms_ijk.attrib)
+                    ijk.append(internal_ijk)
+
+                xml_data['angles']=[CAExpression,CAParameters,ijk,CAForce_Names]
 
             return xml_data
 
@@ -1104,6 +1145,13 @@ dihedral information provided in the top and xml files.
             for force in self.dihedrals:
                 print("        Creating Dihedrals force {:} from xml file".format(force))
                 self._customSmogForce_cd(force, self.dihedrals[force], self.pbc)
+                self.system.addForce(self.forcesDict[force])
+
+        if self.angles_present==True: 
+            self._splitForces_angles()
+            for force in self.angles:
+                print("        Creating Angles force {:} from xml file".format(force))
+                self._customSmogForce_ca(force, self.angles[force], self.pbc)
                 self.system.addForce(self.forcesDict[force])
         
         if self.nonbond_present==True: 
