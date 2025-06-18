@@ -25,6 +25,7 @@ from .OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationRe
 import re as regex
 from pathlib import Path
 from .oscheck import SBMCHECK
+from . import __version__
 
 class SBM:
     R"""  
@@ -53,7 +54,7 @@ class SBM:
                 Give cautionary warnings... (Default value: :code:`True`)
               
     """
-    version="1.2"
+    version=__version__
 
     def __init__(self, time_step=None, collision_rate=None, r_cutoff=None, temperature = None, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
 
