@@ -771,6 +771,29 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         self.forcesDict[name] =  dihedrals_ff
         dihedrals_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
+    
+    def _customSmogForce_ca(self, name, data, pbc):
+        #first set the equation
+        angles_ff = CustomAngleForce(data[0])
+        angles_ff.setUsesPeriodicBoundaryConditions(pbc)
+        #second set the number of variable
+        for pars in data[1]:
+            angles_ff.addPerAngleParameter(pars)
+
+        #third, apply the bonds from each pair of atoms and the related variables.
+        pars = [pars for pars in data[1]]
+
+        for iteraction in data[2]:
+            atom_index_i = int(iteraction['i'])-1 
+            atom_index_j = int(iteraction['j'])-1
+            atom_index_k = int(iteraction['k'])-1 
+            parameters = [float(iteraction[k]) for k in pars]
+
+            angles_ff.addAngle(atom_index_i, atom_index_j, atom_index_k, parameters)
+
+        self.forcesDict[name] =  angles_ff
+        angles_ff.setForceGroup(self.forceCount)
+        self.forceCount +=1
 
 
     def _customSmogForce_nb(self, name, data):
