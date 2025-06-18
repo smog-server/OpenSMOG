@@ -116,7 +116,7 @@ be more appropriate.
         self.cmm=cmm
         self.nonbonded_present = False
 
-# setup defaults, in case setup_openmm and/or createReporters is not called
+        # setup defaults, in case setup_openmm and/or createReporters is not called
         
         self.forcesDict = {}
  
@@ -134,12 +134,13 @@ be more appropriate.
             pn=Platform.getPlatform(i).getName()
             plats.append(pn)
 
-	# set the default platform.
+	    # set the default platform.
         for tryplat in ['HIP','CUDA','OpenCL','CPU','Reference']:
             if tryplat in plats:
                 self.platform = Platform.getPlatformByName(tryplat)
                 break
 
+    @staticmethod
     def runAA(name='smogtest', time_step=0.002, nsteps=10000, collision_rate=1.0, r_cutoff=0.65, temperature=0.5, gro="smog.gro", top="smog.top", xml="smog.xml", saveinterval=1000, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=True, energy_componentsName=None, logFileName='OpenSMOG.log'):
         R"""A quick way to start a simulation with default parameters that are typical with the standard all-atom SMOG model.
     You can also override many parameters, if needed. This may not be suitable for production runs.
@@ -334,9 +335,11 @@ SMOG 2: https://smog-server.org
 If you have questions/suggestions, you can also email us at info@smog-server.org
 """) 
 
+    @staticmethod
     def opensmogcheck():
         SBMCHECK.run()
 
+    @staticmethod
     def opensmog_quit(message):
         print("\n\nOpenSMOG error: {}\n\n".format(message))
         sys.exit(1)
