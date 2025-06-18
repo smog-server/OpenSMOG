@@ -14,8 +14,7 @@ try:
     from openmm import *
     from openmm.unit import *
 except:
-    SBM.opensmog_quit('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
-
+    raise ImportError('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
 
 import os
 import numpy as np
