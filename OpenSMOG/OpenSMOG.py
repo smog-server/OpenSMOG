@@ -626,9 +626,18 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         self._check_file(Grofile, '.gro')
         self.loadGro(Grofile)
+        gronum=len(self.Gro.getPositions())
+        print("    {} atoms loaded from gro file".format(gronum))
 
         self._check_file(Topfile, '.top')
         self.loadTop(Topfile)
+        topnum=self.system.getNumParticles() 
+        print ("    {} atoms loaded from top".format(topnum))
+
+        if gronum != topnum:
+            SBM.opensmog_quit('Different numbers of particles loaded from gro ({}) and top ({}) files.'.format(gronum,topnum))
+
+
 
         if noxml == False :
             self._check_file(Xmlfile, '.xml')
@@ -660,7 +669,6 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             print("Will try to load coordinates from {}".format(Grofile))
             self.Gro = GromacsGroFile(Grofile)
 
-
     def loadTop(self, Topfile):
         R"""Loads the  *.top* file format in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
 
@@ -685,7 +693,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             force.setForceGroup(force_id)
             self.forcesDict[force.__class__.__name__] = force
             self.forceCount +=1
-        
+
     def _splitForces_contacts(self):
         #Contacts
         cont_data=self.data['contacts']
