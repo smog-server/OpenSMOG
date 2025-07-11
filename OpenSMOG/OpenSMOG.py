@@ -632,7 +632,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         self._check_file(Topfile, '.top')
         self.loadTop(Topfile)
         topnum=self.system.getNumParticles() 
-        print ("    {} atoms loaded from top".format(topnum))
+        print ("    {} atoms loaded from top file".format(topnum))
 
         if gronum != topnum:
             SBM.opensmog_quit('Different numbers of particles loaded from gro ({}) and top ({}) files.'.format(gronum,topnum))
@@ -645,7 +645,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         else:
             print('noxml flag was given.  Will not read an OpenSMOG xml file')
 
-        print("Loaded force field and config files.")
+        print("\nLoaded force field and config files.")
         
         self._loadpassed=True
         
@@ -953,10 +953,8 @@ were not expecting this message, you may want to see why
 it was flagged.
 ''')
             else:
-                print('''
-Contacts found in the xml file.  Will include definitions
-provided in the top and xml files.
-''')
+                print('''Contacts found in the xml file.  Will include definitions
+provided in the top and xml files.''')
                 self.contacts_present=True
                 contacts_xml=root.find('contacts')
                 for i in range(len(contacts_xml)):
@@ -986,14 +984,12 @@ provided in the top and xml files.
             if root.find('nonbond') == None:
                 print('''
 Nonbonded parameters not found in XML file.  Will
-only use information nonbonded parameters that
-are provided in the top file.
-''') 
+only use nonbonded parameters that are provided 
+in the top file.''') 
             else:
                 print('''
 Nonbonded parameters found in XML file. Nonbonded
-parameters in top file will be ignored.
-''') 
+parameters in top file will be ignored.''') 
                 self.nonbond_present=True
                 nonbond_xml=root.find('nonbond')
                 NonBond_Num=[]
@@ -1071,21 +1067,21 @@ dihedral information provided in the top and xml files.
         if self.contacts_present==True: 
             self._splitForces_contacts()
             for force in self.contacts:
-                print("        Creating Contacts force {:} from xml file".format(force))
+                print("Contact force {:} read from xml file\n".format(force))
                 self._customSmogForce(force, self.contacts[force],self.pbc)
                 self.system.addForce(self.forcesDict[force])
 
         if self.dihedrals_present==True: 
             self._splitForces_dihedrals()
             for force in self.dihedrals:
-                print("        Creating Dihedrals force {:} from xml file".format(force))
+                print("Dihedral force {:} read from xml file\n".format(force))
                 self._customSmogForce_cd(force, self.dihedrals[force], self.pbc)
                 self.system.addForce(self.forcesDict[force])
         
         if self.nonbond_present==True: 
             self._splitForces_nb()
             for force in self.nonbond:
-                print("        Creating Nonbonded force {:} from xml file.\n        This will replace any nonbonded definitions given in the .top file\n".format(force))
+                print("Nonbonded force {:} read from xml file.\n        This will replace any nonbonded definitions given in the .top file\n".format(force))
                 self._customSmogForce_nb(force, self.nonbond[force])
                 self.system.addForce(self.forcesDict['Nonbonded'+str(force)])
             ## REMOVE OTHER NONBONDED FORCES
