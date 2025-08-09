@@ -629,9 +629,18 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         self._check_file(Grofile, '.gro')
         self.loadGro(Grofile)
+        gronum=len(self.Gro.getPositions())
+        print("    {} atoms loaded from gro file".format(gronum))
 
         self._check_file(Topfile, '.top')
         self.loadTop(Topfile)
+        topnum=self.system.getNumParticles() 
+        print ("    {} atoms loaded from top file".format(topnum))
+
+        if gronum != topnum:
+            SBM.opensmog_quit('Different numbers of particles loaded from gro ({}) and top ({}) files.'.format(gronum,topnum))
+
+
 
         if noxml == False :
             self._check_file(Xmlfile, '.xml')
@@ -639,7 +648,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         else:
             print('noxml flag was given.  Will not read an OpenSMOG xml file')
 
-        print("Loaded force field and config files.")
+        print("\nLoaded force field and config files.")
         
         self._loadpassed=True
         
@@ -662,7 +671,6 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         else:
             print("Will try to load coordinates from {}".format(Grofile))
             self.Gro = GromacsGroFile(Grofile)
-
 
     def loadTop(self, Topfile):
         R"""Loads the  *.top* file format in the OpenMM system platform. The input files are generated using SMOG2 software with the flag :code:`-OpenSMOG`. Details on how to create the files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
@@ -688,7 +696,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             force.setForceGroup(force_id)
             self.forcesDict[force.__class__.__name__] = force
             self.forceCount +=1
-        
+
     def _splitForces_contacts(self):
         #Contacts
         cont_data=self.data['contacts']
@@ -980,10 +988,8 @@ were not expecting this message, you may want to see why
 it was flagged.
 ''')
             else:
-                print('''
-Contacts found in the xml file.  Will include definitions
-provided in the top and xml files.
-''')
+                print('''Contacts found in the xml file.  Will include definitions
+provided in the top and xml files.''')
                 self.contacts_present=True
                 contacts_xml=root.find('contacts')
                 for i in range(len(contacts_xml)):
@@ -1013,14 +1019,12 @@ provided in the top and xml files.
             if root.find('nonbond') == None:
                 print('''
 Nonbonded parameters not found in XML file.  Will
-only use information nonbonded parameters that
-are provided in the top file.
-''') 
+only use nonbonded parameters that are provided 
+in the top file.''') 
             else:
                 print('''
 Nonbonded parameters found in XML file. Nonbonded
-parameters in top file will be ignored.
-''') 
+parameters in top file will be ignored.''') 
                 self.nonbond_present=True
                 nonbond_xml=root.find('nonbond')
                 NonBond_Num=[]
@@ -1139,14 +1143,14 @@ angles information provided in the top and xml files.
         if self.contacts_present==True: 
             self._splitForces_contacts()
             for force in self.contacts:
-                print("        Creating Contacts force {:} from xml file".format(force))
+                print("Contact force {:} read from xml file\n".format(force))
                 self._customSmogForce(force, self.contacts[force],self.pbc)
                 self.system.addForce(self.forcesDict[force])
 
         if self.dihedrals_present==True: 
             self._splitForces_dihedrals()
             for force in self.dihedrals:
-                print("        Creating Dihedrals force {:} from xml file".format(force))
+                print("Dihedral force {:} read from xml file\n".format(force))
                 self._customSmogForce_cd(force, self.dihedrals[force], self.pbc)
                 self.system.addForce(self.forcesDict[force])
 
@@ -1160,7 +1164,7 @@ angles information provided in the top and xml files.
         if self.nonbond_present==True: 
             self._splitForces_nb()
             for force in self.nonbond:
-                print("        Creating Nonbonded force {:} from xml file.\n        This will replace any nonbonded definitions given in the .top file\n".format(force))
+                print("Nonbonded force {:} read from xml file.\n        This will replace any nonbonded definitions given in the .top file\n".format(force))
                 self._customSmogForce_nb(force, self.nonbond[force])
                 self.system.addForce(self.forcesDict['Nonbonded'+str(force)])
             ## REMOVE OTHER NONBONDED FORCES
@@ -1509,8 +1513,8 @@ Will try to import mdtraj...""")
     print('')
     print('{:^96s}'.format("This package is the product of contributions from a number of people, including:"))
     print('{:^96s}'.format("Jeffrey Noel, Mariana Levi, Antonio Oliveira, Vinícius Contessoto,"))
-    print('{:^96s}'.format("Esteban Dodero-Rojas, Mohit Raghunathan, Joyce Yang, Prasad Bandarkar,"))
-    print('{:^96s}'.format("Udayan Mohanty, Ailun Wang, Heiko Lammert, Ryan Hayes,"))
+    print('{:^96s}'.format("Matheus Mello, Esteban Dodero-Rojas, Mohit Raghunathan, Joyce Yang,"))
+    print('{:^96s}'.format("Prasad Bandarkar, Udayan Mohanty, Ailun Wang, Heiko Lammert, Ryan Hayes,"))
     print('{:^96s}'.format("Jose Onuchic & Paul Whitford"))
     print('')
     print('{:^96s}'.format("Copyright (c) 2021, 2022, 2024 The SMOG development team at"))
