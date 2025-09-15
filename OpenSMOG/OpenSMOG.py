@@ -1146,7 +1146,9 @@ dihedral information provided in the top and xml files.
         if os.path.isfile(filename):
             i = 1
             ck = True
-            while i <= 10 and ck:
+            while i <= 11 and ck:
+                if i==11:
+                    SBM.opensmog_quit("10 backups have already been made for {:}. Clear some backed up versions and try again.".format(filename))
                 newname = filename + "_" + str(i)
                 if not os.path.isfile(newname):
                     print("{:} already exists.  Backing up to {:}".format(filename,newname))
