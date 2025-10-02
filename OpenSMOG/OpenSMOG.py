@@ -1356,11 +1356,11 @@ Will try to import mdtraj...""")
         import platform
         import datetime
         logFilename = os.path.join(self.folder, self.logFileName)
-        self._checkFile(logFilename)
         self.outputNames.append(logFilename)
         if self.started == 1:
             # if this is the first time, then create a new file
             wa='w'
+            self._checkFile(logFilename)
         else:
             # if run is called a second time, then append
             wa='a'
