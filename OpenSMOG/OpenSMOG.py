@@ -1404,6 +1404,7 @@ Will try to import mdtraj...""")
                 f.write(os.path.basename(n)+"\n")
 
             sys.stdout = ori
+        f.close()
 
             
 #end of subroutines
