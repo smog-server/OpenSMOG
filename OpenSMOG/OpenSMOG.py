@@ -753,7 +753,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
                 nonbond1.addExclusion(index_i, index_j)
                 if f"{index_i}-{index_j}" in self.addedExclusions:
                     print(f"WARNING: Exclusion between atoms {index_i} and {index_j} appears in more than one contact_type. This will likely lead to an exception later.")
-                self.addedExclusions[f"{index_i}-{index_j}"]=name
+                self.addedExclusions.add(f"{index_i}-{index_j}")
         #forth, if the are global variables, add them to the force
         if self.constants_present==True:
             for const_key in self.data['constants']:
@@ -1094,7 +1094,7 @@ dihedral information provided in the top and xml files.
         self.data = import_xml2OpenSMOG(Xmlfile)
         if self.contacts_present==True: 
             self._splitForces_contacts()
-            self.addedExclusions={}
+            self.addedExclusions=set()
             for force in self.contacts:
                 print("Contact force {:} read from xml file\n".format(force))
                 self._customSmogForce(force, self.contacts[force],self.pbc)
