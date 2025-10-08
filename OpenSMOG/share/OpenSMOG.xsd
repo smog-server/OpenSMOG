@@ -35,10 +35,15 @@
   <xs:complexType name="expressionType">
     <xs:attribute name="expr" type="xs:string" use="required"/>
   </xs:complexType>
+  <!-- EXCLUSIONS TYPE -->
+  <xs:complexType name="exclusionsType">
+    <xs:attribute name="generate" type="xs:integer" use="required"/>
+  </xs:complexType>
   <!-- CONTACT POTENTIAL TYPE -->
   <xs:complexType name="contpotType">
     <xs:sequence>
       <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="exclusions" type="exclusionsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="parameter" type="parameterType" minOccurs="0" maxOccurs="unbounded"/>
       <xs:element name="interaction" type="contactInteractionType" minOccurs="1" maxOccurs="unbounded"/>
     </xs:sequence>
