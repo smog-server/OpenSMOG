@@ -14,8 +14,7 @@ try:
     from openmm import *
     from openmm.unit import *
 except:
-    SBM.opensmog_quit('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
-
+    raise ImportError('Failed to load OpenMM. Note: OpenSMOG requires OpenMM version 8.1.0, or newer. Check your configuration.')
 
 import os
 import numpy as np
@@ -26,9 +25,9 @@ from .OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationRe
 import re as regex
 from pathlib import Path
 from .oscheck import SBMCHECK
+from . import __version__
 
 class SBM:
-    version="1.2"
     R"""  
     The :class:`~.SBM` class performs Molecular dynamics simulations using structure-based (SMOG) models to investigate a broad range of biomolecular dynamics, including domain rearrangements in proteins, folding and ligand binding in RNA and large-scale rearrangements in ribonucleoprotein assemblies. In its simplest form, a structure-based model defines a particular structure (usually obtained from X-ray, cryo-EM, or NMR methods) as the energetic global minimum. Find more information about SMOG models and OpenSMOG at http://smog-server.org 
     
@@ -55,6 +54,7 @@ class SBM:
                 Give cautionary warnings... (Default value: :code:`True`)
               
     """
+    version=__version__
 
     def __init__(self, time_step=None, collision_rate=None, r_cutoff=None, temperature = None, cmm = True, pbc = False, name = "OpenSMOG", warn = True):
 
@@ -117,7 +117,7 @@ be more appropriate.
         self.cmm=cmm
         self.nonbonded_present = False
 
-# setup defaults, in case setup_openmm and/or createReporters is not called
+        # setup defaults, in case setup_openmm and/or createReporters is not called
         
         self.forcesDict = {}
  
@@ -135,13 +135,14 @@ be more appropriate.
             pn=Platform.getPlatform(i).getName()
             plats.append(pn)
 
-	# set the default platform.
+	    # set the default platform.
         for tryplat in ['HIP','CUDA','OpenCL','CPU','Reference']:
             if tryplat in plats:
                 self.platform = Platform.getPlatformByName(tryplat)
                 break
 
-    def runAA(name='smogtest',time_step=0.002, nsteps=10000,collision_rate=1.0, r_cutoff=0.65, temperature=0.5,gro="smog.gro",top="smog.top",xml="smog.xml",saveinterval=1000,trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log'):
+    @staticmethod
+    def runAA(name='smogtest', time_step=0.002, nsteps=10000, collision_rate=1.0, r_cutoff=0.65, temperature=0.5, gro="smog.gro", top="smog.top", xml="smog.xml", saveinterval=1000, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=True, energy_componentsName=None, logFileName='OpenSMOG.log'):
         R"""A quick way to start a simulation with default parameters that are typical with the standard all-atom SMOG model.
     You can also override many parameters, if needed. This may not be suitable for production runs.
 
@@ -191,11 +192,11 @@ be more appropriate.
             SMOGrun.loadSystem(Grofile=gro, Topfile=top, Xmlfile=xml, noxml=False)
         SMOGrun.createSimulation()
         SMOGrun.minimize(tolerance=1)
-        SMOGrun.createReporters(trajectory=True, energies=True, energy_components=True, interval=saveinterval,trajectoryName=trajectoryName, trajectoryFormat=trajectoryFormat, energiesName=energiesName, energy_componentsName=energy_componentsName, logFileName='OpenSMOG.log')
+        SMOGrun.createReporters(trajectory=True, energies=energies, energy_components=energy_components, interval=saveinterval,trajectoryName=trajectoryName, trajectoryFormat=trajectoryFormat, energiesName=energiesName, energy_componentsName=energy_componentsName, logFileName=logFileName)
         SMOGrun.run(nsteps=nsteps, report=True, interval=saveinterval)
 
 
-
+    @staticmethod
     def help():
         R"""Prints information about SMOG models and how to use OpenSMOG.
         """
@@ -335,9 +336,11 @@ SMOG 2: https://smog-server.org
 If you have questions/suggestions, you can also email us at info@smog-server.org
 """) 
 
+    @staticmethod
     def opensmogcheck():
         SBMCHECK.run()
 
+    @staticmethod
     def opensmog_quit(message):
         print("\n\nOpenSMOG error: {}\n\n".format(message))
         sys.exit(1)
@@ -395,8 +398,6 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
              SBM.opensmog_quit("Failed to load the checkpoint file. This can happen for a variety of reasons, such as:\n\t-The file was generated when using a different machine.\n\tThe file has been corrupted.\n\t-The file was written for a different system (e.g. changing integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
 
     def minimize(self,tolerance=1.0,maxIterations=None,reportInterval=100,minTrajectory=None):
-        print("Starting minimization using L-BFGS method")
-        print("step, energy")
         R"""Wrapper for L-BFGS energy minimization.
 
          Args:
@@ -410,6 +411,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             minTrajectory (str, optional):
                 Name of file to write trajectory (currently, only dcd files are supported). If set to :code:`None`, then no file would be written. (Default value: :code:`None`).   
         """
+        print("Starting minimization using L-BFGS method")
+        print("step, energy")
         if maxIterations == None:
             maxIterations=0
 
@@ -449,23 +452,23 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         """
 
 
-        integrator=CustomIntegrator(dt);
-        integrator.addGlobalVariable("a", exp(-gamma*dt));
-        integrator.addGlobalVariable("b", sqrt(temperature*(1-exp(-2*gamma*dt))) );
+        integrator=CustomIntegrator(dt)
+        integrator.addGlobalVariable("a", exp(-gamma*dt))
+        integrator.addGlobalVariable("b", sqrt(temperature*(1-exp(-2*gamma*dt))) )
         if constraints:
-            integrator.addPerDofVariable("x1", 0);
-        integrator.addUpdateContextState();
-        integrator.addComputePerDof("v", "v + dt*f/m");
+            integrator.addPerDofVariable("x1", 0)
+        integrator.addUpdateContextState()
+        integrator.addComputePerDof("v", "v + dt*f/m")
         if constraints:
             integrator.addConstrainVelocities()
 
-        integrator.addComputePerDof("x", "x + 0.5*dt*v");
-        integrator.addComputePerDof("v", "a*v + b/sqrt(m)*max(-4,min(4,gaussian))");
-        integrator.addComputePerDof("x", "x + 0.5*dt*v");
+        integrator.addComputePerDof("x", "x + 0.5*dt*v")
+        integrator.addComputePerDof("v", "a*v + b/sqrt(m)*max(-4,min(4,gaussian))")
+        integrator.addComputePerDof("x", "x + 0.5*dt*v")
         if constraints:
-            integrator.addComputePerDof("x1", "x");
-            integrator.addConstrainPositions();
-            integrator.addComputePerDof("v", "v + (x-x1)/dt");
+            integrator.addComputePerDof("x1", "x")
+            integrator.addConstrainPositions()
+            integrator.addComputePerDof("v", "v + (x-x1)/dt")
 
         return integrator
 
@@ -721,6 +724,15 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             forces[dihedrals_data[3][n]] = [dihedrals_data[0][n], dihedrals_data[1][n], dihedrals_data[2][n]]
         self.dihedrals = forces
 
+    def _splitForces_angles(self):
+        #Custom Angles
+        angles_data=self.data['angles']
+        n_forces =  len(angles_data[3])
+        forces = {}
+        for n in range(n_forces):
+            forces[angles_data[3][n]] = [angles_data[0][n], angles_data[1][n], angles_data[2][n]]
+        self.angles = forces
+
     def _customSmogForce(self, name, data, pbc):
         #first set the equation
         contacts_ff = CustomBondForce(data[0])
@@ -788,6 +800,29 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         self.forcesDict[name] =  dihedrals_ff
         dihedrals_ff.setForceGroup(self.forceCount)
+        self.forceCount +=1
+    
+    def _customSmogForce_ca(self, name, data, pbc):
+        #first set the equation
+        angles_ff = CustomAngleForce(data[0])
+        angles_ff.setUsesPeriodicBoundaryConditions(pbc)
+        #second set the number of variable
+        for pars in data[1]:
+            angles_ff.addPerAngleParameter(pars)
+
+        #third, apply the bonds from each pair of atoms and the related variables.
+        pars = [pars for pars in data[1]]
+
+        for iteraction in data[2]:
+            atom_index_i = int(iteraction['i'])-1 
+            atom_index_j = int(iteraction['j'])-1
+            atom_index_k = int(iteraction['k'])-1 
+            parameters = [float(iteraction[k]) for k in pars]
+
+            angles_ff.addAngle(atom_index_i, atom_index_j, atom_index_k, parameters)
+
+        self.forcesDict[name] =  angles_ff
+        angles_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
 
 
@@ -1088,6 +1123,47 @@ dihedral information provided in the top and xml files.
                     ijkl.append(internal_ijkl)
 
                 xml_data['dihedrals']=[CDExpression,CDParameters,ijkl,CDForce_Names]
+            
+
+            ## Custom Angles 
+            CAForce_Names=[]
+            CAExpression=[]
+            CAParameters=[]
+            ijk=[]
+            
+            self.angles_present=False
+            if root.find('angles') == None:
+                print('''
+Angles definitions not found in XML file. Will only 
+use angles information provided in the top file.
+''')
+            else:
+                print('''
+Angles definitions found in XML file. Will include 
+angles information provided in the top and xml files.
+''')
+                self.angles_present=True
+                angles_xml=root.find('angles')
+                for i in range(len(angles_xml)):
+                    for name in angles_xml[i].iter('angles_type'):
+                        if name.attrib['name'] in CAForce_Names:
+                            SBM.opensmog_quit("XML input error: angles_type name \""+name.attrib['name']+"\" is used more than once in the OpenSMOG xml file.  The name of each angles_type must be unique.")
+                        CAForce_Names.append(name.attrib['name'])
+
+                    for expr in angles_xml[i].iter('expression'):
+                        CAExpression.append(expr.attrib['expr'])
+                        
+                    CAinternal_Param=[]
+                    for par in angles_xml[i].iter('parameter'):
+                        CAinternal_Param.append(par.text)
+                    CAParameters.append(CAinternal_Param)
+
+                    internal_ijk=[]
+                    for atoms_ijk in angles_xml[i].iter('interaction'):
+                            internal_ijk.append(atoms_ijk.attrib)
+                    ijk.append(internal_ijk)
+
+                xml_data['angles']=[CAExpression,CAParameters,ijk,CAForce_Names]
 
             return xml_data
 
@@ -1124,6 +1200,13 @@ dihedral information provided in the top and xml files.
             for force in self.dihedrals:
                 print("Dihedral force {:} read from xml file\n".format(force))
                 self._customSmogForce_cd(force, self.dihedrals[force], self.pbc)
+                self.system.addForce(self.forcesDict[force])
+
+        if self.angles_present==True: 
+            self._splitForces_angles()
+            for force in self.angles:
+                print("        Creating Angles force {:} from xml file".format(force))
+                self._customSmogForce_ca(force, self.angles[force], self.pbc)
                 self.system.addForce(self.forcesDict[force])
         
         if self.nonbond_present==True: 
@@ -1337,9 +1420,6 @@ Will try to import mdtraj...""")
         
             
     def run(self, nsteps, report=True, interval=10**4):
-
-        self.started+=1 
-
         R"""Run a molecular dynamics simulation.
 
         Args:
@@ -1351,6 +1431,8 @@ Will try to import mdtraj...""")
             interval (int, optional):
                  Frequency to print the simulation progress. (Default value: :code:`10**4`)
         """
+
+        self.started+=1 
 
         if report:
             if self.reporteradded :
@@ -1365,11 +1447,6 @@ Will try to import mdtraj...""")
         self.simulation.step(nsteps)
 
     def runForClockTime(self, time, report=True, interval=10**4,checkpointFile=None, stateFile=None, checkpointInterval=None):
-
-        #if self.started != 0:
-        #    SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
-        self.started+=1 
-
         R"""Run a molecular dynamics simulation for a specified walltime.
 
         Args:
@@ -1387,6 +1464,9 @@ Will try to import mdtraj...""")
             checkpointInterval (float, optional):
                  Time between checkpoint/state file saves.
         """
+        #if self.started != 0:
+        #    SBM.opensmog_quit('The run or runForClockTime method was already called.  Calling it a second time can lead to unpredictable behavior. If you want to extend a simulation, it is more appropriate to use checkpoint files.  Use SBM.help() for more information on checkpoint/state file usage in OpenSMOG.')
+        self.started+=1 
 
         if report:
             if self.reporteradded :
