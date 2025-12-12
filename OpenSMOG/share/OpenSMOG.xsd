@@ -146,6 +146,7 @@
       <xs:element name="dihedrals" type="dihedralsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="nonbond" type="nonbondType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="externals" type="externalType" minOccurs="0" maxOccurs="1"/>
     </xs:all>
     <xs:attribute name="OpenSMOGversion" type="xs:string" use="optional"/>
   </xs:complexType>

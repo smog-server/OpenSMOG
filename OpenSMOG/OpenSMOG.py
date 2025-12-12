@@ -825,6 +825,25 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         angles_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
 
+    def _customSmogForce_ce(self, name, data):
+        #first set the equation
+        external_ff = CustomExternalForce(data[0])
+        #second set the number of variable
+        for pars in data[1]:
+            external_ff.addPerParticleParameter(pars)
+
+        #third, apply the bonds from each pair of atoms and the related variables.
+        pars = [pars for pars in data[1]]
+
+        for iteraction in data[2]:
+            atom_index_i = int(iteraction['i'])-1 
+            parameters = [float(iteraction[k]) for k in pars]
+
+            external_ff.addParticle(atom_index_i, parameters)
+
+        self.forcesDict[name] =  external_ff
+        external_ff.setForceGroup(self.forceCount)
+        self.forceCount +=1
 
     def _customSmogForce_nb(self, name, data):
         #first set the equation
@@ -1124,7 +1143,6 @@ dihedral information provided in the top and xml files.
 
                 xml_data['dihedrals']=[CDExpression,CDParameters,ijkl,CDForce_Names]
             
-
             ## Custom Angles 
             CAForce_Names=[]
             CAExpression=[]
@@ -1165,6 +1183,40 @@ angles information provided in the top and xml files.
 
                 xml_data['angles']=[CAExpression,CAParameters,ijk,CAForce_Names]
 
+            ## Custom External Force
+            CEForce_Names=[]
+            CEExpression=[]
+            CEParameters=[]
+            atom_i=[]
+            
+            self.external_present=False
+            if root.find('external') != None:
+                print('''
+External Force definitions found in XML file. 
+''')
+                self.external_present=True
+                externals_xml=root.find('externals')
+                for i in range(len(externals_xml)):
+                    for name in externals_xml[i].iter('external_type'):
+                        if name.attrib['name'] in CEForce_Names:
+                            SBM.opensmog_quit("XML input error: external_type name \""+name.attrib['name']+"\" is used more than once in the OpenSMOG xml file.  The name of each external_type must be unique.")
+                        CEForce_Names.append(name.attrib['name'])
+
+                    for expr in externals_xml[i].iter('expression'):
+                        CEExpression.append(expr.attrib['expr'])
+                        
+                    CEinternal_Param=[]
+                    for par in externals_xml[i].iter('parameter'):
+                        CEinternal_Param.append(par.text)
+                    CEParameters.append(CEinternal_Param)
+
+                    internal_i=[]
+                    for at_i in externals_xml[i].iter('interaction'):
+                            internal_i.append(at_i.attrib)
+                    atom_i.append(internal_i)
+
+                xml_data['externals']=[CEExpression,CEParameters,atom_i,CEForce_Names]
+ 
             return xml_data
 
         result,log=validate(Xmlfile)
@@ -1205,7 +1257,7 @@ angles information provided in the top and xml files.
         if self.angles_present==True: 
             self._splitForces_angles()
             for force in self.angles:
-                print("        Creating Angles force {:} from xml file".format(force))
+                print("Creating Angles force {:} from xml file".format(force))
                 self._customSmogForce_ca(force, self.angles[force], self.pbc)
                 self.system.addForce(self.forcesDict[force])
         
@@ -1218,7 +1270,14 @@ angles information provided in the top and xml files.
             ## REMOVE OTHER NONBONDED FORCES
             self.system.removeForce(0)
             self.system.removeForce(0)
-        
+
+        if self.externals_present==True: 
+            self._splitForces_externals()
+            for force in self.externals:
+                print("Creating external force {:} from xml file".format(force))
+                self._customSmogForce_ce(force, self.externals[force])
+                self.system.addForce(self.forcesDict[force])
+ 
     def addForce(self,force,name=None):
 
 
