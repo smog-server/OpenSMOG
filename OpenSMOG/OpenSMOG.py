@@ -1189,12 +1189,12 @@ angles information provided in the top and xml files.
             CEParameters=[]
             atom_i=[]
             
-            self.external_present=False
+            self.externals_present=False
             if root.find('external') != None:
                 print('''
 External Force definitions found in XML file. 
 ''')
-                self.external_present=True
+                self.externals_present=True
                 externals_xml=root.find('externals')
                 for i in range(len(externals_xml)):
                     for name in externals_xml[i].iter('external_type'):

@@ -88,7 +88,7 @@
     <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
   <!-- EXTERNAL TYPE -->
-  <xs:complexType name="externalType">
+  <xs:complexType name="externalsType">
     <xs:sequence>
       <xs:element name="external_type" type="externalType" maxOccurs="unbounded"/>
     </xs:sequence>
@@ -146,7 +146,7 @@
       <xs:element name="dihedrals" type="dihedralsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="nonbond" type="nonbondType" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="externals" type="externalType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="externals" type="externalsType" minOccurs="0" maxOccurs="1"/>
     </xs:all>
     <xs:attribute name="OpenSMOGversion" type="xs:string" use="optional"/>
   </xs:complexType>
