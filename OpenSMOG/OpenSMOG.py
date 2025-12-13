@@ -142,7 +142,7 @@ be more appropriate.
                 break
 
     @staticmethod
-    def runAA(name='smogtest', time_step=0.002, nsteps=10000, collision_rate=1.0, r_cutoff=0.65, temperature=0.5, gro="smog.gro", top="smog.top", xml="smog.xml", saveinterval=1000, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=True, energy_componentsName=None, logFileName='OpenSMOG.log'):
+    def runAA(name='smogrun', time_step=0.002, nsteps=10000, collision_rate=1.0, r_cutoff=0.65, temperature=0.5, gro="smog.gro", top="smog.top", xml="smog.xml", saveinterval=1000, trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=True, energy_componentsName=None, logFileName='OpenSMOG.log',pbc = False,cmm=False):
         R"""A quick way to start a simulation with default parameters that are typical with the standard all-atom SMOG model.
     You can also override many parameters, if needed. This may not be suitable for production runs.
 
@@ -150,7 +150,7 @@ be more appropriate.
         Args:
 
             name (str, optional):
-                Name to use for system. This will serve as the default prefix for all output file. (Default value: :code:`smogtest`)
+                Name to use for system. This will serve as the default prefix for all output file. (Default value: :code:`smogrun`)
             time_step (float, optional):
                 simulation time step, in Reduced Units (Default value: :code:`0.002`)
             nsteps (int, optional):
@@ -185,7 +185,7 @@ be more appropriate.
                 name of log file. (Default : :code:`OpenSMOG.log`)
 
         """
-        SMOGrun=SBM(name=name, time_step=time_step, collision_rate=collision_rate, r_cutoff=r_cutoff, temperature=temperature)
+        SMOGrun=SBM(name=name, time_step=time_step, collision_rate=collision_rate, r_cutoff=r_cutoff, temperature=temperature,pbc=pbc,cmm=cmm)
         if xml == None:
             SMOGrun.loadSystem(Grofile=gro, Topfile=top, noxml=True)
         else:
@@ -327,7 +327,7 @@ After loading either the state, or checkpoint, then run the simulation
 
 Alternate quick launch: Many of the standard calls can be obtained with a single call to runAA. Here
 is an example, with default values shown.
->SBM.runAA(name='smogtest',time_step=0.002, nsteps=10000,collision_rate=1.0, r_cutoff=0.65, temperature=0.5,gro="smog.gro",top="smog.top",xml="smog.xml",saveinterval=1000,trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log')
+>SBM.runAA(name='smogrun',time_step=0.002, nsteps=10000,collision_rate=1.0, r_cutoff=0.65, temperature=0.5,gro="smog.gro",top="smog.top",xml="smog.xml",saveinterval=1000,trajectoryName=None, trajectoryFormat='dcd', energies=True, energiesName=None, energy_components=False, energy_componentsName=None, logFileName='OpenSMOG.log')
 
 For more information and help, see the OpenSMOG and SMOG 2 websites.
 OpenSMOG: https://opensmog.readthedocs.io/en/latest/
@@ -732,6 +732,17 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         for n in range(n_forces):
             forces[angles_data[3][n]] = [angles_data[0][n], angles_data[1][n], angles_data[2][n]]
         self.angles = forces
+
+    def _splitForces_externals(self):
+        #Custom Angles
+        externals_data=self.data['externals']
+        n_forces =  len(externals_data[3])
+        forces = {}
+        for n in range(n_forces):
+            forces[externals_data[3][n]] = [externals_data[0][n], externals_data[1][n], externals_data[2][n]]
+        self.externals = forces
+
+
 
     def _customSmogForce(self, name, data, pbc):
         #first set the equation
@@ -1190,7 +1201,7 @@ angles information provided in the top and xml files.
             atom_i=[]
             
             self.externals_present=False
-            if root.find('external') != None:
+            if root.find('externals') != None:
                 print('''
 External Force definitions found in XML file. 
 ''')
@@ -1257,7 +1268,7 @@ External Force definitions found in XML file.
         if self.angles_present==True: 
             self._splitForces_angles()
             for force in self.angles:
-                print("Creating Angles force {:} from xml file".format(force))
+                print("Angles force {:} read from xml file".format(force))
                 self._customSmogForce_ca(force, self.angles[force], self.pbc)
                 self.system.addForce(self.forcesDict[force])
         
@@ -1274,7 +1285,7 @@ External Force definitions found in XML file.
         if self.externals_present==True: 
             self._splitForces_externals()
             for force in self.externals:
-                print("Creating external force {:} from xml file".format(force))
+                print("External force {:} read from xml file".format(force))
                 self._customSmogForce_ce(force, self.externals[force])
                 self.system.addForce(self.forcesDict[force])
  
