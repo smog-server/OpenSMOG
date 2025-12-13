@@ -453,8 +453,8 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
 
         integrator=CustomIntegrator(dt)
-        integrator.addGlobalVariable("a", exp(-gamma*dt))
-        integrator.addGlobalVariable("b", sqrt(temperature*(1-exp(-2*gamma*dt))) )
+        a=exp(-gamma*dt)
+        b=sqrt(temperature*(1-exp(-2*gamma*dt))) 
         if constraints:
             integrator.addPerDofVariable("x1", 0)
         integrator.addUpdateContextState()
@@ -463,7 +463,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             integrator.addConstrainVelocities()
 
         integrator.addComputePerDof("x", "x + 0.5*dt*v")
-        integrator.addComputePerDof("v", "a*v + b/sqrt(m)*max(-4,min(4,gaussian))")
+        integrator.addComputePerDof("v", f"{a}*v + {b}/sqrt(m)*max(-4,min(4,gaussian))")
         integrator.addComputePerDof("x", "x + 0.5*dt*v")
         if constraints:
             integrator.addComputePerDof("x1", "x")
@@ -809,6 +809,11 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
             dihedrals_ff.addTorsion(atom_index_i, atom_index_j, atom_index_k, atom_index_l, parameters)
 
+        # add globals, if present
+        if self.constants_present==True:
+            for const_key in self.data['constants']:
+                dihedrals_ff.addGlobalParameter(const_key,self.data['constants'][const_key])
+
         self.forcesDict[name] =  dihedrals_ff
         dihedrals_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
@@ -832,6 +837,11 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
             angles_ff.addAngle(atom_index_i, atom_index_j, atom_index_k, parameters)
 
+        # add globals, if present
+        if self.constants_present==True:
+            for const_key in self.data['constants']:
+                angles_ff.addGlobalParameter(const_key,self.data['constants'][const_key])
+
         self.forcesDict[name] =  angles_ff
         angles_ff.setForceGroup(self.forceCount)
         self.forceCount +=1
@@ -851,6 +861,11 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             parameters = [float(iteraction[k]) for k in pars]
 
             external_ff.addParticle(atom_index_i, parameters)
+
+        # add globals, if present
+        if self.constants_present==True:
+            for const_key in self.data['constants']:
+                external_ff.addGlobalParameter(const_key,self.data['constants'][const_key])
 
         self.forcesDict[name] =  external_ff
         external_ff.setForceGroup(self.forceCount)
