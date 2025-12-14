@@ -397,6 +397,21 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         except Exception as mess:
              SBM.opensmog_quit("Failed to load the checkpoint file. This can happen for a variety of reasons, such as:\n\t-The file was generated when using a different machine.\n\tThe file has been corrupted.\n\t-The file was written for a different system (e.g. changing integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
 
+    def updateConstant(self,name,value):
+
+        R"""Wrapper for changing the value of a constant defined in the OpenSMOG xml file.  This overrides the value that is defined in the OpenSMOG xml file. 
+
+         Args:
+
+            name (str, required):
+                Name of the constant to updated
+            value (float, required):
+		New value of the constant
+        """
+        print("Changing value of constant {name} to {value}")
+        self.setParameter(name,value)
+
+
     def minimize(self,tolerance=1.0,maxIterations=None,reportInterval=100,minTrajectory=None):
         R"""Wrapper for L-BFGS energy minimization.
 
