@@ -409,7 +409,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
 		New value of the constant
         """
         print("Changing value of constant {name} to {value}")
-        self.setParameter(name,value)
+        self.simulation.context.setParameter(name,value)
 
 
     def minimize(self,tolerance=1.0,maxIterations=None,reportInterval=100,minTrajectory=None):
