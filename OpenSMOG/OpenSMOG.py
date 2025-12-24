@@ -408,7 +408,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
             value (float, required):
 		New value of the constant
         """
-        print("Changing value of constant {name} to {value}")
+        print(f"Changing value of constant {name} to {value}")
         self.simulation.context.setParameter(name,value)
 
 
