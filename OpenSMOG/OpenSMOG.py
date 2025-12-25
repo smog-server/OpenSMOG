@@ -1238,9 +1238,9 @@ External Force definitions found in XML file.
                 self.externals_present=True
                 externals_xml=root.find('externals')
                 for i in range(len(externals_xml)):
-                    for name in externals_xml[i].iter('external_type'):
+                    for name in externals_xml[i].iter('externals_type'):
                         if name.attrib['name'] in CEForce_Names:
-                            SBM.opensmog_quit("XML input error: external_type name \""+name.attrib['name']+"\" is used more than once in the OpenSMOG xml file.  The name of each external_type must be unique.")
+                            SBM.opensmog_quit("XML input error: externals_type name \""+name.attrib['name']+"\" is used more than once in the OpenSMOG xml file.  The name of each externals_type must be unique.")
                         CEForce_Names.append(name.attrib['name'])
 
                     for expr in externals_xml[i].iter('expression'):
