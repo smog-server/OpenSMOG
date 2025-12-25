@@ -90,7 +90,7 @@
   <!-- EXTERNAL TYPE -->
   <xs:complexType name="externalsType">
     <xs:sequence>
-      <xs:element name="external_type" type="externalType" maxOccurs="unbounded"/>
+      <xs:element name="externals_type" type="externalType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
