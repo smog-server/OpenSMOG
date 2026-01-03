@@ -437,7 +437,8 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
         reporter.mintraj = None
 
         if minTrajectory != None:
-            trajfile = open(minTrajectory, "wb")
+            newTrajName=os.path.join(self.folder, minTrajectory)
+            trajfile = open(newTrajName, "wb")
             reporter.mintraj=dcdfile.DCDFile(trajfile, self.Top.topology, 1, 0, interval=reportInterval)
 
         self.simulation.minimizeEnergy(tolerance=tolerance,maxIterations=maxIterations,reporter=reporter)
