@@ -1352,7 +1352,7 @@ External Force definitions found in XML file.
         if not self._folderpassed:
             SBM.opensmog_quit('Earlier call to saveFolder did not complete successfully. Try setting the save folder again before running createSimulation.')
         if not self._setuppassed:
-            SBM.opensmog_quit('Earlier call to setups_openmm did not complete successfully. One must either omit use of this routine (i.e. use a best guess by OpenSMOG) or have it complete before running createSimulation.')
+            SBM.opensmog_quit('Earlier call to setup_openmm did not complete successfully. One must either omit use of this routine (i.e. use a best guess by OpenSMOG) or have it complete before running createSimulation.')
 
         if (self.platform.getName() in ["CUDA", "OpenCL", "HIP"]):
             tmpprec=self.properties["Precision"]
