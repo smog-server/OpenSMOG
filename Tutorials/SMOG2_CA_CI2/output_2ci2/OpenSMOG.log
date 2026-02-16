@@ -1,0 +1,31 @@
+
+Computation Information:
+-------------------
+Date and time: 2026-02-15 15:47:16.670804
+Machine information: System : Darwin, Version : Darwin Kernel Version 25.2.0: Tue Nov 18 21:09:41 PST 2025; root:xnu-12377.61.12~1/RELEASE_ARM64_T6031
+OpenSMOG version: 1.2
+Platform: OpenCL
+Precision: single
+
+Simulation Information:
+-----------------------
+Name: 2ci2
+Time step: 0.002
+Collision Rate: 1.0
+r_cutoff: 0.65
+Temperature: 1.1349368484020719
+Integrator: LangevinMiddleIntegrator
+
+Input Files:
+------------
+GroFile: 2ci2.CA.gro
+TopFile: 2ci2.CA.top
+XmlFile: 2ci2.CA.xml
+
+Output Files:
+-------------
+Savefolder: output_2ci2
+2ci2_trajectory.dcd
+2ci2_energies.txt
+2ci2_forces.txt
+OpenSMOG.log
