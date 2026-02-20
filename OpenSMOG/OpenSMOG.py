@@ -380,6 +380,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 name of the state file to be read
         """
         try:
+            print("Loading State File: {}\n\n".format(filename))
             self.simulation.loadState(filename) 
         except Exception as mess:
              SBM.opensmog_quit("Failed to load the state file. This can happen for a variety of reasons, such as:\n\t-The state file has been corrupted.\n\t-The file was written when using a different integrator (common with custom integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
@@ -393,6 +394,7 @@ If you have questions/suggestions, you can also email us at info@smog-server.org
                 name of the checkpoint file to be read
         """
         try:
+            print("Loading Checkpoint File: {}\n\n".format(filename))
             self.simulation.loadCheckpoint(filename) 
         except Exception as mess:
              SBM.opensmog_quit("Failed to load the checkpoint file. This can happen for a variety of reasons, such as:\n\t-The file was generated when using a different machine.\n\tThe file has been corrupted.\n\t-The file was written for a different system (e.g. changing integrators).\n\t-The file name is invalid, or the file is missing.\nException returned below :\n\n{}".format(mess))
