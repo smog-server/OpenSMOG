@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- INTERACTION TYPE -->
+  <xs:complexType name="interactionType">
+    <!-- atleast 2 atoms/groups (i,j) -->
+    <xs:attribute name="i" type="xs:integer" use="required"/>
+    <xs:attribute name="j" type="xs:integer" use="required"/>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+  <!-- GROUP TYPE -->
+  <xs:complexType name="groupType">
+    <xs:attribute name="index" type="xs:string" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="atoms" type="xs:string" use="required"/>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+  <!-- cutoff TYPE -->
+  <xs:complexType name="cutoffType">
+    <xs:attribute name="distance" type="xs:decimal" use="required"/>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+  <!-- PARAMETER TYPE -->
+  <xs:complexType name="parameterType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+    </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- EXPRESSION TYPE -->
+  <xs:complexType name="expressionType">
+    <xs:attribute name="expr" type="xs:string" use="required"/>
+    <xs:attribute name="num" type="xs:string"/>
+  </xs:complexType>
+  <!-- MANYPARTICLE POTENTIAL TYPE -->
+  <xs:complexType name="manyparticlepotType">
+    <xs:sequence>
+      <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="interaction" type="interactionType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+  <!-- MANYPARTICLE TYPE -->
+  <xs:complexType name="manyparticleType">
+    <xs:sequence>
+      <xs:element name="manyparticle_type" type="manyparticlepotType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- CONSTANT TYPE -->
+  <xs:complexType name="constantType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="value" type="xs:decimal" use="required"/>
+  </xs:complexType>
+  <!-- CONSTANTS TYPE -->
+  <xs:complexType name="constantsType">
+    <xs:sequence>
+      <xs:element name="constant" type="constantType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- COM_PULL POTENTIAL TYPE -->
+  <xs:complexType name="pullpotType">
+    <xs:sequence>
+      <xs:element name="expression" type="expressionType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="group" type="groupType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="parameter" type="parameterType" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="interaction" type="interactionType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+  <!-- COM_PULL TYPE -->
+  <xs:complexType name="com_pullType">
+    <xs:sequence>
+      <xs:element name="pull_type" type="pullpotType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- OpenSMOGmod TYPE -->
+  <xs:complexType name="OpenSMOGmodType">
+    <xs:all>
+      <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="manyparticle" type="manyparticleType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="com_pull" type="com_pullType" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+  </xs:complexType>
+  <!-- OpenSMOGmod SCHEMA -->
+  <xs:element name="OpenSMOGmod" type="OpenSMOGmodType"/>
+</xs:schema>
