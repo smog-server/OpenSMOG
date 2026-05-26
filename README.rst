@@ -34,7 +34,28 @@ Overview
 ========
 
 OpenSMOG is a Python library for performing molecular dynamics simulations using Structure-Based Models. OpenSMOG uses the  `OpenMM <http://openmm.org/>`_. Python API, which supports a wide variety of potential energy functions, including those that are commonly employed in C-alpha and all-atom models.
-While it is possible to use this library in a standalone fashion, it is expected that users will generate input files using the SMOG2 software (version 2.4, or later, with the flag :code:`-OpenSMOG`). Details on how to generate OpenSMOG-compatible force fields files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+While it is possible to use this library in a standalone fashion, it is expected that users will generate input files using the SMOG2 software (version 2.4, or later, with the flag :code:`-OpenSMOG`) or the Python-native SMOG3 :code:`smog3 opensmog` shortcut. Details on how to generate OpenSMOG-compatible force fields files can be found in the `SMOG2 User Manual <https://smog-server.org/smog2/>`__.
+
+SMOG3 PDB+XML inputs
+====================
+
+Newer SMOG3 builds can write a self-contained OpenSMOG XML file:
+
+.. code-block:: bash
+
+    smog3 opensmog -i 2CI2.pdb --prefix 2CI2
+
+This produces :code:`2CI2.pdb` and :code:`2CI2.xml`.  The XML keeps the normal
+OpenSMOG force blocks and adds a :code:`smog3_system` payload with the
+topology, coordinates, index groups and contacts that were historically
+provided as separate Gromacs files.  OpenSMOG can load that pair with:
+
+.. code-block:: python
+
+    sbm.loadSystem(Pdbfile="2CI2.pdb", Xmlfile="2CI2.xml")
+
+Classic :code:`Grofile=...`, :code:`Topfile=...`, :code:`Xmlfile=...` loading
+is unchanged.
 
 .. raw:: html
 

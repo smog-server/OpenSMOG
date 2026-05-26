@@ -41,6 +41,20 @@
     </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
+  <!-- SMOG3 EMBEDDED FILE TYPE -->
+  <xs:complexType name="embeddedFileType" mixed="true">
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
+  <!-- SMOG3 SELF-CONTAINED SYSTEM TYPE -->
+  <xs:complexType name="smog3SystemType">
+    <xs:sequence>
+      <xs:element name="coordinate_file" type="embeddedFileType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="topology_file" type="embeddedFileType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="index_file" type="embeddedFileType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="contact_file" type="embeddedFileType" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
   <!-- EXPRESSION TYPE -->
   <xs:complexType name="expressionType">
     <xs:attribute name="expr" type="xs:string" use="required"/>
@@ -147,6 +161,7 @@
       <xs:element name="constants" type="constantsType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="nonbond" type="nonbondType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="externals" type="externalsType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="smog3_system" type="smog3SystemType" minOccurs="0" maxOccurs="1"/>
     </xs:all>
     <xs:attribute name="OpenSMOGversion" type="xs:string" use="optional"/>
   </xs:complexType>
