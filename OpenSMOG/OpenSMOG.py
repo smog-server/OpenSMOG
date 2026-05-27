@@ -21,12 +21,49 @@ import numpy as np
 import xml.etree.ElementTree as ET
 from lxml import etree
 import sys
-import tempfile
 from .OpenSMOG_Reporter import forcesReporter, stateReporter, SMOGMinimizationReporter
 import re as regex
 from pathlib import Path
 from .oscheck import SBMCHECK
 from . import __version__
+
+
+class _SMOG3Gro:
+    """Small coordinate adapter for SMOG3 self-contained XML inputs."""
+
+    def __init__(self, positions, box_values):
+        self.positions = positions
+        if len(box_values) >= 3:
+            self._box_vectors = (
+                Vec3(box_values[0], 0, 0),
+                Vec3(0, box_values[1], 0),
+                Vec3(0, 0, box_values[2]),
+            ) * nanometer
+        else:
+            self._box_vectors = None
+
+    def getPositions(self):
+        return self.positions
+
+    def getPeriodicBoxVectors(self):
+        return self._box_vectors
+
+
+class _SMOG3MoleculeType:
+    """Minimal molecule-type adapter used by OpenSMOG custom nonbond parsing."""
+
+    def __init__(self, atoms):
+        self.atoms = atoms
+
+
+class _SMOG3Top:
+    """Minimal topology adapter for SMOG3 self-contained XML inputs."""
+
+    def __init__(self, molecule_name, molecule_count, atoms):
+        self._molecules = [(molecule_name, molecule_count)]
+        self._moleculeTypes = {
+            molecule_name: _SMOG3MoleculeType([(atom["atom_name"], atom["type"]) for atom in atoms])
+        }
 
 class SBM:
     R"""  
@@ -682,15 +719,11 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
     def loadSMOG3System(self, Pdbfile, Xmlfile="smog.xml", noxml=False):
         R"""Load a SMOG3 self-contained OpenSMOG XML package.
 
-        SMOG3 can write an OpenSMOG-facing XML file that contains the normal
-        OpenSMOG force definitions plus a ``smog3_system`` payload.  The
-        payload stores the Gromacs topology, GRO coordinates, NDX groups and
-        contact map that historically had to be passed as separate files.
-
-        This method keeps the public workflow to PDB plus XML while reusing
-        OpenSMOG's validated GromacsTopFile/GromacsGroFile loading path
-        internally.  The temporary extracted files are implementation details
-        and are removed when the SBM object is garbage-collected.
+        SMOG3 writes normal OpenSMOG force definitions plus a structured
+        ``smog3_system`` payload containing atom types, atoms, bonded topology,
+        groups, contact-map rows and coordinates.  This method parses that
+        payload directly and builds the OpenMM ``System`` without requiring
+        separate Gromacs ``.top`` or ``.gro`` files.
         """
 
         if not os.path.exists(Pdbfile):
@@ -698,22 +731,24 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         if not os.path.exists(Xmlfile):
             SBM.opensmog_quit("Could not find XML file {}".format(Xmlfile))
 
-        extracted = self._extract_smog3_system_from_xml(Pdbfile, Xmlfile)
-        return self.loadSystem(
-            Grofile=extracted["gro"],
-            Topfile=extracted["top"],
-            Xmlfile=extracted["xml"],
-            noxml=noxml,
-        )
+        if self._loadpassed:
+            print("\n\nNOTE: loadSystem WAS ALREADY CALLED.  THE SYSTEM (FORCE FIELD PARAMETERS) WILL BE OVERWRITTEN. CALLING loadSystem MULTIPLE TIMES IS NOT RECOMMENDED, SINCE IT CAN LEAD TO UNPREDICTABLE BEHAVIOR.\n\n")
 
-    def _extract_smog3_system_from_xml(self, Pdbfile, Xmlfile):
-        """Extract embedded SMOG3 topology/coordinate files from XML.
+        data = self._parse_smog3_system_xml(Xmlfile)
+        self.inputNames = [Pdbfile, None, Xmlfile]
+        self._build_smog3_system(data)
+        print("    {} atoms loaded from SMOG3 self-contained XML".format(self.system.getNumParticles()))
 
-        The returned paths point to a private temporary directory retained on
-        ``self`` for the lifetime of the object.  The XML copy returned here has
-        the ``smog3_system`` payload removed so the existing OpenSMOG force XML
-        validator and parser can process the standard force blocks unchanged.
-        """
+        if noxml == False:
+            self.loadXml(Xmlfile)
+        else:
+            print('noxml flag was given.  Will not read OpenSMOG force blocks from the XML file')
+
+        print("\nLoaded force field and config files.")
+        self._loadpassed=True
+
+    def _parse_smog3_system_xml(self, Xmlfile):
+        """Parse the structured ``smog3_system`` payload from a SMOG3 XML file."""
 
         tree = ET.parse(Xmlfile)
         root = tree.getroot()
@@ -725,41 +760,211 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
                 "classic OpenSMOG inputs, or generate XML with `smog3 opensmog`."
                 .format(Xmlfile)
             )
+        if payload.find("topology_file") is not None or payload.find("coordinate_file") is not None:
+            SBM.opensmog_quit(
+                "XML file {} contains the older raw-file SMOG3 payload. "
+                "Regenerate it with the structured `smog3 opensmog` exporter."
+                .format(Xmlfile)
+            )
 
-        tmp = tempfile.TemporaryDirectory(prefix="opensmog-smog3-")
-        self._smog3_embedded_tempdir = tmp
-        tmpdir = Path(tmp.name)
+        topology = payload.find("topology")
+        coordinates = payload.find("coordinates")
+        if topology is None:
+            SBM.opensmog_quit("SMOG3 XML payload in {} is missing <topology>".format(Xmlfile))
+        if coordinates is None:
+            SBM.opensmog_quit("SMOG3 XML payload in {} is missing <coordinates>".format(Xmlfile))
 
-        def _write_payload(tag, suffix, *, attr_name=None, attr_value=None):
-            matches = []
-            for node in payload.findall(tag):
-                if attr_name is not None and node.attrib.get(attr_name) != attr_value:
-                    continue
-                matches.append(node)
-            if not matches:
-                SBM.opensmog_quit(
-                    "SMOG3 XML payload in {} is missing required {} {}".format(
-                        Xmlfile,
-                        tag,
-                        f"{attr_name}={attr_value}" if attr_name else "",
-                    )
+        def _children(parent, name):
+            node = parent.find(name)
+            return [] if node is None else list(node)
+
+        atomtypes = {node.attrib["name"]: dict(node.attrib) for node in _children(topology, "atomtypes")}
+        atoms = [dict(node.attrib) for node in _children(topology, "atoms")]
+        if not atoms:
+            SBM.opensmog_quit("SMOG3 XML payload in {} does not define any atoms".format(Xmlfile))
+        molecule_node = topology.find("moleculetype")
+        molecule_name = molecule_node.attrib.get("name", "Macromolecule") if molecule_node is not None else "Macromolecule"
+        nrexcl = int(molecule_node.attrib.get("nrexcl", "3")) if molecule_node is not None else 3
+        molecules_node = topology.find("molecules")
+        molecule_count = 1
+        if molecules_node is not None and len(list(molecules_node)) > 0:
+            molecule_count = int(list(molecules_node)[0].attrib.get("count", "1"))
+        box_node = coordinates.find("box")
+        box = [float(value) for value in box_node.attrib.get("values", "").split()] if box_node is not None else []
+        coord_atoms = [dict(node.attrib) for node in coordinates.findall("atom")]
+        if len(coord_atoms) != len(atoms):
+            SBM.opensmog_quit(
+                "SMOG3 XML payload atom-count mismatch: topology has {} atoms but coordinates have {} atoms".format(
+                    len(atoms), len(coord_atoms)
                 )
-            node = matches[0]
-            out = tmpdir / node.attrib.get("filename", f"smog3_embedded{suffix}")
-            out.write_text(node.text or "", encoding="utf-8")
-            return str(out)
+            )
+        groups = []
+        groups_node = payload.find("groups")
+        if groups_node is not None:
+            groups = [dict(node.attrib) for node in groups_node.findall("group")]
+        contacts = []
+        contacts_node = payload.find("contacts_data")
+        if contacts_node is not None:
+            contacts = [dict(node.attrib) for node in contacts_node.findall("contact")]
 
-        gro = _write_payload("coordinate_file", ".gro", attr_name="format", attr_value="gro")
-        top = _write_payload("topology_file", ".top")
-        _write_payload("index_file", ".ndx")
-        _write_payload("contact_file", ".contacts")
+        return {
+            "atomtypes": atomtypes,
+            "atoms": atoms,
+            "coordinates": coord_atoms,
+            "box": box,
+            "nrexcl": nrexcl,
+            "molecule_name": molecule_name,
+            "molecule_count": molecule_count,
+            "bonds": [dict(node.attrib) for node in _children(topology, "bonds")],
+            "angles": [dict(node.attrib) for node in _children(topology, "angles")],
+            "dihedrals": [dict(node.attrib) for node in _children(topology, "dihedrals")],
+            "pairs": [dict(node.attrib) for node in _children(topology, "pairs")],
+            "exclusions": [dict(node.attrib) for node in _children(topology, "exclusions")],
+            "groups": groups,
+            "contacts_data": contacts,
+        }
 
-        root.remove(payload)
-        force_xml = tmpdir / "smog3_forces.xml"
-        ET.ElementTree(root).write(force_xml, encoding="unicode")
+    def _build_smog3_system(self, data):
+        """Build an OpenMM system directly from parsed SMOG3 XML topology data."""
 
-        print("Loaded SMOG3 self-contained XML package using PDB {}".format(Pdbfile))
-        return {"gro": gro, "top": top, "xml": str(force_xml)}
+        positions = [Vec3(float(atom["x"]), float(atom["y"]), float(atom["z"])) for atom in data["coordinates"]] * nanometer
+        self.Gro = _SMOG3Gro(positions, data["box"])
+        self.Top = _SMOG3Top(data["molecule_name"], data["molecule_count"], data["atoms"])
+        self.smog3_groups = data["groups"]
+        self.smog3_contacts_data = data["contacts_data"]
+
+        self.system = System()
+        atomtypes = data["atomtypes"]
+        for atom in data["atoms"]:
+            atomtype = atomtypes.get(atom["type"], {})
+            mass = float(atom.get("mass", atomtype.get("mass", "1.0")))
+            self.system.addParticle(mass * dalton)
+        if self.pbc and self.Gro.getPeriodicBoxVectors() is not None:
+            self.system.setDefaultPeriodicBoxVectors(*self.Gro.getPeriodicBoxVectors())
+
+        nonbond = NonbondedForce()
+        custom_nonbond = CustomNonbondedForce("A1*A2/r^12-C1*C2/r^6")
+        custom_nonbond.addPerParticleParameter("C")
+        custom_nonbond.addPerParticleParameter("A")
+        for atom in data["atoms"]:
+            atomtype = atomtypes.get(atom["type"], {})
+            charge = float(atom.get("charge", atomtype.get("charge", "0.0")))
+            c6 = float(atomtype.get("c6_or_sigma", "0.0"))
+            c12 = float(atomtype.get("c12_or_epsilon", "0.0"))
+            nonbond.addParticle(charge * elementary_charge, 1.0 * nanometer, 0.0 * kilojoule_per_mole)
+            custom_nonbond.addParticle([sqrt(abs(c6)), sqrt(abs(c12))])
+        if self.pbc:
+            nonbond.setNonbondedMethod(NonbondedForce.CutoffPeriodic)
+            custom_nonbond.setNonbondedMethod(CustomNonbondedForce.CutoffPeriodic)
+        else:
+            nonbond.setNonbondedMethod(NonbondedForce.CutoffNonPeriodic)
+            custom_nonbond.setNonbondedMethod(CustomNonbondedForce.CutoffNonPeriodic)
+        nonbond.setCutoffDistance(self.rcutoff)
+        custom_nonbond.setCutoffDistance(self.rcutoff)
+
+        exclusions = self._smog3_exclusion_pairs(data)
+        for i, j in exclusions:
+            nonbond.addException(i, j, chargeProd=0, sigma=1, epsilon=0, replace=True)
+            custom_nonbond.addExclusion(i, j)
+        self.system.addForce(nonbond)
+        self.system.addForce(custom_nonbond)
+
+        bonds = HarmonicBondForce()
+        for row in data["bonds"]:
+            bonds.addBond(
+                int(row["i"]) - 1,
+                int(row["j"]) - 1,
+                float(row.get("length", "0")) * nanometer,
+                float(row.get("k", "0")) * kilojoule_per_mole / nanometer**2,
+            )
+        self.system.addForce(bonds)
+
+        angles = HarmonicAngleForce()
+        for row in data["angles"]:
+            angles.addAngle(
+                int(row["i"]) - 1,
+                int(row["j"]) - 1,
+                int(row["k"]) - 1,
+                float(row.get("theta", "0")) * pi / 180.0 * radians,
+                float(row.get("k_theta", "0")) * kilojoule_per_mole / radians**2,
+            )
+        self.system.addForce(angles)
+
+        proper = PeriodicTorsionForce()
+        improper = None
+        for row in data["dihedrals"]:
+            if row.get("function") == "1":
+                proper.addTorsion(
+                    int(row["i"]) - 1,
+                    int(row["j"]) - 1,
+                    int(row["k"]) - 1,
+                    int(row["l"]) - 1,
+                    int(float(row.get("periodicity", "1"))),
+                    float(row.get("phase", "0")) * pi / 180.0 * radians,
+                    float(row.get("k_phi", "0")) * kilojoule_per_mole,
+                )
+            elif row.get("function") == "2":
+                if improper is None:
+                    improper = CustomTorsionForce("0.5*k*(thetap-theta0)^2; thetap = step(-(theta-theta0+pi))*2*pi+theta+step(theta-theta0-pi)*(-2*pi); pi = 3.14159265358979")
+                    improper.addPerTorsionParameter("theta0")
+                    improper.addPerTorsionParameter("k")
+                improper.addTorsion(
+                    int(row["i"]) - 1,
+                    int(row["j"]) - 1,
+                    int(row["k"]) - 1,
+                    int(row["l"]) - 1,
+                    [float(row.get("phase", "0")) * pi / 180.0, float(row.get("k_phi", "0"))],
+                )
+            else:
+                SBM.opensmog_quit("Unsupported SMOG3 XML dihedral function {}".format(row.get("function")))
+        self.system.addForce(proper)
+        if improper is not None:
+            self.system.addForce(improper)
+
+        pairs = CustomBondForce("-C/r^6+A/r^12")
+        pairs.addPerBondParameter("C")
+        pairs.addPerBondParameter("A")
+        for row in data["pairs"]:
+            pairs.addBond(
+                int(row["i"]) - 1,
+                int(row["j"]) - 1,
+                [float(row.get("c6", "0")), float(row.get("c12", "0"))],
+            )
+        self.system.addForce(pairs)
+
+        for force_id, force in enumerate(self.system.getForces()):
+            force.setForceGroup(force_id)
+            self.forcesDict[force.__class__.__name__] = force
+        self.forceCount = self.system.getNumForces()
+
+    def _smog3_exclusion_pairs(self, data):
+        """Return sorted 0-based nonbonded exclusion pairs from bonds and XML rows."""
+
+        graph = {i: set() for i in range(len(data["atoms"]))}
+        for row in data["bonds"]:
+            i = int(row["i"]) - 1
+            j = int(row["j"]) - 1
+            graph[i].add(j)
+            graph[j].add(i)
+        pairs = set()
+        for start in graph:
+            seen = {start}
+            frontier = {start}
+            for _depth in range(data["nrexcl"]):
+                next_frontier = set()
+                for node in frontier:
+                    next_frontier.update(graph[node] - seen)
+                for node in next_frontier:
+                    pairs.add(tuple(sorted((start, node))))
+                seen.update(next_frontier)
+                frontier = next_frontier
+        for row in data["exclusions"]:
+            atoms = [int(value) - 1 for value in row.get("atoms", "").split()]
+            if len(atoms) >= 2:
+                first = atoms[0]
+                for other in atoms[1:]:
+                    pairs.add(tuple(sorted((first, other))))
+        return sorted(pairs)
         
     def _check_file(self, filename, ext):
         if not (filename.lower().endswith(ext)):

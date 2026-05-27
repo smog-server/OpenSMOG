@@ -46,9 +46,10 @@ Newer SMOG3 builds can write a self-contained OpenSMOG XML file:
     smog3 opensmog -i 2CI2.pdb --prefix 2CI2
 
 This produces :code:`2CI2.pdb` and :code:`2CI2.xml`.  The XML keeps the normal
-OpenSMOG force blocks and adds a :code:`smog3_system` payload with the
-topology, coordinates, index groups and contacts that were historically
-provided as separate Gromacs files.  OpenSMOG can load that pair with:
+OpenSMOG force blocks and adds a structured :code:`smog3_system` payload with
+atom types, atoms, bonded topology terms, exclusions, coordinates, index groups
+and contacts that were historically provided as separate Gromacs files.
+OpenSMOG parses this payload directly and can load that pair with:
 
 .. code-block:: python
 
@@ -56,6 +57,9 @@ provided as separate Gromacs files.  OpenSMOG can load that pair with:
 
 Classic :code:`Grofile=...`, :code:`Topfile=...`, :code:`Xmlfile=...` loading
 is unchanged.
+
+SMOG3 XML atom indices are 1-based, matching the generated Gromacs/OpenSMOG
+files. OpenSMOG converts them internally to the 0-based indices used by OpenMM.
 
 .. raw:: html
 

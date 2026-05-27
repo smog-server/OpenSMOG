@@ -41,17 +41,23 @@
     </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <!-- SMOG3 EMBEDDED FILE TYPE -->
-  <xs:complexType name="embeddedFileType" mixed="true">
+  <!-- SMOG3 SELF-CONTAINED SYSTEM TYPES -->
+  <xs:complexType name="smog3LeafType" mixed="true">
     <xs:anyAttribute processContents="skip"/>
   </xs:complexType>
-  <!-- SMOG3 SELF-CONTAINED SYSTEM TYPE -->
+  <xs:complexType name="smog3ContainerType">
+    <xs:sequence>
+      <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+    </xs:sequence>
+    <xs:anyAttribute processContents="skip"/>
+  </xs:complexType>
   <xs:complexType name="smog3SystemType">
     <xs:sequence>
-      <xs:element name="coordinate_file" type="embeddedFileType" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="topology_file" type="embeddedFileType" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="index_file" type="embeddedFileType" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="contact_file" type="embeddedFileType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="pdb" type="smog3LeafType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="coordinates" type="smog3ContainerType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="topology" type="smog3ContainerType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="groups" type="smog3ContainerType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="contacts_data" type="smog3ContainerType" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
     <xs:anyAttribute processContents="skip"/>
   </xs:complexType>
