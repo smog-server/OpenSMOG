@@ -61,6 +61,13 @@ is unchanged.
 SMOG3 XML atom indices are 1-based, matching the generated Gromacs/OpenSMOG
 files. OpenSMOG converts them internally to the 0-based indices used by OpenMM.
 
+The self-contained loader is validated against the classic multi-file loader by
+comparing system construction, force signatures, initial potential energies and
+short matched OpenMM simulations on the Reference platform.  The validation uses
+deterministic Verlet steps and a seeded Langevin smoke check; it is not a claim
+that long production trajectories are bitwise identical across platforms or
+stochastic integrator implementations.
+
 .. raw:: html
 
     <p align="center">

@@ -7,8 +7,9 @@ import pytest
 try:
     import smog3
     from smog3 import cli, smog2_native
-    from openmm import Context, CustomNonbondedForce, NonbondedForce, Platform, VerletIntegrator
-    from openmm.unit import kilojoule_per_mole
+    from openmm import Context, CustomNonbondedForce, NonbondedForce, Platform, Vec3, VerletIntegrator
+    from openmm.app import Simulation
+    from openmm.unit import kilojoule_per_mole, nanometer, picosecond
 except Exception as exc:  # pragma: no cover - only used when optional test deps are absent.
     pytest.skip(f"SMOG3/OpenMM integration dependencies are unavailable: {exc}", allow_module_level=True)
 
@@ -50,6 +51,35 @@ def _custom_nonbonded_exclusions(system) -> set[tuple[int, int]]:
                 for i in range(force.getNumExclusions())
             }
     raise AssertionError("system has no CustomNonbondedForce")
+
+
+def _short_verlet_trajectory(sbm: SBM, positions, steps: int = 5) -> tuple[list[float], object]:
+    integrator = VerletIntegrator(0.0005 * picosecond)
+    simulation = Simulation(sbm.Top.topology, sbm.system, integrator, Platform.getPlatformByName("Reference"), {})
+    simulation.context.setPositions(positions)
+    simulation.context.setVelocities([Vec3(0, 0, 0) for _ in range(sbm.system.getNumParticles())] * (nanometer / picosecond))
+    energies = []
+    final_positions = None
+    try:
+        for step in range(steps + 1):
+            state = simulation.context.getState(getEnergy=True, getPositions=True)
+            energies.append(state.getPotentialEnergy().value_in_unit(kilojoule_per_mole))
+            final_positions = state.getPositions().value_in_unit(nanometer)
+            if step < steps:
+                simulation.step(1)
+        return energies, final_positions
+    finally:
+        del simulation
+        del integrator
+
+
+def _rmsd(left, right) -> float:
+    total = 0.0
+    count = 0
+    for lvec, rvec in zip(left, right):
+        total += (lvec.x - rvec.x) ** 2 + (lvec.y - rvec.y) ** 2 + (lvec.z - rvec.z) ** 2
+        count += 1
+    return (total / count) ** 0.5
 
 
 def test_smog3_pdb_xml_loads_like_classic_gro_top_xml(tmp_path: Path) -> None:
@@ -107,3 +137,8 @@ def test_smog3_pdb_xml_loads_like_classic_gro_top_xml(tmp_path: Path) -> None:
     assert _nonbonded_exclusions(classic.system) == _nonbonded_exclusions(direct.system)
     assert _custom_nonbonded_exclusions(classic.system) == _custom_nonbonded_exclusions(direct.system)
     assert _energy(classic) == pytest.approx(_energy(direct), abs=1e-8)
+
+    classic_energies, classic_positions = _short_verlet_trajectory(classic, classic.Gro.getPositions())
+    direct_energies, direct_positions = _short_verlet_trajectory(direct, classic.Gro.getPositions())
+    assert classic_energies == pytest.approx(direct_energies, abs=1e-8)
+    assert _rmsd(classic_positions, direct_positions) == pytest.approx(0.0, abs=1e-10)

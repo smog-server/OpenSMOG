@@ -59,11 +59,26 @@ class _SMOG3MoleculeType:
 class _SMOG3Top:
     """Minimal topology adapter for SMOG3 self-contained XML inputs."""
 
-    def __init__(self, molecule_name, molecule_count, atoms):
+    def __init__(self, molecule_name, molecule_count, atoms, bonds=None):
         self._molecules = [(molecule_name, molecule_count)]
         self._moleculeTypes = {
             molecule_name: _SMOG3MoleculeType([(atom["atom_name"], atom["type"]) for atom in atoms])
         }
+        self.topology = Topology()
+        chain = self.topology.addChain()
+        residues = {}
+        topology_atoms = []
+        for atom in atoms:
+            residue_key = (atom.get("residue_index", ""), atom.get("residue_name", ""))
+            if residue_key not in residues:
+                residues[residue_key] = self.topology.addResidue(
+                    atom.get("residue_name", "RES"),
+                    chain,
+                    id=atom.get("residue_index") or None,
+                )
+            topology_atoms.append(self.topology.addAtom(atom.get("atom_name", "X"), None, residues[residue_key]))
+        for row in bonds or []:
+            self.topology.addBond(topology_atoms[int(row["i"]) - 1], topology_atoms[int(row["j"]) - 1])
 
 class SBM:
     R"""  
@@ -829,7 +844,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         positions = [Vec3(float(atom["x"]), float(atom["y"]), float(atom["z"])) for atom in data["coordinates"]] * nanometer
         self.Gro = _SMOG3Gro(positions, data["box"])
-        self.Top = _SMOG3Top(data["molecule_name"], data["molecule_count"], data["atoms"])
+        self.Top = _SMOG3Top(data["molecule_name"], data["molecule_count"], data["atoms"], data["bonds"])
         self.smog3_groups = data["groups"]
         self.smog3_contacts_data = data["contacts_data"]
 
