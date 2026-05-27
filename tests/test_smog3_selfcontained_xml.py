@@ -142,3 +142,66 @@ def test_smog3_pdb_xml_loads_like_classic_gro_top_xml(tmp_path: Path) -> None:
     direct_energies, direct_positions = _short_verlet_trajectory(direct, classic.Gro.getPositions())
     assert classic_energies == pytest.approx(direct_energies, abs=1e-8)
     assert _rmsd(classic_positions, direct_positions) == pytest.approx(0.0, abs=1e-10)
+
+
+def _write_smog3_xml(path: Path, system_body: str) -> None:
+    path.write_text(
+        "<OpenSMOGforces><smog3_system version=\"1\" index_base=\"1\" units=\"gromacs\">"
+        + system_body
+        + "</smog3_system></OpenSMOGforces>\n",
+        encoding="utf-8",
+    )
+
+
+def _minimal_system_body(bond_i: int = 1, bond_j: int = 2, coordinate_count: int = 2) -> str:
+    coordinates = "".join(
+        f"<atom index=\"{idx}\" x=\"0\" y=\"0\" z=\"0\"/>" for idx in range(1, coordinate_count + 1)
+    )
+    return f"""
+      <coordinates><box values="1 1 1"/>{coordinates}</coordinates>
+      <topology>
+        <atomtypes><atomtype name="CA" mass="12.0" charge="0" c6_or_sigma="0" c12_or_epsilon="0"/></atomtypes>
+        <moleculetype name="Macromolecule" nrexcl="3"/>
+        <atoms>
+          <atom index="1" type="CA" residue_index="1" residue_name="ALA" atom_name="CA"/>
+          <atom index="2" type="CA" residue_index="2" residue_name="ALA" atom_name="CA"/>
+        </atoms>
+        <bonds><bond i="{bond_i}" j="{bond_j}" function="1" length="0.38" k="1000"/></bonds>
+        <angles/>
+        <dihedrals/>
+        <pairs/>
+        <exclusions><exclusion atoms="1 2"/></exclusions>
+      </topology>
+    """
+
+
+def test_smog3_xml_reports_missing_required_topology_sections(tmp_path: Path, capsys) -> None:
+    xml = tmp_path / "missing.xml"
+    _write_smog3_xml(xml, "<coordinates><atom index=\"1\" x=\"0\" y=\"0\" z=\"0\"/></coordinates><topology/>")
+
+    with pytest.raises(SystemExit):
+        _new_sbm()._parse_smog3_system_xml(str(xml))
+
+    assert "missing <topology><atomtypes>" in capsys.readouterr().out
+
+
+def test_smog3_xml_reports_coordinate_atom_count_mismatch(tmp_path: Path, capsys) -> None:
+    xml = tmp_path / "count.xml"
+    _write_smog3_xml(xml, _minimal_system_body(coordinate_count=1))
+
+    with pytest.raises(SystemExit):
+        _new_sbm()._parse_smog3_system_xml(str(xml))
+
+    assert "atom-count mismatch" in capsys.readouterr().out
+
+
+def test_smog3_xml_reports_bad_topology_indices(tmp_path: Path, capsys) -> None:
+    xml = tmp_path / "bad-index.xml"
+    _write_smog3_xml(xml, _minimal_system_body(bond_i=1, bond_j=99))
+
+    with pytest.raises(SystemExit):
+        _new_sbm()._parse_smog3_system_xml(str(xml))
+
+    output = capsys.readouterr().out
+    assert "bonds row 1" in output
+    assert "out-of-range atom index" in output

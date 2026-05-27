@@ -789,23 +789,61 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
         if coordinates is None:
             SBM.opensmog_quit("SMOG3 XML payload in {} is missing <coordinates>".format(Xmlfile))
 
+        required_topology_sections = ["atomtypes", "atoms", "bonds", "angles", "dihedrals", "pairs", "exclusions"]
+        for section_name in required_topology_sections:
+            if topology.find(section_name) is None:
+                SBM.opensmog_quit(
+                    "SMOG3 XML payload in {} is missing <topology><{}>".format(Xmlfile, section_name)
+                )
+
         def _children(parent, name):
             node = parent.find(name)
             return [] if node is None else list(node)
 
-        atomtypes = {node.attrib["name"]: dict(node.attrib) for node in _children(topology, "atomtypes")}
+        atomtypes = {}
+        for row_index, node in enumerate(_children(topology, "atomtypes"), start=1):
+            if "name" not in node.attrib:
+                SBM.opensmog_quit(
+                    "SMOG3 XML payload in {} has atomtype row {} without a name attribute".format(Xmlfile, row_index)
+                )
+            atomtypes[node.attrib["name"]] = dict(node.attrib)
+        if not atomtypes:
+            SBM.opensmog_quit("SMOG3 XML payload in {} does not define any atomtypes".format(Xmlfile))
         atoms = [dict(node.attrib) for node in _children(topology, "atoms")]
         if not atoms:
             SBM.opensmog_quit("SMOG3 XML payload in {} does not define any atoms".format(Xmlfile))
+        for row_index, atom in enumerate(atoms, start=1):
+            for attr in ["index", "type", "atom_name"]:
+                if attr not in atom:
+                    SBM.opensmog_quit(
+                        "SMOG3 XML payload in {} atom row {} is missing required attribute {}".format(
+                            Xmlfile, row_index, attr
+                        )
+                    )
+            self._smog3_xml_index(Xmlfile, "atoms", row_index, atom, "index", len(atoms))
+            if atom["type"] not in atomtypes:
+                SBM.opensmog_quit(
+                    "SMOG3 XML payload in {} atom row {} references unknown atom type {}".format(
+                        Xmlfile, row_index, atom["type"]
+                    )
+                )
         molecule_node = topology.find("moleculetype")
         molecule_name = molecule_node.attrib.get("name", "Macromolecule") if molecule_node is not None else "Macromolecule"
-        nrexcl = int(molecule_node.attrib.get("nrexcl", "3")) if molecule_node is not None else 3
+        if molecule_node is not None and "nrexcl" in molecule_node.attrib:
+            nrexcl = self._smog3_xml_int(Xmlfile, "moleculetype", 1, molecule_node.attrib, "nrexcl")
+        else:
+            nrexcl = 3
         molecules_node = topology.find("molecules")
         molecule_count = 1
         if molecules_node is not None and len(list(molecules_node)) > 0:
-            molecule_count = int(list(molecules_node)[0].attrib.get("count", "1"))
+            molecule_count = self._smog3_xml_int(Xmlfile, "molecules", 1, list(molecules_node)[0].attrib, "count")
         box_node = coordinates.find("box")
-        box = [float(value) for value in box_node.attrib.get("values", "").split()] if box_node is not None else []
+        box = []
+        if box_node is not None:
+            try:
+                box = [float(value) for value in box_node.attrib.get("values", "").split()]
+            except ValueError:
+                SBM.opensmog_quit("SMOG3 XML payload in {} has non-numeric coordinate box values".format(Xmlfile))
         coord_atoms = [dict(node.attrib) for node in coordinates.findall("atom")]
         if len(coord_atoms) != len(atoms):
             SBM.opensmog_quit(
@@ -813,6 +851,16 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
                     len(atoms), len(coord_atoms)
                 )
             )
+        for row_index, atom in enumerate(coord_atoms, start=1):
+            self._smog3_xml_index(Xmlfile, "coordinates", row_index, atom, "index", len(atoms))
+            for attr in ["x", "y", "z"]:
+                self._smog3_xml_float(Xmlfile, "coordinates", row_index, atom, attr)
+        bonds = [dict(node.attrib) for node in _children(topology, "bonds")]
+        angles = [dict(node.attrib) for node in _children(topology, "angles")]
+        dihedrals = [dict(node.attrib) for node in _children(topology, "dihedrals")]
+        pairs = [dict(node.attrib) for node in _children(topology, "pairs")]
+        exclusions = [dict(node.attrib) for node in _children(topology, "exclusions")]
+        self._validate_smog3_xml_rows(Xmlfile, len(atoms), bonds, angles, dihedrals, pairs, exclusions)
         groups = []
         groups_node = payload.find("groups")
         if groups_node is not None:
@@ -830,14 +878,98 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             "nrexcl": nrexcl,
             "molecule_name": molecule_name,
             "molecule_count": molecule_count,
-            "bonds": [dict(node.attrib) for node in _children(topology, "bonds")],
-            "angles": [dict(node.attrib) for node in _children(topology, "angles")],
-            "dihedrals": [dict(node.attrib) for node in _children(topology, "dihedrals")],
-            "pairs": [dict(node.attrib) for node in _children(topology, "pairs")],
-            "exclusions": [dict(node.attrib) for node in _children(topology, "exclusions")],
+            "bonds": bonds,
+            "angles": angles,
+            "dihedrals": dihedrals,
+            "pairs": pairs,
+            "exclusions": exclusions,
             "groups": groups,
             "contacts_data": contacts,
         }
+
+    def _smog3_xml_int(self, Xmlfile, section, row_index, row, attr):
+        """Parse a required integer attribute from a SMOG3 XML row."""
+
+        if attr not in row:
+            SBM.opensmog_quit(
+                "SMOG3 XML payload in {} {} row {} is missing required attribute {}".format(
+                    Xmlfile, section, row_index, attr
+                )
+            )
+        try:
+            return int(row[attr])
+        except ValueError:
+            SBM.opensmog_quit(
+                "SMOG3 XML payload in {} {} row {} has non-integer {}={}".format(
+                    Xmlfile, section, row_index, attr, row[attr]
+                )
+            )
+
+    def _smog3_xml_float(self, Xmlfile, section, row_index, row, attr):
+        """Parse an optional floating-point attribute from a SMOG3 XML row."""
+
+        if attr not in row:
+            SBM.opensmog_quit(
+                "SMOG3 XML payload in {} {} row {} is missing required attribute {}".format(
+                    Xmlfile, section, row_index, attr
+                )
+            )
+        try:
+            return float(row[attr])
+        except ValueError:
+            SBM.opensmog_quit(
+                "SMOG3 XML payload in {} {} row {} has non-numeric {}={}".format(
+                    Xmlfile, section, row_index, attr, row[attr]
+                )
+            )
+
+    def _smog3_xml_index(self, Xmlfile, section, row_index, row, attr, atom_count):
+        """Parse and range-check a 1-based atom index from a SMOG3 XML row."""
+
+        value = self._smog3_xml_int(Xmlfile, section, row_index, row, attr)
+        if value < 1 or value > atom_count:
+            SBM.opensmog_quit(
+                "SMOG3 XML payload in {} {} row {} has out-of-range atom index {}={} for {} atoms".format(
+                    Xmlfile, section, row_index, attr, value, atom_count
+                )
+            )
+        return value
+
+    def _validate_smog3_xml_rows(self, Xmlfile, atom_count, bonds, angles, dihedrals, pairs, exclusions):
+        """Validate SMOG3 XML topology rows before constructing OpenMM forces."""
+
+        for row_index, row in enumerate(bonds, start=1):
+            for attr in ["i", "j"]:
+                self._smog3_xml_index(Xmlfile, "bonds", row_index, row, attr, atom_count)
+            for attr in ["function", "length", "k"]:
+                self._smog3_xml_float(Xmlfile, "bonds", row_index, row, attr)
+        for row_index, row in enumerate(angles, start=1):
+            for attr in ["i", "j", "k"]:
+                self._smog3_xml_index(Xmlfile, "angles", row_index, row, attr, atom_count)
+            for attr in ["function", "theta", "k_theta"]:
+                self._smog3_xml_float(Xmlfile, "angles", row_index, row, attr)
+        for row_index, row in enumerate(dihedrals, start=1):
+            for attr in ["i", "j", "k", "l"]:
+                self._smog3_xml_index(Xmlfile, "dihedrals", row_index, row, attr, atom_count)
+            for attr in ["function", "phase", "k_phi"]:
+                self._smog3_xml_float(Xmlfile, "dihedrals", row_index, row, attr)
+            if "periodicity" in row:
+                self._smog3_xml_float(Xmlfile, "dihedrals", row_index, row, "periodicity")
+        for row_index, row in enumerate(pairs, start=1):
+            for attr in ["i", "j"]:
+                self._smog3_xml_index(Xmlfile, "pairs", row_index, row, attr, atom_count)
+            for attr in ["function", "c6", "c12"]:
+                self._smog3_xml_float(Xmlfile, "pairs", row_index, row, attr)
+        for row_index, row in enumerate(exclusions, start=1):
+            atoms = row.get("atoms", "").split()
+            if len(atoms) < 2:
+                SBM.opensmog_quit(
+                    "SMOG3 XML payload in {} exclusions row {} must list at least two atoms".format(
+                        Xmlfile, row_index
+                    )
+                )
+            for value in atoms:
+                self._smog3_xml_index(Xmlfile, "exclusions", row_index, {"atom": value}, "atom", atom_count)
 
     def _build_smog3_system(self, data):
         """Build an OpenMM system directly from parsed SMOG3 XML topology data."""
