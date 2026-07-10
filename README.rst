@@ -39,6 +39,11 @@ While it is possible to use this library in a standalone fashion, it is expected
 SMOG3 PDB+XML inputs
 ====================
 
+This interface is currently under coordinated review.  Test OpenSMOG branch
+:code:`codex/load-self-contained-smog3-xml` together with SMOG3 branch
+:code:`codex/self-contained-opensmog-xml`; do not treat either branch as an
+independent production release yet.
+
 Newer SMOG3 builds can write a self-contained OpenSMOG XML file:
 
 .. code-block:: bash
