@@ -991,6 +991,9 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
 
         nonbond = NonbondedForce()
         custom_nonbond = CustomNonbondedForce("A1*A2/r^12-C1*C2/r^6")
+        custom_nonbond.setName("LennardJonesForce")
+        # GromacsTopFile enables this by default, including for periodic models.
+        custom_nonbond.setUseLongRangeCorrection(True)
         custom_nonbond.addPerParticleParameter("C")
         custom_nonbond.addPerParticleParameter("A")
         for atom in data["atoms"]:
@@ -1053,6 +1056,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             elif row.get("function") == "2":
                 if improper is None:
                     improper = CustomTorsionForce("0.5*k*(thetap-theta0)^2; thetap = step(-(theta-theta0+pi))*2*pi+theta+step(theta-theta0-pi)*(-2*pi); pi = 3.14159265358979")
+                    improper.setName("HarmonicTorsionForce")
                     improper.addPerTorsionParameter("theta0")
                     improper.addPerTorsionParameter("k")
                 improper.addTorsion(
@@ -1069,6 +1073,7 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
             self.system.addForce(improper)
 
         pairs = CustomBondForce("-C/r^6+A/r^12")
+        pairs.setName("LennardJonesExceptions")
         pairs.addPerBondParameter("C")
         pairs.addPerBondParameter("A")
         for row in data["pairs"]:
@@ -1078,6 +1083,9 @@ To alleviate this instability, we allow one to truncate the Gaussian term at 4*s
                 [float(row.get("c6", "0")), float(row.get("c12", "0"))],
             )
         self.system.addForce(pairs)
+
+        if self.cmm:
+            self.system.addForce(CMMotionRemover())
 
         for force_id, force in enumerate(self.system.getForces()):
             force.setForceGroup(force_id)

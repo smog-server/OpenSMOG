@@ -48,9 +48,10 @@ Newer SMOG3 builds can write a self-contained OpenSMOG XML file:
 
 .. code-block:: bash
 
-    smog3 opensmog -i 2CI2.pdb --prefix 2CI2
+    smog3 opensmog -i 2CI2.pdb --prefix model
 
-This produces :code:`2CI2.pdb` and :code:`2CI2.xml`.  The XML keeps the normal
+This produces :code:`model.pdb` and :code:`model.xml`, preserving the input PDB.
+The XML keeps the normal
 OpenSMOG force blocks and adds a structured :code:`smog3_system` payload with
 atom types, atoms, bonded topology terms, exclusions, coordinates, index groups
 and contacts that were historically provided as separate Gromacs files.
@@ -58,7 +59,7 @@ OpenSMOG parses this payload directly and can load that pair with:
 
 .. code-block:: python
 
-    sbm.loadSystem(Pdbfile="2CI2.pdb", Xmlfile="2CI2.xml")
+    sbm.loadSystem(Pdbfile="model.pdb", Xmlfile="model.xml")
 
 Classic :code:`Grofile=...`, :code:`Topfile=...`, :code:`Xmlfile=...` loading
 is unchanged.
@@ -72,6 +73,12 @@ short matched OpenMM simulations on the Reference platform.  The validation uses
 deterministic Verlet steps and a seeded Langevin smoke check; it is not a claim
 that long production trajectories are bitwise identical across platforms or
 stochastic integrator implementations.
+
+Regression comparisons also cover ligand and nucleic-acid models, periodic
+boundaries and centre-of-mass removal enabled and disabled. They compare all
+serialized OpenMM system parameters with tight floating-point tolerances;
+only undirected exception/exclusion enumeration is canonicalized. The
+periodic nonbonded long-range-correction setting follows the classic loader.
 
 .. raw:: html
 

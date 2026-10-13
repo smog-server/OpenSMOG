@@ -136,11 +136,11 @@ def test_smog3_pdb_xml_loads_like_classic_gro_top_xml(tmp_path: Path) -> None:
     ]
     assert _nonbonded_exclusions(classic.system) == _nonbonded_exclusions(direct.system)
     assert _custom_nonbonded_exclusions(classic.system) == _custom_nonbonded_exclusions(direct.system)
-    assert _energy(classic) == pytest.approx(_energy(direct), abs=1e-8)
+    assert _energy(classic) == pytest.approx(_energy(direct), abs=1e-8, rel=0)
 
     classic_energies, classic_positions = _short_verlet_trajectory(classic, classic.Gro.getPositions())
     direct_energies, direct_positions = _short_verlet_trajectory(direct, classic.Gro.getPositions())
-    assert classic_energies == pytest.approx(direct_energies, abs=1e-8)
+    assert classic_energies == pytest.approx(direct_energies, abs=1e-8, rel=0)
     assert _rmsd(classic_positions, direct_positions) == pytest.approx(0.0, abs=1e-10)
 
 
